@@ -64,12 +64,18 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c2K-qp-wse">
                                 <rect key="frame" x="251" y="58" width="51" height="31"/>
+                                <connections>
+                                    <action selector="toggleVisibility:" destination="gXl-Md-Q7V" eventType="valueChanged" id="HVu-x6-yAr"/>
+                                </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5v-wn-g0G">
                                 <rect key="frame" x="94" y="92" width="132" height="30"/>
                                 <state key="normal" title="Browse for devices">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="browseForDevices:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="ltl-PY-5C6"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="D1u-HN-hKJ">
                                 <rect key="frame" x="0.0" y="130" width="320" height="352"/>
@@ -80,10 +86,19 @@
                                 <state key="normal" title="Disconnect">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="disconnect:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="yB7-bB-XZ9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="btnDisconnect" destination="D1u-HN-hKJ" id="46E-f6-VfY"/>
+                        <outlet property="swVisible" destination="c2K-qp-wse" id="xNa-Ns-HWA"/>
+                        <outlet property="tblConnectedDevices" destination="D1u-HN-hKJ" id="Mtb-Nr-iUc"/>
+                        <outlet property="txtName" destination="1H0-re-5ME" id="DD5-1Y-uyZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xF5-ds-KHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

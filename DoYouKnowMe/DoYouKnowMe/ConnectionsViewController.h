@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface ConnectionsViewController : UIViewController
+@interface ConnectionsViewController : UIViewController <MCBrowserViewControllerDelegate>
 
 @end

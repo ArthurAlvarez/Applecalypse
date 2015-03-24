@@ -15,9 +15,13 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    return YES;
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+	// Override point for customization after application launch.
+	
+	_mcManager = [[Conectivity alloc] init];
+	
+	return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -111,6 +111,12 @@
                                     <action selector="disconnect:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="yB7-bB-XZ9"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-8L-TAb">
+                                <rect key="frame" x="277" y="513" width="38" height="30"/>
+                                <state key="normal" title="Start!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -119,8 +125,10 @@
                             <constraint firstItem="1H0-re-5ME" firstAttribute="centerX" secondItem="I5v-wn-g0G" secondAttribute="centerX" id="C1o-86-ct1"/>
                             <constraint firstAttribute="centerX" secondItem="1H0-re-5ME" secondAttribute="centerX" id="FEl-Gz-KyN"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="centerY" secondItem="c2K-qp-wse" secondAttribute="centerY" id="Lz6-tJ-tIw"/>
+                            <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="57" id="Oai-gM-UTS"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="top" secondItem="I5v-wn-g0G" secondAttribute="bottom" constant="8" symbolic="YES" id="QF2-is-jd4"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="top" id="RPO-IQ-zCl"/>
+                            <constraint firstItem="iXw-8L-TAb" firstAttribute="leading" secondItem="F7b-1G-gIx" secondAttribute="leading" constant="277" id="RhO-d0-tPm"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="mvG-ZM-ZvJ" secondAttribute="bottom" constant="8" symbolic="YES" id="WAl-ij-aps"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="leading" secondItem="DnB-XG-KrO" secondAttribute="leading" id="Y4I-hf-vmo"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="top" secondItem="JU0-D1-ydj" secondAttribute="bottom" id="YzP-zP-FNs"/>
@@ -144,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xF5-ds-KHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1041" y="604"/>
+            <point key="canvasLocation" x="1088" y="604"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="GwC-KS-feF">

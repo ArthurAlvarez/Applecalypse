@@ -114,22 +114,31 @@
 	{
 		if (state == MCSessionStateConnected)
 		{
-			[_connectedDevice setText:peerDisplayName];
 			[_arrConnectedDevices addObject:peerDisplayName];
 		}
 		else if (state == MCSessionStateNotConnected)
 		{
 			if ([_arrConnectedDevices count] > 0)
 			{
-				[_connectedDevice setText:@""];
 				[_arrConnectedDevices removeAllObjects];
 			}
 		}
-	}
-	
-	BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
+		
+		BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
 		[_btnDisconnect setEnabled:!peersExist];
 		[_txtName setEnabled:peersExist];
+		if (!peersExist)
+		{
+			[_connectedDevice setText:peerDisplayName];
+			NSLog(@"PEER EXIST!");
+		}
+		else {
+			NSLog(@"PEER DONT EXIST");
+			[_connectedDevice setText:@""];
+		}
+	}
+	
+	
 	
 }
 

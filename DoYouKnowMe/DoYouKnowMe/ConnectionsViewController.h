@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface ConnectionsViewController : UIViewController <MCBrowserViewControllerDelegate>
+@interface ConnectionsViewController : UIViewController <MCBrowserViewControllerDelegate, UITextFieldDelegate>
 
 @end

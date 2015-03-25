@@ -125,12 +125,11 @@
 				[_arrConnectedDevices removeAllObjects];
 			}
 		}
-		
-		BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
-		[_btnDisconnect setEnabled:!peersExist];
-		[_txtName setEnabled:peersExist];
 	}
 	
+	BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
+		[_btnDisconnect setEnabled:!peersExist];
+		[_txtName setEnabled:peersExist];
 	
 }
 

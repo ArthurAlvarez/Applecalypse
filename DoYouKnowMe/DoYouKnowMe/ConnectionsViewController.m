@@ -13,6 +13,7 @@
 
 @interface ConnectionsViewController ()
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *questionTo;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 @property (weak, nonatomic) IBOutlet UISwitch *swVisible;
@@ -42,6 +43,11 @@
 												 name:@"MCDidChangeStateNotification"
 											   object:nil];
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(didReceiveDataWithNotification:)
+												 name:@"MCDidReceiveDataNotification"
+											   object:nil];
+	
 	_arrConnectedDevices = [[NSMutableArray alloc] init];
 }
 
@@ -62,6 +68,31 @@
 - (IBAction)toggleVisibility:(id)sender
 {
 	[_appDelegate.mcManager advertiseSelf:_swVisible.isOn];
+}
+- (IBAction)questionsTo:(id)sender {
+	
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend;
+	
+	if (_questionTo.selectedSegmentIndex == 0)
+	{
+		dataToSend = [@"1" dataUsingEncoding:NSUTF8StringEncoding];
+	}
+	else
+	{
+		 dataToSend = [@"0" dataUsingEncoding:NSUTF8StringEncoding];
+	}
+
+	[_appDelegate.mcManager.session sendData:dataToSend
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (error) {
+		NSLog(@"%@", [error localizedDescription]);
+	}
+	
 }
 
 - (IBAction)disconnect:(id)sender
@@ -140,6 +171,15 @@
 			[_connectedDevice setText:@""];
 		}
 	}
+}
+
+-(void)didReceiveDataWithNotification:(NSNotification *)notification
+{
+	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+	
+	NSLog(@"index: %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
+	
+	_questionTo.selectedSegmentIndex = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] integerValue];
 }
 
 /*

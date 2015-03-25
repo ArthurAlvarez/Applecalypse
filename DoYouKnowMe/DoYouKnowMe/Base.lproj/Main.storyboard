@@ -136,6 +136,9 @@
                                     <segment title="A minha pessoa"/>
                                     <segment title="A outra pessoa"/>
                                 </segments>
+                                <connections>
+                                    <action selector="questionsTo:" destination="gXl-Md-Q7V" eventType="valueChanged" id="6OT-vn-tOp"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -170,6 +173,7 @@
                     <connections>
                         <outlet property="btnDisconnect" destination="0hk-BW-bux" id="zjX-gQ-GJM"/>
                         <outlet property="connectedDevice" destination="aMC-dM-CPO" id="EJW-sI-tHO"/>
+                        <outlet property="questionTo" destination="Dtz-p7-56e" id="Nb3-sP-vLp"/>
                         <outlet property="startBtn" destination="iXw-8L-TAb" id="Sg8-C2-g0i"/>
                         <outlet property="swVisible" destination="c2K-qp-wse" id="xNa-Ns-HWA"/>
                         <outlet property="txtName" destination="1H0-re-5ME" id="DD5-1Y-uyZ"/>

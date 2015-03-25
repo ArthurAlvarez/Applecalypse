@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 
+# pragma mark - Interface Properties
 @interface GameViewController ()
 ///Interface label that shows the time left for answering the game question
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel;
@@ -21,8 +22,11 @@
 ///Interface Button that the user presses to submit the answer
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
+#pragma mark - Controller Properties
+@property (strong, nonatomic) NSNumber *playerScore;
 @end
 
+#pragma mark - Controller Implementation
 @implementation GameViewController
 
 - (void)viewDidLoad {

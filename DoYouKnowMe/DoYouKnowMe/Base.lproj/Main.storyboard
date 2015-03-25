@@ -112,10 +112,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-8L-TAb">
-                                <rect key="frame" x="277" y="513" width="38" height="30"/>
+                                <rect key="frame" x="281" y="443" width="38" height="30"/>
                                 <state key="normal" title="Start!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="EzG-sG-hhN" kind="show" id="MHI-GZ-SPI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -124,15 +127,15 @@
                             <constraint firstItem="c2K-qp-wse" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="8" symbolic="YES" id="9Ty-Qe-JaY"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="centerX" secondItem="I5v-wn-g0G" secondAttribute="centerX" id="C1o-86-ct1"/>
                             <constraint firstAttribute="centerX" secondItem="1H0-re-5ME" secondAttribute="centerX" id="FEl-Gz-KyN"/>
+                            <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="127" id="H9l-gG-rNo"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="centerY" secondItem="c2K-qp-wse" secondAttribute="centerY" id="Lz6-tJ-tIw"/>
-                            <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="57" id="Oai-gM-UTS"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="top" secondItem="I5v-wn-g0G" secondAttribute="bottom" constant="8" symbolic="YES" id="QF2-is-jd4"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="top" id="RPO-IQ-zCl"/>
-                            <constraint firstItem="iXw-8L-TAb" firstAttribute="leading" secondItem="F7b-1G-gIx" secondAttribute="leading" constant="277" id="RhO-d0-tPm"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="mvG-ZM-ZvJ" secondAttribute="bottom" constant="8" symbolic="YES" id="WAl-ij-aps"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="leading" secondItem="DnB-XG-KrO" secondAttribute="leading" id="Y4I-hf-vmo"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="top" secondItem="JU0-D1-ydj" secondAttribute="bottom" id="YzP-zP-FNs"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="alt-Af-qDR"/>
+                            <constraint firstItem="iXw-8L-TAb" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="bc1-p8-zSM"/>
                             <constraint firstItem="0hk-BW-bux" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="bottom" constant="19" id="dvT-Rf-A8u"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="13" id="eRn-kh-cf0"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="leading" secondItem="mvG-ZM-ZvJ" secondAttribute="leading" id="g1X-bR-0h6"/>

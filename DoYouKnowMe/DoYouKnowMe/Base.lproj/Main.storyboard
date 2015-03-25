@@ -159,6 +159,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="answerTextField" destination="TDV-1E-jzr" id="8dY-rA-cNY"/>
+                        <outlet property="questionLabel" destination="wgz-EY-fsS" id="uFo-EJ-HfE"/>
+                        <outlet property="submitButton" destination="q5y-5j-KV9" id="K8N-pQ-u4J"/>
+                        <outlet property="timerLabel" destination="F3N-x9-1e9" id="XA7-N5-Yuf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uua-R1-Lgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

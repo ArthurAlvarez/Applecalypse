@@ -111,7 +111,7 @@
                                     <action selector="disconnect:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="yB7-bB-XZ9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-8L-TAb">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-8L-TAb">
                                 <rect key="frame" x="281" y="443" width="38" height="30"/>
                                 <state key="normal" title="Start!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,20 +120,41 @@
                                     <segue destination="EzG-sG-hhN" kind="show" id="MHI-GZ-SPI"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As perguntas são sobre:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-fs-vxG">
+                                <rect key="frame" x="207" y="285" width="187" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="187" id="9b1-g6-Nx7"/>
+                                    <constraint firstAttribute="height" constant="21" id="OXv-Ed-04N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dtz-p7-56e">
+                                <rect key="frame" x="189" y="333" width="223" height="29"/>
+                                <segments>
+                                    <segment title="A minha pessoa"/>
+                                    <segment title="A outra pessoa"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Dtz-p7-56e" firstAttribute="centerX" secondItem="eWN-fs-vxG" secondAttribute="centerX" id="2wq-LE-sY1"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="leading" secondItem="DnB-XG-KrO" secondAttribute="trailing" constant="24" id="8AZ-3b-Zpv"/>
                             <constraint firstItem="c2K-qp-wse" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="8" symbolic="YES" id="9Ty-Qe-JaY"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="centerX" secondItem="I5v-wn-g0G" secondAttribute="centerX" id="C1o-86-ct1"/>
                             <constraint firstAttribute="centerX" secondItem="1H0-re-5ME" secondAttribute="centerX" id="FEl-Gz-KyN"/>
                             <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="127" id="H9l-gG-rNo"/>
+                            <constraint firstItem="eWN-fs-vxG" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="KHf-aD-Ftw"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="centerY" secondItem="c2K-qp-wse" secondAttribute="centerY" id="Lz6-tJ-tIw"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="top" secondItem="I5v-wn-g0G" secondAttribute="bottom" constant="8" symbolic="YES" id="QF2-is-jd4"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="top" id="RPO-IQ-zCl"/>
+                            <constraint firstItem="iXw-8L-TAb" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="82" id="S4r-GT-0nX"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="mvG-ZM-ZvJ" secondAttribute="bottom" constant="8" symbolic="YES" id="WAl-ij-aps"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="leading" secondItem="DnB-XG-KrO" secondAttribute="leading" id="Y4I-hf-vmo"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="top" secondItem="JU0-D1-ydj" secondAttribute="bottom" id="YzP-zP-FNs"/>
+                            <constraint firstItem="Dtz-p7-56e" firstAttribute="top" secondItem="eWN-fs-vxG" secondAttribute="bottom" constant="27" id="ZBb-Ap-Slz"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="alt-Af-qDR"/>
                             <constraint firstItem="iXw-8L-TAb" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="bc1-p8-zSM"/>
                             <constraint firstItem="0hk-BW-bux" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="bottom" constant="19" id="dvT-Rf-A8u"/>
@@ -149,6 +170,7 @@
                     <connections>
                         <outlet property="btnDisconnect" destination="0hk-BW-bux" id="zjX-gQ-GJM"/>
                         <outlet property="connectedDevice" destination="aMC-dM-CPO" id="EJW-sI-tHO"/>
+                        <outlet property="startBtn" destination="iXw-8L-TAb" id="Sg8-C2-g0i"/>
                         <outlet property="swVisible" destination="c2K-qp-wse" id="xNa-Ns-HWA"/>
                         <outlet property="txtName" destination="1H0-re-5ME" id="DD5-1Y-uyZ"/>
                     </connections>

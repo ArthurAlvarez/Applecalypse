@@ -13,6 +13,7 @@
 
 @interface ConnectionsViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *startBtn;
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 @property (weak, nonatomic) IBOutlet UISwitch *swVisible;
 @property (weak, nonatomic) IBOutlet UILabel *connectedDevice;
@@ -126,20 +127,19 @@
 		
 		BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
 		[_btnDisconnect setEnabled:!peersExist];
+		[_startBtn setEnabled:!peersExist];
 		[_txtName setEnabled:peersExist];
+		
 		if (!peersExist)
 		{
 			[_connectedDevice setText:peerDisplayName];
-			NSLog(@"PEER EXIST!");
+			NSLog(@"PEER EXIST! and is named %@", peerDisplayName);
 		}
 		else {
 			NSLog(@"PEER DONT EXIST");
 			[_connectedDevice setText:@""];
 		}
 	}
-	
-	
-	
 }
 
 /*

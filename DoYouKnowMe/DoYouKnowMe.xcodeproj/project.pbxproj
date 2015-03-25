@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1432C40B1AC2D40400E15CDE /* GameViewController.m */; };
 		14C443361AC18C6300103C35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443351AC18C6300103C35 /* main.m */; };
 		14C443391AC18C6300103C35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443381AC18C6300103C35 /* AppDelegate.m */; };
 		14C4433C1AC18C6300103C35 /* viewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4433B1AC18C6300103C35 /* viewController.m */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1432C40A1AC2D40400E15CDE /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = ../GameViewController.h; sourceTree = "<group>"; };
+		1432C40B1AC2D40400E15CDE /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = ../GameViewController.m; sourceTree = "<group>"; };
 		14C443301AC18C6300103C35 /* DoYouKnowMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoYouKnowMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C443341AC18C6300103C35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C443351AC18C6300103C35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 		14C443321AC18C6300103C35 /* DoYouKnowMe */ = {
 			isa = PBXGroup;
 			children = (
+				1432C40A1AC2D40400E15CDE /* GameViewController.h */,
+				1432C40B1AC2D40400E15CDE /* GameViewController.m */,
 				14C443371AC18C6300103C35 /* AppDelegate.h */,
 				14C443381AC18C6300103C35 /* AppDelegate.m */,
 				939249DF1AC19883008D5500 /* Conectivity.h */,
@@ -233,6 +238,7 @@
 				14C4433C1AC18C6300103C35 /* viewController.m in Sources */,
 				939249E11AC19883008D5500 /* Conectivity.m in Sources */,
 				14C443391AC18C6300103C35 /* AppDelegate.m in Sources */,
+				1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */,
 				14C443361AC18C6300103C35 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

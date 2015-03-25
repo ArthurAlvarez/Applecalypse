@@ -44,6 +44,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ This method sends the input answer to the other player. Called when the user presses the submitButton
+ @author Arthur Alvarez
+ */
+- (IBAction)sendAnswer:(id)sender {
+    //To Do
+}
+
 /*
 #pragma mark - Navigation
 

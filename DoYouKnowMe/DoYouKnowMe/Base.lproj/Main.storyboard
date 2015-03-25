@@ -237,6 +237,9 @@
                                 <state key="normal" title="Enviar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendAnswer:" destination="EzG-sG-hhN" eventType="touchUpInside" id="9gl-Z8-w0J"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sua Resposta:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSl-Ys-qdf">
                                 <rect key="frame" x="246" y="273" width="113" height="21"/>

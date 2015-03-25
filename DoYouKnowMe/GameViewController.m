@@ -9,6 +9,17 @@
 #import "GameViewController.h"
 
 @interface GameViewController ()
+///Interface label that shows the time left for answering the game question
+@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
+
+///Interface label that shows the current game question
+@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
+
+///Interface TextField where the user inputs the answer to the game question
+@property (weak, nonatomic) IBOutlet UITextField *answerTextField;
+
+///Interface Button that the user presses to submit the answer
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 

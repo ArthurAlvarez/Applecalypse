@@ -110,22 +110,25 @@
 	NSString *peerDisplayName = peerID.displayName;
 	MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
 	
-	if (state != MCSessionStateConnecting) {
-		if (state == MCSessionStateConnected) {
+	if (state != MCSessionStateConnecting)
+	{
+		if (state == MCSessionStateConnected)
+		{
+			[_connectedDevice setText:peerDisplayName];
 			[_arrConnectedDevices addObject:peerDisplayName];
 		}
-		else if (state == MCSessionStateNotConnected){
-			if ([_arrConnectedDevices count] > 0) {
-				int indexOfPeer = (int) [_arrConnectedDevices indexOfObject:peerDisplayName];
-				[_arrConnectedDevices removeObjectAtIndex:indexOfPeer];
-				
-				[_tblConnectedDevices reloadData];
-				
-				BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
-				[_btnDisconnect setEnabled:!peersExist];
-				[_txtName setEnabled:peersExist];
+		else if (state == MCSessionStateNotConnected)
+		{
+			if ([_arrConnectedDevices count] > 0)
+			{
+				[_connectedDevice setText:@""];
+				[_arrConnectedDevices removeAllObjects];
 			}
 		}
+		
+		BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
+		[_btnDisconnect setEnabled:!peersExist];
+		[_txtName setEnabled:peersExist];
 	}
 	
 	

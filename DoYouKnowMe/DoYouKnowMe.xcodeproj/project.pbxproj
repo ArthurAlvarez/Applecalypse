@@ -17,7 +17,7 @@
 		14C443411AC18C6300103C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C443401AC18C6300103C35 /* Images.xcassets */; };
 		14C443441AC18C6300103C35 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C443421AC18C6300103C35 /* LaunchScreen.xib */; };
 		14C443501AC18C6300103C35 /* DoYouKnowMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */; };
-		939249E11AC19883008D5500 /* Conectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Conectivity.m */; };
+		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* ConnectionsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +51,8 @@
 		14C443491AC18C6300103C35 /* DoYouKnowMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoYouKnowMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4434E1AC18C6300103C35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoYouKnowMeTests.m; sourceTree = "<group>"; };
-		939249DF1AC19883008D5500 /* Conectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conectivity.h; sourceTree = "<group>"; };
-		939249E01AC19883008D5500 /* Conectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conectivity.m; sourceTree = "<group>"; };
+		939249DF1AC19883008D5500 /* Connectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connectivity.h; sourceTree = "<group>"; };
+		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
 		939249E31AC1A549008D5500 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,8 +102,8 @@
 				1432C40B1AC2D40400E15CDE /* GameViewController.m */,
 				14C443371AC18C6300103C35 /* AppDelegate.h */,
 				14C443381AC18C6300103C35 /* AppDelegate.m */,
-				939249DF1AC19883008D5500 /* Conectivity.h */,
-				939249E01AC19883008D5500 /* Conectivity.m */,
+				939249DF1AC19883008D5500 /* Connectivity.h */,
+				939249E01AC19883008D5500 /* Connectivity.m */,
 				14C4433A1AC18C6300103C35 /* viewController.h */,
 				14C4433B1AC18C6300103C35 /* viewController.m */,
 				939249E21AC1A549008D5500 /* ConnectionsViewController.h */,
@@ -248,7 +248,7 @@
 				939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */,
 				14C4433C1AC18C6300103C35 /* viewController.m in Sources */,
 				1432C40F1AC2E28B00E15CDE /* VerifyAnswerViewController.m in Sources */,
-				939249E11AC19883008D5500 /* Conectivity.m in Sources */,
+				939249E11AC19883008D5500 /* Connectivity.m in Sources */,
 				14C443391AC18C6300103C35 /* AppDelegate.m in Sources */,
 				1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */,
 				14C443361AC18C6300103C35 /* main.m in Sources */,

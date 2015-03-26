@@ -9,15 +9,33 @@
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface Conectivity : NSObject <MCSessionDelegate>
+@interface Connectivity : NSObject <MCSessionDelegate>
 
+/// Represents the device
 @property (nonatomic, strong) MCPeerID *peerID;
+
+/// Represents the current session that the device will create
 @property (nonatomic, strong) MCSession *session;
+
+/// Represents the default UI provided by Apple for browsing for other peers
 @property (nonatomic, strong) MCBrowserViewController *browser;
+
+/// Used from the current peer to advertise itself and make its discovery feasibl
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
 
+/**
+ Set the display name from the device to others
+ **/
 -(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName;
+
+/**
+ Initialisation from the defautl view controller for searching other peers
+ **/
 -(void)setupMCBrowser;
+
+/**
+ Make the devise visible or not
+ **/
 -(void)advertiseSelf:(BOOL)shouldAdvertise;
 
 @end

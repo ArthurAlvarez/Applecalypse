@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -331,21 +331,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dO8-sE-OCP">
-                                <rect key="frame" x="119" y="448" width="106" height="55"/>
+                                <rect key="frame" x="173" y="448" width="106" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="0s1-lb-UZ6"/>
-                                    <constraint firstAttribute="height" constant="55" id="Y6P-fe-9em"/>
+                                    <constraint firstAttribute="height" constant="55" id="9KA-td-7D6"/>
+                                    <constraint firstAttribute="width" constant="106" id="VJV-Rt-dxE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Acertou">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giX-8V-CWa">
-                                <rect key="frame" x="366" y="448" width="106" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="8Ia-Qm-hsf"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giX-8V-CWa">
+                                <rect key="frame" x="321" y="448" width="106" height="55"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Errou">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -357,27 +354,36 @@
                             <constraint firstAttribute="centerY" secondItem="qZb-6q-FJc" secondAttribute="centerY" id="6Aw-JF-L3E"/>
                             <constraint firstItem="4W1-5u-G9S" firstAttribute="leading" secondItem="nJf-dx-rx6" secondAttribute="leadingMargin" id="6EQ-qp-0DM"/>
                             <constraint firstAttribute="centerX" secondItem="3QA-mM-5GT" secondAttribute="centerX" id="9Kb-Xn-LC2"/>
-                            <constraint firstAttribute="trailing" secondItem="giX-8V-CWa" secondAttribute="trailing" constant="128" id="E3H-W5-4Vz"/>
-                            <constraint firstItem="dO8-sE-OCP" firstAttribute="top" secondItem="TWm-nD-3Bk" secondAttribute="bottom" constant="91" id="ELf-Vk-bgC"/>
+                            <constraint firstItem="giX-8V-CWa" firstAttribute="baseline" secondItem="dO8-sE-OCP" secondAttribute="firstBaseline" id="Ad0-ub-k6D"/>
                             <constraint firstItem="qZb-6q-FJc" firstAttribute="centerX" secondItem="TWm-nD-3Bk" secondAttribute="centerX" id="KG4-tX-HfN"/>
                             <constraint firstItem="qZb-6q-FJc" firstAttribute="top" secondItem="4W1-5u-G9S" secondAttribute="bottom" constant="66" id="LLq-qt-zs7"/>
-                            <constraint firstItem="W0S-5l-nER" firstAttribute="top" secondItem="dO8-sE-OCP" secondAttribute="bottom" constant="97" id="PRO-5v-tlB"/>
+                            <constraint firstItem="dO8-sE-OCP" firstAttribute="baseline" secondItem="giX-8V-CWa" secondAttribute="firstBaseline" id="PeD-2R-IYU"/>
                             <constraint firstItem="4W1-5u-G9S" firstAttribute="top" secondItem="3QA-mM-5GT" secondAttribute="bottom" constant="8" symbolic="YES" id="SLS-EI-fjV"/>
-                            <constraint firstItem="dO8-sE-OCP" firstAttribute="top" secondItem="giX-8V-CWa" secondAttribute="top" id="TdP-rF-HzF"/>
+                            <constraint firstItem="W0S-5l-nER" firstAttribute="top" secondItem="dO8-sE-OCP" secondAttribute="bottom" constant="97" id="UAf-Mp-fKu"/>
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="leading" secondItem="4W1-5u-G9S" secondAttribute="leading" id="XKi-13-gbR"/>
+                            <constraint firstAttribute="trailing" secondItem="giX-8V-CWa" secondAttribute="trailing" constant="167" id="Xlr-IE-jmA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4W1-5u-G9S" secondAttribute="trailing" constant="-6" id="XtG-dt-TO4"/>
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="top" secondItem="qZb-6q-FJc" secondAttribute="bottom" constant="8" symbolic="YES" id="cjo-uE-JeZ"/>
+                            <constraint firstItem="dO8-sE-OCP" firstAttribute="leading" secondItem="nJf-dx-rx6" secondAttribute="leading" constant="173" id="eWA-PH-rUv"/>
                             <constraint firstItem="4W1-5u-G9S" firstAttribute="trailing" secondItem="TWm-nD-3Bk" secondAttribute="trailing" id="hbz-sD-Id2"/>
-                            <constraint firstItem="dO8-sE-OCP" firstAttribute="baseline" secondItem="giX-8V-CWa" secondAttribute="firstBaseline" id="nIf-9N-xi9"/>
-                            <constraint firstItem="giX-8V-CWa" firstAttribute="baseline" secondItem="dO8-sE-OCP" secondAttribute="firstBaseline" id="o6R-Sj-nZa"/>
-                            <constraint firstItem="dO8-sE-OCP" firstAttribute="leading" secondItem="nJf-dx-rx6" secondAttribute="leading" constant="119" id="p82-Lg-pz3"/>
+                            <constraint firstItem="dO8-sE-OCP" firstAttribute="top" secondItem="TWm-nD-3Bk" secondAttribute="bottom" constant="91" id="hzq-mz-fnh"/>
+                            <constraint firstItem="giX-8V-CWa" firstAttribute="leading" secondItem="dO8-sE-OCP" secondAttribute="trailing" constant="42" id="m7g-f6-UgI"/>
+                            <constraint firstItem="giX-8V-CWa" firstAttribute="top" secondItem="dO8-sE-OCP" secondAttribute="top" id="qXX-ln-qSO"/>
                             <constraint firstItem="3QA-mM-5GT" firstAttribute="top" secondItem="7gn-D5-ypy" secondAttribute="bottom" constant="43" id="ySX-8F-JHH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="EzG-sG-hhN" kind="popoverPresentation" identifier="nextRound" popoverAnchorView="nJf-dx-rx6" id="KtB-fD-Diq">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxE-wG-eI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2486" y="604"/>
+            <point key="canvasLocation" x="2500" y="-145"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="KtB-fD-Diq"/>
+    </inferredMetricsTieBreakers>
 </document>

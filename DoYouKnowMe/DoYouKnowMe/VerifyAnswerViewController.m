@@ -16,6 +16,7 @@
 ///Interface Button where the user Rejects the answer
 @property (weak, nonatomic) IBOutlet UIButton *btnRejectAnswer;
 
+@property (weak, nonatomic) IBOutlet UILabel *playerLabel;
 
 @end
 
@@ -25,13 +26,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.playerLabel.text = [NSString stringWithFormat:@"Player %d", [Player getPlayerID]];
+    
     if([Player getPlayerID] == 1){
-        self.btnAcceptAnswer.hidden = false;
-        self.btnRejectAnswer.hidden = false;
+        NSLog(@"Player1");
+        [self.btnAcceptAnswer setHidden:NO];
+        [self.btnRejectAnswer setHidden:NO];
     }
     else{
-        self.btnAcceptAnswer.hidden = true;
-        self.btnRejectAnswer.hidden = true;
+        NSLog(@"Player2");
+        [self.btnAcceptAnswer setHidden: YES];
+        [self.btnRejectAnswer setHidden:YES];
     }
 }
 

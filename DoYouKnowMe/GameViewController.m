@@ -7,6 +7,8 @@
 //
 
 #import "GameViewController.h"
+#import "Player.h"
+#import "Conectivity.h"
 
 @interface GameViewController ()
 
@@ -45,11 +47,22 @@
 }
 
 /**
- This method sends the input answer to the other player. Called when the user presses the submitButton
+ This method calls the transition to the verification screen. Called when the user presses the submitButton
  @author Arthur Alvarez
  */
 - (IBAction)sendAnswer:(id)sender {
-    //To Do
+    [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+}
+
+
+/**
+ This method is called upon transition to the next view
+ @author Arthur Alvarez
+ */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
+        //Pass information to next view
+    }
 }
 
 /*

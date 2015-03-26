@@ -81,9 +81,9 @@
 	}
 	else
 	{
-		 dataToSend = [@"0" dataUsingEncoding:NSUTF8StringEncoding];
+		dataToSend = [@"0" dataUsingEncoding:NSUTF8StringEncoding];
 	}
-
+	
 	[_appDelegate.mcManager.session sendData:dataToSend
 									 toPeers:allPeers
 									withMode:MCSessionSendDataReliable
@@ -97,12 +97,28 @@
 
 - (IBAction)disconnect:(id)sender
 {
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	
 	[_appDelegate.mcManager.session disconnect];
 	
 	_txtName.enabled = YES;
 	
-	[_arrConnectedDevices removeAllObjects];
+	[_btnDisconnect setEnabled:NO];
+	[_startBtn setEnabled:NO];
+	[_arrConnectedDevices removeLastObject];
 	[_connectedDevice setText:@""];
+	
+	NSLog(@"ENTROU");
+
+	[_appDelegate.mcManager.session sendData:[@"disconnect" dataUsingEncoding:NSUTF8StringEncoding]
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (error) {
+		NSLog(@"%@", [error localizedDescription]);
+	}
 }
 
 #pragma mark - MCBrowserViewController Delegate
@@ -128,7 +144,6 @@
 	}
 	_appDelegate.mcManager.advertiser = nil;
 	
-	
 	[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
 	[_appDelegate.mcManager setupMCBrowser];
 	[_appDelegate.mcManager advertiseSelf:_swVisible.isOn];
@@ -152,7 +167,7 @@
 		{
 			if ([_arrConnectedDevices count] > 0)
 			{
-				[_arrConnectedDevices removeAllObjects];
+				[_arrConnectedDevices removeLastObject];
 			}
 		}
 		
@@ -176,10 +191,23 @@
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
 {
 	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
 	
-	NSLog(@"index: %@", [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding]);
-	
-	_questionTo.selectedSegmentIndex = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] integerValue];
+	if ([receivedInfo isEqualToString:@"1"] || [receivedInfo isEqualToString:@"0"])
+		 _questionTo.selectedSegmentIndex = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] integerValue];
+	else if ([receivedInfo isEqualToString:@"disconnect"])
+	{
+		[_appDelegate.mcManager.session disconnect];
+		
+		_txtName.enabled = YES;
+		
+		NSLog(@"RECEBEU DISCONNECT");
+		
+		[_btnDisconnect setEnabled:NO];
+		[_startBtn setEnabled:NO];
+		[_arrConnectedDevices removeLastObject];
+		[_connectedDevice setText:@""];
+	}
 }
 
 /*

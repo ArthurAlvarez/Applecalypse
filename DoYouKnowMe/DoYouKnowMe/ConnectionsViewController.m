@@ -111,7 +111,7 @@
 		[Player setPlayerID:2];
 	}
 	
-	NSLog(@"%d", [Player getPlayerID]);
+	NSLog(@"ID %d", [Player getPlayerID]);
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
 									 toPeers:allPeers
@@ -224,7 +224,12 @@
 	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
 	
 	if ([receivedInfo isEqualToString:@"1"] || [receivedInfo isEqualToString:@"0"])
-		 _questionTo.selectedSegmentIndex = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] integerValue];
+	{
+		_questionTo.selectedSegmentIndex = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] integerValue];
+		if ([receivedInfo isEqualToString:@"0"]) [Player setPlayerID:1];
+		else [Player setPlayerID:2];
+		NSLog(@"ID %d", [Player getPlayerID]);
+	}
 	else if ([receivedInfo isEqualToString:@"disconnect"])
 	{
 		[_appDelegate.mcManager.session disconnect];

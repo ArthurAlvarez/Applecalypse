@@ -163,6 +163,8 @@
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
+	[_startBtn setEnabled:NO];
+	
 	canStart++;
 	[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
 

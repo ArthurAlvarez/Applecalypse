@@ -7,6 +7,7 @@
 //
 
 #import "VerifyAnswerViewController.h"
+#import "Player.h"
 
 @interface VerifyAnswerViewController ()
 ///Interface Button where the user Accepts the answer
@@ -23,6 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    if([Player getPlayerID] == 1){
+        self.btnAcceptAnswer.hidden = false;
+        self.btnRejectAnswer.hidden = false;
+    }
+    else{
+        self.btnAcceptAnswer.hidden = true;
+        self.btnRejectAnswer.hidden = true;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

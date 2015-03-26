@@ -8,7 +8,7 @@
 
 #import "GameViewController.h"
 #import "Player.h"
-#import "Conectivity.h"
+#import "Connectivity.h"
 
 @interface GameViewController ()
 

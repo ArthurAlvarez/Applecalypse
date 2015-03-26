@@ -9,6 +9,12 @@
 #import "VerifyAnswerViewController.h"
 
 @interface VerifyAnswerViewController ()
+///Interface Button where the user Accepts the answer
+@property (weak, nonatomic) IBOutlet UIButton *btnAcceptAnswer;
+
+///Interface Button where the user Rejects the answer
+@property (weak, nonatomic) IBOutlet UIButton *btnRejectAnswer;
+
 
 @end
 
@@ -22,6 +28,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/**
+ This method is called when the user presses btnAcceptAnswer
+@author Arthur Alvarez
+ */
+- (IBAction)acceptAnswer:(id)sender {
+    [self performSegueWithIdentifier:@"backToGame" sender:self];
+}
+
+/**
+ This method is called when the user presses btnRejectAnswer
+ @author Arthur Alvarez
+ */
+- (IBAction)rejectAnswer:(id)sender {
+    [self performSegueWithIdentifier:@"backToGame" sender:self];
 }
 
 /*

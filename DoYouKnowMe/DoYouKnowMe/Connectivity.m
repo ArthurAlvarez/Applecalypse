@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 Arthur Alvarez. All rights reserved.
 //
 
-#import "Conectivity.h"
+#import "Connectivity.h"
 
-@implementation Conectivity
+@implementation Connectivity
+
 
 -(id)init{
 	self = [super init];
@@ -30,13 +31,14 @@
 	_session.delegate = self;
 }
 
+
 -(void)setupMCBrowser{
-	_browser = [[MCBrowserViewController alloc] initWithServiceType:@"chat-files" session:_session];
+	_browser = [[MCBrowserViewController alloc] initWithServiceType:@"game" session:_session];
 }
 
 -(void)advertiseSelf:(BOOL)shouldAdvertise{
 	if (shouldAdvertise) {
-		_advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"chat-files"
+		_advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"game"
 														   discoveryInfo:nil
 																 session:_session];
 		[_advertiser start];
@@ -48,7 +50,9 @@
 }
 
 #pragma mark - MCSession Delegate
-
+/**
+ Methdo to when the device changes its state
+ **/
 -(void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
 	NSDictionary *dict = @{@"peerID": peerID,
@@ -60,7 +64,8 @@
 													  userInfo:dict];
 }
 
-
+/**
+ **/
 -(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
 	NSDictionary *dict = @{@"data": data,

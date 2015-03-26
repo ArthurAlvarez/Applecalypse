@@ -19,7 +19,7 @@
 {
 	// Override point for customization after application launch.
 	
-	_mcManager = [[Conectivity alloc] init];
+	_mcManager = [[Connectivity alloc] init];
 	
 	return YES;
 }

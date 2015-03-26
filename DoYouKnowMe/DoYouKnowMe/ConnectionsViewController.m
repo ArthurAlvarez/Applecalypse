@@ -13,13 +13,28 @@
 
 @interface ConnectionsViewController ()
 
+/// Interface Segmented Control to know which kind the player is
 @property (weak, nonatomic) IBOutlet UISegmentedControl *questionTo;
+
+/// Interface Button to start the game
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
+
+/// Interface Text Field to edit the display name from the device
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
+
+/// Interface Switch to set if the device is visible or not
 @property (weak, nonatomic) IBOutlet UISwitch *swVisible;
+
+/// Interface Label to show the name from the device that you are connected with
 @property (weak, nonatomic) IBOutlet UILabel *connectedDevice;
+
+/// Intarface Button to disconnect with the other device
 @property (weak, nonatomic) IBOutlet UIButton *btnDisconnect;
+
+/// AppDelegate object to creat an access to the Connectivity class trough the app delegate
 @property (nonatomic, strong) AppDelegate *appDelegate;
+
+/// Array to keep the device tha you are connected with
 @property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
 
 @end
@@ -32,11 +47,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	
+	// Iniciate the session
 	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[[_appDelegate mcManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
 	[[_appDelegate mcManager] advertiseSelf:_swVisible.isOn];
 	
 	[_txtName setDelegate:self];
+	
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(peerDidChangeStateWithNotification:)
@@ -58,6 +75,9 @@
 
 #pragma mark - Action Methods
 
+/**
+ Method to browse for new devices
+ **/
 - (IBAction)browseForDevices:(id)sender
 {
 	[[_appDelegate mcManager] setupMCBrowser];
@@ -65,6 +85,9 @@
 	[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
 }
 
+/**
+ Method to alternate between visible or not
+ **/
 - (IBAction)toggleVisibility:(id)sender
 {
 	[_appDelegate.mcManager advertiseSelf:_swVisible.isOn];
@@ -95,6 +118,9 @@
 	
 }
 
+/** 
+ Method to disconnect with the other device
+ **/
 - (IBAction)disconnect:(id)sender
 {
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
@@ -109,8 +135,6 @@
 	[_arrConnectedDevices removeLastObject];
 	[_connectedDevice setText:@""];
 	
-	NSLog(@"ENTROU");
-
 	[_appDelegate.mcManager.session sendData:[@"disconnect" dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:allPeers
 									withMode:MCSessionSendDataReliable

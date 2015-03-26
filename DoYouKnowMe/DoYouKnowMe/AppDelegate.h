@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Conectivity.h"
+#import "Connectivity.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, strong) Conectivity *mcManager;
-
+/// Object fraom the created class to let the class be used over the app delegate
+@property (nonatomic, strong) Connectivity *mcManager;
 
 @end
 

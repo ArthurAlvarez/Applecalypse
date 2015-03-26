@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -112,12 +112,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-8L-TAb">
-                                <rect key="frame" x="281" y="443" width="38" height="30"/>
+                                <rect key="frame" x="281" y="414" width="38" height="30"/>
                                 <state key="normal" title="Start!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="EzG-sG-hhN" kind="show" id="MHI-GZ-SPI"/>
+                                    <action selector="startGame:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="C3W-da-11d"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As perguntas são sobre:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-fs-vxG">
@@ -140,34 +140,46 @@
                                     <action selector="questionsTo:" destination="gXl-Md-Q7V" eventType="valueChanged" id="6OT-vn-tOp"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIB-IS-77T">
+                                <rect key="frame" x="191" y="468" width="219" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="219" id="Iw1-vd-ayr"/>
+                                    <constraint firstAttribute="height" constant="21" id="UbN-K5-7Wk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Dtz-p7-56e" firstAttribute="centerX" secondItem="eWN-fs-vxG" secondAttribute="centerX" id="2wq-LE-sY1"/>
+                            <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="EIB-IS-77T" secondAttribute="bottom" constant="111" id="30w-lN-04c"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="leading" secondItem="DnB-XG-KrO" secondAttribute="trailing" constant="24" id="8AZ-3b-Zpv"/>
                             <constraint firstItem="c2K-qp-wse" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="8" symbolic="YES" id="9Ty-Qe-JaY"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="centerX" secondItem="I5v-wn-g0G" secondAttribute="centerX" id="C1o-86-ct1"/>
                             <constraint firstAttribute="centerX" secondItem="1H0-re-5ME" secondAttribute="centerX" id="FEl-Gz-KyN"/>
-                            <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="127" id="H9l-gG-rNo"/>
                             <constraint firstItem="eWN-fs-vxG" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="KHf-aD-Ftw"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="centerY" secondItem="c2K-qp-wse" secondAttribute="centerY" id="Lz6-tJ-tIw"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="top" secondItem="I5v-wn-g0G" secondAttribute="bottom" constant="8" symbolic="YES" id="QF2-is-jd4"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="top" id="RPO-IQ-zCl"/>
-                            <constraint firstItem="iXw-8L-TAb" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="82" id="S4r-GT-0nX"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="mvG-ZM-ZvJ" secondAttribute="bottom" constant="8" symbolic="YES" id="WAl-ij-aps"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="leading" secondItem="DnB-XG-KrO" secondAttribute="leading" id="Y4I-hf-vmo"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="top" secondItem="JU0-D1-ydj" secondAttribute="bottom" id="YzP-zP-FNs"/>
                             <constraint firstItem="Dtz-p7-56e" firstAttribute="top" secondItem="eWN-fs-vxG" secondAttribute="bottom" constant="27" id="ZBb-Ap-Slz"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="alt-Af-qDR"/>
-                            <constraint firstItem="iXw-8L-TAb" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="bc1-p8-zSM"/>
+                            <constraint firstItem="iXw-8L-TAb" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="53" id="dcY-mM-3CM"/>
                             <constraint firstItem="0hk-BW-bux" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="bottom" constant="19" id="dvT-Rf-A8u"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="13" id="eRn-kh-cf0"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="leading" secondItem="mvG-ZM-ZvJ" secondAttribute="leading" id="g1X-bR-0h6"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="baseline" secondItem="aMC-dM-CPO" secondAttribute="baseline" id="ia3-fz-Yts"/>
                             <constraint firstItem="c2K-qp-wse" firstAttribute="trailing" secondItem="1H0-re-5ME" secondAttribute="trailing" id="idC-lU-C0F"/>
+                            <constraint firstItem="EIB-IS-77T" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="24" id="ijE-Ik-iZm"/>
                             <constraint firstItem="c2K-qp-wse" firstAttribute="leading" secondItem="mvG-ZM-ZvJ" secondAttribute="trailing" constant="51" id="jqI-LN-3Kn"/>
+                            <constraint firstItem="iXw-8L-TAb" firstAttribute="centerX" secondItem="Dtz-p7-56e" secondAttribute="centerX" id="ka9-hJ-yaG"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="trailing" secondItem="c2K-qp-wse" secondAttribute="trailing" id="keN-3L-La8"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="baseline" secondItem="aMC-dM-CPO" secondAttribute="firstBaseline" id="r0f-2j-syd"/>
+                            <constraint firstItem="EIB-IS-77T" firstAttribute="centerX" secondItem="iXw-8L-TAb" secondAttribute="centerX" id="rHu-i1-tMR"/>
                         </constraints>
                     </view>
                     <connections>
@@ -177,6 +189,8 @@
                         <outlet property="startBtn" destination="iXw-8L-TAb" id="Sg8-C2-g0i"/>
                         <outlet property="swVisible" destination="c2K-qp-wse" id="xNa-Ns-HWA"/>
                         <outlet property="txtName" destination="1H0-re-5ME" id="DD5-1Y-uyZ"/>
+                        <outlet property="waitingOtherLabel" destination="EIB-IS-77T" id="5H2-JH-zn6"/>
+                        <segue destination="EzG-sG-hhN" kind="show" identifier="startGame" id="RiE-fT-8kf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xF5-ds-KHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -392,6 +406,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KtB-fD-Diq"/>
+        <segue reference="RiE-fT-8kf"/>
     </inferredMetricsTieBreakers>
 </document>

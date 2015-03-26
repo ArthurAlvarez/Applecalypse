@@ -13,6 +13,9 @@
 #pragma mark - Private Interface
 
 @interface ConnectionsViewController ()
+{
+	int canStart;
+}
 
 /// Interface Segmented Control to know which kind the player is
 @property (weak, nonatomic) IBOutlet UISegmentedControl *questionTo;
@@ -38,6 +41,9 @@
 /// Array to keep the device tha you are connected with
 @property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
 
+@property (weak, nonatomic) IBOutlet UILabel *waitingOtherLabel;
+
+
 @end
 
 #pragma mark - Implementation
@@ -56,6 +62,8 @@
 	[_txtName setDelegate:self];
 	
 	[Player setScore:0];
+	
+	canStart = 0;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(peerDidChangeStateWithNotification:)
@@ -150,6 +158,22 @@
 		NSLog(@"%@", [error localizedDescription]);
 	}
 }
+- (IBAction)startGame:(id)sender {
+	
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	
+	canStart++;
+	[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
+
+	[_appDelegate.mcManager.session sendData:[@"start" dataUsingEncoding:NSUTF8StringEncoding]
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (canStart == 2) [self performSegueWithIdentifier:@"startGame" sender:self];
+	
+}
 
 #pragma mark - MCBrowserViewController Delegate
 
@@ -214,6 +238,8 @@
 		else {
 			NSLog(@"PEER DONT EXIST");
 			[_connectedDevice setText:@""];
+			[_waitingOtherLabel setText:@""];
+			canStart = 0;
 		}
 	}
 }
@@ -242,6 +268,11 @@
 		[_startBtn setEnabled:NO];
 		[_arrConnectedDevices removeLastObject];
 		[_connectedDevice setText:@""];
+	}
+	else if ([receivedInfo isEqualToString:@"start"])
+	{
+		canStart++;
+		if (canStart == 2) [self performSegueWithIdentifier:@"startGame" sender:self];
 	}
 }
 

@@ -51,7 +51,7 @@
 
 #pragma mark - MCSession Delegate
 /**
- Methdo to when the device changes its state
+ Method to when the device changes its state
  **/
 -(void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {

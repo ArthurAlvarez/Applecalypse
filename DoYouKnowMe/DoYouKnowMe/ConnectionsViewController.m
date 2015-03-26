@@ -8,6 +8,7 @@
 
 #import "ConnectionsViewController.h"
 #import "AppDelegate.h"
+#import "Player.h"
 
 #pragma mark - Private Interface
 
@@ -54,6 +55,7 @@
 	
 	[_txtName setDelegate:self];
 	
+	[Player setScore:0];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(peerDidChangeStateWithNotification:)
@@ -101,11 +103,15 @@
 	if (_questionTo.selectedSegmentIndex == 0)
 	{
 		dataToSend = [@"1" dataUsingEncoding:NSUTF8StringEncoding];
+		[Player setPlayerID:1];
 	}
 	else
 	{
 		dataToSend = [@"0" dataUsingEncoding:NSUTF8StringEncoding];
+		[Player setPlayerID:2];
 	}
+	
+	NSLog(@"%d", [Player getPlayerID]);
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
 									 toPeers:allPeers

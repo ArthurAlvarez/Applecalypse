@@ -48,7 +48,7 @@
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
 	
-	_arrConnectedDevices = [[NSMutableArray alloc] init];
+	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
 }
 
 - (void)didReceiveMemoryWarning {

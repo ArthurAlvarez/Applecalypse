@@ -122,6 +122,7 @@
         }
         
         self.submitButton.enabled = NO;
+        didAnswer = YES;
 		[_waitingIndicator startAnimating];
 		
     }

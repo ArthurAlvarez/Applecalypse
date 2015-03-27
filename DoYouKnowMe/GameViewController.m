@@ -14,8 +14,8 @@
 
 @interface GameViewController ()
 {
-    int currentAnswers;
-    bool didAnswer;
+	int currentAnswers;
+	bool didAnswer;
 }
 
 # pragma mark - Interface Properties
@@ -58,28 +58,30 @@
 @implementation GameViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    //Setup notification for receiving packets
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveDataWithNotification:)
-                                                 name:@"MCDidReceiveDataNotification"
-                                               object:nil];
-    
-    //Initializing properties
-    self.playerScore = [NSNumber numberWithInt:0];
-    currentAnswers = 0;
-    didAnswer = NO;
-    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.timeLeft = [NSNumber numberWithInt:20];
-    
-    //Timer setup
-    self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
-    }
+	[super viewDidLoad];
+	
+	NSLog(@"Current Score: %d", [Player getScore]);
+	
+	//Setup notification for receiving packets
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(didReceiveDataWithNotification:)
+												 name:@"MCDidReceiveDataNotification"
+											   object:nil];
+	
+	//Initializing properties
+	self.playerScore = [NSNumber numberWithInt:0];
+	currentAnswers = 0;
+	didAnswer = NO;
+	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	self.timeLeft = [NSNumber numberWithInt:20];
+	
+	//Timer setup
+	self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+}
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 /**
@@ -87,24 +89,24 @@
  @author Arthur Alvarez
  */
 -(void)didReceiveDataWithNotification:(NSNotification *)notification{
-    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-    NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-    
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if([receivedInfo hasPrefix:@"$"]){
-            
-            self.otherAnswer = receivedInfo;
-            
-            if(currentAnswers == 0)
-                currentAnswers = 1;
-            else currentAnswers++;
-            
-            if(currentAnswers == 2)
-                [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-        }
-    });
+	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+	
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		
+		if([receivedInfo hasPrefix:@"$"]){
+			
+			self.otherAnswer = receivedInfo;
+			
+			if(currentAnswers == 0)
+				currentAnswers = 1;
+			else currentAnswers++;
+			
+			if(currentAnswers == 2)
+				[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+		}
+	});
 }
 
 
@@ -113,29 +115,29 @@
  @author Arthur Alvarez
  */
 - (IBAction)answerPressed:(id)sender {
-    
-    [self.view endEditing:YES];
-    
-    if(self.answerTextField.text.length > 0){
-        
-        [self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
-        
-        if (currentAnswers == 0) {
-            currentAnswers = 1;
-        } else currentAnswers++;
-    
-        if(currentAnswers == 2)
+	
+	[self.view endEditing:YES];
+	
+	if(self.answerTextField.text.length > 0){
+		
+		[self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
+		
+		if (currentAnswers == 0) {
+			currentAnswers = 1;
+		} else currentAnswers++;
+		
+		if(currentAnswers == 2)
 		{
-            [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-        }
-        else
+			[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+		}
+		else
 		{
 			self.submitButton.enabled = NO;
 			didAnswer = YES;
 			[_waitingIndicator startAnimating];
 		}
 		
-    }
+	}
 }
 
 /**
@@ -144,18 +146,18 @@
  */
 -(void)sendAnswer:(NSString*)strAnswer
 {
-    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-    NSError *error;
-    NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
-    
-    [_appDelegate.mcManager.session sendData:dataToSend
-                                     toPeers:allPeers
-                                    withMode:MCSessionSendDataReliable
-                                       error:&error];
-    
-    if (error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
+	
+	[_appDelegate.mcManager.session sendData:dataToSend
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (error) {
+		NSLog(@"%@", [error localizedDescription]);
+	}
 }
 
 /**
@@ -163,15 +165,15 @@
  @author Arthur Alvarez
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-    VerifyAnswerViewController *vc = segue.destinationViewController;
-    
-    if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
-
-        //Pass information to next view
-        vc.yourAnswer = self.answerTextField.text;
-        vc.hisAnswer = self.otherAnswer;
-    }
+	
+	VerifyAnswerViewController *vc = segue.destinationViewController;
+	
+	if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
+		
+		//Pass information to next view
+		vc.yourAnswer = self.answerTextField.text;
+		vc.hisAnswer = self.otherAnswer;
+	}
 }
 
 /**
@@ -179,9 +181,9 @@
  @author Arthur Alvarez
  */
 -(void) userDidNotAnswer{
-    self.answerTextField.text = @"Não sei";
-    [self answerPressed:self];
-
+	self.answerTextField.text = @"Não sei";
+	[self answerPressed:self];
+	
 }
 
 /**
@@ -189,25 +191,25 @@
  @author Arthur Alvarez
  */
 -(void) updateTimerLabel{
-    if([self.timeLeft intValue] >= 0){
-        self.timeLeft = [NSNumber numberWithInt:[self.timeLeft intValue] - 1];
-        self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
-        
-        
-        if([self.timeLeft intValue] == -1 && didAnswer == NO){
-            [self userDidNotAnswer];
-        }
-    }
+	if([self.timeLeft intValue] >= 0){
+		self.timeLeft = [NSNumber numberWithInt:[self.timeLeft intValue] - 1];
+		self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
+		
+		
+		if([self.timeLeft intValue] == -1 && didAnswer == NO){
+			[self userDidNotAnswer];
+		}
+	}
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

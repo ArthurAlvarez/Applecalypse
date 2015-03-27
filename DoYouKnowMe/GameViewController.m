@@ -37,14 +37,19 @@
 ///Number that represents the score of the current player
 @property (strong, nonatomic) NSNumber *playerScore;
 
+///Number of received answers for this question
 @property (strong, nonatomic) NSNumber *currentAnswers;
 
+///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
+///String containing the answer of the other user
 @property (strong, nonatomic) NSString *otherAnswer;
 
+///Timer used for clock
 @property (strong, nonatomic) NSTimer *clockTimer;
 
+///How much time the user still has
 @property (strong, nonatomic) NSNumber *timeLeft;
 
 @end
@@ -54,10 +59,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-	
-	[_waitingIndicator stopAnimating];
     
+    //Setup notification for receiving packets
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveDataWithNotification:)
                                                  name:@"MCDidReceiveDataNotification"
@@ -79,6 +82,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ This method is called when the device received some data from other peers
+ @author Arthur Alvarez
+ */
 -(void)didReceiveDataWithNotification:(NSNotification *)notification{
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
@@ -131,6 +138,10 @@
     }
 }
 
+/**
+ Sends the string containing the answer to the other player
+ @author Arthur Alvarez
+ */
 -(void)sendAnswer:(NSString*)strAnswer
 {
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
@@ -163,12 +174,20 @@
     }
 }
 
+/**
+ This method is called when the timer expires. By default, when this happens the answer from local user is "Nao sei"
+ @author Arthur Alvarez
+ */
 -(void) userDidNotAnswer{
     self.answerTextField.text = @"Não sei";
     [self answerPressed:self];
 
 }
 
+/**
+ Updates the timer label and calculates elapsed time
+ @author Arthur Alvarez
+ */
 -(void) updateTimerLabel{
     if([self.timeLeft intValue] >= 0){
         self.timeLeft = [NSNumber numberWithInt:[self.timeLeft intValue] - 1];

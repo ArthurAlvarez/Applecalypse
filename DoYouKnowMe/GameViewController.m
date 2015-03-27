@@ -31,6 +31,8 @@
 ///Interface Button that the user presses to submit the answer
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
+
 #pragma mark - Controller Properties
 ///Number that represents the score of the current player
 @property (strong, nonatomic) NSNumber *playerScore;
@@ -128,6 +130,8 @@
         
         self.submitButton.enabled = NO;
         didAnswer = YES;
+		[_waitingIndicator startAnimating];
+		
     }
 }
 

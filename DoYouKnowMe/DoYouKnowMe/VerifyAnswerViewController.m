@@ -52,11 +52,13 @@
         NSLog(@"Player1");
         [self.btnAcceptAnswer setHidden:NO];
         [self.btnRejectAnswer setHidden:NO];
+		[_waitingIndicator stopAnimating];
     }
     else{
         NSLog(@"Player2");
         [self.btnAcceptAnswer setHidden: YES];
         [self.btnRejectAnswer setHidden:YES];
+		[_waitingIndicator startAnimating];
     }
     
     //Setup of comunications

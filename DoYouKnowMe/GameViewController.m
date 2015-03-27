@@ -126,13 +126,16 @@
             currentAnswers = 1;
         } else currentAnswers++;
     
-        if(currentAnswers == 2){
+        if(currentAnswers == 2)
+		{
             [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
         }
-        
-        self.submitButton.enabled = NO;
-        didAnswer = YES;
-		[_waitingIndicator startAnimating];
+        else
+		{
+			self.submitButton.enabled = NO;
+			didAnswer = YES;
+			[_waitingIndicator startAnimating];
+		}
 		
     }
 }

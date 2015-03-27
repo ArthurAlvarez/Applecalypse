@@ -92,6 +92,9 @@
 {
 	[[_appDelegate mcManager] setupMCBrowser];
 	[[[_appDelegate mcManager] browser] setDelegate:self];
+	
+	_appDelegate.mcManager.browser.maximumNumberOfPeers = 1;
+	
 	[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
 }
 
@@ -146,7 +149,7 @@
 	
 	[_btnDisconnect setEnabled:NO];
 	[_startBtn setEnabled:NO];
-	[_arrConnectedDevices removeLastObject];
+	[_arrConnectedDevices removeAllObjects];
 	[_connectedDevice setText:@""];
 	
 	[_appDelegate.mcManager.session sendData:[@"disconnect" dataUsingEncoding:NSUTF8StringEncoding]
@@ -165,7 +168,10 @@
 	
 	[_startBtn setEnabled:NO];
 	
-	canStart++;
+	if (canStart == 0) {
+		canStart = 1;
+	} else canStart++;
+	
 	[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
 
 	[_appDelegate.mcManager.session sendData:[@"start" dataUsingEncoding:NSUTF8StringEncoding]
@@ -207,6 +213,9 @@
 	return YES;
 }
 
+
+
+
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
 	MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
@@ -223,7 +232,7 @@
 		{
 			if ([_arrConnectedDevices count] > 0)
 			{
-				[_arrConnectedDevices removeLastObject];
+				[_arrConnectedDevices removeAllObjects];
 			}
 		}
 		
@@ -234,7 +243,10 @@
 		
 		if (!peersExist)
 		{
-			[_connectedDevice setText:peerDisplayName];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[_connectedDevice setText:peerDisplayName];
+			});
+			
 			NSLog(@"PEER EXIST! and is named %@", peerDisplayName);
 		}
 		else {
@@ -244,6 +256,7 @@
 			canStart = 0;
 		}
 	}
+	
 }
 
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
@@ -251,31 +264,38 @@
 	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
 	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
 	
-	if ([receivedInfo isEqualToString:@"1"] || [receivedInfo isEqualToString:@"0"])
-	{
-		_questionTo.selectedSegmentIndex = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] integerValue];
-		if ([receivedInfo isEqualToString:@"0"]) [Player setPlayerID:1];
-		else [Player setPlayerID:2];
-		NSLog(@"ID %d", [Player getPlayerID]);
-	}
-	else if ([receivedInfo isEqualToString:@"disconnect"])
-	{
-		[_appDelegate.mcManager.session disconnect];
-		
-		_txtName.enabled = YES;
-		
-		NSLog(@"RECEBEU DISCONNECT");
-		
-		[_btnDisconnect setEnabled:NO];
-		[_startBtn setEnabled:NO];
-		[_arrConnectedDevices removeLastObject];
-		[_connectedDevice setText:@""];
-	}
-	else if ([receivedInfo isEqualToString:@"start"])
-	{
-		canStart++;
-		if (canStart == 2) [self performSegueWithIdentifier:@"startGame" sender:self];
-	}
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if ([receivedInfo isEqualToString:@"1"] || [receivedInfo isEqualToString:@"0"])
+		{
+			
+			_questionTo.selectedSegmentIndex = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] integerValue];
+			if ([receivedInfo isEqualToString:@"0"]) [Player setPlayerID:1];
+			else [Player setPlayerID:2];
+			
+			NSLog(@"ID %d", [Player getPlayerID]);
+		}
+		else if ([receivedInfo isEqualToString:@"disconnect"])
+		{
+			[_appDelegate.mcManager.session disconnect];
+			
+			_txtName.enabled = YES;
+			
+			NSLog(@"RECEBEU DISCONNECT");
+			
+			[_btnDisconnect setEnabled:NO];
+			[_startBtn setEnabled:NO];
+			[_arrConnectedDevices removeLastObject];
+			[_connectedDevice setText:@""];
+		}
+		else if ([receivedInfo isEqualToString:@"start"])
+		{
+			if (canStart == 0) {
+				canStart = 1;
+			} else canStart++;
+			if (canStart == 2) [self performSegueWithIdentifier:@"startGame" sender:self];
+		}
+	});
+
 }
 
 /*

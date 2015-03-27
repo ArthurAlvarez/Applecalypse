@@ -62,7 +62,7 @@
 @author Arthur Alvarez
  */
 - (IBAction)acceptAnswer:(id)sender {
-    [self sendAnswer:@"1"];
+    [self sendAnswer:@"#1"];
     [self performSegueWithIdentifier:@"backToGame" sender:self];
 }
 
@@ -71,7 +71,7 @@
  @author Arthur Alvarez
  */
 - (IBAction)rejectAnswer:(id)sender {
-    [self sendAnswer:@"0"];
+    [self sendAnswer:@"#0"];
     [self performSegueWithIdentifier:@"backToGame" sender:self];
 }
 
@@ -102,7 +102,7 @@
  
     NSLog(@"Received Data: %@", receivedInfo);
     
-    if([receivedInfo isEqualToString:@"0"] || [receivedInfo isEqualToString:@"1"])
+    if([receivedInfo isEqualToString:@"#0"] || [receivedInfo isEqualToString:@"#1"])
         [self performSegueWithIdentifier:@"backToGame" sender:self];
 }
 

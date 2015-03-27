@@ -50,9 +50,7 @@
 }
 
 #pragma mark - MCSession Delegate
-/**
- Method to when the device changes its state
- **/
+
 -(void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
 	NSDictionary *dict = @{@"peerID": peerID,
@@ -64,8 +62,6 @@
 													  userInfo:dict];
 }
 
-/**
- **/
 -(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
 	NSDictionary *dict = @{@"data": data,

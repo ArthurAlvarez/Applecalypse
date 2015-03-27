@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnRejectAnswer;
 
 @property (weak, nonatomic) IBOutlet UILabel *playerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *myAsnwerLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hisAsnwerLabel;
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
@@ -31,6 +33,9 @@
     // Do any additional setup after loading the view.
     
     self.playerLabel.text = [NSString stringWithFormat:@"Player %d", [Player getPlayerID]];
+    
+    self.myAsnwerLabel.text = _yourAnswer;
+    self.hisAsnwerLabel.text = _hisAnswer;
     
     if([Player getPlayerID] == 1){
         NSLog(@"Player1");

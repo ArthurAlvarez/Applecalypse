@@ -60,6 +60,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"Current Score: %d", [Player getScore]);
+    
     //Setup notification for receiving packets
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveDataWithNotification:)

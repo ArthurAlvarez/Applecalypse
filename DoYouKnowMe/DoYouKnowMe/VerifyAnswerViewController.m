@@ -83,6 +83,7 @@
  */
 - (IBAction)acceptAnswer:(id)sender {
     [self sendAnswer:@"#1"];
+    [Player setScore:[Player getScore] +1];
     [self performSegueWithIdentifier:@"backToGame" sender:self];
 }
 
@@ -128,8 +129,14 @@
     NSLog(@"Received Data: %@", receivedInfo);
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		if([receivedInfo isEqualToString:@"#0"] || [receivedInfo isEqualToString:@"#1"])
-			[self performSegueWithIdentifier:@"backToGame" sender:self];
+        
+        if([receivedInfo isEqualToString:@"#0"])
+            [self performSegueWithIdentifier:@"backToGame" sender:self];
+        
+        if([receivedInfo isEqualToString:@"#1"]){
+            [self performSegueWithIdentifier:@"backToGame" sender:self];
+            [Player setScore:[Player getScore] +1];
+        }
 	});
 }
 

@@ -71,7 +71,7 @@
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(didReceiveDataWithNotificationCnt:)
+											 selector:@selector(didReceiveDataWithNotification:)
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
 	
@@ -113,12 +113,12 @@
 	
 	if (_questionTo.selectedSegmentIndex == 0)
 	{
-		dataToSend = [@"1" dataUsingEncoding:NSUTF8StringEncoding];
+		dataToSend = [@"!1" dataUsingEncoding:NSUTF8StringEncoding];
 		[Player setPlayerID:1];
 	}
 	else
 	{
-		dataToSend = [@"0" dataUsingEncoding:NSUTF8StringEncoding];
+		dataToSend = [@"!0" dataUsingEncoding:NSUTF8StringEncoding];
 		[Player setPlayerID:2];
 	}
 	
@@ -154,7 +154,7 @@
 		[_connectedDevice setText:@""];
 	});
 	
-	[_appDelegate.mcManager.session sendData:[@"disconnect" dataUsingEncoding:NSUTF8StringEncoding]
+	[_appDelegate.mcManager.session sendData:[@"!disconnect" dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:allPeers
 									withMode:MCSessionSendDataReliable
 									   error:&error];
@@ -176,7 +176,7 @@
 	
 	[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
 
-	[_appDelegate.mcManager.session sendData:[@"start" dataUsingEncoding:NSUTF8StringEncoding]
+	[_appDelegate.mcManager.session sendData:[@"!start" dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:allPeers
 									withMode:MCSessionSendDataReliable
 									   error:&error];
@@ -215,10 +215,7 @@
 	return YES;
 }
 
-
-
-
--(void)peerDidChangeStateWithNotificationCnt:(NSNotification *)notification
+-(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
 	MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
 	NSString *peerDisplayName = peerID.displayName;
@@ -269,16 +266,23 @@
 	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		if ([receivedInfo isEqualToString:@"1"] || [receivedInfo isEqualToString:@"0"])
+		if ([receivedInfo isEqualToString:@"!1"] || [receivedInfo isEqualToString:@"!0"])
 		{
 			
-			_questionTo.selectedSegmentIndex = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] integerValue];
-			if ([receivedInfo isEqualToString:@"0"]) [Player setPlayerID:1];
-			else [Player setPlayerID:2];
+			if ([receivedInfo isEqualToString:@"!0"])
+			{
+				[Player setPlayerID:1];
+				_questionTo.selectedSegmentIndex = 0;
+			}
+			else
+			{
+				[Player setPlayerID:2];
+				_questionTo.selectedSegmentIndex = 1;
+			}
 			
 			NSLog(@"ID %d", [Player getPlayerID]);
 		}
-		else if ([receivedInfo isEqualToString:@"disconnect"])
+		else if ([receivedInfo isEqualToString:@"!disconnect"])
 		{
 			[_appDelegate.mcManager.session disconnect];
 			
@@ -291,7 +295,7 @@
 			[_arrConnectedDevices removeLastObject];
 			[_connectedDevice setText:@""];
 		}
-		else if ([receivedInfo isEqualToString:@"start"])
+		else if ([receivedInfo isEqualToString:@"!start"])
 		{
 			if (canStart == 0) {
 				canStart = 1;

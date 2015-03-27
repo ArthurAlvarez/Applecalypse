@@ -29,6 +29,9 @@
 ///Interface Label that shows the peer's answer
 @property (weak, nonatomic) IBOutlet UILabel *hisAsnwerLabel;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
+
+
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
 

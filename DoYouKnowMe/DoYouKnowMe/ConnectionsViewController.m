@@ -43,6 +43,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *waitingOtherLabel;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
 
 @end
 
@@ -60,6 +61,8 @@
 	[[_appDelegate mcManager] advertiseSelf:_swVisible.isOn];
 	
 	[_txtName setDelegate:self];
+	
+	[_waitingIndicator stopAnimating];
 	
 	[Player setScore:0];
 	
@@ -175,6 +178,8 @@
 	} else canStart++;
 	
 	[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
+	 
+	[_waitingIndicator startAnimating];
 
 	[_appDelegate.mcManager.session sendData:[@"!start" dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:allPeers

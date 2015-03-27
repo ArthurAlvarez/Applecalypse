@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -102,17 +102,8 @@
                                     <action selector="disconnect:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="yB7-bB-XZ9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-8L-TAb">
-                                <rect key="frame" x="281" y="414" width="38" height="30"/>
-                                <state key="normal" title="Start!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startGame:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="C3W-da-11d"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As perguntas são sobre:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-fs-vxG">
-                                <rect key="frame" x="207" y="285" width="187" height="21"/>
+                                <rect key="frame" x="207" y="268" width="187" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187" id="9b1-g6-Nx7"/>
                                     <constraint firstAttribute="height" constant="21" id="OXv-Ed-04N"/>
@@ -122,7 +113,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dtz-p7-56e">
-                                <rect key="frame" x="189" y="333" width="223" height="29"/>
+                                <rect key="frame" x="189" y="316" width="223" height="29"/>
                                 <segments>
                                     <segment title="A minha pessoa"/>
                                     <segment title="A outra pessoa"/>
@@ -132,7 +123,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EIB-IS-77T">
-                                <rect key="frame" x="191" y="468" width="219" height="21"/>
+                                <rect key="frame" x="191" y="456" width="219" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="219" id="Iw1-vd-ayr"/>
                                     <constraint firstAttribute="height" constant="21" id="UbN-K5-7Wk"/>
@@ -150,36 +141,52 @@
                                     <action selector="browseForDevices:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="ltl-PY-5C6"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="X2R-SI-Pto">
+                                <rect key="frame" x="282" y="529" width="37" height="37"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-8L-TAb">
+                                <rect key="frame" x="271" y="400" width="59" height="30"/>
+                                <state key="normal" title="Start!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startGame:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="C3W-da-11d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Dtz-p7-56e" firstAttribute="centerX" secondItem="eWN-fs-vxG" secondAttribute="centerX" id="2wq-LE-sY1"/>
-                            <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="EIB-IS-77T" secondAttribute="bottom" constant="111" id="30w-lN-04c"/>
+                            <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="EIB-IS-77T" secondAttribute="bottom" constant="123" id="30w-lN-04c"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="leading" secondItem="DnB-XG-KrO" secondAttribute="trailing" constant="24" id="8AZ-3b-Zpv"/>
                             <constraint firstItem="c2K-qp-wse" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="17" id="9Ty-Qe-JaY"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="centerX" secondItem="I5v-wn-g0G" secondAttribute="centerX" id="C1o-86-ct1"/>
                             <constraint firstAttribute="centerX" secondItem="1H0-re-5ME" secondAttribute="centerX" id="FEl-Gz-KyN"/>
+                            <constraint firstItem="X2R-SI-Pto" firstAttribute="trailing" secondItem="iXw-8L-TAb" secondAttribute="trailing" constant="-11" id="FSy-Nj-gG9"/>
                             <constraint firstItem="eWN-fs-vxG" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="KHf-aD-Ftw"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="centerY" secondItem="c2K-qp-wse" secondAttribute="centerY" id="Lz6-tJ-tIw"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="top" secondItem="I5v-wn-g0G" secondAttribute="bottom" constant="20" id="QF2-is-jd4"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="top" id="RPO-IQ-zCl"/>
+                            <constraint firstItem="X2R-SI-Pto" firstAttribute="top" secondItem="EIB-IS-77T" secondAttribute="bottom" constant="52" id="U6C-zi-REq"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="mvG-ZM-ZvJ" secondAttribute="bottom" constant="27" id="WAl-ij-aps"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="leading" secondItem="DnB-XG-KrO" secondAttribute="leading" id="Y4I-hf-vmo"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="top" secondItem="JU0-D1-ydj" secondAttribute="bottom" id="YzP-zP-FNs"/>
                             <constraint firstItem="Dtz-p7-56e" firstAttribute="top" secondItem="eWN-fs-vxG" secondAttribute="bottom" constant="27" id="ZBb-Ap-Slz"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="centerX" secondItem="0hk-BW-bux" secondAttribute="centerX" id="alt-Af-qDR"/>
-                            <constraint firstItem="iXw-8L-TAb" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="53" id="dcY-mM-3CM"/>
+                            <constraint firstItem="iXw-8L-TAb" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="56" id="dcY-mM-3CM"/>
                             <constraint firstItem="0hk-BW-bux" firstAttribute="top" secondItem="DnB-XG-KrO" secondAttribute="bottom" constant="19" id="dvT-Rf-A8u"/>
                             <constraint firstItem="mvG-ZM-ZvJ" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="22" id="eRn-kh-cf0"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="leading" secondItem="mvG-ZM-ZvJ" secondAttribute="leading" id="g1X-bR-0h6"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="baseline" secondItem="aMC-dM-CPO" secondAttribute="baseline" id="ia3-fz-Yts"/>
                             <constraint firstItem="c2K-qp-wse" firstAttribute="trailing" secondItem="1H0-re-5ME" secondAttribute="trailing" id="idC-lU-C0F"/>
-                            <constraint firstItem="EIB-IS-77T" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="24" id="ijE-Ik-iZm"/>
+                            <constraint firstItem="EIB-IS-77T" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="26" id="ijE-Ik-iZm"/>
                             <constraint firstItem="c2K-qp-wse" firstAttribute="leading" secondItem="mvG-ZM-ZvJ" secondAttribute="trailing" constant="51" id="jqI-LN-3Kn"/>
                             <constraint firstItem="iXw-8L-TAb" firstAttribute="centerX" secondItem="Dtz-p7-56e" secondAttribute="centerX" id="ka9-hJ-yaG"/>
                             <constraint firstItem="aMC-dM-CPO" firstAttribute="trailing" secondItem="c2K-qp-wse" secondAttribute="trailing" id="keN-3L-La8"/>
                             <constraint firstItem="DnB-XG-KrO" firstAttribute="baseline" secondItem="aMC-dM-CPO" secondAttribute="firstBaseline" id="r0f-2j-syd"/>
                             <constraint firstItem="EIB-IS-77T" firstAttribute="centerX" secondItem="iXw-8L-TAb" secondAttribute="centerX" id="rHu-i1-tMR"/>
+                            <constraint firstAttribute="centerX" secondItem="X2R-SI-Pto" secondAttribute="centerX" id="ypa-l6-LJt"/>
                         </constraints>
                     </view>
                     <connections>
@@ -189,6 +196,7 @@
                         <outlet property="startBtn" destination="iXw-8L-TAb" id="Sg8-C2-g0i"/>
                         <outlet property="swVisible" destination="c2K-qp-wse" id="xNa-Ns-HWA"/>
                         <outlet property="txtName" destination="1H0-re-5ME" id="DD5-1Y-uyZ"/>
+                        <outlet property="waitingIndicator" destination="X2R-SI-Pto" id="7xY-DJ-agN"/>
                         <outlet property="waitingOtherLabel" destination="EIB-IS-77T" id="5H2-JH-zn6"/>
                         <segue destination="EzG-sG-hhN" kind="showDetail" identifier="startGame" id="RiE-fT-8kf"/>
                     </connections>
@@ -265,14 +273,20 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Uc6-3l-QPX">
+                                <rect key="frame" x="282" y="395" width="37" height="37"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="top" secondItem="F3N-x9-1e9" secondAttribute="bottom" constant="52" id="2Qi-tO-s67"/>
                             <constraint firstItem="F3N-x9-1e9" firstAttribute="leading" secondItem="Bs4-Gz-WI9" secondAttribute="leading" id="3dz-Rg-Quw"/>
+                            <constraint firstItem="Uc6-3l-QPX" firstAttribute="centerX" secondItem="q5y-5j-KV9" secondAttribute="centerX" id="7ca-bm-vJC"/>
                             <constraint firstItem="TSl-Ys-qdf" firstAttribute="trailing" secondItem="q5y-5j-KV9" secondAttribute="trailing" id="7yH-Oo-pca"/>
                             <constraint firstItem="F3N-x9-1e9" firstAttribute="top" secondItem="iiT-yc-PXi" secondAttribute="bottom" constant="37" id="DgU-v5-dYl"/>
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="top" secondItem="Bs4-Gz-WI9" secondAttribute="bottom" constant="71" id="FvX-ap-5VZ"/>
+                            <constraint firstItem="Uc6-3l-QPX" firstAttribute="top" secondItem="q5y-5j-KV9" secondAttribute="bottom" constant="8" symbolic="YES" id="KXX-lp-pGi"/>
                             <constraint firstItem="TDV-1E-jzr" firstAttribute="top" secondItem="TSl-Ys-qdf" secondAttribute="bottom" constant="8" symbolic="YES" id="LQ5-tX-1yu"/>
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="leading" secondItem="Vxi-TD-l34" secondAttribute="leadingMargin" id="OdO-6R-tkn"/>
                             <constraint firstAttribute="centerX" secondItem="Bs4-Gz-WI9" secondAttribute="centerX" id="P0u-YL-th0"/>
@@ -292,6 +306,7 @@
                         <outlet property="questionLabel" destination="wgz-EY-fsS" id="uFo-EJ-HfE"/>
                         <outlet property="submitButton" destination="q5y-5j-KV9" id="K8N-pQ-u4J"/>
                         <outlet property="timerLabel" destination="F3N-x9-1e9" id="XA7-N5-Yuf"/>
+                        <outlet property="waitingIndicator" destination="Uc6-3l-QPX" id="tbg-1b-h2T"/>
                         <segue destination="1Lr-Ql-gVg" kind="popoverPresentation" identifier="verifyAnswer" popoverAnchorView="Vxi-TD-l34" id="e4O-8d-Oud">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
@@ -382,11 +397,17 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jPM-VD-5ml">
+                                <rect key="frame" x="282" y="390" width="37" height="37"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="centerX" secondItem="qZb-6q-FJc" secondAttribute="centerX" id="1xe-nT-mnH"/>
                             <constraint firstItem="upZ-Z9-diV" firstAttribute="centerX" secondItem="4W1-5u-G9S" secondAttribute="centerX" id="294-7a-aLr"/>
+                            <constraint firstItem="jPM-VD-5ml" firstAttribute="leading" secondItem="dO8-sE-OCP" secondAttribute="trailing" id="2Sk-y0-xmM"/>
+                            <constraint firstAttribute="centerX" secondItem="jPM-VD-5ml" secondAttribute="centerX" id="9E3-FO-v76"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4W1-5u-G9S" secondAttribute="trailing" constant="-6" id="Dcx-0K-Gn0"/>
                             <constraint firstItem="4W1-5u-G9S" firstAttribute="top" secondItem="3QA-mM-5GT" secondAttribute="bottom" constant="8" symbolic="YES" id="GvM-i9-006"/>
                             <constraint firstItem="giX-8V-CWa" firstAttribute="leading" secondItem="dO8-sE-OCP" secondAttribute="trailing" constant="42" id="LZf-cR-KIn"/>
@@ -403,6 +424,7 @@
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="leading" secondItem="4W1-5u-G9S" secondAttribute="leading" id="rdA-vo-Zde"/>
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="leading" secondItem="nJf-dx-rx6" secondAttribute="leadingMargin" id="sXH-8m-QsS"/>
                             <constraint firstItem="dO8-sE-OCP" firstAttribute="top" secondItem="giX-8V-CWa" secondAttribute="top" id="tDr-Re-bgw"/>
+                            <constraint firstItem="jPM-VD-5ml" firstAttribute="bottom" secondItem="giX-8V-CWa" secondAttribute="bottom" id="w5j-CL-ccp"/>
                             <constraint firstItem="3QA-mM-5GT" firstAttribute="top" secondItem="upZ-Z9-diV" secondAttribute="bottom" constant="22" id="xJ7-eN-U5S"/>
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="top" secondItem="qZb-6q-FJc" secondAttribute="bottom" constant="8" symbolic="YES" id="y7D-eI-ruo"/>
                         </constraints>
@@ -413,6 +435,7 @@
                         <outlet property="hisAsnwerLabel" destination="TWm-nD-3Bk" id="Ael-sa-1xx"/>
                         <outlet property="myAsnwerLabel" destination="4W1-5u-G9S" id="f3L-kc-xd2"/>
                         <outlet property="playerLabel" destination="upZ-Z9-diV" id="Zb3-51-RaX"/>
+                        <outlet property="waitingIndicator" destination="jPM-VD-5ml" id="sOE-S5-Bid"/>
                         <segue destination="EzG-sG-hhN" kind="popoverPresentation" identifier="backToGame" popoverAnchorView="nJf-dx-rx6" id="KtB-fD-Diq">
                             <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
                         </segue>

@@ -17,6 +17,7 @@
 	int canStart;
 }
 
+#pragma mark - Interface Propeties
 /// Interface Segmented Control to know which kind the player is
 @property (weak, nonatomic) IBOutlet UISegmentedControl *questionTo;
 
@@ -35,15 +36,18 @@
 /// Intarface Button to disconnect with the other device
 @property (weak, nonatomic) IBOutlet UIButton *btnDisconnect;
 
+/// Interface Label to show a message to the player know that he is waiting the other player
+@property (weak, nonatomic) IBOutlet UILabel *waitingOtherLabel;
+
+/// Interface Indicator to show to the player that he is waiting to the other player
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
+
+#pragma mark - Others Properties
 /// AppDelegate object to creat an access to the Connectivity class trough the app delegate
 @property (nonatomic, strong) AppDelegate *appDelegate;
 
 /// Array to keep the device tha you are connected with
 @property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
-
-@property (weak, nonatomic) IBOutlet UILabel *waitingOtherLabel;
-
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
 
 @end
 
@@ -166,6 +170,11 @@
 		NSLog(@"%@", [error localizedDescription]);
 	}
 }
+
+/**
+ Method to start the game. Verifies if both players had pressed the button. If both had pressed,
+ initiates the game, otherwise, show to the player that he is waiting for the other player
+ **/
 - (IBAction)startGame:(id)sender {
 	
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
@@ -177,9 +186,6 @@
 		canStart = 1;
 	} else canStart++;
 	
-	[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
-	 
-	[_waitingIndicator startAnimating];
 
 	[_appDelegate.mcManager.session sendData:[@"!start" dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:allPeers
@@ -187,6 +193,12 @@
 									   error:&error];
 	
 	if (canStart == 2) [self performSegueWithIdentifier:@"startGame" sender:self];
+	else
+	{
+		[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
+	 
+		[_waitingIndicator startAnimating];
+	}
 	
 }
 

@@ -225,6 +225,10 @@
 	{
 		if (state == MCSessionStateConnected)
 		{
+			if ([_arrConnectedDevices count] > 0)
+			{
+					[_arrConnectedDevices removeAllObjects];
+			}
 			[_arrConnectedDevices addObject:peerDisplayName];
 		}
 		else if (state == MCSessionStateNotConnected)

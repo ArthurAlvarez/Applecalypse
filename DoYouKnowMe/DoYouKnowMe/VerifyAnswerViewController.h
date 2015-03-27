@@ -11,4 +11,8 @@
 
 @interface VerifyAnswerViewController : UIViewController
 
+@property (strong, nonatomic) NSString *yourAnswer;
+
+@property (strong, nonatomic) NSString *hisAnswer;
+
 @end

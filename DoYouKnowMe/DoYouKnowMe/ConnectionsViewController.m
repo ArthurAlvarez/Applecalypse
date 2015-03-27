@@ -71,7 +71,7 @@
 											   object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(didReceiveDataWithNotification:)
+											 selector:@selector(didReceiveDataWithNotificationCnt:)
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
 	
@@ -218,7 +218,7 @@
 
 
 
--(void)peerDidChangeStateWithNotification:(NSNotification *)notification
+-(void)peerDidChangeStateWithNotificationCnt:(NSNotification *)notification
 {
 	MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
 	NSString *peerDisplayName = peerID.displayName;
@@ -234,7 +234,9 @@
 		{
 			if ([_arrConnectedDevices count] > 0)
 			{
-				[_arrConnectedDevices removeAllObjects];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[_arrConnectedDevices removeAllObjects];
+				});
 			}
 		}
 		dispatch_async(dispatch_get_main_queue(), ^{

@@ -11,6 +11,8 @@
 #import "Player.h"
 #import "AppDelegate.h"
 
+#pragma mark - Properties
+
 @interface VerifyAnswerViewController ()
 ///Interface Button where the user Accepts the answer
 @property (weak, nonatomic) IBOutlet UIButton *btnAcceptAnswer;
@@ -18,13 +20,21 @@
 ///Interface Button where the user Rejects the answer
 @property (weak, nonatomic) IBOutlet UIButton *btnRejectAnswer;
 
+///Interface Label that identifies local user
 @property (weak, nonatomic) IBOutlet UILabel *playerLabel;
+
+///Interface Label that shows local user answer
 @property (weak, nonatomic) IBOutlet UILabel *myAsnwerLabel;
+
+///Interface Label that shows the peer's answer
 @property (weak, nonatomic) IBOutlet UILabel *hisAsnwerLabel;
 
+///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
 @end
+
+#pragma mark - Controller Implementation
 
 @implementation VerifyAnswerViewController
 
@@ -32,11 +42,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //Setup of label texts
     self.playerLabel.text = [NSString stringWithFormat:@"Player %d", [Player getPlayerID]];
-    
     self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
     self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
     
+    //Modifies interface acording to user
     if([Player getPlayerID] == 1){
         NSLog(@"Player1");
         [self.btnAcceptAnswer setHidden:NO];
@@ -48,9 +59,8 @@
         [self.btnRejectAnswer setHidden:YES];
     }
     
+    //Setup of comunications
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveDataWithNotification:)
                                                  name:@"MCDidReceiveDataNotification"
@@ -101,6 +111,10 @@
     }
 }
 
+/**
+ This method is called when the device receives data from other connected devices
+ @author Arthur Alvarez
+ */
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
 {
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];

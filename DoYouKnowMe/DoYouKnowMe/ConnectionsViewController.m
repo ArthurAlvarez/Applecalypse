@@ -147,10 +147,12 @@
 	
 	_txtName.enabled = YES;
 	
-	[_btnDisconnect setEnabled:NO];
-	[_startBtn setEnabled:NO];
-	[_arrConnectedDevices removeAllObjects];
-	[_connectedDevice setText:@""];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[_btnDisconnect setEnabled:NO];
+		[_startBtn setEnabled:NO];
+		[_arrConnectedDevices removeAllObjects];
+		[_connectedDevice setText:@""];
+	});
 	
 	[_appDelegate.mcManager.session sendData:[@"disconnect" dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:allPeers
@@ -235,26 +237,26 @@
 				[_arrConnectedDevices removeAllObjects];
 			}
 		}
-		
-		BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
-		[_btnDisconnect setEnabled:!peersExist];
-		[_startBtn setEnabled:!peersExist];
-		[_txtName setEnabled:peersExist];
-		
-		if (!peersExist)
-		{
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[_connectedDevice setText:peerDisplayName];
-			});
+		dispatch_async(dispatch_get_main_queue(), ^{
+			BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
+			[_btnDisconnect setEnabled:!peersExist];
+			[_startBtn setEnabled:!peersExist];
+			[_txtName setEnabled:peersExist];
 			
-			NSLog(@"PEER EXIST! and is named %@", peerDisplayName);
-		}
-		else {
-			NSLog(@"PEER DONT EXIST");
-			[_connectedDevice setText:@""];
-			[_waitingOtherLabel setText:@""];
-			canStart = 0;
-		}
+			if (!peersExist)
+			{
+				[_connectedDevice setText:peerDisplayName];
+				
+				NSLog(@"PEER EXIST! and is named %@", peerDisplayName);
+			}
+			else
+			{
+				NSLog(@"PEER DONT EXIST");
+				[_connectedDevice setText:@""];
+				[_waitingOtherLabel setText:@""];
+				canStart = 0;
+			}
+		});
 	}
 	
 }
@@ -292,6 +294,7 @@
 			if (canStart == 0) {
 				canStart = 1;
 			} else canStart++;
+			
 			if (canStart == 2) [self performSegueWithIdentifier:@"startGame" sender:self];
 		}
 	});

@@ -78,11 +78,12 @@
 /**
  This method is called when Player1 evaluates the answer and sends the result to Player2
  */
--(void)sendAnswer:(NSString*)strAnswer{
+-(void)sendAnswer:(NSString*)strAnswer
+{
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
     NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
-    
+	
     NSLog(@"Sending Data to: %@", allPeers);
     
     [_appDelegate.mcManager.session sendData:dataToSend
@@ -101,9 +102,11 @@
     NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
  
     NSLog(@"Received Data: %@", receivedInfo);
-    
-    if([receivedInfo isEqualToString:@"#0"] || [receivedInfo isEqualToString:@"#1"])
-        [self performSegueWithIdentifier:@"backToGame" sender:self];
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if([receivedInfo isEqualToString:@"#0"] || [receivedInfo isEqualToString:@"#1"])
+			[self performSegueWithIdentifier:@"backToGame" sender:self];
+	});
 }
 
 

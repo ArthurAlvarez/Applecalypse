@@ -15,6 +15,7 @@
 @interface GameViewController ()
 {
     int currentAnswers;
+    bool didAnswer;
 }
 
 # pragma mark - Interface Properties
@@ -40,6 +41,10 @@
 
 @property (strong, nonatomic) NSString *otherAnswer;
 
+@property (strong, nonatomic) NSTimer *clockTimer;
+
+@property (strong, nonatomic) NSNumber *timeLeft;
+
 @end
 
 #pragma mark - Controller Implementation
@@ -58,8 +63,12 @@
     //Initializing properties
     self.playerScore = [NSNumber numberWithInt:0];
     currentAnswers = 0;
+    didAnswer = NO;
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
+    self.timeLeft = [NSNumber numberWithInt:20];
+    
+    //Timer setup
+    self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
     }
 
 - (void)didReceiveMemoryWarning {
@@ -110,6 +119,7 @@
         }
         
         self.submitButton.enabled = NO;
+        didAnswer = YES;
     }
 }
 
@@ -142,6 +152,24 @@
         //Pass information to next view
         vc.yourAnswer = self.answerTextField.text;
         vc.hisAnswer = self.otherAnswer;
+    }
+}
+
+-(void) userDidNotAnswer{
+    self.answerTextField.text = @"Não sei";
+    [self answerPressed:self];
+
+}
+
+-(void) updateTimerLabel{
+    if([self.timeLeft intValue] >= 0){
+        self.timeLeft = [NSNumber numberWithInt:[self.timeLeft intValue] - 1];
+        self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
+        
+        
+        if([self.timeLeft intValue] == -1 && didAnswer == NO){
+            [self userDidNotAnswer];
+        }
     }
 }
 

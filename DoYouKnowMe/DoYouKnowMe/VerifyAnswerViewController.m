@@ -34,8 +34,8 @@
     
     self.playerLabel.text = [NSString stringWithFormat:@"Player %d", [Player getPlayerID]];
     
-    self.myAsnwerLabel.text = _yourAnswer;
-    self.hisAsnwerLabel.text = _hisAnswer;
+    self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
+    self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
     
     if([Player getPlayerID] == 1){
         NSLog(@"Player1");

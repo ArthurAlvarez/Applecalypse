@@ -71,17 +71,21 @@
     NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
     NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     
-    if([receivedInfo hasPrefix:@"$"]){
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        self.otherAnswer = receivedInfo;
-        
-        if(currentAnswers == 0)
-            currentAnswers = 1;
-        else currentAnswers++;
-        
-        if(currentAnswers == 2)
-            [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-    }
+        if([receivedInfo hasPrefix:@"$"]){
+            
+            self.otherAnswer = receivedInfo;
+            
+            if(currentAnswers == 0)
+                currentAnswers = 1;
+            else currentAnswers++;
+            
+            if(currentAnswers == 2)
+                [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+        }
+    });
 }
 
 

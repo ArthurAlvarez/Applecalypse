@@ -66,6 +66,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+    MCPeerID *id;
+    
 	NSLog(@"Current Score: %d", [Player getScore]);
 	
 	//Setup notification for receiving packets
@@ -84,6 +86,15 @@
 	
 	//Timer setup
 	self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+    
+    //Setup Player Label
+    if([Player getPlayerID] == 1){
+        self.playerLabel.text = @"Pergunta sobre você";
+    }
+    else{
+        id = _appDelegate.mcManager.session.connectedPeers[0];
+        self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

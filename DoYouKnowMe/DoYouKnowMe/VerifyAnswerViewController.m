@@ -45,8 +45,15 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
+    //Setup of comunications
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDataWithNotification:)
+                                                 name:@"MCDidReceiveDataNotification"
+                                               object:nil];
+    
 	//Setup of label texts
-	self.playerLabel.text = [NSString stringWithFormat:@"Player %d", [Player getPlayerID]];
+    self.playerLabel.text = _appDelegate.mcManager.session.myPeerID.displayName;
 	self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
 	self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
 	
@@ -64,12 +71,7 @@
 		[_waitingIndicator startAnimating];
 	}
 	
-	//Setup of comunications
-	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(didReceiveDataWithNotification:)
-												 name:@"MCDidReceiveDataNotification"
-											   object:nil];
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,10 +135,11 @@
 		if([receivedInfo isEqualToString:@"#0"])
 			[self performSegueWithIdentifier:@"backToGame" sender:self];
 		
-		if([receivedInfo isEqualToString:@"#1"]){
-			[self performSegueWithIdentifier:@"backToGame" sender:self];
-			[Player setScore:[Player getScore] +1];
-		}
+		else if([receivedInfo isEqualToString:@"#1"]){
+            NSLog(@"Somando pontuacao");
+            [Player setScore:[Player getScore] +1];
+            [self performSegueWithIdentifier:@"backToGame" sender:self];
+        }
 	});
 }
 

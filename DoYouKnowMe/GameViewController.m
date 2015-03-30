@@ -27,7 +27,10 @@
 /// Interface label that shows the current game question
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 
-/// Interface TextField where the user inputs the answer to the game question
+///Interface label that shows who the question is about
+@property (weak, nonatomic) IBOutlet UILabel *playerLabel;
+
+///Interface TextField where the user inputs the answer to the game question
 @property (weak, nonatomic) IBOutlet UITextField *answerTextField;
 
 /// Interface Button that the user presses to submit the answer
@@ -80,6 +83,11 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(didReceiveDataWithNotification:)
 												 name:@"MCDidReceiveDataNotification"
+											   object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(peerDidChangeStateWithNotification:)
+												 name:@"MCDidChangeStateNotification"
 											   object:nil];
 	
 	//Initializing properties
@@ -156,11 +164,17 @@
 												  otherButtonTitles:@"Terminar o jogo", nil];
 			[pause show];
 		}
+		
+		else if ([receivedInfo isEqualToString:@"@@@"]){
+			[self dismissViewControllerAnimated:YES completion:nil];
+		}
 	});
 }
 
+
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
+	
 	MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
 	
 	if (state != MCSessionStateConnecting)
@@ -168,15 +182,17 @@
 		if (state == MCSessionStateNotConnected)
 		{
 			dispatch_async(dispatch_get_main_queue(), ^{
-				UIAlertView *lostConnection = [[UIAlertView alloc] initWithTitle:@"Conexão perdida"
-																		 message:@"A conexão com o outro jogador foi perdida"
-																		delegate:self
-															   cancelButtonTitle:@"Terminar o jogo"
-															   otherButtonTitles:nil];
+				[_clockTimer invalidate];
+				
+				UIAlertView *lostConnection = [[UIAlertView alloc]initWithTitle:@"Conexão perdida"
+																		message:@"A conexão com o outro jogador foi perdida..."
+																	   delegate:self cancelButtonTitle:@"Terminar o jogo"
+															  otherButtonTitles:nil];
 				
 				[lostConnection show];
 			});
 		}
+		
 	}
 }
 
@@ -305,11 +321,12 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	NSString *tittle = [alertView buttonTitleAtIndex:buttonIndex];
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+		NSError *error;
+	NSData *dataToSend;
 	
 	if ([tittle isEqualToString:@"Continuar"]) {
-		NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-		NSError *error;
-		NSData *dataToSend = [@"!" dataUsingEncoding:NSUTF8StringEncoding];
+		dataToSend = [@"!" dataUsingEncoding:NSUTF8StringEncoding];
 		
 		if (shouldContinue == 0){
 			shouldContinue = 1;
@@ -322,14 +339,16 @@
 														  repeats:YES];
 		}
 		
-		[_appDelegate.mcManager.session sendData:dataToSend
+	} else if ([tittle isEqualToString:@"Terminar o jogo"]){
+		dataToSend = [@"@@@" dataUsingEncoding:NSUTF8StringEncoding];
+		
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}
+	
+	[_appDelegate.mcManager.session sendData:dataToSend
 											 toPeers:allPeers
 											withMode:MCSessionSendDataReliable
 											   error:&error];
-		
-	} else if ([tittle isEqualToString:@"Terminar o jogo"]){
-		
-	}
 }
 
 /*

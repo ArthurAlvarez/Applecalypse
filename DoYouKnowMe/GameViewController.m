@@ -64,8 +64,11 @@
     MCPeerID *id;
     //Incrementa round corrente
     [GameSettings incrementRound];
-    NSLog(@"Current round: %d", [GameSettings getCurrentRound]);
-	NSLog(@"Current Score: %d", [Player getScore]);
+    if([GameSettings getCurrentRound] > [GameSettings getGameLength]){
+        [self performSegueWithIdentifier:@"finalResults" sender:self];
+    }
+    NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
+	//NSLog(@"Current Score: %d", [Player getScore]);
 	
 	//Setup notification for receiving packets
 	[[NSNotificationCenter defaultCenter] addObserver:self

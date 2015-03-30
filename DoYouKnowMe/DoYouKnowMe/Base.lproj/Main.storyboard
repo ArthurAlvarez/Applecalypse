@@ -321,6 +321,7 @@
                         <segue destination="1Lr-Ql-gVg" kind="popoverPresentation" identifier="verifyAnswer" popoverAnchorView="Vxi-TD-l34" id="e4O-8d-Oud">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
+                        <segue destination="onG-ap-POS" kind="show" identifier="finalResults" id="Je9-qQ-6x3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uua-R1-Lgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -450,7 +451,6 @@
                         <segue destination="EzG-sG-hhN" kind="popoverPresentation" identifier="backToGame" popoverAnchorView="nJf-dx-rx6" id="KtB-fD-Diq">
                             <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
                         </segue>
-                        <segue destination="onG-ap-POS" kind="show" identifier="finalResults" id="tco-Y1-deQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxE-wG-eI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -526,7 +526,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwQ-Kb-REk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3232" y="-135"/>
+            <point key="canvasLocation" x="1779" y="1330"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

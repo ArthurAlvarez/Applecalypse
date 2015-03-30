@@ -135,7 +135,8 @@
 		if([receivedInfo isEqualToString:@"#0"])
 			[self performSegueWithIdentifier:@"backToGame" sender:self];
 		
-		if([receivedInfo isEqualToString:@"#1"]){
+		else if([receivedInfo isEqualToString:@"#1"]){
+            NSLog(@"Somando pontuacao");
             [Player setScore:[Player getScore] +1];
             [self performSegueWithIdentifier:@"backToGame" sender:self];
         }

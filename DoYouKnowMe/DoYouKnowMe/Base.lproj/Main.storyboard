@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -277,6 +277,12 @@
                                 <rect key="frame" x="282" y="395" width="37" height="37"/>
                                 <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pergunta sobre " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0C-GG-bjP">
+                                <rect key="frame" x="16" y="101" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -284,6 +290,7 @@
                             <constraint firstItem="F3N-x9-1e9" firstAttribute="leading" secondItem="Bs4-Gz-WI9" secondAttribute="leading" id="3dz-Rg-Quw"/>
                             <constraint firstItem="Uc6-3l-QPX" firstAttribute="centerX" secondItem="q5y-5j-KV9" secondAttribute="centerX" id="7ca-bm-vJC"/>
                             <constraint firstItem="TSl-Ys-qdf" firstAttribute="trailing" secondItem="q5y-5j-KV9" secondAttribute="trailing" id="7yH-Oo-pca"/>
+                            <constraint firstItem="b0C-GG-bjP" firstAttribute="trailing" secondItem="wgz-EY-fsS" secondAttribute="trailing" id="9sJ-9G-7yo"/>
                             <constraint firstItem="F3N-x9-1e9" firstAttribute="top" secondItem="iiT-yc-PXi" secondAttribute="bottom" constant="37" id="DgU-v5-dYl"/>
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="top" secondItem="Bs4-Gz-WI9" secondAttribute="bottom" constant="71" id="FvX-ap-5VZ"/>
                             <constraint firstItem="Uc6-3l-QPX" firstAttribute="top" secondItem="q5y-5j-KV9" secondAttribute="bottom" constant="8" symbolic="YES" id="KXX-lp-pGi"/>
@@ -291,18 +298,22 @@
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="leading" secondItem="Vxi-TD-l34" secondAttribute="leadingMargin" id="OdO-6R-tkn"/>
                             <constraint firstAttribute="centerX" secondItem="Bs4-Gz-WI9" secondAttribute="centerX" id="P0u-YL-th0"/>
                             <constraint firstItem="TDV-1E-jzr" firstAttribute="trailing" secondItem="wgz-EY-fsS" secondAttribute="trailing" id="PKY-CZ-Pm1"/>
+                            <constraint firstItem="wgz-EY-fsS" firstAttribute="top" secondItem="b0C-GG-bjP" secondAttribute="bottom" constant="8" symbolic="YES" id="Qbg-RI-TIB"/>
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="leading" secondItem="TDV-1E-jzr" secondAttribute="leading" id="Sx9-7i-u2T"/>
                             <constraint firstItem="q5y-5j-KV9" firstAttribute="top" secondItem="TDV-1E-jzr" secondAttribute="bottom" constant="8" symbolic="YES" id="XOG-dd-RAp"/>
                             <constraint firstItem="kq9-HX-tnb" firstAttribute="top" secondItem="q5y-5j-KV9" secondAttribute="bottom" constant="213" id="ZXq-TT-J3H"/>
                             <constraint firstItem="TDV-1E-jzr" firstAttribute="centerX" secondItem="q5y-5j-KV9" secondAttribute="centerX" id="dH6-of-ndU"/>
                             <constraint firstItem="TSl-Ys-qdf" firstAttribute="top" secondItem="wgz-EY-fsS" secondAttribute="bottom" constant="8" symbolic="YES" id="dl7-Lm-kCz"/>
+                            <constraint firstItem="b0C-GG-bjP" firstAttribute="top" secondItem="F3N-x9-1e9" secondAttribute="bottom" constant="23" id="gA2-Ut-Pqx"/>
                             <constraint firstItem="F3N-x9-1e9" firstAttribute="trailing" secondItem="Bs4-Gz-WI9" secondAttribute="trailing" id="hNS-u4-Mu4"/>
+                            <constraint firstItem="b0C-GG-bjP" firstAttribute="leading" secondItem="wgz-EY-fsS" secondAttribute="leading" id="hdx-TP-7B4"/>
                             <constraint firstItem="F3N-x9-1e9" firstAttribute="centerX" secondItem="wgz-EY-fsS" secondAttribute="centerX" id="sHG-iB-iqy"/>
                             <constraint firstItem="Bs4-Gz-WI9" firstAttribute="top" secondItem="iiT-yc-PXi" secondAttribute="bottom" id="tbA-EF-IhJ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="answerTextField" destination="TDV-1E-jzr" id="8dY-rA-cNY"/>
+                        <outlet property="playerLabel" destination="b0C-GG-bjP" id="BxJ-mV-UKa"/>
                         <outlet property="questionLabel" destination="wgz-EY-fsS" id="uFo-EJ-HfE"/>
                         <outlet property="submitButton" destination="q5y-5j-KV9" id="K8N-pQ-u4J"/>
                         <outlet property="timerLabel" destination="F3N-x9-1e9" id="XA7-N5-Yuf"/>
@@ -444,6 +455,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxE-wG-eI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2496" y="-135"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="coQ-x4-09o">
+            <objects>
+                <viewController id="yRb-tF-xaO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SV5-B6-9D0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cxu-lv-LyH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vst-sF-SK6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNh-dw-iTu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

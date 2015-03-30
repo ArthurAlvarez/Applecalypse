@@ -25,6 +25,9 @@
 ///Interface label that shows the current game question
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 
+///Interface label that shows who the question is about
+@property (weak, nonatomic) IBOutlet UILabel *playerLabel;
+
 ///Interface TextField where the user inputs the answer to the game question
 @property (weak, nonatomic) IBOutlet UITextField *answerTextField;
 
@@ -36,9 +39,6 @@
 #pragma mark - Controller Properties
 ///Number that represents the score of the current player
 @property (strong, nonatomic) NSNumber *playerScore;
-
-///Number of received answers for this question
-@property (strong, nonatomic) NSNumber *currentAnswers;
 
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
@@ -60,6 +60,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+    MCPeerID *id;
+    
 	NSLog(@"Current Score: %d", [Player getScore]);
 	
 	//Setup notification for receiving packets
@@ -77,6 +79,15 @@
 	
 	//Timer setup
 	self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+    
+    //Setup Player Label
+    if([Player getPlayerID] == 1){
+        self.playerLabel.text = @"Pergunta sobre você";
+    }
+    else{
+        id = _appDelegate.mcManager.session.connectedPeers[0];
+        self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

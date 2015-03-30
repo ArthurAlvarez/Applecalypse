@@ -160,7 +160,7 @@
 		}
 		
 		else if ([receivedInfo isEqualToString:@"@@@"]){
-			[self performSegueWithIdentifier:@"finishGame" sender:self];
+			[self dismissViewControllerAnimated:YES completion:nil];
 		}
 	});
 }
@@ -335,8 +335,8 @@
 		
 	} else if ([tittle isEqualToString:@"Terminar o jogo"]){
 		dataToSend = [@"@@@" dataUsingEncoding:NSUTF8StringEncoding];
-		[self performSegueWithIdentifier:@"finishGame" sender:self];
 		
+		[self dismissViewControllerAnimated:YES completion:nil];
 	}
 	
 	[_appDelegate.mcManager.session sendData:dataToSend

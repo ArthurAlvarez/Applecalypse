@@ -346,7 +346,6 @@
                         <segue destination="1Lr-Ql-gVg" kind="popoverPresentation" identifier="verifyAnswer" popoverAnchorView="Vxi-TD-l34" id="e4O-8d-Oud">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
-                        <segue destination="gXl-Md-Q7V" kind="show" identifier="finishGame" id="lk6-Ai-6h3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uua-R1-Lgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -557,6 +556,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="KtB-fD-Diq"/>
-        <segue reference="lk6-Ai-6h3"/>
     </inferredMetricsTieBreakers>
 </document>

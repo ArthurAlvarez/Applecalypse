@@ -10,6 +10,7 @@
 		1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1432C40B1AC2D40400E15CDE /* GameViewController.m */; };
 		1432C40F1AC2E28B00E15CDE /* VerifyAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */; };
 		1452A45D1AC97CEB00A46762 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1452A45C1AC97CEB00A46762 /* ResultsViewController.m */; };
+		1452A4601AC988E400A46762 /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1452A45F1AC988E400A46762 /* GameSettings.m */; };
 		1457877D1AC4200F007D76A1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1457877C1AC4200F007D76A1 /* Player.m */; };
 		14C443361AC18C6300103C35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443351AC18C6300103C35 /* main.m */; };
 		14C443391AC18C6300103C35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443381AC18C6300103C35 /* AppDelegate.m */; };
@@ -39,6 +40,8 @@
 		1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyAnswerViewController.m; sourceTree = "<group>"; };
 		1452A45B1AC97CEB00A46762 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		1452A45C1AC97CEB00A46762 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
+		1452A45E1AC988E400A46762 /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
+		1452A45F1AC988E400A46762 /* GameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettings.m; sourceTree = "<group>"; };
 		1457877B1AC4200F007D76A1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		1457877C1AC4200F007D76A1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		14C443301AC18C6300103C35 /* DoYouKnowMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoYouKnowMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +116,8 @@
 				939249E31AC1A549008D5500 /* ConnectionsViewController.m */,
 				1457877B1AC4200F007D76A1 /* Player.h */,
 				1457877C1AC4200F007D76A1 /* Player.m */,
+				1452A45E1AC988E400A46762 /* GameSettings.h */,
+				1452A45F1AC988E400A46762 /* GameSettings.m */,
 				14C4433D1AC18C6300103C35 /* Main.storyboard */,
 				1452A45B1AC97CEB00A46762 /* ResultsViewController.h */,
 				1452A45C1AC97CEB00A46762 /* ResultsViewController.m */,
@@ -257,6 +262,7 @@
 				14C443391AC18C6300103C35 /* AppDelegate.m in Sources */,
 				1452A45D1AC97CEB00A46762 /* ResultsViewController.m in Sources */,
 				1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */,
+				1452A4601AC988E400A46762 /* GameSettings.m in Sources */,
 				14C443361AC18C6300103C35 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

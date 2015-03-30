@@ -339,16 +339,23 @@
 														  repeats:YES];
 		}
 		
+		[_appDelegate.mcManager.session sendData:dataToSend
+										 toPeers:allPeers
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+		
 	} else if ([tittle isEqualToString:@"Terminar o jogo"]){
 		dataToSend = [@"@@@" dataUsingEncoding:NSUTF8StringEncoding];
+		
+		[_appDelegate.mcManager.session sendData:dataToSend
+											 toPeers:allPeers
+											withMode:MCSessionSendDataReliable
+											   error:&error];
 		
 		[self dismissViewControllerAnimated:YES completion:nil];
 	}
 	
-	[_appDelegate.mcManager.session sendData:dataToSend
-											 toPeers:allPeers
-											withMode:MCSessionSendDataReliable
-											   error:&error];
+	
 }
 
 /*

@@ -11,6 +11,7 @@
 #import "Connectivity.h"
 #import "AppDelegate.h"
 #import "VerifyAnswerViewController.h"
+#import "GameSettings.h"
 
 @interface GameViewController ()
 {
@@ -61,7 +62,9 @@
 	[super viewDidLoad];
 	
     MCPeerID *id;
-    
+    //Incrementa round corrente
+    [GameSettings incrementRound];
+    NSLog(@"Current round: %d", [GameSettings getCurrentRound]);
 	NSLog(@"Current Score: %d", [Player getScore]);
 	
 	//Setup notification for receiving packets

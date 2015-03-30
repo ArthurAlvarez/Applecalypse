@@ -42,49 +42,51 @@
 @implementation VerifyAnswerViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    //Setup of label texts
-    self.playerLabel.text = [NSString stringWithFormat:@"Player %d", [Player getPlayerID]];
-    self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
-    self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
-    
-    //Modifies interface acording to user
-    if([Player getPlayerID] == 1){
-        NSLog(@"Player1");
-        [self.btnAcceptAnswer setHidden:NO];
-        [self.btnRejectAnswer setHidden:NO];
-		[_waitingIndicator stopAnimating];
-    }
-    else{
-        NSLog(@"Player2");
-        [self.btnAcceptAnswer setHidden: YES];
-        [self.btnRejectAnswer setHidden:YES];
-		[_waitingIndicator startAnimating];
-    }
-    
+	[super viewDidLoad];
+	// Do any additional setup after loading the view.
+	
     //Setup of comunications
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveDataWithNotification:)
                                                  name:@"MCDidReceiveDataNotification"
                                                object:nil];
+    
+	//Setup of label texts
+    self.playerLabel.text = _appDelegate.mcManager.session.myPeerID.displayName;
+	self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
+	self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
+	
+	//Modifies interface acording to user
+	if([Player getPlayerID] == 1){
+		NSLog(@"Player1");
+		[self.btnAcceptAnswer setHidden:NO];
+		[self.btnRejectAnswer setHidden:NO];
+		[_waitingIndicator stopAnimating];
+	}
+	else{
+		NSLog(@"Player2");
+		[self.btnAcceptAnswer setHidden: YES];
+		[self.btnRejectAnswer setHidden:YES];
+		[_waitingIndicator startAnimating];
+	}
+	
+	
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 /**
  This method is called when the user presses btnAcceptAnswer
-@author Arthur Alvarez
+ @author Arthur Alvarez
  */
 - (IBAction)acceptAnswer:(id)sender {
-    [self sendAnswer:@"#1"];
-    [Player setScore:[Player getScore] +1];
-    [self performSegueWithIdentifier:@"backToGame" sender:self];
+	[self sendAnswer:@"#1"];
+	[Player setScore:[Player getScore] +1];
+	[self performSegueWithIdentifier:@"backToGame" sender:self];
 }
 
 /**
@@ -92,8 +94,8 @@
  @author Arthur Alvarez
  */
 - (IBAction)rejectAnswer:(id)sender {
-    [self sendAnswer:@"#0"];
-    [self performSegueWithIdentifier:@"backToGame" sender:self];
+	[self sendAnswer:@"#0"];
+	[self performSegueWithIdentifier:@"backToGame" sender:self];
 }
 
 /**
@@ -101,20 +103,20 @@
  */
 -(void)sendAnswer:(NSString*)strAnswer
 {
-    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-    NSError *error;
-    NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
 	
-    NSLog(@"Sending Data to: %@", allPeers);
-    
-    [_appDelegate.mcManager.session sendData:dataToSend
-                                     toPeers:allPeers
-                                    withMode:MCSessionSendDataReliable
-                                       error:&error];
-    
-    if (error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
+	NSLog(@"Sending Data to: %@", allPeers);
+	
+	[_appDelegate.mcManager.session sendData:dataToSend
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (error) {
+		NSLog(@"%@", [error localizedDescription]);
+	}
 }
 
 /**
@@ -123,32 +125,33 @@
  */
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
 {
-    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-    NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
  
-    NSLog(@"Received Data: %@", receivedInfo);
+	NSLog(@"Received Data: %@", receivedInfo);
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if([receivedInfo isEqualToString:@"#0"])
-            [self performSegueWithIdentifier:@"backToGame" sender:self];
-        
-        if([receivedInfo isEqualToString:@"#1"]){
-            [self performSegueWithIdentifier:@"backToGame" sender:self];
+		
+		if([receivedInfo isEqualToString:@"#0"])
+			[self performSegueWithIdentifier:@"backToGame" sender:self];
+		
+		else if([receivedInfo isEqualToString:@"#1"]){
+            NSLog(@"Somando pontuacao");
             [Player setScore:[Player getScore] +1];
+            [self performSegueWithIdentifier:@"backToGame" sender:self];
         }
 	});
 }
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

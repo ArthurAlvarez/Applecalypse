@@ -386,7 +386,7 @@
                         <segue destination="1Lr-Ql-gVg" kind="popoverPresentation" identifier="verifyAnswer" popoverAnchorView="Vxi-TD-l34" id="e4O-8d-Oud">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
-                        <segue destination="onG-ap-POS" kind="show" identifier="finalResults" id="Je9-qQ-6x3"/>
+                        <segue destination="onG-ap-POS" kind="show" identifier="finalResult" id="Je9-qQ-6x3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uua-R1-Lgr" userLabel="First Responder" sceneMemberID="firstResponder"/>

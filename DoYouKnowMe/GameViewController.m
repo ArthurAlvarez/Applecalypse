@@ -81,18 +81,19 @@
 											   object:nil];
 }
 
+/**
+ This method is called always when the view is to be showed
+ */
 -(void)viewWillAppear:(BOOL)animated{
     MCPeerID *id;
     //Incrementa round corrente
     [GameSettings incrementRound];
-    if([GameSettings getCurrentRound] > [GameSettings getGameLength]){
-        [self performSegueWithIdentifier:@"finalResults" sender:self];
-    }
-    NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
+    
     //Initializing properties
     self.playerScore = [NSNumber numberWithInt:0];
     shouldContinue = currentAnswers = 0;
     didAnswer = NO;
+    self.submitButton.enabled = YES;
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.timeLeft = [NSNumber numberWithInt:20];
     [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
@@ -109,6 +110,18 @@
         id = _appDelegate.mcManager.session.connectedPeers[0];
         self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
     }
+}
+
+/**
+ This method is called when the view has appeared
+*/
+-(void)viewDidAppear:(BOOL)animated{
+    //Verifica fim do jogo
+    if([GameSettings getCurrentRound] > [GameSettings getGameLength]){
+        NSLog(@"Segue");
+        [self performSegueWithIdentifier:@"finalResult" sender:self];
+    }
+    NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
 }
 
 - (void)didReceiveMemoryWarning {

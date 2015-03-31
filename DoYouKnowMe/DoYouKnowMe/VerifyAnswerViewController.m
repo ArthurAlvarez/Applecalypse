@@ -86,7 +86,7 @@
 - (IBAction)acceptAnswer:(id)sender {
 	[self sendAnswer:@"#1"];
 	[Player setScore:[Player getScore] +1];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 /**
@@ -95,7 +95,7 @@
  */
 - (IBAction)rejectAnswer:(id)sender {
 	[self sendAnswer:@"#0"];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 /**
@@ -133,12 +133,12 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
 		if([receivedInfo isEqualToString:@"#0"])
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [[self navigationController] popViewControllerAnimated:YES];
 		
 		else if([receivedInfo isEqualToString:@"#1"]){
             NSLog(@"Somando pontuacao");
             [Player setScore:[Player getScore] +1];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [[self navigationController] popViewControllerAnimated:YES];
         }
 	});
 }

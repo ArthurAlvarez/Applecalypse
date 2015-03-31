@@ -16,9 +16,9 @@
 
 @interface GameViewController ()
 {
-	int shouldContinue;
-	int currentAnswers;
-	bool didAnswer;
+    int shouldContinue;
+    int currentAnswers;
+    bool didAnswer;
     bool gameDidEnd;
 }
 
@@ -71,17 +71,17 @@
 @implementation GameViewController
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	//Setup notification for receiving packets
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(didReceiveDataWithNotification:)
-												 name:@"MCDidReceiveDataNotification"
-											   object:nil];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(peerDidChangeStateWithNotification:)
-												 name:@"MCDidChangeStateNotification"
-											   object:nil];
+    [super viewDidLoad];
+    //Setup notification for receiving packets
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDataWithNotification:)
+                                                 name:@"MCDidReceiveDataNotification"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(peerDidChangeStateWithNotification:)
+                                                 name:@"MCDidChangeStateNotification"
+                                               object:nil];
     gameDidEnd = NO;
 }
 
@@ -120,7 +120,7 @@
 
 /**
  This method is called when the view has appeared
-*/
+ */
 -(void)viewDidAppear:(BOOL)animated{
     //Verifica fim do jogo
     if([GameSettings getCurrentRound] > [GameSettings getGameLength] && gameDidEnd == NO){
@@ -132,8 +132,8 @@
 }
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 /**
@@ -141,79 +141,79 @@
  @author Arthur Alvarez
  */
 -(void)didReceiveDataWithNotification:(NSNotification *)notification{
-	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-	
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		
-		if([receivedInfo hasPrefix:@"$"]){
-			
-			self.otherAnswer = receivedInfo;
-			
-			if(currentAnswers == 0)
-				currentAnswers = 1;
-			else currentAnswers++;
-			
-			if(currentAnswers == 2)
-				[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-		}
-		
-		else if ([receivedInfo isEqualToString:@"!"]){
-			if (shouldContinue == 0) shouldContinue = 1;
-			else {
-				[_waitingPause stopAnimating];
-				
-				_clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
-															   target:self
-															 selector:@selector(updateTimerLabel)
-															 userInfo:nil
-															  repeats:YES];
-				
-			}
-		}
-		else if ([receivedInfo isEqualToString:@"!!"]){
-			shouldContinue = 0;
-			
-			[_clockTimer invalidate];
-			
-			UIAlertView *pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
-															message:@"O que deseja fazer?"
-														   delegate:self
-												  cancelButtonTitle:@"Continuar"
-												  otherButtonTitles:@"Terminar o jogo", nil];
-			[pause show];
-		}
-		
-		else if ([receivedInfo isEqualToString:@"@@@"]){
-			[self dismissViewControllerAnimated:YES completion:nil];
-		}
-	});
+    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+    NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if([receivedInfo hasPrefix:@"$"]){
+            
+            self.otherAnswer = receivedInfo;
+            
+            if(currentAnswers == 0)
+                currentAnswers = 1;
+            else currentAnswers++;
+            
+            if(currentAnswers == 2)
+                [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+        }
+        
+        else if ([receivedInfo isEqualToString:@"!"]){
+            if (shouldContinue == 0) shouldContinue = 1;
+            else {
+                [_waitingPause stopAnimating];
+                
+                _clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                               target:self
+                                                             selector:@selector(updateTimerLabel)
+                                                             userInfo:nil
+                                                              repeats:YES];
+                
+            }
+        }
+        else if ([receivedInfo isEqualToString:@"!!"]){
+            shouldContinue = 0;
+            
+            [_clockTimer invalidate];
+            
+            UIAlertView *pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
+                                                            message:@"O que deseja fazer?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Continuar"
+                                                  otherButtonTitles:@"Terminar o jogo", nil];
+            [pause show];
+        }
+        
+        else if ([receivedInfo isEqualToString:@"@@@"]){
+            [[self navigationController] popToRootViewControllerAnimated:YES];
+        }
+    });
 }
 
 
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
-	
-	MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
-	
-	if (state != MCSessionStateConnecting)
-	{
-		if (state == MCSessionStateNotConnected)
-		{
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[_clockTimer invalidate];
-				
-				UIAlertView *lostConnection = [[UIAlertView alloc]initWithTitle:@"Conexão perdida"
-																		message:@"A conexão com o outro jogador foi perdida..."
-																	   delegate:self cancelButtonTitle:@"Terminar o jogo"
-															  otherButtonTitles:nil];
-				
-				[lostConnection show];
-			});
-		}
-		
-	}
+    
+    MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
+    
+    if (state != MCSessionStateConnecting)
+    {
+        if (state == MCSessionStateNotConnected)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_clockTimer invalidate];
+                
+                UIAlertView *lostConnection = [[UIAlertView alloc]initWithTitle:@"Conexão perdida"
+                                                                        message:@"A conexão com o outro jogador foi perdida..."
+                                                                       delegate:self cancelButtonTitle:@"Terminar o jogo"
+                                                              otherButtonTitles:nil];
+                
+                [lostConnection show];
+            });
+        }
+        
+    }
 }
 
 /**
@@ -221,57 +221,57 @@
  @author Arthur Alvarez
  */
 - (IBAction)answerPressed:(id)sender {
-	
-	[self.view endEditing:YES];
-	
-	if(self.answerTextField.text.length > 0){
-		
-		[self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
-		
-		if (currentAnswers == 0) {
-			currentAnswers = 1;
-		} else currentAnswers++;
-		
-		if(currentAnswers == 2)
-		{
-			[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-		}
-		else
-		{
-			self.submitButton.enabled = NO;
-			didAnswer = YES;
-			[_waitingAnswer startAnimating];
-		}
-		
-	}
+    
+    [self.view endEditing:YES];
+    
+    if(self.answerTextField.text.length > 0){
+        
+        [self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
+        
+        if (currentAnswers == 0) {
+            currentAnswers = 1;
+        } else currentAnswers++;
+        
+        if(currentAnswers == 2)
+        {
+            [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+        }
+        else
+        {
+            self.submitButton.enabled = NO;
+            didAnswer = YES;
+            [_waitingAnswer startAnimating];
+        }
+        
+    }
 }
 
 
 - (IBAction)pauseGame:(id)sender
 {
-	[_clockTimer invalidate];
-	
-	UIAlertView *pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
-													message:@"O que deseja fazer?"
-												   delegate:self
-										  cancelButtonTitle:@"Continuar"
-										  otherButtonTitles:@"Terminar o jogo", nil];
-	[pause show];
-	
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-	NSError *error;
-	NSData *dataToSend = [@"!!" dataUsingEncoding:NSUTF8StringEncoding];
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
-	}
-	
-	shouldContinue = 0;
+    [_clockTimer invalidate];
+    
+    UIAlertView *pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
+                                                    message:@"O que deseja fazer?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Continuar"
+                                          otherButtonTitles:@"Terminar o jogo", nil];
+    [pause show];
+    
+    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+    NSError *error;
+    NSData *dataToSend = [@"!!" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [_appDelegate.mcManager.session sendData:dataToSend
+                                     toPeers:allPeers
+                                    withMode:MCSessionSendDataReliable
+                                       error:&error];
+    
+    if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    
+    shouldContinue = 0;
 }
 
 /**
@@ -280,18 +280,18 @@
  */
 -(void)sendAnswer:(NSString*)strAnswer
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-	NSError *error;
-	NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
-	}
+    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+    NSError *error;
+    NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [_appDelegate.mcManager.session sendData:dataToSend
+                                     toPeers:allPeers
+                                    withMode:MCSessionSendDataReliable
+                                       error:&error];
+    
+    if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
 }
 
 /**
@@ -299,20 +299,20 @@
  @author Arthur Alvarez
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	
+    
     //Stops timer
     [_clockTimer invalidate];
     
-	VerifyAnswerViewController *vc = segue.destinationViewController;
+    VerifyAnswerViewController *vc = segue.destinationViewController;
     ResultsViewController *vc2 = segue.destinationViewController;
-	
+    
     //Go to VerifyAnswerView
-	if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
-		
-		//Pass information to next view
-		vc.yourAnswer = self.answerTextField.text;
-		vc.hisAnswer = self.otherAnswer;
-	}
+    if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
+        
+        //Pass information to next view
+        vc.yourAnswer = self.answerTextField.text;
+        vc.hisAnswer = self.otherAnswer;
+    }
     
     //Go to ResultsView
     else if([segue.identifier isEqualToString:@"finalResult"]){
@@ -325,9 +325,9 @@
  @author Arthur Alvarez
  */
 -(void) userDidNotAnswer{
-	self.answerTextField.text = @"Não sei";
-	[self answerPressed:self];
-	
+    self.answerTextField.text = @"Não sei";
+    [self answerPressed:self];
+    
 }
 
 /**
@@ -335,57 +335,57 @@
  @author Arthur Alvarez
  */
 -(void) updateTimerLabel{
-	if([self.timeLeft intValue] > 0){
-		self.timeLeft = [NSNumber numberWithInt:[self.timeLeft intValue] - 1];
-		self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
-		
-		
-		if([self.timeLeft intValue] == 0 && didAnswer == NO){
-			[self userDidNotAnswer];
-		}
-	}
+    if([self.timeLeft intValue] > 0){
+        self.timeLeft = [NSNumber numberWithInt:[self.timeLeft intValue] - 1];
+        self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
+        
+        
+        if([self.timeLeft intValue] == 0 && didAnswer == NO){
+            [self userDidNotAnswer];
+        }
+    }
 }
 
 #pragma mark - AlertView Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	NSString *tittle = [alertView buttonTitleAtIndex:buttonIndex];
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-		NSError *error;
-	NSData *dataToSend;
-	
-	if ([tittle isEqualToString:@"Continuar"]) {
-		dataToSend = [@"!" dataUsingEncoding:NSUTF8StringEncoding];
-		
-		if (shouldContinue == 0){
-			shouldContinue = 1;
-			[_waitingPause startAnimating];
-		} else {
-			_clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
-														   target:self
-														 selector:@selector(updateTimerLabel)
-														 userInfo:nil
-														  repeats:YES];
-		}
-		
-		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:allPeers
-										withMode:MCSessionSendDataReliable
-										   error:&error];
-		
-	} else if ([tittle isEqualToString:@"Terminar o jogo"]){
-		dataToSend = [@"@@@" dataUsingEncoding:NSUTF8StringEncoding];
-		
-		[_appDelegate.mcManager.session sendData:dataToSend
-											 toPeers:allPeers
-											withMode:MCSessionSendDataReliable
-											   error:&error];
-		
-		[self dismissViewControllerAnimated:YES completion:nil];
-	}
-	
-	
+    NSString *tittle = [alertView buttonTitleAtIndex:buttonIndex];
+    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+    NSError *error;
+    NSData *dataToSend;
+    
+    if ([tittle isEqualToString:@"Continuar"]) {
+        dataToSend = [@"!" dataUsingEncoding:NSUTF8StringEncoding];
+        
+        if (shouldContinue == 0){
+            shouldContinue = 1;
+            [_waitingPause startAnimating];
+        } else {
+            _clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                           target:self
+                                                         selector:@selector(updateTimerLabel)
+                                                         userInfo:nil
+                                                          repeats:YES];
+        }
+        
+        [_appDelegate.mcManager.session sendData:dataToSend
+                                         toPeers:allPeers
+                                        withMode:MCSessionSendDataReliable
+                                           error:&error];
+        
+    } else if ([tittle isEqualToString:@"Terminar o jogo"]){
+        dataToSend = [@"@@@" dataUsingEncoding:NSUTF8StringEncoding];
+        
+        [_appDelegate.mcManager.session sendData:dataToSend
+                                         toPeers:allPeers
+                                        withMode:MCSessionSendDataReliable
+                                           error:&error];
+        
+        [[self navigationController] popToRootViewControllerAnimated:YES];
+    }
+    
+    
 }
 - (IBAction)tapGestureRecognizer:(id)sender {
     [self.view endEditing:YES];

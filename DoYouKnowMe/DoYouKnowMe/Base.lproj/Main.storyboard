@@ -49,8 +49,8 @@
         <!--Navigation Controller-->
         <scene sceneID="fmj-gA-qGd">
             <objects>
-                <navigationController id="mEJ-Db-xej" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                <navigationController navigationBarHidden="YES" id="mEJ-Db-xej" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KFR-K5-nul">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -235,7 +235,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dJG-eH-3NB"/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="btnDisconnect" destination="0hk-BW-bux" id="zjX-gQ-GJM"/>
                         <outlet property="connectedDevice" destination="aMC-dM-CPO" id="EJW-sI-tHO"/>
@@ -245,7 +244,7 @@
                         <outlet property="txtName" destination="1H0-re-5ME" id="DD5-1Y-uyZ"/>
                         <outlet property="waitingIndicator" destination="X2R-SI-Pto" id="7xY-DJ-agN"/>
                         <outlet property="waitingOtherLabel" destination="EIB-IS-77T" id="5H2-JH-zn6"/>
-                        <segue destination="EzG-sG-hhN" kind="showDetail" identifier="startGame" id="RiE-fT-8kf"/>
+                        <segue destination="EzG-sG-hhN" kind="show" identifier="startGame" id="RiE-fT-8kf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xF5-ds-KHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -402,9 +401,7 @@
                         <outlet property="timerLabel" destination="F3N-x9-1e9" id="XA7-N5-Yuf"/>
                         <outlet property="waitingAnswer" destination="Uc6-3l-QPX" id="HL9-Nt-5fZ"/>
                         <outlet property="waitingPause" destination="WgR-Jd-Ter" id="FCi-7c-gLF"/>
-                        <segue destination="1Lr-Ql-gVg" kind="popoverPresentation" identifier="verifyAnswer" popoverAnchorView="Vxi-TD-l34" id="e4O-8d-Oud">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
-                        </segue>
+                        <segue destination="1Lr-Ql-gVg" kind="show" identifier="verifyAnswer" id="e4O-8d-Oud"/>
                         <segue destination="onG-ap-POS" kind="show" identifier="finalResult" id="Je9-qQ-6x3"/>
                     </connections>
                 </viewController>

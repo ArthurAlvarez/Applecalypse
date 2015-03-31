@@ -187,6 +187,7 @@
         }
         
         else if ([receivedInfo isEqualToString:@"@@@"]){
+            [_pause dismissWithClickedButtonIndex:0 animated:YES];
             [[self navigationController] popToRootViewControllerAnimated:YES];
         }
     });

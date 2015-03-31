@@ -86,7 +86,7 @@
 - (IBAction)acceptAnswer:(id)sender {
 	[self sendAnswer:@"#1"];
 	[Player setScore:[Player getScore] +1];
-	[self performSegueWithIdentifier:@"backToGame" sender:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /**
@@ -95,7 +95,7 @@
  */
 - (IBAction)rejectAnswer:(id)sender {
 	[self sendAnswer:@"#0"];
-	[self performSegueWithIdentifier:@"backToGame" sender:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /**
@@ -133,12 +133,12 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
 		if([receivedInfo isEqualToString:@"#0"])
-			[self performSegueWithIdentifier:@"backToGame" sender:self];
+            [self dismissViewControllerAnimated:YES completion:nil];
 		
 		else if([receivedInfo isEqualToString:@"#1"]){
             NSLog(@"Somando pontuacao");
             [Player setScore:[Player getScore] +1];
-            [self performSegueWithIdentifier:@"backToGame" sender:self];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
 	});
 }

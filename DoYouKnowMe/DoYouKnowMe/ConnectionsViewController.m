@@ -369,7 +369,7 @@
 			} else if (canStart == 1) canStart++;
 			
 			if (canStart == 2)
-				if ([Player getPlayerID] == -1) [self performSegueWithIdentifier:@"startGame" sender:self];
+				if ([Player getPlayerID] != -1) [self performSegueWithIdentifier:@"startGame" sender:self];
 		}
 		else if ([receivedInfo isEqualToString:@"!error"]){
 			[_selectPlayer show];

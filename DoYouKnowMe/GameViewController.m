@@ -129,8 +129,7 @@
         gameDidEnd = YES;
         [self performSegueWithIdentifier:@"finalResult" sender:self];
     }
-	
-	
+    NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -184,7 +183,6 @@
 														   delegate:self
 												  cancelButtonTitle:@"Continuar"
 												  otherButtonTitles:@"Terminar o jogo", nil];
-			
 			[_pause show];
 		}
 		

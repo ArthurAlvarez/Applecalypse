@@ -19,6 +19,8 @@
 		14C443411AC18C6300103C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C443401AC18C6300103C35 /* Images.xcassets */; };
 		14C443441AC18C6300103C35 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C443421AC18C6300103C35 /* LaunchScreen.xib */; };
 		14C443501AC18C6300103C35 /* DoYouKnowMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */; };
+		93582F6C1ACAF2A9009D7249 /* icone_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 93582F6B1ACAF2A9009D7249 /* icone_180.png */; };
+		93582F6E1ACAF300009D7249 /* icone_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 93582F6D1ACAF300009D7249 /* icone_120.png */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* ConnectionsViewController.m */; };
 		B55B1E401AC992A100C7D68E /* numero__0000_10-copy-10.png in Resources */ = {isa = PBXBuildFile; fileRef = B55B1DDF1AC992A100C7D68E /* numero__0000_10-copy-10.png */; };
@@ -154,6 +156,8 @@
 		14C443491AC18C6300103C35 /* DoYouKnowMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoYouKnowMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C4434E1AC18C6300103C35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoYouKnowMeTests.m; sourceTree = "<group>"; };
+		93582F6B1ACAF2A9009D7249 /* icone_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icone_180.png; path = ../../../../../../Desktop/icone_180.png; sourceTree = "<group>"; };
+		93582F6D1ACAF300009D7249 /* icone_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icone_120.png; path = ../../../../../../Desktop/icone_120.png; sourceTree = "<group>"; };
 		939249DF1AC19883008D5500 /* Connectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connectivity.h; sourceTree = "<group>"; };
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
@@ -360,7 +364,9 @@
 		B55B1DDE1AC992A100C7D68E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				93582F6B1ACAF2A9009D7249 /* icone_180.png */,
 				B55B1DDF1AC992A100C7D68E /* numero__0000_10-copy-10.png */,
+				93582F6D1ACAF300009D7249 /* icone_120.png */,
 				B55B1DE01AC992A100C7D68E /* numero__0001_9.png */,
 				B55B1DE11AC992A100C7D68E /* numero__0002_8.png */,
 				B55B1DE21AC992A100C7D68E /* numero__0003_7.png */,
@@ -606,6 +612,7 @@
 				B55B1E9A1AC992A100C7D68E /* tela4_0006_Layer-8.png in Resources */,
 				14C443411AC18C6300103C35 /* Images.xcassets in Resources */,
 				B55B1E4B1AC992A100C7D68E /* tela0_0000_Do-I-Know-You_.png in Resources */,
+				93582F6C1ACAF2A9009D7249 /* icone_180.png in Resources */,
 				B55B1E551AC992A100C7D68E /* tela0_0008_Layer-5.png in Resources */,
 				B55B1E571AC992A100C7D68E /* tela1_0001_Layer-1-copy-2.png in Resources */,
 				B55B1E531AC992A100C7D68E /* tela0_0006_Layer-8.png in Resources */,
@@ -618,6 +625,7 @@
 				B55B1E931AC992A100C7D68E /* tela3_0009_Layer-4.png in Resources */,
 				B55B1E651AC992A100C7D68E /* tela21_0008_Layer-1-copy.png in Resources */,
 				B55B1E6A1AC992A100C7D68E /* tela21_0013_Choose-your-friend_.png in Resources */,
+				93582F6E1ACAF300009D7249 /* icone_120.png in Resources */,
 				B55B1E801AC992A100C7D68E /* tela31_0001_Question-1.png in Resources */,
 				B55B1E8D1AC992A100C7D68E /* tela3_0003_Layer-10.png in Resources */,
 				B55B1E7C1AC992A100C7D68E /* tela22_0014_Type-of-questions_.png in Resources */,
@@ -789,7 +797,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DoYouKnowMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -801,7 +808,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DoYouKnowMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

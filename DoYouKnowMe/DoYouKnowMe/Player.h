@@ -15,7 +15,7 @@
     1 for player 1, 2 for player 2;
     @author Arthur Alvarez
  */
-+(void)setPlayerID:(int)ID;
++(void)setPlayerID:(int)ID;  
 
 /**
  Gets the value of static variable ID.

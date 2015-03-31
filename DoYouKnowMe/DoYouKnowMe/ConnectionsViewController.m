@@ -49,6 +49,8 @@
 /// Array to keep the device tha you are connected with
 @property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
 
+@property UIAlertView *selectPlayer;
+
 @end
 
 #pragma mark - Implementation
@@ -68,7 +70,7 @@
 	
 	[_waitingIndicator stopAnimating];
 	
-	[Player setScore:0];
+	[Player setPlayerID:-1];
 	
 	canStart = 0;
 	
@@ -81,6 +83,12 @@
 											 selector:@selector(didReceiveDataWithNotification:)
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
+	
+	_selectPlayer = [[UIAlertView alloc] initWithTitle:@"Jogador não selecionado!"
+														   message:@"Selecione sobre quem as perguntas serão feitas para o jogo poder iniciar"
+														  delegate:self
+												 cancelButtonTitle:@"Ok, entendi!"
+												 otherButtonTitles: nil];
 	
 	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
 }
@@ -96,6 +104,7 @@
 		[_startBtn setEnabled:YES];
 	}
 	
+	[Player setScore:0];
 	canStart = 0;
 }
 
@@ -126,11 +135,17 @@
 {
 	[_appDelegate.mcManager advertiseSelf:_swVisible.isOn];
 }
+
+/**
+ Method to select to who the questions are going to be made
+ **/
 - (IBAction)questionsTo:(id)sender {
 	
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend;
+	
+	if ([allPeers count] == 0) return;
 	
 	if (_questionTo.selectedSegmentIndex == 0)
 	{
@@ -180,6 +195,8 @@
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
+	[Player setPlayerID:-1];
+	
 	if (error) {
 		NSLog(@"%@", [error localizedDescription]);
 	}
@@ -194,11 +211,13 @@
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
+	if ([allPeers count] == 0) return;
+	
 	[_startBtn setEnabled:NO];
 	
 	if (canStart == 0) {
 		canStart = 1;
-	} else canStart++;
+	} else if (canStart == 1) canStart++;
 	
 
 	[_appDelegate.mcManager.session sendData:[@"!start" dataUsingEncoding:NSUTF8StringEncoding]
@@ -206,7 +225,19 @@
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
-	if (canStart == 2) [self performSegueWithIdentifier:@"startGame" sender:self];
+	if (canStart == 2){
+		if ([Player getPlayerID] == -1){
+			
+			[_selectPlayer show];
+			
+			[_appDelegate.mcManager.session sendData:[@"!error" dataUsingEncoding:NSUTF8StringEncoding]
+											 toPeers:allPeers
+											withMode:MCSessionSendDataReliable
+											   error:&error];
+			[_startBtn setEnabled:YES];
+		}
+		else [self performSegueWithIdentifier:@"startGame" sender:self];
+	}
 	else
 	{
 		[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
@@ -288,6 +319,7 @@
 				NSLog(@"PEER DONT EXIST");
 				[_connectedDevice setText:@""];
 				[_waitingOtherLabel setText:@""];
+				[_waitingIndicator stopAnimating];
 				canStart = 0;
 			}
 		});
@@ -334,9 +366,13 @@
 		{
 			if (canStart == 0) {
 				canStart = 1;
-			} else canStart++;
+			} else if (canStart == 1) canStart++;
 			
-			if (canStart == 2) [self performSegueWithIdentifier:@"startGame" sender:self];
+			if (canStart == 2)
+				if ([Player getPlayerID] != -1) [self performSegueWithIdentifier:@"startGame" sender:self];
+		}
+		else if ([receivedInfo isEqualToString:@"!error"]){
+			[_selectPlayer show];
 		}
 	});
 

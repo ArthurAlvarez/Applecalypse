@@ -85,6 +85,18 @@
 	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
 }
 
+-(void)	viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:YES];
+	
+	[_waitingIndicator stopAnimating];
+	[_waitingOtherLabel setText:@""];
+	
+	if ([_arrConnectedDevices count] != 0) {
+		[_startBtn setEnabled:YES];
+	}
+	
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

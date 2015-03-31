@@ -288,6 +288,7 @@
 				NSLog(@"PEER DONT EXIST");
 				[_connectedDevice setText:@""];
 				[_waitingOtherLabel setText:@""];
+				[_waitingIndicator stopAnimating];
 				canStart = 0;
 			}
 		});

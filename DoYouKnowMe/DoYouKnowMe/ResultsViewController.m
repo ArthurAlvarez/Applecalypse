@@ -37,7 +37,15 @@
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     id = _appDelegate.mcManager.session.connectedPeers[0];
-    self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", id.displayName];
+    
+    if([Player getPlayerID] == 1){
+        self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", id.displayName];
+    }
+    
+    else if([Player getPlayerID] == 2){
+        self.topLabel.text = [NSString stringWithFormat:@"Quanto conheço %@...", id.displayName];
+    }
+    
     NSLog(@"score final: %d", [Player getScore]);
     self.percentLabel.text = [NSString stringWithFormat:@"%d%%", (100*[Player getScore])/[GameSettings getGameLength]];
 }

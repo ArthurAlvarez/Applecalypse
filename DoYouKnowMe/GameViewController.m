@@ -69,16 +69,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
-    MCPeerID *id;
-    //Incrementa round corrente
-    [GameSettings incrementRound];
-    if([GameSettings getCurrentRound] > [GameSettings getGameLength]){
-        [self performSegueWithIdentifier:@"finalResults" sender:self];
-    }
-    NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
-	//NSLog(@"Current Score: %d", [Player getScore]);
-	
 	//Setup notification for receiving packets
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(didReceiveDataWithNotification:)
@@ -89,17 +79,27 @@
 											 selector:@selector(peerDidChangeStateWithNotification:)
 												 name:@"MCDidChangeStateNotification"
 											   object:nil];
-	
-	//Initializing properties
-	self.playerScore = [NSNumber numberWithInt:0];
-	shouldContinue = currentAnswers = 0;
-	didAnswer = NO;
-	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	self.timeLeft = [NSNumber numberWithInt:20];
-	[_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
-	
-	//Timer setup
-	self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    MCPeerID *id;
+    //Incrementa round corrente
+    [GameSettings incrementRound];
+    if([GameSettings getCurrentRound] > [GameSettings getGameLength]){
+        [self performSegueWithIdentifier:@"finalResults" sender:self];
+    }
+    NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
+    //Initializing properties
+    self.playerScore = [NSNumber numberWithInt:0];
+    shouldContinue = currentAnswers = 0;
+    didAnswer = NO;
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.timeLeft = [NSNumber numberWithInt:20];
+    [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
+    self.answerTextField.text = @"";
+    
+    //Timer setup
+    self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
     
     //Setup Player Label
     if([Player getPlayerID] == 1){
@@ -280,6 +280,8 @@
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	
+    [_clockTimer invalidate];
+    
 	VerifyAnswerViewController *vc = segue.destinationViewController;
 	
 	if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
@@ -356,6 +358,9 @@
 	}
 	
 	
+}
+- (IBAction)tapGestureRecognizer:(id)sender {
+    [self.view endEditing:YES];
 }
 
 /*

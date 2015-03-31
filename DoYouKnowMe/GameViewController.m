@@ -12,12 +12,14 @@
 #import "AppDelegate.h"
 #import "VerifyAnswerViewController.h"
 #import "GameSettings.h"
+#import "ResultsViewController.h"
 
 @interface GameViewController ()
 {
 	int shouldContinue;
 	int currentAnswers;
 	bool didAnswer;
+    bool gameDidEnd;
 }
 
 # pragma mark - Interface Properties
@@ -71,16 +73,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
-    MCPeerID *id;
-    //Incrementa round corrente
-    [GameSettings incrementRound];
-    if([GameSettings getCurrentRound] > [GameSettings getGameLength]){
-        [self performSegueWithIdentifier:@"finalResults" sender:self];
-    }
-    NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
-	//NSLog(@"Current Score: %d", [Player getScore]);
-	
 	//Setup notification for receiving packets
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(didReceiveDataWithNotification:)
@@ -91,25 +83,51 @@
 											 selector:@selector(peerDidChangeStateWithNotification:)
 												 name:@"MCDidChangeStateNotification"
 											   object:nil];
-	
-	//Initializing properties
-	self.playerScore = [NSNumber numberWithInt:0];
-	shouldContinue = currentAnswers = 0;
-	didAnswer = NO;
-	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	self.timeLeft = [NSNumber numberWithInt:20];
-	[_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
-	
-	//Timer setup
-	self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+    gameDidEnd = NO;
+}
+
+/**
+ This method is called always when the view is to be showed
+ */
+-(void)viewWillAppear:(BOOL)animated{
+    MCPeerID *id;
+    //Incrementa round corrente
+    [GameSettings incrementRound];
+    
+    //Initializing properties
+    self.playerScore = [NSNumber numberWithInt:0];
+    shouldContinue = currentAnswers = 0;
+    didAnswer = NO;
+    self.submitButton.enabled = YES;
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.timeLeft = [NSNumber numberWithInt:20];
+    [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
+    self.answerTextField.text = @"";
+    
+    //Timer setup
+    self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
     
     //Setup Player Label
     if([Player getPlayerID] == 1){
         self.playerLabel.text = @"Pergunta sobre você";
     }
     else{
-        id = _appDelegate.mcManager.session.connectedPeers[0];
-        self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
+        if(_appDelegate.mcManager.session.connectedPeers.count > 0){
+            id = _appDelegate.mcManager.session.connectedPeers[0];
+            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
+        }
+    }
+}
+
+/**
+ This method is called when the view has appeared
+*/
+-(void)viewDidAppear:(BOOL)animated{
+    //Verifica fim do jogo
+    if([GameSettings getCurrentRound] > [GameSettings getGameLength] && gameDidEnd == NO){
+        NSLog(@"Segue");
+        gameDidEnd = YES;
+        [self performSegueWithIdentifier:@"finalResult" sender:self];
     }
 	
 	
@@ -286,14 +304,24 @@
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	
+    //Stops timer
+    [_clockTimer invalidate];
+    
 	VerifyAnswerViewController *vc = segue.destinationViewController;
+    ResultsViewController *vc2 = segue.destinationViewController;
 	
+    //Go to VerifyAnswerView
 	if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
 		
 		//Pass information to next view
 		vc.yourAnswer = self.answerTextField.text;
 		vc.hisAnswer = self.otherAnswer;
 	}
+    
+    //Go to ResultsView
+    else if([segue.identifier isEqualToString:@"finalResult"]){
+        vc2.gameView = self;
+    }
 }
 
 /**
@@ -362,6 +390,9 @@
 	}
 	
 	
+}
+- (IBAction)tapGestureRecognizer:(id)sender {
+    [self.view endEditing:YES];
 }
 
 /*

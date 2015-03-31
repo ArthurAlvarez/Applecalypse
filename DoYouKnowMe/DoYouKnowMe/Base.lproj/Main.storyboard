@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -32,7 +32,7 @@
                                 </state>
                                 <connections>
                                     <action selector="startApp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="TtN-o4-5k7"/>
-                                    <segue destination="gXl-Md-Q7V" kind="show" id="pfb-zS-xcT"/>
+                                    <segue destination="mEJ-Db-xej" kind="show" id="LA1-kN-PKw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -49,7 +49,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253" y="604"/>
+            <point key="canvasLocation" x="-503" y="604"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fmj-gA-qGd">
+            <objects>
+                <navigationController id="mEJ-Db-xej" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KFR-K5-nul">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="gXl-Md-Q7V" kind="relationship" relationship="rootViewController" id="0Hw-IN-Z6z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hjg-lR-9Hu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="271" y="604"/>
         </scene>
         <!--Connections View Controller-->
         <scene sceneID="VJx-o4-2aC">
@@ -63,7 +80,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qual seu apelido?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1H0-re-5ME">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Qual seu apelido?" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1H0-re-5ME">
                                 <rect key="frame" x="159" y="20" width="282" height="30"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
                                 <constraints>
@@ -83,7 +100,7 @@
                                 <color key="shadowColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMC-dM-CPO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMC-dM-CPO">
                                 <rect key="frame" x="307" y="170" width="134" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="134" id="S0X-Fb-c2F"/>
@@ -163,7 +180,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5v-wn-g0G">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5v-wn-g0G">
                                 <rect key="frame" x="244" y="109" width="113" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="113" id="Pya-2J-HeI"/>
@@ -226,6 +243,8 @@
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="mvG-ZM-ZvJ" secondAttribute="bottom" constant="16" id="xCg-Yx-fT9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="dJG-eH-3NB"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="btnDisconnect" destination="0hk-BW-bux" id="zjX-gQ-GJM"/>
                         <outlet property="connectedDevice" destination="aMC-dM-CPO" id="EJW-sI-tHO"/>
@@ -312,7 +331,7 @@
                                     <constraint firstAttribute="height" constant="30" id="Ho9-H9-Ccb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5y-5j-KV9">
                                 <rect key="frame" x="242" y="370" width="117" height="47"/>
@@ -359,6 +378,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="WgR-Jd-Ter" firstAttribute="top" secondItem="F3N-x9-1e9" secondAttribute="bottom" constant="8" symbolic="YES" id="1eB-BL-emu"/>
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="top" secondItem="b0C-GG-bjP" secondAttribute="bottom" constant="8" symbolic="YES" id="714-lN-AQh"/>
@@ -388,6 +408,9 @@
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="trailing" secondItem="Vxi-TD-l34" secondAttribute="trailingMargin" id="qOM-Rw-Zca"/>
                             <constraint firstItem="Uc6-3l-QPX" firstAttribute="top" secondItem="q5y-5j-KV9" secondAttribute="bottom" constant="8" symbolic="YES" id="zOM-YH-YnG"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="biX-g0-2R2" appends="YES" id="ypA-St-Sdr"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="answerTextField" destination="TDV-1E-jzr" id="8dY-rA-cNY"/>
@@ -401,12 +424,17 @@
                         <segue destination="1Lr-Ql-gVg" kind="popoverPresentation" identifier="verifyAnswer" popoverAnchorView="Vxi-TD-l34" id="e4O-8d-Oud">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
-                        <segue destination="onG-ap-POS" kind="show" identifier="finalResults" id="Je9-qQ-6x3"/>
+                        <segue destination="onG-ap-POS" kind="show" identifier="finalResult" id="Je9-qQ-6x3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uua-R1-Lgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="biX-g0-2R2">
+                    <connections>
+                        <action selector="tapGestureRecognizer:" destination="EzG-sG-hhN" id="892-6c-P5C"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1808" y="616"/>
+            <point key="canvasLocation" x="1808" y="604"/>
         </scene>
         <!--Verify Answer View Controller-->
         <scene sceneID="EHy-Uj-7dp">
@@ -549,14 +577,11 @@
                         <outlet property="myAsnwerLabel" destination="4W1-5u-G9S" id="f3L-kc-xd2"/>
                         <outlet property="playerLabel" destination="upZ-Z9-diV" id="Zb3-51-RaX"/>
                         <outlet property="waitingIndicator" destination="jPM-VD-5ml" id="sOE-S5-Bid"/>
-                        <segue destination="EzG-sG-hhN" kind="popoverPresentation" identifier="backToGame" popoverAnchorView="nJf-dx-rx6" id="KtB-fD-Diq">
-                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
-                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxE-wG-eI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2510" y="-161"/>
+            <point key="canvasLocation" x="2571" y="604"/>
         </scene>
         <!--Results View Controller-->
         <scene sceneID="ISR-NC-IiQ">
@@ -604,6 +629,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnBackPressed:" destination="onG-ap-POS" eventType="touchUpInside" id="3EF-9r-EKK"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resultados" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wh-sz-nho">
                                 <rect key="frame" x="231" y="20" width="138" height="48"/>
@@ -631,10 +659,15 @@
                             <constraint firstItem="aK3-7r-d2a" firstAttribute="top" secondItem="ciN-hh-P0e" secondAttribute="bottom" constant="100" id="gjy-qQ-6UY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btn_back" destination="ciN-hh-P0e" id="61C-lv-aUe"/>
+                        <outlet property="percentLabel" destination="MdE-bL-75W" id="hOa-wL-oyi"/>
+                        <outlet property="topLabel" destination="Zrw-aK-VCc" id="n9h-1b-fQC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwQ-Kb-REk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1779" y="1379"/>
+            <point key="canvasLocation" x="1808" y="1393"/>
         </scene>
     </scenes>
     <resources>

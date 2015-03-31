@@ -7,21 +7,47 @@
 //
 
 #import "ResultsViewController.h"
+#import "AppDelegate.h"
+#import "GameSettings.h"
+#import "Player.h"
+#import "GameViewController.h"
 
 @interface ResultsViewController ()
 
+///Interface label that shows title
+@property (weak, nonatomic) IBOutlet UILabel *topLabel;
+
+///Interface label that shows percent
+@property (weak, nonatomic) IBOutlet UILabel *percentLabel;
+
+///Interface button
+@property (weak, nonatomic) IBOutlet UIButton *btn_back;
+
+///Delegate for comunications
+@property (strong, nonatomic) AppDelegate *appDelegate;
 @end
 
 @implementation ResultsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    MCPeerID *id;
+    
+    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    id = _appDelegate.mcManager.session.connectedPeers[0];
+    self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", id.displayName];
+    NSLog(@"score final: %d", [Player getScore]);
+    self.percentLabel.text = [NSString stringWithFormat:@"%d%%", (100*[Player getScore])/[GameSettings getGameLength]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)btnBackPressed:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 /*

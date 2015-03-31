@@ -12,12 +12,14 @@
 #import "AppDelegate.h"
 #import "VerifyAnswerViewController.h"
 #import "GameSettings.h"
+#import "ResultsViewController.h"
 
 @interface GameViewController ()
 {
 	int shouldContinue;
 	int currentAnswers;
 	bool didAnswer;
+    bool gameDidEnd;
 }
 
 # pragma mark - Interface Properties
@@ -62,6 +64,7 @@
 ///How much time the user still has
 @property (strong, nonatomic) NSNumber *timeLeft;
 
+
 @end
 
 #pragma mark - Controller Implementation
@@ -79,6 +82,7 @@
 											 selector:@selector(peerDidChangeStateWithNotification:)
 												 name:@"MCDidChangeStateNotification"
 											   object:nil];
+    gameDidEnd = NO;
 }
 
 /**
@@ -107,8 +111,10 @@
         self.playerLabel.text = @"Pergunta sobre você";
     }
     else{
-        id = _appDelegate.mcManager.session.connectedPeers[0];
-        self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
+        if(_appDelegate.mcManager.session.connectedPeers.count > 0){
+            id = _appDelegate.mcManager.session.connectedPeers[0];
+            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
+        }
     }
 }
 
@@ -117,8 +123,9 @@
 */
 -(void)viewDidAppear:(BOOL)animated{
     //Verifica fim do jogo
-    if([GameSettings getCurrentRound] > [GameSettings getGameLength]){
+    if([GameSettings getCurrentRound] > [GameSettings getGameLength] && gameDidEnd == NO){
         NSLog(@"Segue");
+        gameDidEnd = YES;
         [self performSegueWithIdentifier:@"finalResult" sender:self];
     }
     NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
@@ -293,16 +300,24 @@
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	
+    //Stops timer
     [_clockTimer invalidate];
     
 	VerifyAnswerViewController *vc = segue.destinationViewController;
+    ResultsViewController *vc2 = segue.destinationViewController;
 	
+    //Go to VerifyAnswerView
 	if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
 		
 		//Pass information to next view
 		vc.yourAnswer = self.answerTextField.text;
 		vc.hisAnswer = self.otherAnswer;
 	}
+    
+    //Go to ResultsView
+    else if([segue.identifier isEqualToString:@"finalResult"]){
+        vc2.gameView = self;
+    }
 }
 
 /**

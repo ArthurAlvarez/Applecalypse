@@ -62,6 +62,8 @@
 ///How much time the user still has
 @property (strong, nonatomic) NSNumber *timeLeft;
 
+@property UIAlertView *pause;
+
 @end
 
 #pragma mark - Controller Implementation
@@ -109,6 +111,8 @@
         id = _appDelegate.mcManager.session.connectedPeers[0];
         self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
     }
+	
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,15 +161,17 @@
 			
 			[_clockTimer invalidate];
 			
-			UIAlertView *pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
+			_pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
 															message:@"O que deseja fazer?"
 														   delegate:self
 												  cancelButtonTitle:@"Continuar"
 												  otherButtonTitles:@"Terminar o jogo", nil];
-			[pause show];
+			
+			[_pause show];
 		}
 		
 		else if ([receivedInfo isEqualToString:@"@@@"]){
+			[_pause dismissWithClickedButtonIndex:0 animated:YES];
 			[self dismissViewControllerAnimated:YES completion:nil];
 		}
 	});

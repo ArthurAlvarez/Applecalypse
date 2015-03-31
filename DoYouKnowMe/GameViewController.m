@@ -64,6 +64,7 @@
 ///How much time the user still has
 @property (strong, nonatomic) NSNumber *timeLeft;
 
+@property UIAlertView *pause;
 
 @end
 

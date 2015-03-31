@@ -85,8 +85,9 @@
 	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
 }
 
--(void)	viewDidAppear:(BOOL)animated{
-	[super viewDidAppear:YES];
+-(void) viewWillAppear:(BOOL)animated{
+	
+	[super viewWillAppear:YES];
 	
 	[_waitingIndicator stopAnimating];
 	[_waitingOtherLabel setText:@""];
@@ -95,6 +96,7 @@
 		[_startBtn setEnabled:YES];
 	}
 	
+	canStart = 0;
 }
 
 - (void)didReceiveMemoryWarning {

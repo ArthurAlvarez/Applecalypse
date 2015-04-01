@@ -150,6 +150,8 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"questions" ofType:@"txt"];
     
     self.questionsJson = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
+    
+    NSLog(@"%@", self.questionsJson);
 }
 
 /**
@@ -164,6 +166,7 @@
     
     
     numQuestions = [NSNumber numberWithInt:[[self.questionsJson objectForKey:@"size"]intValue]];
+    NSLog(@"Size: %@", numQuestions);
     selectedQuestion = [NSNumber numberWithInt:arc4random() % [numQuestions intValue]];
     NSLog(@"selected: %@", selectedQuestion);
     

@@ -18,10 +18,10 @@
 		14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C4433D1AC18C6300103C35 /* Main.storyboard */; };
 		14C443411AC18C6300103C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C443401AC18C6300103C35 /* Images.xcassets */; };
 		14C443441AC18C6300103C35 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C443421AC18C6300103C35 /* LaunchScreen.xib */; };
-		14C443501AC18C6300103C35 /* DoYouKnowMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */; };
-		93582F6C1ACAF2A9009D7249 /* icone_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 93582F6B1ACAF2A9009D7249 /* icone_180.png */; };
-		93582F6E1ACAF300009D7249 /* icone_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 93582F6D1ACAF300009D7249 /* icone_120.png */; };
+		14C7616B1ACC0688007734E5 /* icone_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C761691ACC0688007734E5 /* icone_120.png */; };
+		14C7616C1ACC0688007734E5 /* icone_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C7616A1ACC0688007734E5 /* icone_180.png */; };
 		938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* FirstViewController.m */; };
+		938E68771ACC29D2009B7AE7 /* questions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 938E68761ACC29D2009B7AE7 /* questions.txt */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* ConnectionsViewController.m */; };
 		B55B1E401AC992A100C7D68E /* numero__0000_10-copy-10.png in Resources */ = {isa = PBXBuildFile; fileRef = B55B1DDF1AC992A100C7D68E /* numero__0000_10-copy-10.png */; };
@@ -123,16 +123,6 @@
 		B55B1EA01AC992A100C7D68E /* tela_1_inicio.png in Resources */ = {isa = PBXBuildFile; fileRef = B55B1E3F1AC992A100C7D68E /* tela_1_inicio.png */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		14C4434A1AC18C6300103C35 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 14C443281AC18C6300103C35 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 14C4432F1AC18C6300103C35;
-			remoteInfo = DoYouKnowMe;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1432C40A1AC2D40400E15CDE /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameViewController.h; path = ../GameViewController.h; sourceTree = "<group>"; };
 		1432C40B1AC2D40400E15CDE /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameViewController.m; path = ../GameViewController.m; sourceTree = "<group>"; };
@@ -154,13 +144,11 @@
 		14C4433E1AC18C6300103C35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14C443401AC18C6300103C35 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		14C443431AC18C6300103C35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		14C443491AC18C6300103C35 /* DoYouKnowMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoYouKnowMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		14C4434E1AC18C6300103C35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoYouKnowMeTests.m; sourceTree = "<group>"; };
-		93582F6B1ACAF2A9009D7249 /* icone_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icone_180.png; path = ../../../../../../Desktop/icone_180.png; sourceTree = "<group>"; };
-		93582F6D1ACAF300009D7249 /* icone_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icone_120.png; path = ../../../../../../Desktop/icone_120.png; sourceTree = "<group>"; };
+		14C761691ACC0688007734E5 /* icone_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icone_120.png; sourceTree = "<group>"; };
+		14C7616A1ACC0688007734E5 /* icone_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icone_180.png; sourceTree = "<group>"; };
 		938E686C1ACC08DD009B7AE7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		938E686D1ACC08DD009B7AE7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		938E68761ACC29D2009B7AE7 /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = questions.txt; path = ../../questions.txt; sourceTree = "<group>"; };
 		939249DF1AC19883008D5500 /* Connectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connectivity.h; sourceTree = "<group>"; };
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
@@ -272,13 +260,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		14C443461AC18C6300103C35 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -286,7 +267,6 @@
 			isa = PBXGroup;
 			children = (
 				14C443321AC18C6300103C35 /* DoYouKnowMe */,
-				14C4434C1AC18C6300103C35 /* DoYouKnowMeTests */,
 				14C443311AC18C6300103C35 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -295,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				14C443301AC18C6300103C35 /* DoYouKnowMe.app */,
-				14C443491AC18C6300103C35 /* DoYouKnowMeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,7 +282,7 @@
 		14C443321AC18C6300103C35 /* DoYouKnowMe */ = {
 			isa = PBXGroup;
 			children = (
-				14C7616D1ACC0781007734E5 /* resources */,
+				938E68731ACC297F009B7AE7 /* resources */,
 				B55B1DDE1AC992A100C7D68E /* images */,
 				1432C40D1AC2E28B00E15CDE /* VerifyAnswerViewController.h */,
 				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
@@ -342,30 +321,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		14C4434C1AC18C6300103C35 /* DoYouKnowMeTests */ = {
+		938E68731ACC297F009B7AE7 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */,
-				14C4434D1AC18C6300103C35 /* Supporting Files */,
-			);
-			path = DoYouKnowMeTests;
-			sourceTree = "<group>";
-		};
-		14C4434D1AC18C6300103C35 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				14C4434E1AC18C6300103C35 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		14C7616D1ACC0781007734E5 /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				14C7616E1ACC090C007734E5 /* questions.txt */,
+				938E68761ACC29D2009B7AE7 /* questions.txt */,
 			);
 			name = resources;
-			path = ../resources;
 			sourceTree = "<group>";
 		};
 		B55B1DDD1AC98F8B00C7D68E /* New Group */ = {
@@ -502,24 +463,6 @@
 			productReference = 14C443301AC18C6300103C35 /* DoYouKnowMe.app */;
 			productType = "com.apple.product-type.application";
 		};
-		14C443481AC18C6300103C35 /* DoYouKnowMeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 14C443561AC18C6300103C35 /* Build configuration list for PBXNativeTarget "DoYouKnowMeTests" */;
-			buildPhases = (
-				14C443451AC18C6300103C35 /* Sources */,
-				14C443461AC18C6300103C35 /* Frameworks */,
-				14C443471AC18C6300103C35 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				14C4434B1AC18C6300103C35 /* PBXTargetDependency */,
-			);
-			name = DoYouKnowMeTests;
-			productName = DoYouKnowMeTests;
-			productReference = 14C443491AC18C6300103C35 /* DoYouKnowMeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -531,11 +474,6 @@
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = PK9ZTBKL3B;
-					};
-					14C443481AC18C6300103C35 = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 14C4432F1AC18C6300103C35;
 					};
 				};
 			};
@@ -553,7 +491,6 @@
 			projectRoot = "";
 			targets = (
 				14C4432F1AC18C6300103C35 /* DoYouKnowMe */,
-				14C443481AC18C6300103C35 /* DoYouKnowMeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -653,7 +590,7 @@
 				B55B1E4C1AC992A100C7D68E /* tela0_0001_Layer-4.png in Resources */,
 				B55B1E461AC992A100C7D68E /* numero__0006_4.png in Resources */,
 				B55B1E751AC992A100C7D68E /* tela22_0007_friend-name.png in Resources */,
-				14C7616F1ACC090C007734E5 /* questions.txt in Resources */,
+				938E68771ACC29D2009B7AE7 /* questions.txt in Resources */,
 				B55B1E481AC992A100C7D68E /* numero__0008_2.png in Resources */,
 				B55B1E5A1AC992A100C7D68E /* tela1_0004_Layer-6.png in Resources */,
 				B55B1E901AC992A100C7D68E /* tela3_0006_Layer-6.png in Resources */,
@@ -666,13 +603,6 @@
 				B55B1E701AC992A100C7D68E /* tela22_0002_Layer-1-copy-4.png in Resources */,
 				B55B1E8F1AC992A100C7D68E /* tela3_0005_Layer-3.png in Resources */,
 				B55B1E851AC992A100C7D68E /* tela31_0006_Layer-6.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		14C443471AC18C6300103C35 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,23 +627,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		14C443451AC18C6300103C35 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				14C443501AC18C6300103C35 /* DoYouKnowMeTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		14C4434B1AC18C6300103C35 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 14C4432F1AC18C6300103C35 /* DoYouKnowMe */;
-			targetProxy = 14C4434A1AC18C6300103C35 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		14C4433D1AC18C6300103C35 /* Main.storyboard */ = {
@@ -816,9 +730,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DoYouKnowMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -827,43 +744,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DoYouKnowMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		14C443571AC18C6300103C35 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DoYouKnowMeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoYouKnowMe.app/DoYouKnowMe";
-			};
-			name = Debug;
-		};
-		14C443581AC18C6300103C35 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DoYouKnowMeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DoYouKnowMe.app/DoYouKnowMe";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -884,15 +770,6 @@
 			buildConfigurations = (
 				14C443541AC18C6300103C35 /* Debug */,
 				14C443551AC18C6300103C35 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		14C443561AC18C6300103C35 /* Build configuration list for PBXNativeTarget "DoYouKnowMeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				14C443571AC18C6300103C35 /* Debug */,
-				14C443581AC18C6300103C35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

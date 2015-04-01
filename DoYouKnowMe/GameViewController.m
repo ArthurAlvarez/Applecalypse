@@ -139,13 +139,7 @@
  This method is called when the view has appeared
  */
 -(void)viewDidAppear:(BOOL)animated{
-    //Verifica fim do jogo
-    if([GameSettings getCurrentRound] > [GameSettings getGameLength] && gameDidEnd == NO){
-        NSLog(@"Segue");
-        gameDidEnd = YES;
-        [self performSegueWithIdentifier:@"finalResult" sender:self];
-    }
-    NSLog(@"Current round: %d, GameLength: %d", [GameSettings getCurrentRound], [GameSettings getGameLength]);
+
 }
 
 - (void)didReceiveMemoryWarning {

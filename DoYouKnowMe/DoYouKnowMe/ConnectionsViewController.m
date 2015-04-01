@@ -9,6 +9,7 @@
 #import "ConnectionsViewController.h"
 #import "AppDelegate.h"
 #import "Player.h"
+#import "GameSettings.h"
 
 #pragma mark - Private Interface
 
@@ -92,6 +93,8 @@
 	
 	[Player setScore:0];
 	canStart = 0;
+	
+	[GameSettings setRound:0];
 }
 
 - (void)didReceiveMemoryWarning {

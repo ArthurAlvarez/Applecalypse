@@ -14,6 +14,11 @@
 static int _gameLength = 5;
 static int _currentRound = 0;
 
++ (void) setRound:(int)round
+{
+	_currentRound = 0;
+}
+
 +(void)incrementRound{
     _currentRound++;
 }

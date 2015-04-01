@@ -13,6 +13,8 @@
 
 @interface GameSettings : NSObject
 
++ (void) setRound:(int)round;
+
 +(void)incrementRound;
 
 +(int)getGameLength;

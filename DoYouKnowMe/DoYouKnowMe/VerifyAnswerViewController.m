@@ -7,6 +7,7 @@
 //
 
 #import "VerifyAnswerViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 #import "Connectivity.h"
 #import "Player.h"
 #import "AppDelegate.h"
@@ -144,9 +145,11 @@
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
-		if([receivedInfo isEqualToString:@"#0"])
+        if([receivedInfo isEqualToString:@"#0"]){
+            NSLog(@"Vibrate");
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
             [[self navigationController] popViewControllerAnimated:YES];
-		
+        }
 		else if([receivedInfo isEqualToString:@"#1"]){
             NSLog(@"Somando pontuacao");
             [Player setScore:[Player getScore] +1];

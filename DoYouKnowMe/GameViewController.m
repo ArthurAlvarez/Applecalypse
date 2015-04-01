@@ -69,6 +69,8 @@
 
 @property UIAlertView *pause;
 
+@property NSDictionary *questionsJson;
+
 @end
 
 #pragma mark - Controller Implementation
@@ -98,6 +100,7 @@
     [GameSettings incrementRound];
     
     //Initializing properties
+    [self readJsonFile];
     self.playerScore = [NSNumber numberWithInt:0];
     shouldContinue = currentAnswers = 0;
     didAnswer = NO;
@@ -106,6 +109,7 @@
     self.timeLeft = [NSNumber numberWithInt:20];
     [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
     self.answerTextField.text = @"";
+    self.questionLabel.text = @"";
     
     //Timer setup
     self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
@@ -113,6 +117,7 @@
     //Setup Player Label
     if([Player getPlayerID] == 1){
         self.playerLabel.text = @"Pergunta sobre você";
+        [self questionTextFromIndex:[self getQuestion]];
     }
     else{
         if(_appDelegate.mcManager.session.connectedPeers.count > 0){
@@ -143,6 +148,59 @@
 }
 
 /**
+    Reads the JSON file containing the questions into a dictionary
+    @author Arthur Alvarez
+ */
+-(void)readJsonFile{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"questions" ofType:@"txt"];
+    
+    self.questionsJson = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
+    
+    NSLog(@"%@", self.questionsJson);
+}
+
+/**
+    Gets the index of selected question and sends to the other peer
+    @author Arthur Alvarez
+ */
+-(NSNumber *)getQuestion{
+    NSNumber *numQuestions, *selectedQuestion;
+    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+    NSError *error;
+    NSData *dataToSend;
+    
+    
+    numQuestions = [NSNumber numberWithInt:[[self.questionsJson objectForKey:@"size"]intValue]];
+    NSLog(@"Size: %@", numQuestions);
+    selectedQuestion = [NSNumber numberWithInt:arc4random() % [numQuestions intValue]];
+    NSLog(@"selected: %@", selectedQuestion);
+    
+    dataToSend = [[NSString stringWithFormat:@"&%@", selectedQuestion] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [_appDelegate.mcManager.session sendData:dataToSend
+                                     toPeers:allPeers
+                                    withMode:MCSessionSendDataReliable
+                                       error:&error];
+    
+    if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+
+    
+    
+    return selectedQuestion;
+}
+
+-(NSString *)questionTextFromIndex:(NSNumber *)index{
+    NSDictionary *q = [self.questionsJson objectForKey:@"questions"];
+    NSString *questionText = [NSString stringWithFormat:@"%@", [q objectForKey:[NSString stringWithFormat:@"%@", index]]];
+    
+    self.questionLabel.text = questionText;
+    
+    return questionText;
+}
+
+/**
  This method is called when the device received some data from other peers
  @author Arthur Alvarez
  */
@@ -163,6 +221,13 @@
             
             if(currentAnswers == 2)
                 [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+        }
+        
+        else if([receivedInfo hasPrefix:@"&"]){
+            NSLog(@"received &");
+            NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
+            NSString *formatted = [receivedInfo stringByReplacingOccurrencesOfString:@"&" withString:@""];
+            [self questionTextFromIndex:[f numberFromString:formatted]];
         }
         
         else if ([receivedInfo isEqualToString:@"!"]){

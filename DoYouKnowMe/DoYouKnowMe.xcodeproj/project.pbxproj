@@ -303,6 +303,7 @@
 		14C443321AC18C6300103C35 /* DoYouKnowMe */ = {
 			isa = PBXGroup;
 			children = (
+				14C7616D1ACC0781007734E5 /* resources */,
 				B55B1DDE1AC992A100C7D68E /* images */,
 				1432C40D1AC2E28B00E15CDE /* VerifyAnswerViewController.h */,
 				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
@@ -358,6 +359,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		14C7616D1ACC0781007734E5 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				14C7616E1ACC090C007734E5 /* questions.txt */,
+			);
+			name = resources;
+			path = ../resources;
+			sourceTree = "<group>";
+		};
 		B55B1DDD1AC98F8B00C7D68E /* New Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,9 +379,9 @@
 		B55B1DDE1AC992A100C7D68E /* images */ = {
 			isa = PBXGroup;
 			children = (
-				93582F6B1ACAF2A9009D7249 /* icone_180.png */,
+				14C761691ACC0688007734E5 /* icone_120.png */,
+				14C7616A1ACC0688007734E5 /* icone_180.png */,
 				B55B1DDF1AC992A100C7D68E /* numero__0000_10-copy-10.png */,
-				93582F6D1ACAF300009D7249 /* icone_120.png */,
 				B55B1DE01AC992A100C7D68E /* numero__0001_9.png */,
 				B55B1DE11AC992A100C7D68E /* numero__0002_8.png */,
 				B55B1DE21AC992A100C7D68E /* numero__0003_7.png */,
@@ -521,6 +531,7 @@
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = PK9ZTBKL3B;
 					};
 					14C443481AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
@@ -552,6 +563,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14C7616C1ACC0688007734E5 /* icone_180.png in Resources */,
 				B55B1E681AC992A100C7D68E /* tela21_0011_Layer-2-copy.png in Resources */,
 				B55B1E621AC992A100C7D68E /* tela21_0005_friend-name.png in Resources */,
 				B55B1E591AC992A100C7D68E /* tela1_0003_Layer-3.png in Resources */,
@@ -617,11 +629,11 @@
 				B55B1E9A1AC992A100C7D68E /* tela4_0006_Layer-8.png in Resources */,
 				14C443411AC18C6300103C35 /* Images.xcassets in Resources */,
 				B55B1E4B1AC992A100C7D68E /* tela0_0000_Do-I-Know-You_.png in Resources */,
-				93582F6C1ACAF2A9009D7249 /* icone_180.png in Resources */,
 				B55B1E551AC992A100C7D68E /* tela0_0008_Layer-5.png in Resources */,
 				B55B1E571AC992A100C7D68E /* tela1_0001_Layer-1-copy-2.png in Resources */,
 				B55B1E531AC992A100C7D68E /* tela0_0006_Layer-8.png in Resources */,
 				B55B1E6F1AC992A100C7D68E /* tela22_0001_friend-name.png in Resources */,
+				14C7616B1ACC0688007734E5 /* icone_120.png in Resources */,
 				B55B1E8E1AC992A100C7D68E /* tela3_0004_Send.png in Resources */,
 				B55B1E781AC992A100C7D68E /* tela22_0010_name.png in Resources */,
 				B55B1E501AC992A100C7D68E /* tela0_0004_Layer-7.png in Resources */,
@@ -630,7 +642,6 @@
 				B55B1E931AC992A100C7D68E /* tela3_0009_Layer-4.png in Resources */,
 				B55B1E651AC992A100C7D68E /* tela21_0008_Layer-1-copy.png in Resources */,
 				B55B1E6A1AC992A100C7D68E /* tela21_0013_Choose-your-friend_.png in Resources */,
-				93582F6E1ACAF300009D7249 /* icone_120.png in Resources */,
 				B55B1E801AC992A100C7D68E /* tela31_0001_Question-1.png in Resources */,
 				B55B1E8D1AC992A100C7D68E /* tela3_0003_Layer-10.png in Resources */,
 				B55B1E7C1AC992A100C7D68E /* tela22_0014_Type-of-questions_.png in Resources */,
@@ -642,6 +653,7 @@
 				B55B1E4C1AC992A100C7D68E /* tela0_0001_Layer-4.png in Resources */,
 				B55B1E461AC992A100C7D68E /* numero__0006_4.png in Resources */,
 				B55B1E751AC992A100C7D68E /* tela22_0007_friend-name.png in Resources */,
+				14C7616F1ACC090C007734E5 /* questions.txt in Resources */,
 				B55B1E481AC992A100C7D68E /* numero__0008_2.png in Resources */,
 				B55B1E5A1AC992A100C7D68E /* tela1_0004_Layer-6.png in Resources */,
 				B55B1E901AC992A100C7D68E /* tela3_0006_Layer-6.png in Resources */,

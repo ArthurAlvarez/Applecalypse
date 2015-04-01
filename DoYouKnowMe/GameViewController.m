@@ -247,13 +247,8 @@
             shouldContinue = 0;
             
             [_clockTimer invalidate];
-            
-            UIAlertView *pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
-                                                            message:@"O que deseja fazer?"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Continuar"
-                                                  otherButtonTitles:@"Terminar o jogo", nil];
-            [pause show];
+			
+            [_pause show];
         }
         
         else if ([receivedInfo isEqualToString:@"@@@"]){

@@ -276,33 +276,6 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sobre quem serão as perguntas?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-fs-vxG">
-                                <rect key="frame" x="132" y="157" width="337" height="23"/>
-                                <color key="tintColor" red="0.91764705882352937" green="0.32156862745098042" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="337" id="Jdn-ab-C7G"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <size key="shadowOffset" width="1" height="1"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dtz-p7-56e">
-                                <rect key="frame" x="176" y="209" width="249" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="0EU-Gs-CkT"/>
-                                    <constraint firstAttribute="width" constant="249" id="x4w-hA-xLH"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Mim"/>
-                                    <segment title="&lt;amigo&gt;"/>
-                                </segments>
-                                <color key="tintColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="questionsTo:" destination="gXl-Md-Q7V" eventType="valueChanged" id="6OT-vn-tOp"/>
-                                </connections>
-                            </segmentedControl>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="X2R-SI-Pto">
                                 <rect key="frame" x="-105" y="423" width="811" height="37"/>
                                 <constraints>
@@ -346,28 +319,85 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5S4-4C-YED">
+                                <rect key="frame" x="176" y="270" width="249" height="29"/>
+                                <segments>
+                                    <segment title="5"/>
+                                    <segment title="10"/>
+                                    <segment title="15"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="numberOfQuestons:" destination="gXl-Md-Q7V" eventType="valueChanged" id="1xS-sh-3af"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantas perguntas serão?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dr-AG-Dty">
+                                <rect key="frame" x="176" y="220" width="249" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="1Ne-aT-i2V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sobre quem serão as perguntas?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-fs-vxG">
+                                <rect key="frame" x="132" y="100" width="337" height="23"/>
+                                <color key="tintColor" red="0.91764705882352937" green="0.32156862745098042" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="337" id="Jdn-ab-C7G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dtz-p7-56e">
+                                <rect key="frame" x="176" y="152" width="249" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="0EU-Gs-CkT"/>
+                                    <constraint firstAttribute="width" constant="249" id="x4w-hA-xLH"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Mim"/>
+                                    <segment title="&lt;amigo&gt;"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="questionsTo:" destination="gXl-Md-Q7V" eventType="valueChanged" id="6OT-vn-tOp"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Dtz-p7-56e" firstAttribute="leading" secondItem="iXw-8L-TAb" secondAttribute="leading" id="3Ki-tJ-rki"/>
                             <constraint firstItem="X2R-SI-Pto" firstAttribute="top" secondItem="iXw-8L-TAb" secondAttribute="bottom" constant="16" id="4N2-Qk-VTY"/>
-                            <constraint firstItem="eWN-fs-vxG" firstAttribute="top" secondItem="JU0-D1-ydj" secondAttribute="bottom" constant="137" id="4OY-R5-hg4"/>
+                            <constraint firstItem="eWN-fs-vxG" firstAttribute="top" secondItem="JU0-D1-ydj" secondAttribute="bottom" constant="60" id="4OY-R5-hg4"/>
                             <constraint firstItem="X2R-SI-Pto" firstAttribute="centerX" secondItem="Atc-g8-8lO" secondAttribute="centerX" id="6g5-P7-x6j"/>
-                            <constraint firstItem="EIB-IS-77T" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="79" id="KUJ-Ht-GCJ"/>
+                            <constraint firstItem="5S4-4C-YED" firstAttribute="top" secondItem="2dr-AG-Dty" secondAttribute="bottom" constant="29" id="Dhl-KG-qoe"/>
+                            <constraint firstItem="EIB-IS-77T" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="156" id="KUJ-Ht-GCJ"/>
+                            <constraint firstItem="5S4-4C-YED" firstAttribute="leading" secondItem="2dr-AG-Dty" secondAttribute="leading" id="Nw2-Uv-dOd"/>
+                            <constraint firstItem="2dr-AG-Dty" firstAttribute="trailing" secondItem="Dtz-p7-56e" secondAttribute="trailing" id="P8O-D8-qcp"/>
                             <constraint firstItem="Atc-g8-8lO" firstAttribute="top" secondItem="X2R-SI-Pto" secondAttribute="bottom" constant="24" id="RSP-Gl-vfp"/>
                             <constraint firstItem="iXw-8L-TAb" firstAttribute="trailing" secondItem="Dtz-p7-56e" secondAttribute="trailing" id="TVI-tM-sR7"/>
                             <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="Atc-g8-8lO" secondAttribute="bottom" constant="86" id="ZZg-Ex-cmM"/>
+                            <constraint firstItem="5S4-4C-YED" firstAttribute="trailing" secondItem="2dr-AG-Dty" secondAttribute="trailing" id="cvW-nG-lgq"/>
                             <constraint firstItem="EIB-IS-77T" firstAttribute="centerX" secondItem="iXw-8L-TAb" secondAttribute="centerX" id="hqy-Ij-E0o"/>
                             <constraint firstItem="Dtz-p7-56e" firstAttribute="top" secondItem="eWN-fs-vxG" secondAttribute="bottom" constant="29" id="hsQ-VM-siM"/>
                             <constraint firstItem="iXw-8L-TAb" firstAttribute="top" secondItem="EIB-IS-77T" secondAttribute="bottom" constant="8" symbolic="YES" id="iXp-nB-ek3"/>
                             <constraint firstItem="iXw-8L-TAb" firstAttribute="centerX" secondItem="X2R-SI-Pto" secondAttribute="centerX" id="kSA-Jn-74z"/>
                             <constraint firstItem="eWN-fs-vxG" firstAttribute="centerX" secondItem="Dtz-p7-56e" secondAttribute="centerX" id="qNP-1w-QDM"/>
                             <constraint firstItem="Dtz-p7-56e" firstAttribute="centerX" secondItem="F7b-1G-gIx" secondAttribute="centerX" id="qb0-ae-elP"/>
+                            <constraint firstItem="2dr-AG-Dty" firstAttribute="leading" secondItem="Dtz-p7-56e" secondAttribute="leading" id="sXP-Xy-bA2"/>
+                            <constraint firstItem="EIB-IS-77T" firstAttribute="top" secondItem="5S4-4C-YED" secondAttribute="bottom" constant="18" id="vXT-zq-Ak4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dJG-eH-3NB"/>
                     <connections>
                         <outlet property="btnDisconnect" destination="Atc-g8-8lO" id="clC-Z3-SjI"/>
+                        <outlet property="numberOfQuestions" destination="5S4-4C-YED" id="KhD-0L-cxu"/>
                         <outlet property="questionTo" destination="Dtz-p7-56e" id="Nb3-sP-vLp"/>
                         <outlet property="startBtn" destination="iXw-8L-TAb" id="Sg8-C2-g0i"/>
                         <outlet property="waitingIndicator" destination="X2R-SI-Pto" id="7xY-DJ-agN"/>

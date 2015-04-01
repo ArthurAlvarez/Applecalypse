@@ -19,6 +19,11 @@ static int _currentRound = 0;
 	_currentRound = 0;
 }
 
++(void)setGameLenght:(int)lenght
+{
+	_gameLength = lenght;
+}
+
 +(void)incrementRound{
     _currentRound++;
 }

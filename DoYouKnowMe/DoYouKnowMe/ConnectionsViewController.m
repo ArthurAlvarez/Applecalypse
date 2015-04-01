@@ -22,6 +22,9 @@
 /// Interface Segmented Control to know which kind the player is
 @property (weak, nonatomic) IBOutlet UISegmentedControl *questionTo;
 
+/// Interface Segmented Control to know how many questions the game will have
+@property (weak, nonatomic) IBOutlet UISegmentedControl *numberOfQuestions;
+
 /// Interface Button to start the game
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
@@ -107,8 +110,8 @@
 /**
  Method to select to who the questions are going to be made
  **/
-- (IBAction)questionsTo:(id)sender {
-	
+- (IBAction)questionsTo:(id)sender
+{
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend;
@@ -125,6 +128,26 @@
 	}
 	
 	NSLog(@"ID %d", [Player getPlayerID]);
+	
+	[_appDelegate.mcManager.session sendData:dataToSend
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (error) {
+		NSLog(@"%@", [error localizedDescription]);
+	}
+}
+
+- (IBAction)numberOfQuestons:(id)sender
+{
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend = [[NSString stringWithFormat:@"()%ld", _numberOfQuestions.selectedSegmentIndex]
+						  dataUsingEncoding:NSUTF8StringEncoding];
+	int index = (int)_numberOfQuestions.selectedSegmentIndex;
+	
+	[GameSettings setRound:[[_numberOfQuestions titleForSegmentAtIndex:index] intValue]];
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
 									 toPeers:allPeers
@@ -242,8 +265,6 @@
 			}
 			
 			NSLog(@"ID %d", [Player getPlayerID]);
-			
-			_startBtn.hidden = NO;
 		}
 		else if ([receivedInfo isEqualToString:@"!disconnect"])
 		{
@@ -266,6 +287,14 @@
 		}
 		else if ([receivedInfo isEqualToString:@"!error"]){
 			[_selectPlayer show];
+		}
+		else if ([receivedInfo hasPrefix:@"()"]){
+			int index = [[receivedInfo stringByReplacingOccurrencesOfString:@"()" withString:@""] intValue];
+			
+			_numberOfQuestions.selectedSegmentIndex = index;
+			[GameSettings setGameLenght:[[_numberOfQuestions titleForSegmentAtIndex:index]intValue]];
+			
+			_startBtn.hidden = NO;
 		}
 	});
 

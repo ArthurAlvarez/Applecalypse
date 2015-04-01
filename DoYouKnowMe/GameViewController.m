@@ -89,6 +89,12 @@
                                                  name:@"MCDidChangeStateNotification"
                                                object:nil];
     gameDidEnd = NO;
+	
+	_pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
+										message:@"O que deseja fazer?"
+									   delegate:self
+							  cancelButtonTitle:@"Continuar"
+							  otherButtonTitles:@"Terminar o jogo", nil];
 }
 
 /**
@@ -317,13 +323,8 @@
 - (IBAction)pauseGame:(id)sender
 {
     [_clockTimer invalidate];
-    
-    UIAlertView *pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
-                                                    message:@"O que deseja fazer?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Continuar"
-                                          otherButtonTitles:@"Terminar o jogo", nil];
-    [pause show];
+	
+    [_pause show];
     
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;

@@ -33,12 +33,12 @@
 
 
 -(void)setupMCBrowser{
-	_browser = [[MCBrowserViewController alloc] initWithServiceType:@"game" session:_session];
+	_browser = [[MCBrowserViewController alloc] initWithServiceType:@"doyouknowme" session:_session];
 }
 
 -(void)advertiseSelf:(BOOL)shouldAdvertise{
 	if (shouldAdvertise) {
-		_advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"game"
+		_advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"doyouknowme"
 														   discoveryInfo:nil
 																 session:_session];
 		[_advertiser start];

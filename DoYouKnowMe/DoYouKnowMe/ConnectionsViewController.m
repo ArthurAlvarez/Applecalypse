@@ -24,15 +24,6 @@
 /// Interface Button to start the game
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
-/// Interface Text Field to edit the display name from the device
-@property (weak, nonatomic) IBOutlet UITextField *txtName;
-
-/// Interface Switch to set if the device is visible or not
-@property (weak, nonatomic) IBOutlet UISwitch *swVisible;
-
-/// Interface Label to show the name from the device that you are connected with
-@property (weak, nonatomic) IBOutlet UILabel *connectedDevice;
-
 /// Intarface Button to disconnect with the other device
 @property (weak, nonatomic) IBOutlet UIButton *btnDisconnect;
 
@@ -46,9 +37,6 @@
 /// AppDelegate object to creat an access to the Connectivity class trough the app delegate
 @property (nonatomic, strong) AppDelegate *appDelegate;
 
-/// Array to keep the device tha you are connected with
-@property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
-
 @property UIAlertView *selectPlayer;
 
 @end
@@ -61,12 +49,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	
-	// Iniciate the session
 	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	[[_appDelegate mcManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
-	[[_appDelegate mcManager] advertiseSelf:_swVisible.isOn];
 	
-	[_txtName setDelegate:self];
+	MCPeerID *peer = _appDelegate.mcManager.session.connectedPeers[0];
+	
+	[_questionTo setTitle:[NSString stringWithFormat:@"%@", peer.displayName]
+		forSegmentAtIndex:1];
 	
 	[_waitingIndicator stopAnimating];
 	
@@ -85,24 +73,22 @@
 											   object:nil];
 	
 	_selectPlayer = [[UIAlertView alloc] initWithTitle:@"Jogador não selecionado!"
-														   message:@"Selecione sobre quem as perguntas serão feitas para o jogo poder iniciar"
-														  delegate:self
-												 cancelButtonTitle:@"Ok, entendi!"
-												 otherButtonTitles: nil];
+											   message:@"Selecione sobre quem as perguntas serão feitas para o jogo poder iniciar"
+											  delegate:self
+									 cancelButtonTitle:@"Ok, entendi!"
+									 otherButtonTitles: nil];
 	
-	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
+	
 }
 
 -(void) viewWillAppear:(BOOL)animated{
 	
 	[super viewWillAppear:YES];
 	
+	_startBtn.hidden = YES;
+	
 	[_waitingIndicator stopAnimating];
 	[_waitingOtherLabel setText:@""];
-	
-	if ([_arrConnectedDevices count] != 0) {
-		[_startBtn setEnabled:YES];
-	}
 	
 	[Player setScore:0];
 	canStart = 0;
@@ -116,27 +102,6 @@
 #pragma mark - Action Methods
 
 /**
- Method to browse for new devices
- **/
-- (IBAction)browseForDevices:(id)sender
-{
-	[[_appDelegate mcManager] setupMCBrowser];
-	[[[_appDelegate mcManager] browser] setDelegate:self];
-	
-	_appDelegate.mcManager.browser.maximumNumberOfPeers = 1;
-	
-	[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
-}
-
-/**
- Method to alternate between visible or not
- **/
-- (IBAction)toggleVisibility:(id)sender
-{
-	[_appDelegate.mcManager advertiseSelf:_swVisible.isOn];
-}
-
-/**
  Method to select to who the questions are going to be made
  **/
 - (IBAction)questionsTo:(id)sender {
@@ -144,8 +109,6 @@
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend;
-	
-	if ([allPeers count] == 0) return;
 	
 	if (_questionTo.selectedSegmentIndex == 0)
 	{
@@ -169,6 +132,7 @@
 		NSLog(@"%@", [error localizedDescription]);
 	}
 	
+	_startBtn.hidden = NO;
 }
 
 /** 
@@ -181,13 +145,9 @@
 	
 	[_appDelegate.mcManager.session disconnect];
 	
-	_txtName.enabled = YES;
-	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[_btnDisconnect setEnabled:NO];
 		[_startBtn setEnabled:NO];
-		[_arrConnectedDevices removeAllObjects];
-		[_connectedDevice setText:@""];
 	});
 	
 	[_appDelegate.mcManager.session sendData:[@"!disconnect" dataUsingEncoding:NSUTF8StringEncoding]
@@ -200,6 +160,8 @@
 	if (error) {
 		NSLog(@"%@", [error localizedDescription]);
 	}
+	
+	[[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 /**
@@ -210,8 +172,6 @@
 	
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
-	
-	if ([allPeers count] == 0) return;
 	
 	[_startBtn setEnabled:NO];
 	
@@ -225,19 +185,7 @@
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
-	if (canStart == 2){
-		if ([Player getPlayerID] == -1){
-			
-			[_selectPlayer show];
-			
-			[_appDelegate.mcManager.session sendData:[@"!error" dataUsingEncoding:NSUTF8StringEncoding]
-											 toPeers:allPeers
-											withMode:MCSessionSendDataReliable
-											   error:&error];
-			[_startBtn setEnabled:YES];
-		}
-		else [self performSegueWithIdentifier:@"startGame" sender:self];
-	}
+	if (canStart == 2)  [self performSegueWithIdentifier:@"startGame" sender:self];
 	else
 	{
 		[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
@@ -247,83 +195,26 @@
 	
 }
 
-#pragma mark - MCBrowserViewController Delegate
-
--(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
-	[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
-}
-
-
--(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
-	[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-	[_txtName resignFirstResponder];
-	
-	_appDelegate.mcManager.peerID = nil;
-	_appDelegate.mcManager.session = nil;
-	_appDelegate.mcManager.browser = nil;
-	
-	if ([_swVisible isOn]) {
-		[_appDelegate.mcManager.advertiser stop];
-	}
-	_appDelegate.mcManager.advertiser = nil;
-	
-	[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
-	[_appDelegate.mcManager setupMCBrowser];
-	[_appDelegate.mcManager advertiseSelf:_swVisible.isOn];
-	
-	return YES;
-}
-
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
-	MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
-	NSString *peerDisplayName = peerID.displayName;
-	MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
-	
-	if (state != MCSessionStateConnecting)
-	{
-		if (state == MCSessionStateConnected)
-		{
-			if ([_arrConnectedDevices count] > 0)
-			{
-					[_arrConnectedDevices removeAllObjects];
-			}
-			[_arrConnectedDevices addObject:peerDisplayName];
-		}
-		else if (state == MCSessionStateNotConnected)
-		{
-			if ([_arrConnectedDevices count] > 0)
-			{
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[_arrConnectedDevices removeAllObjects];
-				});
-			}
-		}
 		dispatch_async(dispatch_get_main_queue(), ^{
 			BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
 			[_btnDisconnect setEnabled:!peersExist];
 			[_startBtn setEnabled:!peersExist];
-			[_txtName setEnabled:peersExist];
 			
-			if (!peersExist)
-			{
-				[_connectedDevice setText:peerDisplayName];
-				
-				NSLog(@"PEER EXIST! and is named %@", peerDisplayName);
-			}
-			else
-			{
-				NSLog(@"PEER DONT EXIST");
-				[_connectedDevice setText:@""];
+			if (peersExist){
 				[_waitingOtherLabel setText:@""];
 				[_waitingIndicator stopAnimating];
 				canStart = 0;
+				
+				UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
+																	  message:@"A conexão com seu amigo foi perdida"
+																	 delegate:self
+															cancelButtonTitle:@"Ok"
+															otherButtonTitles: nil];
+				[disconected show];
 			}
 		});
-	}
 	
 }
 
@@ -348,19 +239,18 @@
 			}
 			
 			NSLog(@"ID %d", [Player getPlayerID]);
+			
+			_startBtn.hidden = NO;
 		}
 		else if ([receivedInfo isEqualToString:@"!disconnect"])
 		{
 			[_appDelegate.mcManager.session disconnect];
 			
-			_txtName.enabled = YES;
-			
 			NSLog(@"RECEBEU DISCONNECT");
 			
 			[_btnDisconnect setEnabled:NO];
-			[_startBtn setEnabled:NO];
-			[_arrConnectedDevices removeLastObject];
-			[_connectedDevice setText:@""];
+			
+			[[self navigationController] popToRootViewControllerAnimated:YES];
 		}
 		else if ([receivedInfo isEqualToString:@"!start"])
 		{
@@ -378,6 +268,30 @@
 
 }
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	NSString *tittle = [alertView buttonTitleAtIndex:buttonIndex];
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend;
+	
+	if ([tittle isEqualToString:@"Ok"]) {
+		[[self navigationController] popToRootViewControllerAnimated:YES];
+		
+	} else if ([tittle isEqualToString:@"Terminar o jogo"]){
+		dataToSend = [@"@@@" dataUsingEncoding:NSUTF8StringEncoding];
+		
+		[_appDelegate.mcManager.session sendData:dataToSend
+										 toPeers:allPeers
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+		
+		[[self navigationController] popToRootViewControllerAnimated:YES];
+	}
+	
+	
+}
 /*
 #pragma mark - Navigation
 

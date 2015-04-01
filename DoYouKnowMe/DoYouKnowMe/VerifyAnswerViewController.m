@@ -29,8 +29,16 @@
 ///Interface Label that shows the peer's answer
 @property (weak, nonatomic) IBOutlet UILabel *hisAsnwerLabel;
 
+/// Interface Indicator to show that the player is waiting for the other
+/// to say if he is right or wrong
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
 
+/// Label to show a message to the player, indicating to him answer if
+/// the other player is right or wrong
+@property (weak, nonatomic) IBOutlet UILabel *wOrRLabel;
+
+/// Interface Label to show the name of the other player
+@property (weak, nonatomic) IBOutlet UILabel *showFriendName;
 
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
@@ -56,16 +64,20 @@
     self.playerLabel.text = _appDelegate.mcManager.session.myPeerID.displayName;
 	self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
 	self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
+	MCPeerID *friend = _appDelegate.mcManager.session.connectedPeers[0];
+	_showFriendName.text = [NSString stringWithFormat:@"%@:", friend.displayName];
 	
 	//Modifies interface acording to user
 	if([Player getPlayerID] == 1){
 		NSLog(@"Player1");
+		_wOrRLabel.hidden = NO;
 		[self.btnAcceptAnswer setHidden:NO];
 		[self.btnRejectAnswer setHidden:NO];
 		[_waitingIndicator stopAnimating];
 	}
 	else{
 		NSLog(@"Player2");
+		_wOrRLabel.hidden = YES;
 		[self.btnAcceptAnswer setHidden: YES];
 		[self.btnRejectAnswer setHidden:YES];
 		[_waitingIndicator startAnimating];

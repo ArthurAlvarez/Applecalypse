@@ -21,6 +21,7 @@
 		14C443501AC18C6300103C35 /* DoYouKnowMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */; };
 		93582F6C1ACAF2A9009D7249 /* icone_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 93582F6B1ACAF2A9009D7249 /* icone_180.png */; };
 		93582F6E1ACAF300009D7249 /* icone_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 93582F6D1ACAF300009D7249 /* icone_120.png */; };
+		938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* FirstViewController.m */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* ConnectionsViewController.m */; };
 		B55B1E401AC992A100C7D68E /* numero__0000_10-copy-10.png in Resources */ = {isa = PBXBuildFile; fileRef = B55B1DDF1AC992A100C7D68E /* numero__0000_10-copy-10.png */; };
@@ -158,6 +159,8 @@
 		14C4434F1AC18C6300103C35 /* DoYouKnowMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoYouKnowMeTests.m; sourceTree = "<group>"; };
 		93582F6B1ACAF2A9009D7249 /* icone_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icone_180.png; path = ../../../../../../Desktop/icone_180.png; sourceTree = "<group>"; };
 		93582F6D1ACAF300009D7249 /* icone_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icone_120.png; path = ../../../../../../Desktop/icone_120.png; sourceTree = "<group>"; };
+		938E686C1ACC08DD009B7AE7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		938E686D1ACC08DD009B7AE7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		939249DF1AC19883008D5500 /* Connectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connectivity.h; sourceTree = "<group>"; };
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 				14C4433B1AC18C6300103C35 /* viewController.m */,
 				939249E21AC1A549008D5500 /* ConnectionsViewController.h */,
 				939249E31AC1A549008D5500 /* ConnectionsViewController.m */,
+				938E686C1ACC08DD009B7AE7 /* FirstViewController.h */,
+				938E686D1ACC08DD009B7AE7 /* FirstViewController.m */,
 				1457877B1AC4200F007D76A1 /* Player.h */,
 				1457877C1AC4200F007D76A1 /* Player.m */,
 				1452A45E1AC988E400A46762 /* GameSettings.h */,
@@ -666,6 +671,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */,
 				1457877D1AC4200F007D76A1 /* Player.m in Sources */,
 				939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */,
 				14C4433C1AC18C6300103C35 /* viewController.m in Sources */,

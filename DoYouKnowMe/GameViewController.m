@@ -48,6 +48,9 @@
 /// continue the game
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingPause;
 
+/// Interface Label to show the raound that the game is
+@property (weak, nonatomic) IBOutlet UILabel *showRound;
+
 #pragma mark - Controller Properties
 ///Number that represents the score of the current player
 @property (strong, nonatomic) NSNumber *playerScore;
@@ -117,6 +120,8 @@
             self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
         }
     }
+	
+	_showRound.text = [NSString stringWithFormat:@"%d/%d", [GameSettings getCurrentRound], [GameSettings getGameLength]];
 }
 
 /**
@@ -276,6 +281,10 @@
     shouldContinue = 0;
 }
 
+- (IBAction)tapGestureRecognizer:(id)sender {
+    [self.view endEditing:YES];
+}
+
 /**
  Sends the string containing the answer to the other player
  @author Arthur Alvarez
@@ -388,9 +397,6 @@
     }
     
     
-}
-- (IBAction)tapGestureRecognizer:(id)sender {
-    [self.view endEditing:YES];
 }
 
 /*

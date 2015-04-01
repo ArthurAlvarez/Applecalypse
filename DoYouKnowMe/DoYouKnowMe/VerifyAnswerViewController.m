@@ -11,6 +11,7 @@
 #import "Connectivity.h"
 #import "Player.h"
 #import "AppDelegate.h"
+#import "GameSettings.h"
 
 #pragma mark - Properties
 
@@ -99,7 +100,7 @@
 - (IBAction)acceptAnswer:(id)sender {
 	[self sendAnswer:@"#1"];
 	[Player setScore:[Player getScore] +1];
-    [[self navigationController] popViewControllerAnimated:YES];
+    [self checkEndGame];
 }
 
 /**
@@ -108,7 +109,7 @@
  */
 - (IBAction)rejectAnswer:(id)sender {
 	[self sendAnswer:@"#0"];
-    [[self navigationController] popViewControllerAnimated:YES];
+    [self checkEndGame];
 }
 
 /**
@@ -148,14 +149,24 @@
         if([receivedInfo isEqualToString:@"#0"]){
             NSLog(@"Vibrate");
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-            [[self navigationController] popViewControllerAnimated:YES];
+            [self checkEndGame];
         }
 		else if([receivedInfo isEqualToString:@"#1"]){
             NSLog(@"Somando pontuacao");
             [Player setScore:[Player getScore] +1];
-            [[self navigationController] popViewControllerAnimated:YES];
+            [self checkEndGame];
         }
 	});
+}
+
+-(void)checkEndGame{
+    //Verifica fim do jogo
+    if([GameSettings getCurrentRound] == [GameSettings getGameLength]){
+        NSLog(@"Segue");
+        [self performSegueWithIdentifier:@"finalResults" sender:self];
+    }
+    else
+        [[self navigationController] popViewControllerAnimated:YES];
 }
 
 

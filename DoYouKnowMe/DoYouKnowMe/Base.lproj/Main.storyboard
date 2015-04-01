@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -568,7 +568,6 @@
                         <outlet property="waitingAnswer" destination="Uc6-3l-QPX" id="HL9-Nt-5fZ"/>
                         <outlet property="waitingPause" destination="WgR-Jd-Ter" id="FCi-7c-gLF"/>
                         <segue destination="1Lr-Ql-gVg" kind="show" identifier="verifyAnswer" id="e4O-8d-Oud"/>
-                        <segue destination="onG-ap-POS" kind="show" identifier="finalResult" id="Je9-qQ-6x3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uua-R1-Lgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -735,6 +734,7 @@
                         <outlet property="showFriendName" destination="qZb-6q-FJc" id="tdv-cM-alf"/>
                         <outlet property="wOrRLabel" destination="fgn-0m-1oW" id="Vb6-uy-6Tf"/>
                         <outlet property="waitingIndicator" destination="jPM-VD-5ml" id="sOE-S5-Bid"/>
+                        <segue destination="onG-ap-POS" kind="show" identifier="finalResults" id="05D-mY-82Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxE-wG-eI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -816,6 +816,7 @@
                             <constraint firstItem="Zrw-aK-VCc" firstAttribute="centerX" secondItem="MdE-bL-75W" secondAttribute="centerX" id="xnl-fE-Ft9"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="99m-Do-wTK"/>
                     <connections>
                         <outlet property="btn_back" destination="ciN-hh-P0e" id="61C-lv-aUe"/>
                         <outlet property="percentLabel" destination="MdE-bL-75W" id="hOa-wL-oyi"/>
@@ -824,7 +825,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwQ-Kb-REk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2662" y="1393"/>
+            <point key="canvasLocation" x="3425" y="1369"/>
         </scene>
     </scenes>
     <resources>

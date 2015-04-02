@@ -207,7 +207,7 @@
     }
         
     NSLog(@"selected: %@", selectedQuestion);
-    dataToSend = [[NSString stringWithFormat:@"&%@", selectedQuestion] dataUsingEncoding:NSUTF8StringEncoding];
+    dataToSend = [[NSString stringWithFormat:@"*&*%@", selectedQuestion] dataUsingEncoding:NSUTF8StringEncoding];
     
     NSLog(@"Sending question: %@", dataToSend);
     
@@ -265,9 +265,9 @@
                 [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
         }
         
-        else if([receivedInfo hasPrefix:@"&"]){
+        else if([receivedInfo hasPrefix:@"*&*"]){
             NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
-            NSString *formatted = [receivedInfo stringByReplacingOccurrencesOfString:@"&" withString:@""];
+            NSString *formatted = [receivedInfo stringByReplacingOccurrencesOfString:@"*&*" withString:@""];
             [self questionTextFromIndex:[f numberFromString:formatted]];
         }
         

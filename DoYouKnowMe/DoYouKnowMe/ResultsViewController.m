@@ -51,12 +51,13 @@
     
     NSLog(@"score final: %d", [Player getScore]);
 	
-	knowingPercent = [Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
+	knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
+    NSLog(@"knowing percent: %f", knowingPercent);
 	
-	if (knowingPercent <= 0.2) _percentLabel.text = @"Muito pouco...";
-	else if (knowingPercent <= 0.4) _percentLabel.text = @"Pouco...";
-	else if (knowingPercent <= 0.6) _percentLabel.text = @"Mais ou menos";
-	else if (knowingPercent <= 0.8) _percentLabel.text = @"Bem!!";
+	if (knowingPercent <= 0.2f) _percentLabel.text = @"Muito pouco...";
+	else if (knowingPercent <= 0.4f) _percentLabel.text = @"Pouco...";
+	else if (knowingPercent <= 0.6f) _percentLabel.text = @"Mais ou menos";
+	else if (knowingPercent <= 0.8f) _percentLabel.text = @"Bem!!";
 	else _percentLabel.text = @"Muito bem!!\nVocês são grandes amigos!!";
 }
 

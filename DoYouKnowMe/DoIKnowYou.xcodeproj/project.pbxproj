@@ -134,7 +134,7 @@
 		1452A45F1AC988E400A46762 /* GameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettings.m; sourceTree = "<group>"; };
 		1457877B1AC4200F007D76A1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		1457877C1AC4200F007D76A1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		14C443301AC18C6300103C35 /* DoYouKnowMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoYouKnowMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C443301AC18C6300103C35 /* DoIKnowYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoIKnowYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C443341AC18C6300103C35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C443351AC18C6300103C35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14C443371AC18C6300103C35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 		14C443311AC18C6300103C35 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14C443301AC18C6300103C35 /* DoYouKnowMe.app */,
+				14C443301AC18C6300103C35 /* DoIKnowYou.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -460,7 +460,7 @@
 			);
 			name = DoIKnowYou;
 			productName = DoYouKnowMe;
-			productReference = 14C443301AC18C6300103C35 /* DoYouKnowMe.app */;
+			productReference = 14C443301AC18C6300103C35 /* DoIKnowYou.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

@@ -97,6 +97,7 @@
 	[Player setScore:0];
 	canStart = 0;
 	
+	[GameSettings setGameLenght:5];
 	[GameSettings setRound:0];
 }
 
@@ -137,6 +138,8 @@
 	if (error) {
 		NSLog(@"%@", [error localizedDescription]);
 	}
+	
+	_startBtn.hidden = NO;
 }
 
 - (IBAction)numberOfQuestons:(id)sender
@@ -147,7 +150,19 @@
 						  dataUsingEncoding:NSUTF8StringEncoding];
 	int index = (int)_numberOfQuestions.selectedSegmentIndex;
 	
-	[GameSettings setRound:[[_numberOfQuestions titleForSegmentAtIndex:index] intValue]];
+	switch (index) {
+		case 0:
+			[GameSettings setGameLenght:5];
+			break;
+		case 1:
+			[GameSettings setGameLenght:10];
+			break;
+		case 2:
+			[GameSettings setGameLenght:15];
+			break;
+		default:
+			break;
+	}
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
 									 toPeers:allPeers
@@ -158,7 +173,6 @@
 		NSLog(@"%@", [error localizedDescription]);
 	}
 	
-	_startBtn.hidden = NO;
 }
 
 /** 
@@ -212,13 +226,11 @@
 									   error:&error];
 	
 	if (canStart == 2)  [self performSegueWithIdentifier:@"startGame" sender:self];
-	else
-	{
+	else {
 		[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
 	 
 		[_waitingIndicator startAnimating];
 	}
-	
 }
 
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
@@ -264,6 +276,8 @@
 				_questionTo.selectedSegmentIndex = 1;
 			}
 			
+			_startBtn.hidden = NO;
+			
 			NSLog(@"ID %d", [Player getPlayerID]);
 		}
 		else if ([receivedInfo isEqualToString:@"!disconnect"])
@@ -292,9 +306,21 @@
 			int index = [[receivedInfo stringByReplacingOccurrencesOfString:@"()" withString:@""] intValue];
 			
 			_numberOfQuestions.selectedSegmentIndex = index;
-			[GameSettings setGameLenght:[[_numberOfQuestions titleForSegmentAtIndex:index]intValue]];
 			
-			_startBtn.hidden = NO;
+			switch (index) {
+				case 0:
+					[GameSettings setGameLenght:5];
+					break;
+				case 1:
+					[GameSettings setGameLenght:10];
+					break;
+				case 2:
+					[GameSettings setGameLenght:15];
+					break;
+				default:
+					break;
+			}
+			
 		}
 	});
 

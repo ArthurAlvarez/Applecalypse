@@ -446,9 +446,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		14C4432F1AC18C6300103C35 /* DoYouKnowMe */ = {
+		14C4432F1AC18C6300103C35 /* DoIKnowYou */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14C443531AC18C6300103C35 /* Build configuration list for PBXNativeTarget "DoYouKnowMe" */;
+			buildConfigurationList = 14C443531AC18C6300103C35 /* Build configuration list for PBXNativeTarget "DoIKnowYou" */;
 			buildPhases = (
 				14C4432C1AC18C6300103C35 /* Sources */,
 				14C4432D1AC18C6300103C35 /* Frameworks */,
@@ -458,7 +458,7 @@
 			);
 			dependencies = (
 			);
-			name = DoYouKnowMe;
+			name = DoIKnowYou;
 			productName = DoYouKnowMe;
 			productReference = 14C443301AC18C6300103C35 /* DoYouKnowMe.app */;
 			productType = "com.apple.product-type.application";
@@ -477,7 +477,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 14C4432B1AC18C6300103C35 /* Build configuration list for PBXProject "DoYouKnowMe" */;
+			buildConfigurationList = 14C4432B1AC18C6300103C35 /* Build configuration list for PBXProject "DoIKnowYou" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -490,7 +490,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				14C4432F1AC18C6300103C35 /* DoYouKnowMe */,
+				14C4432F1AC18C6300103C35 /* DoIKnowYou */,
 			);
 		};
 /* End PBXProject section */
@@ -756,7 +756,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		14C4432B1AC18C6300103C35 /* Build configuration list for PBXProject "DoYouKnowMe" */ = {
+		14C4432B1AC18C6300103C35 /* Build configuration list for PBXProject "DoIKnowYou" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14C443511AC18C6300103C35 /* Debug */,
@@ -765,7 +765,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		14C443531AC18C6300103C35 /* Build configuration list for PBXNativeTarget "DoYouKnowMe" */ = {
+		14C443531AC18C6300103C35 /* Build configuration list for PBXNativeTarget "DoIKnowYou" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14C443541AC18C6300103C35 /* Debug */,

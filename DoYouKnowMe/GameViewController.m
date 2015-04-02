@@ -88,6 +88,13 @@
                                              selector:@selector(peerDidChangeStateWithNotification:)
                                                  name:@"MCDidChangeStateNotification"
                                                object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(appDidEnterBG:)
+												 name:@"didEnterBackGround"
+											   object:nil];
+	
+	
     gameDidEnd = NO;
 	
 	_pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
@@ -200,6 +207,12 @@
     return questionText;
 }
 
+#pragma mark - Selectors
+-(void)appDidEnterBG:(NSNotification *)notification{
+	NSLog(@"Entrou BG");
+	[self pauseGame:self];
+}
+
 /**
  This method is called when the device received some data from other peers
  @author Arthur Alvarez
@@ -258,7 +271,9 @@
     });
 }
 
-
+/**
+ this method is called when the state of the connection is changed
+ **/
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
     
@@ -282,6 +297,8 @@
         
     }
 }
+
+#pragma mark - Action Methods
 
 /**
  This method calls the transition to the verification screen. Called when the user presses the submitButton

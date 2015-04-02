@@ -25,14 +25,17 @@
 
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
+
 @end
 
 @implementation ResultsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
-    MCPeerID *id;
+	MCPeerID *id;
+	float knowingPercent;
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -47,7 +50,14 @@
     }
     
     NSLog(@"score final: %d", [Player getScore]);
-    self.percentLabel.text = [NSString stringWithFormat:@"%d%%", (100*[Player getScore])/[GameSettings getGameLength]];
+	
+	knowingPercent = [Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
+	
+	if (knowingPercent <= 0.2) _percentLabel.text = @"Muito pouco...";
+	else if (knowingPercent <= 0.4) _percentLabel.text = @"Pouco...";
+	else if (knowingPercent <= 0.6) _percentLabel.text = @"Mais ou menos";
+	else if (knowingPercent <= 0.8) _percentLabel.text = @"Bem!!";
+	else _percentLabel.text = @"Muito bem!!\nVocês são grandes amigos!!";
 }
 
 - (void)didReceiveMemoryWarning {

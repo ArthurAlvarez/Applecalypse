@@ -122,7 +122,7 @@
     self.timeLeft = [NSNumber numberWithInt:20];
     [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
     self.answerTextField.text = @"";
-    self.questionLabel.text = @"";
+    //self.questionLabel.text = @"";
     
     //Timer setup
     self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
@@ -163,7 +163,7 @@
     
     self.questionsJson = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
     
-    NSLog(@"%@", self.questionsJson);
+    //NSLog(@"%@", self.questionsJson);
 }
 
 /**
@@ -183,6 +183,8 @@
     NSLog(@"selected: %@", selectedQuestion);
     
     dataToSend = [[NSString stringWithFormat:@"&%@", selectedQuestion] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Sending question: %@", dataToSend);
     
     [_appDelegate.mcManager.session sendData:dataToSend
                                      toPeers:allPeers
@@ -224,6 +226,8 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        NSLog(@"Received data: %@", receivedInfo);
+        
         if([receivedInfo hasPrefix:@"$"]){
             
             self.otherAnswer = receivedInfo;
@@ -237,7 +241,6 @@
         }
         
         else if([receivedInfo hasPrefix:@"&"]){
-            NSLog(@"received &");
             NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
             NSString *formatted = [receivedInfo stringByReplacingOccurrencesOfString:@"&" withString:@""];
             [self questionTextFromIndex:[f numberFromString:formatted]];

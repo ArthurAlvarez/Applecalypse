@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "14C4432F1AC18C6300103C35"
-               BuildableName = "DoYouKnowMe.app"
-               BlueprintName = "DoYouKnowMe"
-               ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
+               BuildableName = "DoIKnowYou.app"
+               BlueprintName = "DoIKnowYou"
+               ReferencedContainer = "container:DoIKnowYou.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "14C443481AC18C6300103C35"
                BuildableName = "DoYouKnowMeTests.xctest"
                BlueprintName = "DoYouKnowMeTests"
-               ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
+               ReferencedContainer = "container:DoIKnowYou.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,7 +49,7 @@
                BlueprintIdentifier = "14C443481AC18C6300103C35"
                BuildableName = "DoYouKnowMeTests.xctest"
                BlueprintName = "DoYouKnowMeTests"
-               ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
+               ReferencedContainer = "container:DoIKnowYou.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14C4432F1AC18C6300103C35"
-            BuildableName = "DoYouKnowMe.app"
-            BlueprintName = "DoYouKnowMe"
-            ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
+            BuildableName = "DoIKnowYou.app"
+            BlueprintName = "DoIKnowYou"
+            ReferencedContainer = "container:DoIKnowYou.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14C4432F1AC18C6300103C35"
-            BuildableName = "DoYouKnowMe.app"
-            BlueprintName = "DoYouKnowMe"
-            ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
+            BuildableName = "DoIKnowYou.app"
+            BlueprintName = "DoIKnowYou"
+            ReferencedContainer = "container:DoIKnowYou.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14C4432F1AC18C6300103C35"
-            BuildableName = "DoYouKnowMe.app"
-            BlueprintName = "DoYouKnowMe"
-            ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
+            BuildableName = "DoIKnowYou.app"
+            BlueprintName = "DoIKnowYou"
+            ReferencedContainer = "container:DoIKnowYou.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

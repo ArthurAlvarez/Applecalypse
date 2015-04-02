@@ -13,6 +13,9 @@
 #pragma mark - Private Interface
 
 @interface FirstViewController ()
+{
+	int canGoNext;
+}
 
 #pragma mark - Interface Properties
 /// Interface Text Field to edit the display name from the device
@@ -32,6 +35,9 @@
 
 /// Interface  Button to go to the next View
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+
+/// Interface Activity Indicator to show that the player is waiting the other
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingGoNext;
 
 #pragma mark - Other Properties
 /// AppDelegate object to creat an access to the Connectivity class trough the app delegate
@@ -53,16 +59,6 @@
 	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[[_appDelegate mcManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
 	[[_appDelegate mcManager] advertiseSelf:YES];
-	
-	[_txtName setDelegate:self];
-	
-	// Disable buttons and labels, but the initial ones
-	_browseLabel.hidden = YES;
-	_browseBtn.hidden = YES;
-	_disconectBtn.hidden = YES;
-	_connectedDevice.hidden = YES;
-	_nextBtn.hidden = YES;
-	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(peerDidChangeStateWithNotification:)
 												 name:@"MCDidChangeStateNotification"
@@ -73,7 +69,17 @@
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
 	
-	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
+
+	
+	[_txtName setDelegate:self];
+	
+	// Disable buttons and labels, but the initial ones
+	_browseLabel.hidden = YES;
+	_browseBtn.hidden = YES;
+	_disconectBtn.hidden = YES;
+	_connectedDevice.hidden = YES;
+	_nextBtn.hidden = YES;
+		_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,6 +89,9 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:YES];
+	
+	canGoNext = 0;
+	[_waitingGoNext stopAnimating];
 	
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	
@@ -159,6 +168,27 @@
 	return YES;
 }
 
+- (IBAction)goNext:(id)sender
+{
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	
+	if (canGoNext == 0) {
+		canGoNext = 1;
+		
+		[_waitingGoNext startAnimating];
+		
+	}
+	
+	else canGoNext++;
+	
+	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
+										 toPeers:allPeers
+										withMode:MCSessionSendDataReliable
+										error:&error];
+	
+	if (canGoNext == 2) [self performSegueWithIdentifier:@"goNext" sender:self];
+}
 
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
@@ -227,6 +257,12 @@
 			NSLog(@"RECEBEU DISCONNECT");
 			
 			_disconectBtn.hidden = YES;
+		}
+		else if ([receivedInfo isEqualToString:@"!goNext"]) {
+			if (canGoNext == 0) canGoNext = 1;
+			else canGoNext++;
+				
+			if (canGoNext == 2) [self performSegueWithIdentifier:@"goNext" sender:self];
 		}
 	
 	});

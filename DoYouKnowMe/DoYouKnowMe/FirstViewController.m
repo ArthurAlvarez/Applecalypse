@@ -251,7 +251,7 @@
 			}
 			else
 			{
-				_connectedDevice .hidden = YES;
+				_connectedDevice.hidden = YES;
 				_nextBtn.hidden = YES;
 				[_browseBtn setEnabled:YES];
 				_disconectBtn.hidden = YES;

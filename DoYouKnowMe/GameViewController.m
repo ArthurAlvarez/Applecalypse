@@ -313,13 +313,6 @@
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_clockTimer invalidate];
-                
-                UIAlertView *lostConnection = [[UIAlertView alloc]initWithTitle:@"Conexão perdida"
-                                                                        message:@"A conexão com o outro jogador foi perdida..."
-                                                                       delegate:self cancelButtonTitle:@"Terminar o jogo"
-                                                              otherButtonTitles:nil];
-                
-                [lostConnection show];
             });
         }
         

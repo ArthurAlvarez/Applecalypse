@@ -258,7 +258,7 @@
 				UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
 																	  message:@"A conexão com seu amigo foi perdida"
 																	 delegate:self
-															cancelButtonTitle:@"Ok"
+															cancelButtonTitle:@"Voltar para o início"
 															otherButtonTitles: nil];
 				[disconected show];
 			}
@@ -348,7 +348,7 @@
 	NSError *error;
 	NSData *dataToSend;
 	
-	if ([tittle isEqualToString:@"Ok"]) {
+	if ([tittle isEqualToString:@"Voltar para o início"]) {
 		[[self navigationController] popToRootViewControllerAnimated:YES];
 		
 	} else if ([tittle isEqualToString:@"Terminar o jogo"]){

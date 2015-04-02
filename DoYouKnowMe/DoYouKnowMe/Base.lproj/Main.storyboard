@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -166,21 +166,6 @@
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5v-wn-g0G">
-                                <rect key="frame" x="159" y="275" width="282" height="36"/>
-                                <color key="backgroundColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="j48-yL-dhm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                <state key="normal" title="Procurar amigos">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="browseForDevices:" destination="EWF-ZV-0wl" eventType="touchUpInside" id="8sd-Ic-fGg"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfW-DU-62J">
                                 <rect key="frame" x="159" y="434" width="282" height="36"/>
                                 <color key="backgroundColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
@@ -207,8 +192,27 @@
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VGa-9u-Ydb">
+                                <rect key="frame" x="282" y="478" width="37" height="37"/>
+                                <color key="color" red="1" green="0.4362551013" blue="0.01645302308" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5v-wn-g0G">
+                                <rect key="frame" x="159" y="263" width="282" height="36"/>
+                                <color key="backgroundColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="j48-yL-dhm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                                <state key="normal" title="Procurar amigos">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="browseForDevices:" destination="EWF-ZV-0wl" eventType="touchUpInside" id="8sd-Ic-fGg"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nU5-wL-ug7">
-                                <rect key="frame" x="249" y="319" width="102" height="30"/>
+                                <rect key="frame" x="249" y="307" width="102" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="R3D-iY-f5b"/>
                                     <constraint firstAttribute="width" constant="102" id="nfQ-pb-rHi"/>
@@ -222,10 +226,6 @@
                                     <action selector="Disconect:" destination="EWF-ZV-0wl" eventType="touchUpInside" id="FSI-Zl-mZd"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VGa-9u-Ydb">
-                                <rect key="frame" x="282" y="478" width="37" height="37"/>
-                                <color key="color" red="1" green="0.4362551013" blue="0.01645302308" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -238,7 +238,7 @@
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="centerX" secondItem="q75-cD-fTV" secondAttribute="centerX" id="ERA-mu-M9A"/>
                             <constraint firstItem="yGd-yy-COa" firstAttribute="leading" secondItem="I5v-wn-g0G" secondAttribute="leading" id="FbB-Nn-cv4"/>
                             <constraint firstItem="nU5-wL-ug7" firstAttribute="centerX" secondItem="I5v-wn-g0G" secondAttribute="centerX" id="ImE-qr-mDW"/>
-                            <constraint firstItem="obe-2w-j8D" firstAttribute="top" secondItem="nU5-wL-ug7" secondAttribute="bottom" constant="1" id="KBQ-AV-Mrn"/>
+                            <constraint firstItem="obe-2w-j8D" firstAttribute="top" secondItem="nU5-wL-ug7" secondAttribute="bottom" constant="13" id="KBQ-AV-Mrn"/>
                             <constraint firstItem="xfW-DU-62J" firstAttribute="top" secondItem="obe-2w-j8D" secondAttribute="bottom" constant="20" id="Qml-cD-8hR"/>
                             <constraint firstItem="VGa-9u-Ydb" firstAttribute="centerX" secondItem="xfW-DU-62J" secondAttribute="centerX" id="Rxk-g6-ssj"/>
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="trailing" secondItem="yGd-yy-COa" secondAttribute="trailing" id="XuZ-eu-9lt"/>
@@ -249,7 +249,7 @@
                             <constraint firstItem="nU5-wL-ug7" firstAttribute="top" secondItem="I5v-wn-g0G" secondAttribute="bottom" constant="8" symbolic="YES" id="fxN-U7-5dF"/>
                             <constraint firstItem="yGd-yy-COa" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="8" symbolic="YES" id="lUa-bI-nvV"/>
                             <constraint firstItem="obe-2w-j8D" firstAttribute="trailing" secondItem="I5v-wn-g0G" secondAttribute="trailing" id="mKK-6y-wp0"/>
-                            <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="yGd-yy-COa" secondAttribute="bottom" constant="8" symbolic="YES" id="teO-Oh-l4y"/>
+                            <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="yGd-yy-COa" secondAttribute="bottom" constant="-4" id="teO-Oh-l4y"/>
                             <constraint firstItem="1H0-re-5ME" firstAttribute="trailing" secondItem="yGd-yy-COa" secondAttribute="trailing" id="v0e-fJ-a7G"/>
                             <constraint firstItem="D8M-fJ-Qom" firstAttribute="top" secondItem="Unh-OK-K0Y" secondAttribute="bottom" constant="13" id="vIl-6M-8pn"/>
                             <constraint firstItem="xfW-DU-62J" firstAttribute="leading" secondItem="obe-2w-j8D" secondAttribute="leading" id="zOR-vN-tVK"/>

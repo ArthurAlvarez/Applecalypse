@@ -34,6 +34,20 @@
                ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "14C4432F1AC18C6300103C35"
+               BuildableName = "DoIKnowYou.app"
+               BlueprintName = "DoIKnowYou"
+               ReferencedContainer = "container:DoIKnowYou.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -57,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14C4432F1AC18C6300103C35"
-            BuildableName = "DoYouKnowMe.app"
-            BlueprintName = "DoYouKnowMe"
-            ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
+            BuildableName = "DoIKnowYou.app"
+            BlueprintName = "DoIKnowYou"
+            ReferencedContainer = "container:DoIKnowYou.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +91,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "14C4432F1AC18C6300103C35"
-            BuildableName = "DoYouKnowMe.app"
-            BlueprintName = "DoYouKnowMe"
-            ReferencedContainer = "container:DoYouKnowMe.xcodeproj">
+            BuildableName = "DoIKnowYou.app"
+            BlueprintName = "DoIKnowYou"
+            ReferencedContainer = "container:DoIKnowYou.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

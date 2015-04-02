@@ -71,6 +71,8 @@
 
 @property NSDictionary *questionsJson;
 
+@property NSMutableArray *repeatedQuestions;
+
 @end
 
 #pragma mark - Controller Implementation
@@ -95,6 +97,8 @@
 									   delegate:self
 							  cancelButtonTitle:@"Continuar"
 							  otherButtonTitles:@"Terminar o jogo", nil];
+    
+    self.repeatedQuestions = [[NSMutableArray alloc]init];
 }
 
 /**
@@ -168,13 +172,32 @@
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
     NSData *dataToSend;
+    bool decided = NO, repeated = NO;
     
     
     numQuestions = [NSNumber numberWithInt:[[self.questionsJson objectForKey:@"size"]intValue]];
     NSLog(@"Size: %@", numQuestions);
-    selectedQuestion = [NSNumber numberWithInt:arc4random() % [numQuestions intValue]];
-    NSLog(@"selected: %@", selectedQuestion);
     
+    
+    while(decided == NO){
+        selectedQuestion = [NSNumber numberWithInt:arc4random() % [numQuestions intValue]];
+        
+        repeated = NO;
+        for(NSNumber *n in self.repeatedQuestions){
+            if([selectedQuestion intValue] == [n intValue])
+                repeated = YES;
+        }
+        
+        if(repeated == NO){
+            [self.repeatedQuestions addObject:[NSNumber numberWithInt:[selectedQuestion intValue]]];
+            decided = YES;
+        }
+        else{
+            NSLog(@"Repeated!");
+        }
+    }
+        
+    NSLog(@"selected: %@", selectedQuestion);
     dataToSend = [[NSString stringWithFormat:@"&%@", selectedQuestion] dataUsingEncoding:NSUTF8StringEncoding];
     
     NSLog(@"Sending question: %@", dataToSend);

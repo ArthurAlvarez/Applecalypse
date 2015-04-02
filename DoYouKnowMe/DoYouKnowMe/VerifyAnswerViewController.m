@@ -93,6 +93,8 @@
 	// Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Action Methods
+
 /**
  This method is called when the user presses btnAcceptAnswer
  @author Arthur Alvarez
@@ -133,6 +135,8 @@
 	}
 }
 
+#pragma mark - Selectors
+
 /**
  This method is called when the device receives data from other connected devices
  @author Arthur Alvarez
@@ -159,6 +163,8 @@
 	});
 }
 
+#pragma mark - Others Methods
+
 -(void)checkEndGame{
     //Verifica fim do jogo
     if([GameSettings getCurrentRound] == [GameSettings getGameLength]){
@@ -168,7 +174,6 @@
     else
         [[self navigationController] popViewControllerAnimated:YES];
 }
-
 
 /*
  #pragma mark - Navigation

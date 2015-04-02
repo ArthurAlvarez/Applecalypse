@@ -14,7 +14,7 @@
 
 @interface FirstViewController ()
 {
-	int canGoNext;
+	int canGoNext; /// Flag to know when the game can go to the next View
 }
 
 #pragma mark - Interface Properties
@@ -69,8 +69,7 @@
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
 	
-
-	
+	// Set Tex Field delegate
 	[_txtName setDelegate:self];
 	
 	// Disable buttons and labels, but the initial ones
@@ -79,7 +78,9 @@
 	_disconectBtn.hidden = YES;
 	_connectedDevice.hidden = YES;
 	_nextBtn.hidden = YES;
-		_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	// Initiates the array of connected devices
+	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,7 +102,44 @@
 		_connectedDevice.hidden = YES;
 		_nextBtn.hidden = YES;
 	}
+	
+	[_nextBtn setEnabled:YES];
 }
+
+#pragma mark - Text Field Delegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[_txtName resignFirstResponder];
+	
+	_appDelegate.mcManager.peerID = nil;
+	_appDelegate.mcManager.session = nil;
+	_appDelegate.mcManager.browser = nil;
+	
+	[_appDelegate.mcManager.advertiser stop];
+	_appDelegate.mcManager.advertiser = nil;
+	
+	[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
+	[_appDelegate.mcManager setupMCBrowser];
+	[_appDelegate.mcManager advertiseSelf:YES];
+	
+	_browseLabel.hidden = NO;
+	_browseBtn.hidden = NO;
+	
+	return YES;
+}
+
+#pragma mark - MCBrowserView Delegate
+
+-(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
+	[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
+	[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Action Methods
 
 /**
  Method to browse for new devices
@@ -116,6 +154,9 @@
 	[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
 }
 
+/**
+ Method to disconnect with the other device
+ **/
 - (IBAction)Disconect:(id)sender
 {
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
@@ -139,35 +180,9 @@
 	}
 }
 
--(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
-	[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
-	[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-	[_txtName resignFirstResponder];
-	
-	_appDelegate.mcManager.peerID = nil;
-	_appDelegate.mcManager.session = nil;
-	_appDelegate.mcManager.browser = nil;
-	
-	[_appDelegate.mcManager.advertiser stop];
-	_appDelegate.mcManager.advertiser = nil;
-	
-	[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
-	[_appDelegate.mcManager setupMCBrowser];
-	[_appDelegate.mcManager advertiseSelf:YES];
-	
-	_browseLabel.hidden = NO;
-	_browseBtn.hidden = NO;
-	
-	return YES;
-}
-
+/**
+ Method to go to the next View
+ **/
 - (IBAction)goNext:(id)sender
 {
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
@@ -177,10 +192,7 @@
 		canGoNext = 1;
 		
 		[_waitingGoNext startAnimating];
-		
-	}
-	
-	else canGoNext++;
+	} else canGoNext++;
 	
 	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
 										 toPeers:allPeers
@@ -188,8 +200,15 @@
 										error:&error];
 	
 	if (canGoNext == 2) [self performSegueWithIdentifier:@"goNext" sender:self];
+	
+	[_nextBtn setEnabled:NO];
 }
 
+#pragma mark - Selectors
+
+/**
+ Method to when the device change the state of the connection
+ **/
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
 	MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
@@ -243,6 +262,9 @@
 	
 }
 
+/**
+ Method to the device receive some data
+ **/
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
 {
 	

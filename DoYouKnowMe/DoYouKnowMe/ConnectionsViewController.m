@@ -15,7 +15,7 @@
 
 @interface ConnectionsViewController ()
 {
-	int canStart;
+	int canStart; /// Flag to show when the game can start
 }
 
 #pragma mark - Interface Propeties
@@ -84,7 +84,9 @@
 	
 	
 }
-
+/**
+ Set all constants  and infos
+ **/
 -(void) viewWillAppear:(BOOL)animated{
 	
 	[super viewWillAppear:YES];
@@ -142,6 +144,9 @@
 	_startBtn.hidden = NO;
 }
 
+/**
+ Defines the number of questions that the game will have
+ **/
 - (IBAction)numberOfQuestons:(id)sender
 {
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
@@ -233,6 +238,11 @@
 	}
 }
 
+#pragma mark - Selectors
+
+/**
+ Methodd to verify when the connection chances its state
+ **/
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -256,6 +266,9 @@
 	
 }
 
+/**
+ Method to when the devide receive some data
+ **/
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
 {
 	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
@@ -326,6 +339,7 @@
 
 }
 
+#pragma mark - Alert View Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

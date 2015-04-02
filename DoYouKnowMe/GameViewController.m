@@ -154,6 +154,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Others Methods
+
 /**
     Reads the JSON file containing the questions into a dictionary
     @author Arthur Alvarez

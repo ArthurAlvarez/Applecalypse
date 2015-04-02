@@ -20,22 +20,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tela1_0001_Layer-1-copy-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eb3-YU-CJz">
-                                <rect key="frame" x="234" y="217" width="133" height="165"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="133" id="qA6-6v-Xqa"/>
-                                    <constraint firstAttribute="width" secondItem="Eb3-YU-CJz" secondAttribute="height" multiplier="133:165" id="qho-gN-xJ7"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="133" id="skv-iB-ez5"/>
-                                    <constraint firstAttribute="height" constant="165" id="t7d-bJ-Qto"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="qA6-6v-Xqa"/>
-                                        <exclude reference="skv-iB-ez5"/>
-                                        <exclude reference="t7d-bJ-Qto"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do I Know You?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PER-Ml-i3b">
                                 <rect key="frame" x="16" y="70" width="568" height="72"/>
                                 <constraints>
@@ -73,6 +57,22 @@
                                     <segue destination="mEJ-Db-xej" kind="show" id="LA1-kN-PKw"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tela1_0001_Layer-1-copy-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eb3-YU-CJz">
+                                <rect key="frame" x="234" y="217" width="133" height="165"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="133" id="qA6-6v-Xqa"/>
+                                    <constraint firstAttribute="width" secondItem="Eb3-YU-CJz" secondAttribute="height" multiplier="133:165" id="qho-gN-xJ7"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="133" id="skv-iB-ez5"/>
+                                    <constraint firstAttribute="height" constant="165" id="t7d-bJ-Qto"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="qA6-6v-Xqa"/>
+                                        <exclude reference="skv-iB-ez5"/>
+                                        <exclude reference="t7d-bJ-Qto"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

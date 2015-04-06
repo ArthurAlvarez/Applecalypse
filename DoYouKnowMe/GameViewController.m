@@ -20,6 +20,7 @@
     int currentAnswers;
     bool didAnswer;
     bool gameDidEnd;
+    bool gameDidStart;
 }
 
 # pragma mark - Interface Properties
@@ -64,6 +65,9 @@
 ///Timer used for clock
 @property (strong, nonatomic) NSTimer *clockTimer;
 
+///Timer used for syncronizing
+@property (strong, nonatomic) NSTimer *syncTimer;
+
 ///How much time the user still has
 @property (strong, nonatomic) NSNumber *timeLeft;
 
@@ -96,7 +100,6 @@
 												 name:@"didEnterBackGround"
 											   object:nil];
 	
-	
     gameDidEnd = NO;
 	
 	_pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
@@ -112,11 +115,11 @@
  This method is called always when the view is to be showed
  */
 -(void)viewWillAppear:(BOOL)animated{
-    MCPeerID *id;
     //Incrementa round corrente
     [GameSettings incrementRound];
     
     //Initializing properties
+    gameDidStart = NO;
     [self readJsonFile];
     self.playerScore = [NSNumber numberWithInt:0];
     shouldContinue = currentAnswers = 0;
@@ -124,26 +127,18 @@
     self.submitButton.enabled = YES;
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.timeLeft = [NSNumber numberWithInt:20];
+    self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
     [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
     self.answerTextField.text = @"";
-    //self.questionLabel.text = @"";
+    self.questionLabel.text = @"Carregando pergunta...";
     
-    //Timer setup
-    self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+    //while([GameSettings getOtherDidLoad ] == NO);
+    self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                   target:self
+                                                 selector:@selector(syncroGame)
+                                                 userInfo:nil
+                                                  repeats:YES];
     
-    //Setup Player Label
-    if([Player getPlayerID] == 1){
-        self.playerLabel.text = @"Pergunta sobre você";
-        [self questionTextFromIndex:[self getQuestion]];
-    }
-    else{
-        if(_appDelegate.mcManager.session.connectedPeers.count > 0){
-            id = _appDelegate.mcManager.session.connectedPeers[0];
-            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
-        }
-    }
-	
-	_showRound.text = [NSString stringWithFormat:@"%d/%d", [GameSettings getCurrentRound], [GameSettings getGameLength]];
 }
 
 /**
@@ -159,6 +154,59 @@
 }
 
 #pragma mark - Others Methods
+
+/**
+ Starts the flow of game
+ @author Arthur Alvarez
+ */
+-(void)gameSetup{
+    MCPeerID *id;
+
+    //Timer setup
+    self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+    
+    //Setup Player Label
+    if([Player getPlayerID] == 1){
+        self.playerLabel.text = @"Pergunta sobre você";
+        [self questionTextFromIndex:[self getQuestion]];
+    }
+    else{
+        if(_appDelegate.mcManager.session.connectedPeers.count > 0){
+            id = _appDelegate.mcManager.session.connectedPeers[0];
+            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
+        }
+    }
+    
+    _showRound.text = [NSString stringWithFormat:@"%d/%d", [GameSettings getCurrentRound], [GameSettings getGameLength]];
+}
+
+-(void)syncroGame{
+    NSData *dataToSend;
+    NSArray *allPeers;
+    NSError *error;
+    
+    if([GameSettings getOtherDidLoad] == YES && gameDidStart == NO){
+        [self.syncTimer invalidate];
+        self.syncTimer = nil;
+        gameDidStart = YES;
+        [self gameSetup];
+    }
+    else{
+        /* Syncronizing Players */
+        allPeers = _appDelegate.mcManager.session.connectedPeers;
+        dataToSend = [[NSString stringWithFormat:@"@start"] dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSLog(@"Sending ready_to_start: %@", dataToSend);
+        
+        [_appDelegate.mcManager.session sendData:dataToSend
+                                         toPeers:allPeers
+                                        withMode:MCSessionSendDataReliable
+                                           error:&error];
+        if (error) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }
+}
 
 /**
     Reads the JSON file containing the questions into a dictionary
@@ -219,8 +267,6 @@
     if (error) {
         NSLog(@"%@", [error localizedDescription]);
     }
-
-    
     
     return selectedQuestion;
 }
@@ -253,7 +299,11 @@
         
         NSLog(@"Received data: %@", receivedInfo);
         
-        if([receivedInfo hasPrefix:@"$"]){
+        if([receivedInfo isEqualToString:@"@start"]){
+            [GameSettings setOtherDidLoad:YES];
+        }
+        
+        else if([receivedInfo hasPrefix:@"$"]){
             
             self.otherAnswer = receivedInfo;
             

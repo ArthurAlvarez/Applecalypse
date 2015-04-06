@@ -238,6 +238,19 @@
 	}
 }
 
+- (IBAction)goBack:(id)sender
+{
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	
+	[_appDelegate.mcManager.session sendData:[@"!goBack" dataUsingEncoding:NSUTF8StringEncoding]
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	[[self navigationController] popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark - Selectors
 
 /**
@@ -340,6 +353,9 @@
 					break;
 			}
 			
+		}
+		else if ([receivedInfo isEqualToString:@"!goBack"]){
+			[[self navigationController] popToRootViewControllerAnimated:YES];
 		}
 	});
 

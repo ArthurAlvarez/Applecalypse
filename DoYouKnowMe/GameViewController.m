@@ -133,12 +133,13 @@
     self.questionLabel.text = @"Carregando pergunta...";
     
     //while([GameSettings getOtherDidLoad ] == NO);
-    self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:1
+    self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
                                                    target:self
                                                  selector:@selector(syncroGame)
                                                  userInfo:nil
                                                   repeats:YES];
-    
+	
+	[_answerTextField setEnabled:YES];
 }
 
 /**
@@ -178,25 +179,28 @@
     }
 	
 	_showRound.text = [NSString stringWithFormat:@"%d/%d", [GameSettings getCurrentRound], [GameSettings getGameLength]];
-	
-	[_answerTextField setEnabled:YES];
 }
 
 -(void)syncroGame{
-    NSData *dataToSend;
-    NSArray *allPeers;
+    NSData *dataToSend = [[NSString stringWithFormat:@"@start"] dataUsingEncoding:NSUTF8StringEncoding];
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
     
     if([GameSettings getOtherDidLoad] == YES && gameDidStart == NO){
+		
+		[_appDelegate.mcManager.session sendData:dataToSend
+										 toPeers:allPeers
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+		
         [self.syncTimer invalidate];
         self.syncTimer = nil;
         gameDidStart = YES;
         [self gameSetup];
+		NSLog(@"Recebeu a info");
     }
     else{
         /* Syncronizing Players */
-        allPeers = _appDelegate.mcManager.session.connectedPeers;
-        dataToSend = [[NSString stringWithFormat:@"@start"] dataUsingEncoding:NSUTF8StringEncoding];
         
         NSLog(@"Sending ready_to_start: %@", dataToSend);
         
@@ -371,6 +375,7 @@
                 [_clockTimer invalidate];
 				if ([_pause isVisible]){
 					[_pause dismissWithClickedButtonIndex:0 animated:YES];
+					[_syncTimer invalidate];
 					NSLog(@"Is visible and shoudl have been dismissed!!!!!!");
 				}
             });

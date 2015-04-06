@@ -23,4 +23,7 @@
 
 +(int)getCurrentRound;
 
++(bool)getOtherDidLoad;
+
++(void)setOtherDidLoad:(bool)newState;
 @end

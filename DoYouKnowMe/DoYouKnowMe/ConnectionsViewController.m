@@ -275,7 +275,13 @@
 	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		if ([receivedInfo isEqualToString:@"!1"] || [receivedInfo isEqualToString:@"!0"])
+        
+        if([receivedInfo isEqualToString:@"@start"]){
+            NSLog(@"Received start");
+            [GameSettings setOtherDidLoad:YES];
+        }
+        
+		else if ([receivedInfo isEqualToString:@"!1"] || [receivedInfo isEqualToString:@"!0"])
 		{
 			
 			if ([receivedInfo isEqualToString:@"!0"])

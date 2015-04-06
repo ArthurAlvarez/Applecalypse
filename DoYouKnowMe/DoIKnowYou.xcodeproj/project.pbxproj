@@ -11,6 +11,7 @@
 		1432C40F1AC2E28B00E15CDE /* VerifyAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */; };
 		1452A45D1AC97CEB00A46762 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1452A45C1AC97CEB00A46762 /* ResultsViewController.m */; };
 		1452A4601AC988E400A46762 /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1452A45F1AC988E400A46762 /* GameSettings.m */; };
+		1454F5C11AD29DF000E6FEE8 /* questions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1454F5C01AD29DF000E6FEE8 /* questions.txt */; };
 		1457877D1AC4200F007D76A1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1457877C1AC4200F007D76A1 /* Player.m */; };
 		14C443361AC18C6300103C35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443351AC18C6300103C35 /* main.m */; };
 		14C443391AC18C6300103C35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443381AC18C6300103C35 /* AppDelegate.m */; };
@@ -21,7 +22,6 @@
 		14C7616C1ACC0688007734E5 /* icone_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C7616A1ACC0688007734E5 /* icone_180.png */; };
 		93009F211ACD74250075610E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93009F201ACD74250075610E /* Launch Screen.xib */; };
 		938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* FirstViewController.m */; };
-		938E68771ACC29D2009B7AE7 /* questions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 938E68761ACC29D2009B7AE7 /* questions.txt */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* ConnectionsViewController.m */; };
 		B55B1E401AC992A100C7D68E /* numero__0000_10-copy-10.png in Resources */ = {isa = PBXBuildFile; fileRef = B55B1DDF1AC992A100C7D68E /* numero__0000_10-copy-10.png */; };
@@ -132,6 +132,7 @@
 		1452A45C1AC97CEB00A46762 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		1452A45E1AC988E400A46762 /* GameSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettings.h; sourceTree = "<group>"; };
 		1452A45F1AC988E400A46762 /* GameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettings.m; sourceTree = "<group>"; };
+		1454F5C01AD29DF000E6FEE8 /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = questions.txt; path = ../../../../questions.txt; sourceTree = "<group>"; };
 		1457877B1AC4200F007D76A1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		1457877C1AC4200F007D76A1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		14C443301AC18C6300103C35 /* DoIKnowYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoIKnowYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,7 +149,6 @@
 		93009F201ACD74250075610E /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		938E686C1ACC08DD009B7AE7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		938E686D1ACC08DD009B7AE7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		938E68761ACC29D2009B7AE7 /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = questions.txt; path = ../../questions.txt; sourceTree = "<group>"; };
 		939249DF1AC19883008D5500 /* Connectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connectivity.h; sourceTree = "<group>"; };
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
@@ -324,7 +324,7 @@
 		938E68731ACC297F009B7AE7 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				938E68761ACC29D2009B7AE7 /* questions.txt */,
+				1454F5C01AD29DF000E6FEE8 /* questions.txt */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -590,7 +590,7 @@
 				B55B1E4C1AC992A100C7D68E /* tela0_0001_Layer-4.png in Resources */,
 				B55B1E461AC992A100C7D68E /* numero__0006_4.png in Resources */,
 				B55B1E751AC992A100C7D68E /* tela22_0007_friend-name.png in Resources */,
-				938E68771ACC29D2009B7AE7 /* questions.txt in Resources */,
+				1454F5C11AD29DF000E6FEE8 /* questions.txt in Resources */,
 				B55B1E481AC992A100C7D68E /* numero__0008_2.png in Resources */,
 				B55B1E5A1AC992A100C7D68E /* tela1_0004_Layer-6.png in Resources */,
 				B55B1E901AC992A100C7D68E /* tela3_0006_Layer-6.png in Resources */,

@@ -13,6 +13,7 @@
 ///The length of a game round (default value is 5)
 static int _gameLength = 5;
 static int _currentRound = 0;
+static bool _otherDidLoad = NO;
 
 + (void) setRound:(int)round
 {
@@ -34,6 +35,14 @@ static int _currentRound = 0;
 
 +(int)getCurrentRound{
     return _currentRound;
+}
+
++(void)setOtherDidLoad:(bool)newState{
+    _otherDidLoad = newState;
+}
+
++(bool)getOtherDidLoad{
+    return _otherDidLoad;
 }
 
 @end

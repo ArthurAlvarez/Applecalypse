@@ -182,13 +182,6 @@
 	[_answerTextField setEnabled:YES];
 }
 
-/**
- This method is called when the view has appeared
- */
--(void)viewDidAppear:(BOOL)animated{
-
-}
-
 -(void)syncroGame{
     NSData *dataToSend;
     NSArray *allPeers;

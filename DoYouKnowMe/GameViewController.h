@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameViewController : UIViewController <UIAlertViewDelegate, UIApplicationDelegate>
+@interface GameViewController : UIViewController <UIAlertViewDelegate, UIApplicationDelegate, UITextFieldDelegate>
 
 @end

@@ -178,6 +178,8 @@
 	if (error) {
 		NSLog(@"%@", [error localizedDescription]);
 	}
+	
+	[_waitingGoNext stopAnimating];
 }
 
 /**
@@ -192,7 +194,7 @@
 		canGoNext = 1;
 		
 		[_waitingGoNext startAnimating];
-	} else canGoNext++;
+	} else canGoNext = 2;
 	
 	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
 										 toPeers:allPeers
@@ -255,6 +257,8 @@
 				_nextBtn.hidden = YES;
 				[_browseBtn setEnabled:YES];
 				_disconectBtn.hidden = YES;
+				[_waitingGoNext stopAnimating];
+				
 				NSLog(@"PEER DONT EXIST");
 			}
 		});
@@ -278,11 +282,16 @@
 			
 			NSLog(@"RECEBEU DISCONNECT");
 			
+			canGoNext = 0;
+			_connectedDevice.hidden = YES;
+			[_nextBtn setHidden:YES];
+			[_waitingGoNext stopAnimating];
+			
 			_disconectBtn.hidden = YES;
 		}
 		else if ([receivedInfo isEqualToString:@"!goNext"]) {
 			if (canGoNext == 0) canGoNext = 1;
-			else canGoNext++;
+			else canGoNext = 2;
 				
 			if (canGoNext == 2) [self performSegueWithIdentifier:@"goNext" sender:self];
 		}

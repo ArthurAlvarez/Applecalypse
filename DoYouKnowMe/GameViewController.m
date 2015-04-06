@@ -144,6 +144,8 @@
     }
 	
 	_showRound.text = [NSString stringWithFormat:@"%d/%d", [GameSettings getCurrentRound], [GameSettings getGameLength]];
+	
+	[_answerTextField setEnabled:YES];
 }
 
 /**
@@ -235,6 +237,10 @@
 }
 
 #pragma mark - Selectors
+
+/**
+ This method go to other method to pause the game
+ **/
 -(void)appDidEnterBG:(NSNotification *)notification{
 	NSLog(@"Entrou BG");
 	[self pauseGame:self];
@@ -313,6 +319,10 @@
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_clockTimer invalidate];
+				if ([_pause isVisible]){
+					[_pause dismissWithClickedButtonIndex:0 animated:YES];
+					NSLog(@"Is visible and shoudl have been dismissed!!!!!!");
+				}
             });
         }
         
@@ -492,6 +502,35 @@
     
 }
 
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+	
+	[self.view endEditing:YES];
+	
+	[_answerTextField setEnabled:NO];
+	
+	if(self.answerTextField.text.length > 0){
+		
+		[self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
+		
+		if (currentAnswers == 0) {
+			currentAnswers = 1;
+		} else currentAnswers++;
+		
+		if(currentAnswers == 2)
+		{
+			[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+		}
+		else
+		{
+			self.submitButton.enabled = NO;
+			didAnswer = YES;
+			[_waitingAnswer startAnimating];
+		}
+		
+	}
+	return NO;
+}
 /*
  #pragma mark - Navigation
  

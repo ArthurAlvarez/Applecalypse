@@ -1,0 +1,31 @@
+{
+	"size": "26",
+	"questions":{
+	"0": "Você gostaria de ser famoso?",
+	"1":"O que seria um dia perfeito para você?",
+	"2":"Qual é sua comida favorita?",
+    "3":"Qual é a sua cor favorita?",
+    "4":"Qual o seu filme favorito?",
+    "5":"Qual o aplicativo de celular que você mais usa?",
+    "6":"Qual o aplicativo de celular que você mais usa?",
+    "7":"Qual é sua banda favorita?",
+    "8":"Qual é sua musica favorita?",
+    "9":"Qual é seu programa de TV favorito?",
+    "10":"Qual é seu filme favorito?",
+    "11":"Verão ou Inverno?",
+    "12":"O que te faz ficar com raiva?",
+    "13":"Acredita em ETs?",
+    "14":"Ja viajou para o exterior?",
+    "15":"Qual é seu sabor de sorvete favorito?",
+    "16":"Doce ou salgado?",
+    "17":"Rock ou sertanejo?",
+    "18":"Festa ou filme em casa?",
+    "19":"Churrasco ou Pizza?",
+    "20":"Uma data importante?",
+    "21":"Coca-Cola ou Suco?",
+    "22":"Praia ou cinema?",
+    "23":"Gosta de esportes?",
+    "24":"Cidade em que nasceu?",
+    "25":"Qual é seu signo?"
+	}
+} 

@@ -23,7 +23,7 @@
 		938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* FirstViewController.m */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* ConnectionsViewController.m */; };
-		93BF04181AD2B72200AFB30B /* questions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93BF04171AD2B72200AFB30B /* questions.txt */; };
+		93BF041A1AD2C78100AFB30B /* questions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93BF04191AD2C78100AFB30B /* questions.txt */; };
 		B55B1E401AC992A100C7D68E /* numero__0000_10-copy-10.png in Resources */ = {isa = PBXBuildFile; fileRef = B55B1DDF1AC992A100C7D68E /* numero__0000_10-copy-10.png */; };
 		B55B1E411AC992A100C7D68E /* numero__0001_9.png in Resources */ = {isa = PBXBuildFile; fileRef = B55B1DE01AC992A100C7D68E /* numero__0001_9.png */; };
 		B55B1E421AC992A100C7D68E /* numero__0002_8.png in Resources */ = {isa = PBXBuildFile; fileRef = B55B1DE11AC992A100C7D68E /* numero__0002_8.png */; };
@@ -152,7 +152,7 @@
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
 		939249E31AC1A549008D5500 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
-		93BF04171AD2B72200AFB30B /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = questions.txt; path = ../../../../../../Downloads/questions.txt; sourceTree = "<group>"; };
+		93BF04191AD2C78100AFB30B /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questions.txt; sourceTree = SOURCE_ROOT; };
 		B55B1DDF1AC992A100C7D68E /* numero__0000_10-copy-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "numero__0000_10-copy-10.png"; sourceTree = "<group>"; };
 		B55B1DE01AC992A100C7D68E /* numero__0001_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = numero__0001_9.png; sourceTree = "<group>"; };
 		B55B1DE11AC992A100C7D68E /* numero__0002_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = numero__0002_8.png; sourceTree = "<group>"; };
@@ -284,27 +284,16 @@
 			children = (
 				938E68731ACC297F009B7AE7 /* resources */,
 				B55B1DDE1AC992A100C7D68E /* images */,
-				1432C40D1AC2E28B00E15CDE /* VerifyAnswerViewController.h */,
-				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
-				1432C40A1AC2D40400E15CDE /* GameViewController.h */,
-				1432C40B1AC2D40400E15CDE /* GameViewController.m */,
+				93D305F61AF563E6001C8CC3 /* Views Controllers */,
 				14C443371AC18C6300103C35 /* AppDelegate.h */,
 				14C443381AC18C6300103C35 /* AppDelegate.m */,
 				939249DF1AC19883008D5500 /* Connectivity.h */,
 				939249E01AC19883008D5500 /* Connectivity.m */,
-				14C4433A1AC18C6300103C35 /* viewController.h */,
-				14C4433B1AC18C6300103C35 /* viewController.m */,
-				939249E21AC1A549008D5500 /* ConnectionsViewController.h */,
-				939249E31AC1A549008D5500 /* ConnectionsViewController.m */,
-				938E686C1ACC08DD009B7AE7 /* FirstViewController.h */,
-				938E686D1ACC08DD009B7AE7 /* FirstViewController.m */,
 				1457877B1AC4200F007D76A1 /* Player.h */,
 				1457877C1AC4200F007D76A1 /* Player.m */,
 				1452A45E1AC988E400A46762 /* GameSettings.h */,
 				1452A45F1AC988E400A46762 /* GameSettings.m */,
 				14C4433D1AC18C6300103C35 /* Main.storyboard */,
-				1452A45B1AC97CEB00A46762 /* ResultsViewController.h */,
-				1452A45C1AC97CEB00A46762 /* ResultsViewController.m */,
 				14C443401AC18C6300103C35 /* Images.xcassets */,
 				93009F201ACD74250075610E /* Launch Screen.xib */,
 				B55B1DDD1AC98F8B00C7D68E /* New Group */,
@@ -324,9 +313,28 @@
 		938E68731ACC297F009B7AE7 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				93BF04171AD2B72200AFB30B /* questions.txt */,
+				93BF04191AD2C78100AFB30B /* questions.txt */,
 			);
 			name = resources;
+			sourceTree = "<group>";
+		};
+		93D305F61AF563E6001C8CC3 /* Views Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1432C40D1AC2E28B00E15CDE /* VerifyAnswerViewController.h */,
+				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
+				1432C40A1AC2D40400E15CDE /* GameViewController.h */,
+				1432C40B1AC2D40400E15CDE /* GameViewController.m */,
+				14C4433A1AC18C6300103C35 /* viewController.h */,
+				14C4433B1AC18C6300103C35 /* viewController.m */,
+				939249E21AC1A549008D5500 /* ConnectionsViewController.h */,
+				939249E31AC1A549008D5500 /* ConnectionsViewController.m */,
+				938E686C1ACC08DD009B7AE7 /* FirstViewController.h */,
+				938E686D1ACC08DD009B7AE7 /* FirstViewController.m */,
+				1452A45B1AC97CEB00A46762 /* ResultsViewController.h */,
+				1452A45C1AC97CEB00A46762 /* ResultsViewController.m */,
+			);
+			name = "Views Controllers";
 			sourceTree = "<group>";
 		};
 		B55B1DDD1AC98F8B00C7D68E /* New Group */ = {
@@ -590,7 +598,7 @@
 				B55B1E4C1AC992A100C7D68E /* tela0_0001_Layer-4.png in Resources */,
 				B55B1E461AC992A100C7D68E /* numero__0006_4.png in Resources */,
 				B55B1E751AC992A100C7D68E /* tela22_0007_friend-name.png in Resources */,
-				93BF04181AD2B72200AFB30B /* questions.txt in Resources */,
+				93BF041A1AD2C78100AFB30B /* questions.txt in Resources */,
 				B55B1E481AC992A100C7D68E /* numero__0008_2.png in Resources */,
 				B55B1E5A1AC992A100C7D68E /* tela1_0004_Layer-6.png in Resources */,
 				B55B1E901AC992A100C7D68E /* tela3_0006_Layer-6.png in Resources */,

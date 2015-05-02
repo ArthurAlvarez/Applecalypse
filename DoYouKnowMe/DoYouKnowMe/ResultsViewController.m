@@ -21,7 +21,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *percentLabel;
 
 ///Interface button
-@property (weak, nonatomic) IBOutlet UIButton *btn_back;
+@property (weak, nonatomic) IBOutlet UIButton *btnBack1;
+
+///Interface button
+@property (weak, nonatomic) IBOutlet UIButton *btnBack2;
 
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
@@ -59,6 +62,10 @@
 	else if (knowingPercent <= 0.6f) _percentLabel.text = @"Mais ou menos";
 	else if (knowingPercent <= 0.8f) _percentLabel.text = @"Bem!!";
 	else _percentLabel.text = @"Muito bem!!\nVocês são grandes amigos!!";
+	
+	_btnBack1.layer.cornerRadius = 5;
+	_btnBack2.layer.cornerRadius = 5;
+	
 }
 
 - (void)didReceiveMemoryWarning {

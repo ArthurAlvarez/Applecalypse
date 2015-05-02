@@ -82,7 +82,7 @@
 									 cancelButtonTitle:@"Ok, entendi!"
 									 otherButtonTitles: nil];
 	
-	
+	_startBtn.layer.cornerRadius = 5;
 }
 /**
  Set all constants  and infos

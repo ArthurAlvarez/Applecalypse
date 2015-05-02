@@ -223,7 +223,6 @@
     
     self.questionsJson = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
     
-    //NSLog(@"%@", self.questionsJson);
 }
 
 /**
@@ -286,6 +285,23 @@
     return questionText;
 }
 
+/**
+ Perform a shake animation at the textfield when it is empty
+ */
+- (void) performShakeAnimation:(UIView *)object {
+	
+	CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
+	
+	[shake setDuration:0.1];
+	[shake setRepeatCount:2];
+	[shake setAutoreverses:YES];
+	
+	[shake setFromValue:[NSValue valueWithCGPoint: CGPointMake(object.center.x - 5, object.center.y)]];
+	
+	[shake setToValue:[NSValue valueWithCGPoint: CGPointMake(object.center.x + 5, object.center.y)]];
+	
+	[object.layer addAnimation:shake forKey:@"position"];
+}
 #pragma mark - Selectors
 
 /**
@@ -384,6 +400,33 @@
     }
 }
 
+/**
+ This method is called when the timer expires. By default, when this happens the answer from local user is "Nao sei"
+ @author Arthur Alvarez
+ */
+-(void) userDidNotAnswer{
+	if (_answerTextField.text.length == 0) self.answerTextField.text = @"Não sei";
+	
+	[self answerPressed:self];
+	
+}
+
+/**
+ Updates the timer label and calculates elapsed time
+ @author Arthur Alvarez
+ */
+-(void) updateTimerLabel{
+	if([self.timeLeft intValue] > 0){
+		self.timeLeft = [NSNumber numberWithInt:[self.timeLeft intValue] - 1];
+		self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
+		
+		
+		if([self.timeLeft intValue] == 0 && didAnswer == NO){
+			[self userDidNotAnswer];
+		}
+	}
+}
+
 #pragma mark - Action Methods
 
 /**
@@ -413,13 +456,13 @@
             [_waitingAnswer startAnimating];
         }
         
-    }
+	} else [self performShakeAnimation:_answerTextField];
 }
 
 
 - (IBAction)pauseGame:(id)sender
 {
-    [_clockTimer invalidate];
+	[_clockTimer invalidate];
 	
     [_pause show];
     
@@ -489,32 +532,6 @@
     }
 }
 
-/**
- This method is called when the timer expires. By default, when this happens the answer from local user is "Nao sei"
- @author Arthur Alvarez
- */
--(void) userDidNotAnswer{
-    self.answerTextField.text = @"Não sei";
-    [self answerPressed:self];
-    
-}
-
-/**
- Updates the timer label and calculates elapsed time
- @author Arthur Alvarez
- */
--(void) updateTimerLabel{
-    if([self.timeLeft intValue] > 0){
-        self.timeLeft = [NSNumber numberWithInt:[self.timeLeft intValue] - 1];
-        self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
-        
-        
-        if([self.timeLeft intValue] == 0 && didAnswer == NO){
-            [self userDidNotAnswer];
-        }
-    }
-}
-
 #pragma mark - AlertView Delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -557,12 +574,21 @@
     
 }
 
+#pragma mark - TextField Delegate
+
+-(BOOL) textFieldShouldBeginEditing:(UITextField *)textField{
+	
+	[_waitingAnswer stopAnimating];
+	
+	[_submitButton setEnabled:YES];
+	
+	return YES;
+	
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
 	
 	[self.view endEditing:YES];
-	
-	[_answerTextField setEnabled:NO];
 	
 	if(self.answerTextField.text.length > 0){
 		
@@ -582,18 +608,9 @@
 			didAnswer = YES;
 			[_waitingAnswer startAnimating];
 		}
-		
-	}
-	return NO;
+	} else [self performShakeAnimation:_answerTextField];
+	
+	return YES;
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

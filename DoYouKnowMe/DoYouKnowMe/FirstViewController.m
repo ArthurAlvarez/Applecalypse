@@ -21,6 +21,12 @@
 /// Interface Text Field to edit the display name from the device
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 
+/// Label to say hello to the player
+@property (weak, nonatomic) IBOutlet UILabel *helloLabel;
+
+/// Label to ask the player's name
+@property (weak, nonatomic) IBOutlet UILabel *askNameLabel;
+
 /// Interface Label to show the name of the friend that you are connected with
 @property (weak, nonatomic) IBOutlet UILabel *browseLabel;
 
@@ -50,7 +56,7 @@
 
 @implementation FirstViewController
 
-#pragma mark - Initial Methods
+#pragma mark - Life Cycle Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -72,12 +78,18 @@
 	// Set Tex Field delegate
 	[_txtName setDelegate:self];
 	
-	// Disable buttons and labels, but the initial ones
+	// Hide buttons and labels
+	_txtName.hidden = YES;
+	_helloLabel.hidden = YES;
+	_askNameLabel.hidden = YES;
 	_browseLabel.hidden = YES;
 	_browseBtn.hidden = YES;
 	_disconectBtn.hidden = YES;
 	_connectedDevice.hidden = YES;
 	_nextBtn.hidden = YES;
+	
+	_nextBtn.layer.cornerRadius = 5;
+	_browseBtn.layer.cornerRadius = 5;
 	
 	// Initiates the array of connected devices
 	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
@@ -89,7 +101,7 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:YES];
+	[super viewWillAppear:animated];
 	
 	canGoNext = 0;
 	[_waitingGoNext stopAnimating];
@@ -106,10 +118,28 @@
 	[_nextBtn setEnabled:YES];
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
+	if (_helloLabel.hidden == true) {
+		CGPoint viewCenter = self.view.center;
+		
+		[_helloLabel setCenter:CGPointMake(_helloLabel.layer.position.x, viewCenter.y - 44)];
+		[_askNameLabel setCenter:viewCenter];
+		[_txtName setCenter:CGPointMake(viewCenter.x, viewCenter.y + 44)];
+		
+		_helloLabel.hidden = NO;
+		_txtName.hidden = NO;
+		_askNameLabel.hidden = NO;
+	}
+}
+
 #pragma mark - Text Field Delegate
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+	if ([textField.text length] > 0) {
+	
 	[_txtName resignFirstResponder];
 	
 	_appDelegate.mcManager.peerID = nil;
@@ -125,6 +155,8 @@
 	
 	_browseLabel.hidden = NO;
 	_browseBtn.hidden = NO;
+	
+	} else [self performShakeAnimation:_txtName];
 	
 	return YES;
 }
@@ -299,14 +331,23 @@
 	});
 	
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/**
+ Perform a shake animation at the textfield when it is empty
+ */
+- (void) performShakeAnimation:(UIView *)object {
+	
+	CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
+	
+	[shake setDuration:0.1];
+	[shake setRepeatCount:2];
+	[shake setAutoreverses:YES];
+	
+	[shake setFromValue:[NSValue valueWithCGPoint: CGPointMake(object.center.x - 5, object.center.y)]];
+	
+	[shake setToValue:[NSValue valueWithCGPoint: CGPointMake(object.center.x + 5, object.center.y)]];
+	
+	[object.layer addAnimation:shake forKey:@"position"];
 }
-*/
 
 @end

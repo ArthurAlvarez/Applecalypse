@@ -142,13 +142,6 @@
 	[_answerTextField setEnabled:YES];
 }
 
-/**
- This method is called when the view has appeared
- */
--(void)viewDidAppear:(BOOL)animated{
-
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -335,10 +328,7 @@
             
             if(currentAnswers == 0)
                 currentAnswers = 1;
-            else currentAnswers++;
-            
-            if(currentAnswers == 2)
-                [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+            else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
         }
         
         else if([receivedInfo hasPrefix:@"*&*"]){
@@ -443,18 +433,10 @@
         
         if (currentAnswers == 0) {
             currentAnswers = 1;
-        } else currentAnswers++;
-        
-        if(currentAnswers == 2)
-        {
-            [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-        }
-        else
-        {
-            self.submitButton.enabled = NO;
-            didAnswer = YES;
-            [_waitingAnswer startAnimating];
-        }
+			self.submitButton.enabled = NO;
+			didAnswer = YES;
+			[_waitingAnswer startAnimating];
+        } else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
         
 	} else [self performShakeAnimation:_answerTextField];
 }
@@ -582,6 +564,8 @@
 	
 	[_submitButton setEnabled:YES];
 	
+	currentAnswers = 0;
+	
 	return YES;
 	
 }
@@ -596,18 +580,11 @@
 		
 		if (currentAnswers == 0) {
 			currentAnswers = 1;
-		} else currentAnswers++;
-		
-		if(currentAnswers == 2)
-		{
-			[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-		}
-		else
-		{
 			self.submitButton.enabled = NO;
 			didAnswer = YES;
 			[_waitingAnswer startAnimating];
-		}
+		} else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+		
 	} else [self performShakeAnimation:_answerTextField];
 	
 	return YES;

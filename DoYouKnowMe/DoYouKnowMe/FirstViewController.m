@@ -79,9 +79,6 @@
 	[_txtName setDelegate:self];
 	
 	// Hide buttons and labels
-	_txtName.hidden = YES;
-	_helloLabel.hidden = YES;
-	_askNameLabel.hidden = YES;
 	_browseLabel.hidden = YES;
 	_browseBtn.hidden = YES;
 	_disconectBtn.hidden = YES;
@@ -118,23 +115,12 @@
 	[_nextBtn setEnabled:YES];
 }
 
--(void) viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	
-	if (_helloLabel.hidden == true) {
-		CGPoint viewCenter = self.view.center;
-		
-		[_helloLabel setCenter:CGPointMake(_helloLabel.layer.position.x, viewCenter.y - 44)];
-		[_askNameLabel setCenter:viewCenter];
-		[_txtName setCenter:CGPointMake(viewCenter.x, viewCenter.y + 44)];
-		
-		_helloLabel.hidden = NO;
-		_txtName.hidden = NO;
-		_askNameLabel.hidden = NO;
-	}
-}
-
 #pragma mark - Text Field Delegate
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+	return YES;
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {

@@ -33,20 +33,15 @@
 
 
 -(void)setupMCBrowser{
-	_browser = [[MCBrowserViewController alloc] initWithServiceType:@"doyouknowme" session:_session];
+	_browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_peerID serviceType:@"doyouknowme"];
 }
 
 -(void)advertiseSelf:(BOOL)shouldAdvertise{
 	if (shouldAdvertise) {
-		_advertiser = [[MCAdvertiserAssistant alloc] initWithServiceType:@"doyouknowme"
-														   discoveryInfo:nil
-																 session:_session];
-		[_advertiser start];
-	}
-	else{
-		[_advertiser stop];
-		_advertiser = nil;
-	}
+        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_peerID discoveryInfo:nil serviceType:@"doyouknowme"];
+        
+        [_advertiser startAdvertisingPeer];
+    }
 }
 
 #pragma mark - MCSession Delegate
@@ -87,5 +82,11 @@
 -(void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID{
 	
 }
+
+- (void) session:(MCSession *)session didReceiveCertificate:(NSArray *)certificate fromPeer:(MCPeerID *)peerID certificateHandler:(void (^)(BOOL accept))certificateHandler
+{
+    certificateHandler(YES);
+}
+
 
 @end

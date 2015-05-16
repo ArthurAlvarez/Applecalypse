@@ -64,7 +64,8 @@
 	// Iniciate the session
 	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[[_appDelegate mcManager] setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
-	[[_appDelegate mcManager] advertiseSelf:YES];
+    [[_appDelegate mcManager] advertiseSelf:YES];
+    _appDelegate.mcManager.advertiser.delegate = self;
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(peerDidChangeStateWithNotification:)
 												 name:@"MCDidChangeStateNotification"
@@ -132,12 +133,13 @@
 	_appDelegate.mcManager.session = nil;
 	_appDelegate.mcManager.browser = nil;
 	
-	[_appDelegate.mcManager.advertiser stop];
-	_appDelegate.mcManager.advertiser = nil;
+	//[_appDelegate.mcManager.advertiser stop];
+	//_appDelegate.mcManager.advertiser = nil;
 	
 	[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
 	[_appDelegate.mcManager setupMCBrowser];
 	[_appDelegate.mcManager advertiseSelf:YES];
+    _appDelegate.mcManager.advertiser.delegate = self;
 	
 	_browseLabel.hidden = NO;
 	_browseBtn.hidden = NO;
@@ -150,11 +152,11 @@
 #pragma mark - MCBrowserView Delegate
 
 -(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
-	[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
+	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
-	[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
+	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Action Methods
@@ -166,10 +168,44 @@
 {
 	[[_appDelegate mcManager] setupMCBrowser];
 	[[[_appDelegate mcManager] browser] setDelegate:self];
-	
-	_appDelegate.mcManager.browser.maximumNumberOfPeers = 1;
-	
-	[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
+
+    [[[_appDelegate mcManager] browser] startBrowsingForPeers];
+
+	//_appDelegate.mcManager.browser.maximumNumberOfPeers = 1;
+	//[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
+}
+
+/**
+ Delegate for finding devices
+ **/
+
+- (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
+    NSLog(@"Found a nearby advertising peer %@", peerID);
+    
+    //Manda convite para conexao
+    [[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+}
+
+/**
+ Delegate fot accepting invitations
+ **/
+- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser
+didReceiveInvitationFromPeer:(MCPeerID *)peerID
+       withContext:(NSData *)context
+ invitationHandler:(void (^)(BOOL accept,
+                             MCSession *session))invitationHandler{
+    NSLog(@"Got invite from %@", peerID);
+    
+    //Aceita convite
+    invitationHandler(YES, _appDelegate.mcManager.session);
+}
+
+/**
+ Delegate called when peer is lost
+ **/
+- (void)browser:(MCNearbyServiceBrowser *)browser
+       lostPeer:(MCPeerID *)peerID{
+    NSLog(@"Lost device %@", peerID);
 }
 
 /**

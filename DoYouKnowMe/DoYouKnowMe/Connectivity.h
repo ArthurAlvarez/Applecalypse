@@ -18,10 +18,10 @@
 @property (nonatomic, strong) MCSession *session;
 
 /// Represents the default UI provided by Apple for browsing for other peers
-@property (nonatomic, strong) MCBrowserViewController *browser;
+@property (nonatomic, strong) MCNearbyServiceBrowser *browser;
 
 /// Used from the current peer to advertise itself and make its discovery feasibl
-@property (nonatomic, strong) MCAdvertiserAssistant *advertiser;
+@property (nonatomic, strong) MCNearbyServiceAdvertiser *advertiser;
 
 /**
  Set the display name from the device to others

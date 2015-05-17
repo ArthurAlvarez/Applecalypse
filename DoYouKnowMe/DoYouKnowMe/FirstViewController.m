@@ -14,7 +14,8 @@
 
 @interface FirstViewController ()
 {
-	int canGoNext; /// Flag to know when the game can go to the next View
+	/// Flag to know when the game can go to the next View
+	int canGoNext;
 }
 
 #pragma mark - Interface Properties
@@ -53,6 +54,8 @@
 @property (nonatomic, strong) NSMutableArray *arrConnectedDevices;
 
 @end
+
+#pragma mark
 
 @implementation FirstViewController
 
@@ -178,7 +181,6 @@
 /**
  Delegate for finding devices
  **/
-
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
     NSLog(@"Found a nearby advertising peer %@", peerID);
     

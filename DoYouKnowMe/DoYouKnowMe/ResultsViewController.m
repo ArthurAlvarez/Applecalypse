@@ -36,20 +36,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-	MCPeerID *id;
+	
+	MCPeerID *ID;
 	float knowingPercent;
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    id = _appDelegate.mcManager.session.connectedPeers[0];
+	ID = _appDelegate.mcManager.session.connectedPeers[0];
     
     if([Player getPlayerID] == 1){
-        self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", id.displayName];
+        self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", ID.displayName];
     }
     
     else if([Player getPlayerID] == 2){
-        self.topLabel.text = [NSString stringWithFormat:@"Quanto conheço %@...", id.displayName];
+        self.topLabel.text = [NSString stringWithFormat:@"Quanto conheço %@...", ID.displayName];
     }
     
     NSLog(@"score final: %d", [Player getScore]);

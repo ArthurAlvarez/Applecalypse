@@ -44,8 +44,6 @@
 /// AppDelegate object to creat an access to the Connectivity class trough the app delegate
 @property (nonatomic, strong) AppDelegate *appDelegate;
 
-@property UIAlertView *selectPlayer;
-
 @end
 
 #pragma mark - Implementation
@@ -79,17 +77,11 @@
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
 	
-	_selectPlayer = [[UIAlertView alloc] initWithTitle:@"Jogador não selecionado!"
-											   message:@"Selecione sobre quem as perguntas serão feitas para o jogo poder iniciar"
-											  delegate:self
-									 cancelButtonTitle:@"Ok, entendi!"
-									 otherButtonTitles: nil];
-	
 	_startBtn.layer.cornerRadius = 5;
 }
 /**
  Set all constants  and infos
- **/
+ */
 -(void) viewWillAppear:(BOOL)animated{
 	
 	[super viewWillAppear:YES];
@@ -260,20 +252,16 @@
 	
 	if (canStart == 0) {
 		canStart = 1;
-	} else if (canStart == 1) canStart++;
+		[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
+	 
+		[_waitingIndicator startAnimating];
+	} else [self performSegueWithIdentifier:@"startGame" sender:self];;
 	
 
 	[_appDelegate.mcManager.session sendData:[@"!start" dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:allPeers
 									withMode:MCSessionSendDataReliable
 									   error:&error];
-	
-	if (canStart == 2)  [self performSegueWithIdentifier:@"startGame" sender:self];
-	else {
-		[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
-	 
-		[_waitingIndicator startAnimating];
-	}
 }
 
 - (IBAction)goBack:(id)sender
@@ -334,9 +322,7 @@
             NSLog(@"Received start");
             [GameSettings setOtherDidLoad:YES];
         }
-        
-		else if ([receivedInfo isEqualToString:@"!1"] || [receivedInfo isEqualToString:@"!0"])
-		{
+		else if ([receivedInfo isEqualToString:@"!1"] || [receivedInfo isEqualToString:@"!0"]){
 			
 			if ([receivedInfo isEqualToString:@"!0"])
 			{
@@ -353,8 +339,7 @@
 			
 			NSLog(@"ID %d", [Player getPlayerID]);
 		}
-		else if ([receivedInfo isEqualToString:@"!disconnect"])
-		{
+		else if ([receivedInfo isEqualToString:@"!disconnect"]){
 			[_appDelegate.mcManager.session disconnect];
 			
 			NSLog(@"RECEBEU DISCONNECT");
@@ -363,17 +348,12 @@
 			
 			[[self navigationController] popToRootViewControllerAnimated:YES];
 		}
-		else if ([receivedInfo isEqualToString:@"!start"])
-		{
+		else if ([receivedInfo isEqualToString:@"!start"]){
 			if (canStart == 0) {
 				canStart = 1;
-			} else if (canStart == 1) canStart++;
-			
-			if (canStart == 2)
+			} else
 				if ([Player getPlayerID] != -1) [self performSegueWithIdentifier:@"startGame" sender:self];
-		}
-		else if ([receivedInfo isEqualToString:@"!error"]){
-			[_selectPlayer show];
+			
 		}
 		else if ([receivedInfo hasPrefix:@"()"]){
 			int index = [[receivedInfo stringByReplacingOccurrencesOfString:@"()" withString:@""] intValue];

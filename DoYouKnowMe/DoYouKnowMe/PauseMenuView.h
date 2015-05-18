@@ -8,20 +8,36 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma mark - PauseMenuView Delegate
+
 @protocol PauseMenuViewDelegate <NSObject>
 
+/**
+ Method to resume the game.
+ */
 -(void) resumeGame;
+
+/**
+ Method to end the game
+ */
 -(void) endGame;
 
 @end
 
 IB_DESIGNABLE
 
+#pragma mark - Public Interface
+
 @interface PauseMenuView : UIView
+
+#pragma mark - Properties
 
 @property (weak) IBOutlet id<PauseMenuViewDelegate> delegate;
 
+#pragma mark - Methods
+
 -(void) show;
+
 -(void) hide;
 
 @end

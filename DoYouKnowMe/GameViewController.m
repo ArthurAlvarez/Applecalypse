@@ -52,6 +52,9 @@
 /// Interface Label to show the raound that the game is
 @property (weak, nonatomic) IBOutlet UILabel *showRound;
 
+/// Button to force the segue when the user is stucked at the screen
+@property (weak, nonatomic) IBOutlet UIButton *forceSegueButton;
+
 /// View that appear when the game is paused
 @property (weak, nonatomic) IBOutlet PauseMenuView *pauseMenu;
 
@@ -136,6 +139,7 @@
 	
 	[_answerTextField setEnabled:YES];
 	[self.pauseMenu hide];
+	self.forceSegueButton.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -420,10 +424,18 @@
  @author Arthur Alvarez
  */
 - (IBAction)answerPressed:(id)sender {
-    
+	
+	if ([self.timeLeft intValue] == 0) {
+		[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+		
+		return;
+	}
+	
     [self.view endEditing:YES];
     
     if(self.answerTextField.text.length > 0){
+		
+		self.forceSegueButton.hidden = NO;
         
         [self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
         
@@ -484,6 +496,11 @@
     if (error) {
         NSLog(@"%@", [error localizedDescription]);
     }
+}
+
+- (IBAction)forceSegue:(id)sender
+{
+	[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
 }
 
 /**

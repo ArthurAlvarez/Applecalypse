@@ -114,7 +114,7 @@
 		
 		_connectedDevice.hidden = YES;
 		_nextBtn.hidden = YES;
-	}
+	} else [self performSegueWithIdentifier:@"goNext" sender:self];
 	
 	[_nextBtn setEnabled:YES];
 }
@@ -199,7 +199,7 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
     NSLog(@"Got invite from %@", peerID);
     
     //Aceita convite
-    invitationHandler(YES, _appDelegate.mcManager.session);
+    if (![_txtName.text isEqualToString:@""]) invitationHandler(YES, _appDelegate.mcManager.session);
 }
 
 /**
@@ -236,6 +236,8 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 	}
 	
 	[_waitingGoNext stopAnimating];
+	
+	canGoNext = 0;
 }
 
 /**
@@ -250,15 +252,13 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 		canGoNext = 1;
 		
 		[_waitingGoNext startAnimating];
-	} else canGoNext = 2;
+	} else [self performSegueWithIdentifier:@"goNext" sender:self];
+
 	
 	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
 										 toPeers:allPeers
 										withMode:MCSessionSendDataReliable
 										error:&error];
-	
-	if (canGoNext == 2) [self performSegueWithIdentifier:@"goNext" sender:self];
-	
 	[_nextBtn setEnabled:NO];
 }
 

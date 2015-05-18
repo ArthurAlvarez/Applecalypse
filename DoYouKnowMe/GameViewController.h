@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PauseMenuView.h"
 
-@interface GameViewController : UIViewController <UIAlertViewDelegate, UIApplicationDelegate, UITextFieldDelegate>
+@interface GameViewController : UIViewController <UIAlertViewDelegate, UIApplicationDelegate, UITextFieldDelegate, PauseMenuViewDelegate>
 
 @end

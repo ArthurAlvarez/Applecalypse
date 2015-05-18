@@ -13,7 +13,11 @@
 
 @interface GameSettings : NSObject
 
-+ (void)setRound:(int)round;
++(void)setTime:(int)time;
+
++(int)getTime;
+
++(void)setRound:(int)round;
 
 +(void)setGameLenght:(int)lenght;
 

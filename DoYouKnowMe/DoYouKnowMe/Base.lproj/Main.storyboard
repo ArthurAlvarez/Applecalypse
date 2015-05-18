@@ -422,6 +422,7 @@
                                 <color key="tintColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="numberOfQuestons:" destination="gXl-Md-Q7V" eventType="valueChanged" id="Rkm-Ic-HYa"/>
+                                    <action selector="timeToAnswer:" destination="gXl-Md-Q7V" eventType="valueChanged" id="Szb-uo-1cf"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
@@ -471,6 +472,7 @@
                         <outlet property="numberOfQuestions" destination="5S4-4C-YED" id="KhD-0L-cxu"/>
                         <outlet property="questionTo" destination="Dtz-p7-56e" id="Nb3-sP-vLp"/>
                         <outlet property="startBtn" destination="iXw-8L-TAb" id="Sg8-C2-g0i"/>
+                        <outlet property="timeToAnswer" destination="Wzr-5N-fgd" id="ncG-QO-ghq"/>
                         <outlet property="waitingIndicator" destination="X2R-SI-Pto" id="7xY-DJ-agN"/>
                         <outlet property="waitingOtherLabel" destination="EIB-IS-77T" id="5H2-JH-zn6"/>
                         <segue destination="EzG-sG-hhN" kind="show" identifier="startGame" id="RiE-fT-8kf"/>
@@ -614,6 +616,13 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txl-JU-tD7" customClass="PauseMenuView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="EzG-sG-hhN" id="XtD-uI-1CT"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -626,6 +635,7 @@
                             <constraint firstItem="WgR-Jd-Ter" firstAttribute="top" secondItem="Bs4-Gz-WI9" secondAttribute="bottom" constant="27" id="A9g-Kf-nC1"/>
                             <constraint firstItem="b0C-GG-bjP" firstAttribute="top" secondItem="OyF-Od-voM" secondAttribute="bottom" constant="66" id="Byd-I8-C6w"/>
                             <constraint firstItem="b0C-GG-bjP" firstAttribute="leading" secondItem="wgz-EY-fsS" secondAttribute="leading" id="Fhm-G9-W0r"/>
+                            <constraint firstAttribute="centerX" secondItem="txl-JU-tD7" secondAttribute="centerX" id="JN4-WP-L53"/>
                             <constraint firstItem="q5y-5j-KV9" firstAttribute="trailing" secondItem="wgz-EY-fsS" secondAttribute="trailing" id="KLd-ma-UuX"/>
                             <constraint firstItem="q5y-5j-KV9" firstAttribute="centerX" secondItem="9to-qa-g0y" secondAttribute="centerX" id="KQu-MR-AfW"/>
                             <constraint firstItem="b0C-GG-bjP" firstAttribute="top" secondItem="dYt-a8-SDf" secondAttribute="bottom" constant="77" id="Mxo-a7-JEh"/>
@@ -638,6 +648,7 @@
                             <constraint firstItem="9to-qa-g0y" firstAttribute="centerX" secondItem="dYt-a8-SDf" secondAttribute="centerX" id="Ul3-jz-jN1"/>
                             <constraint firstItem="b0C-GG-bjP" firstAttribute="top" secondItem="9to-qa-g0y" secondAttribute="bottom" constant="60" id="WF4-gT-nx4"/>
                             <constraint firstItem="q5y-5j-KV9" firstAttribute="top" secondItem="wgz-EY-fsS" secondAttribute="bottom" constant="28" id="WiJ-tC-yW7"/>
+                            <constraint firstAttribute="centerY" secondItem="txl-JU-tD7" secondAttribute="centerY" id="XUu-CT-lMb"/>
                             <constraint firstItem="WgR-Jd-Ter" firstAttribute="top" secondItem="F3N-x9-1e9" secondAttribute="bottom" constant="8" symbolic="YES" id="cFh-CP-1pH"/>
                             <constraint firstItem="F3N-x9-1e9" firstAttribute="trailing" secondItem="Bs4-Gz-WI9" secondAttribute="trailing" id="eWc-Ze-adX"/>
                             <constraint firstItem="q5y-5j-KV9" firstAttribute="leading" secondItem="TDV-1E-jzr" secondAttribute="trailing" constant="8" symbolic="YES" id="eea-gv-DFn"/>
@@ -652,6 +663,8 @@
                             <constraint firstItem="OyF-Od-voM" firstAttribute="baseline" secondItem="dYt-a8-SDf" secondAttribute="baseline" id="oyO-FD-HDS"/>
                             <constraint firstItem="dYt-a8-SDf" firstAttribute="top" secondItem="Vxi-TD-l34" secondAttribute="topMargin" constant="19" id="rhf-na-uVs"/>
                             <constraint firstItem="WgR-Jd-Ter" firstAttribute="centerX" secondItem="F3N-x9-1e9" secondAttribute="centerX" id="ryF-W3-Y8p"/>
+                            <constraint firstItem="txl-JU-tD7" firstAttribute="width" secondItem="Vxi-TD-l34" secondAttribute="width" id="sKk-ct-EVM"/>
+                            <constraint firstItem="txl-JU-tD7" firstAttribute="height" secondItem="Vxi-TD-l34" secondAttribute="height" id="shV-Ch-3cZ"/>
                             <constraint firstItem="q5y-5j-KV9" firstAttribute="trailing" secondItem="Vxi-TD-l34" secondAttribute="trailingMargin" id="soz-h0-YHQ"/>
                             <constraint firstItem="kq9-HX-tnb" firstAttribute="top" secondItem="Uc6-3l-QPX" secondAttribute="bottom" constant="180" id="v1h-5h-R1M"/>
                             <constraint firstItem="TDV-1E-jzr" firstAttribute="top" secondItem="TSl-Ys-qdf" secondAttribute="bottom" constant="8" symbolic="YES" id="xDk-MX-v1v"/>
@@ -664,6 +677,7 @@
                     <connections>
                         <outlet property="answerTextField" destination="TDV-1E-jzr" id="8dY-rA-cNY"/>
                         <outlet property="pauseBtn" destination="OyF-Od-voM" id="1fU-lv-ZVW"/>
+                        <outlet property="pauseMenu" destination="txl-JU-tD7" id="Rr9-df-6Xp"/>
                         <outlet property="playerLabel" destination="b0C-GG-bjP" id="BxJ-mV-UKa"/>
                         <outlet property="questionLabel" destination="wgz-EY-fsS" id="uFo-EJ-HfE"/>
                         <outlet property="showRound" destination="9to-qa-g0y" id="aEC-EC-dFE"/>
@@ -881,7 +895,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnBackPressed:" destination="onG-ap-POS" eventType="touchUpInside" id="3EF-9r-EKK"/>
+                                    <action selector="playWithSame:" destination="onG-ap-POS" eventType="touchUpInside" id="xZv-Vz-spz"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resultados" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wh-sz-nho">
@@ -921,7 +935,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnBackPressed:" destination="onG-ap-POS" eventType="touchUpInside" id="caL-zX-Z2u"/>
+                                    <action selector="playWithOther:" destination="onG-ap-POS" eventType="touchUpInside" id="KxG-7a-6Ie"/>
                                 </connections>
                             </button>
                         </subviews>

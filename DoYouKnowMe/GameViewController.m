@@ -52,6 +52,9 @@
 /// Interface Label to show the raound that the game is
 @property (weak, nonatomic) IBOutlet UILabel *showRound;
 
+/// View that appear when the game is paused
+@property (weak, nonatomic) IBOutlet PauseMenuView *pauseMenu;
+
 #pragma mark - Controller Properties
 ///Number that represents the score of the current player
 @property (strong, nonatomic) NSNumber *playerScore;
@@ -70,8 +73,6 @@
 
 ///How much time the user still has
 @property (strong, nonatomic) NSNumber *timeLeft;
-
-@property UIAlertView *pause;
 
 @property NSDictionary *questionsJson;
 
@@ -102,13 +103,7 @@
 	
     gameDidEnd = NO;
 	
-	_pause = [[UIAlertView alloc] initWithTitle:@"Jogo pausado"
-										message:@"O que deseja fazer?"
-									   delegate:self
-							  cancelButtonTitle:@"Continuar"
-							  otherButtonTitles:@"Terminar o jogo", nil];
-    
-    self.repeatedQuestions = [[NSMutableArray alloc]init];
+	self.repeatedQuestions = [[NSMutableArray alloc]init];
 }
 
 /**
@@ -126,7 +121,7 @@
     didAnswer = NO;
     self.submitButton.enabled = YES;
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.timeLeft = [NSNumber numberWithInt:20];
+    self.timeLeft = [NSNumber numberWithInt:[GameSettings getTime]];
     self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
     [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
     self.answerTextField.text = @"";
@@ -140,6 +135,7 @@
                                                   repeats:YES];
 	
 	[_answerTextField setEnabled:YES];
+	[self.pauseMenu hide];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -215,7 +211,10 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"questions" ofType:@"txt"];
     
     self.questionsJson = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
-    
+	
+	if (self.questionsJson == nil) {
+		NSLog(@"ERROR OPENING JSON!!");
+	}
 }
 
 /**
@@ -295,6 +294,7 @@
 	
 	[object.layer addAnimation:shake forKey:@"position"];
 }
+
 #pragma mark - Selectors
 
 /**
@@ -337,7 +337,7 @@
             [self questionTextFromIndex:[f numberFromString:formatted]];
         }
         
-        else if ([receivedInfo isEqualToString:@"!"]){
+        else if ([receivedInfo isEqualToString:@">"]){
             if (shouldContinue == 0) shouldContinue = 1;
             else {
                 [_waitingPause stopAnimating];
@@ -350,16 +350,15 @@
                 
             }
         }
-        else if ([receivedInfo isEqualToString:@"!!"]){
+        else if ([receivedInfo isEqualToString:@"||"]){
             shouldContinue = 0;
             
             [_clockTimer invalidate];
 			
-            [_pause show];
+			[self.pauseMenu show];
         }
         
-        else if ([receivedInfo isEqualToString:@"@@@"]){
-            [_pause dismissWithClickedButtonIndex:0 animated:YES];
+        else if ([receivedInfo isEqualToString:@"<"]){
             [[self navigationController] popToRootViewControllerAnimated:YES];
         }
     });
@@ -379,11 +378,8 @@
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_clockTimer invalidate];
-				if ([_pause isVisible]){
-					[_pause dismissWithClickedButtonIndex:0 animated:YES];
-					[_syncTimer invalidate];
-					NSLog(@"Is visible and shoudl have been dismissed!!!!!!");
-				}
+				
+				[_syncTimer invalidate];
             });
         }
         
@@ -444,13 +440,15 @@
 
 - (IBAction)pauseGame:(id)sender
 {
+	if ([_answerTextField isFirstResponder]) [_answerTextField resignFirstResponder];
+	
 	[_clockTimer invalidate];
 	
-    [_pause show];
+    [self.pauseMenu show];
     
     NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
-    NSData *dataToSend = [@"!!" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *dataToSend = [@"||" dataUsingEncoding:NSUTF8StringEncoding];
     
     [_appDelegate.mcManager.session sendData:dataToSend
                                      toPeers:allPeers
@@ -514,46 +512,48 @@
     }
 }
 
-#pragma mark - AlertView Delegate
+#pragma mark - PauseMenuView Delegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)resumeGame
 {
-    NSString *tittle = [alertView buttonTitleAtIndex:buttonIndex];
-    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-    NSError *error;
-    NSData *dataToSend;
-    
-    if ([tittle isEqualToString:@"Continuar"]) {
-        dataToSend = [@"!" dataUsingEncoding:NSUTF8StringEncoding];
-        
-        if (shouldContinue == 0){
-            shouldContinue = 1;
-            [_waitingPause startAnimating];
-        } else {
-            _clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                           target:self
-                                                         selector:@selector(updateTimerLabel)
-                                                         userInfo:nil
-                                                          repeats:YES];
-        }
-        
-        [_appDelegate.mcManager.session sendData:dataToSend
-                                         toPeers:allPeers
-                                        withMode:MCSessionSendDataReliable
-                                           error:&error];
-        
-    } else if ([tittle isEqualToString:@"Terminar o jogo"]){
-        dataToSend = [@"@@@" dataUsingEncoding:NSUTF8StringEncoding];
-        
-        [_appDelegate.mcManager.session sendData:dataToSend
-                                         toPeers:allPeers
-                                        withMode:MCSessionSendDataReliable
-                                           error:&error];
-        
-        [[self navigationController] popToRootViewControllerAnimated:YES];
-    }
-    
-    
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend;
+	
+		dataToSend = [@">" dataUsingEncoding:NSUTF8StringEncoding];
+		
+		if (shouldContinue == 0){
+			shouldContinue = 1;
+			[_waitingPause startAnimating];
+		} else {
+			_clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
+														   target:self
+														 selector:@selector(updateTimerLabel)
+														 userInfo:nil
+														  repeats:YES];
+		}
+		
+		[_appDelegate.mcManager.session sendData:dataToSend
+										 toPeers:allPeers
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+	[self.pauseMenu hide];
+}
+
+-(void)endGame
+{
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend;
+	
+	dataToSend = [@"<" dataUsingEncoding:NSUTF8StringEncoding];
+	
+	[_appDelegate.mcManager.session sendData:dataToSend
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	[[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - TextField Delegate

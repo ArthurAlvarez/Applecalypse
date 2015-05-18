@@ -25,6 +25,9 @@
 /// Interface Segmented Control to know how many questions the game will have
 @property (weak, nonatomic) IBOutlet UISegmentedControl *numberOfQuestions;
 
+/// Interface Segmented Control to select the time to answer the question
+@property (weak, nonatomic) IBOutlet UISegmentedControl *timeToAnswer;
+
 /// Interface Button to start the game
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
@@ -151,7 +154,7 @@
 {
 	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
-	NSData *dataToSend = [[NSString stringWithFormat:@"()%ld", _numberOfQuestions.selectedSegmentIndex]
+	NSData *dataToSend = [[NSString stringWithFormat:@"()%ld", (long)_numberOfQuestions.selectedSegmentIndex]
 						  dataUsingEncoding:NSUTF8StringEncoding];
 	int index = (int)_numberOfQuestions.selectedSegmentIndex;
 	
@@ -178,6 +181,41 @@
 		NSLog(@"%@", [error localizedDescription]);
 	}
 	
+}
+
+/**
+ Set the time that the players have to answer the questions
+ */
+- (IBAction)timeToAnswer:(id)sender
+{
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend = [[NSString stringWithFormat:@"....%ld", (long)_timeToAnswer.selectedSegmentIndex]
+						  dataUsingEncoding:NSUTF8StringEncoding];
+	int index = (int)_timeToAnswer.selectedSegmentIndex;
+	
+	switch (index) {
+		case 0:
+			[GameSettings setTime:20];
+			break;
+		case 1:
+			[GameSettings setTime:30];
+			break;
+		case 2:
+			[GameSettings setTime:40];
+			break;
+		default:
+			break;
+	}
+	
+	[_appDelegate.mcManager.session sendData:dataToSend
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (error) {
+		NSLog(@"%@", [error localizedDescription]);
+	}
 }
 
 /** 
@@ -274,6 +312,9 @@
 															cancelButtonTitle:@"Voltar para o início"
 															otherButtonTitles: nil];
 				[disconected show];
+			} else {
+				if (canStart != 0) canStart = 0;
+				[_startBtn setEnabled:YES];
 			}
 		});
 	
@@ -357,6 +398,25 @@
 		else if ([receivedInfo isEqualToString:@"!goBack"]){
 			[[self navigationController] popToRootViewControllerAnimated:YES];
 		}
+		else if ([receivedInfo hasPrefix:@"...."]) {
+			int index = [[receivedInfo stringByReplacingOccurrencesOfString:@"...." withString:@""] intValue];
+
+			_timeToAnswer.selectedSegmentIndex = index;
+
+			switch (index) {
+				case 0:
+					[GameSettings setTime:20];
+					break;
+				case 1:
+					[GameSettings setTime:30];
+					break;
+				case 2:
+					[GameSettings setTime:40];
+					break;
+				default:
+					break;
+			}
+		}
 	});
 
 }
@@ -386,14 +446,5 @@
 	
 	
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

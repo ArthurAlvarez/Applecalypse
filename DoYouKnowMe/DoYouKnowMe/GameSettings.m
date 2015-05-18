@@ -14,6 +14,17 @@
 static int _gameLength = 5;
 static int _currentRound = 0;
 static bool _otherDidLoad = NO;
+static int _timeToAnswer = 20;
+
++(void)setTime:(int)time
+{
+	_timeToAnswer = time;
+}
+
++(int)getTime
+{
+	return _timeToAnswer;
+}
 
 + (void) setRound:(int)round
 {

@@ -1,7 +1,7 @@
 {
-	"size": "70",
+	"size": "79",
 	"questions":{
-	"0": "Eu gostaria de ser famoso?",
+	"0":"Eu gostaria de ser famoso?",
 	"1":"O que seria um dia perfeito para mim?",
 	"2":"Qual é a minha comida favorita?",
     "3":"Qual é a minha cor favorita?",
@@ -50,26 +50,35 @@
     "46":"Melhor dia da semana?",
     "47":"Costumo falar sozinho?",
     "48":"Qual o país que mais quero conhecer?",
-    "49":"Letra de mão ou letra de forma?"
-	"50":"Para qual time eu torço?"
-	"51":"Ketchup ou mostarda?"
-	"52":"Qual o meu jogo de video-game favorito?"
-	"53":"Qual o meu console favorito?"
-	"54":"Em qual dia nasci?"
-	"55":"Qual foi/é o meu desenho favorito?"
-	"56":"Qual é o meu maior medo?"
-	"57":"Qual é o meu maior sonho?"
-	"58":"Gato ou cachorro"?
-	"59":"Qual é o meu livro favorito?"
-	"60":"Qual foi/é o nome do meu primeiro cachorro?"
-	"61":"Qual é o nome do meu melhor amigo de infância?"
-	"62":"Qual é o meu hobby?"
-	"63":"O que mais gosto de fazer no meu tempo livre?"
-	"64":"Qual é o meu ritmo musical favorito?"
-	"65":"Qual é o meu sabor de chocolate favorito?"
-	"66":"Piercing ou tatuagem?"
-	"67":"Preifro ouvir música alta ou no fone de ouvido?"
-	"68":"Qual é a minha religião?"
-	"69":"Natal ou ano novo?"
+    "49":"Letra de mão ou letra de forma?",
+	"50":"Para qual time eu torço?",
+	"51":"Ketchup ou mostarda?",
+	"52":"Qual é o meu jogo de video-game favorito?",
+	"53":"Qual é o meu console favorito?",
+	"54":"Em qual dia nasci?",
+	"55":"Qual foi/é o meu desenho favorito?",
+	"56":"Qual é o meu maior medo?",
+	"57":"Qual é o meu maior sonho?",
+	"58":"Gato ou cachorro?",
+	"59":"Qual é o meu livro favorito?",
+	"60":"Qual foi/é o nome do meu primeiro cachorro ou gato?",
+	"61":"Qual é o nome do meu melhor amigo de infância?",
+	"62":"Tenho algum hobby? Qual?",
+	"63":"O que mais gosto de fazer no meu tempo livre?",
+	"64":"Qual é o meu ritmo musical favorito?",
+	"65":"Qual é o meu sabor de chocolate favorito?",
+	"66":"Piercing ou tatuagem?",
+	"67":"Preifro ouvir música alta ou no fone de ouvido?",
+	"68":"Qual é a minha religião?",
+	"69":"Natal ou ano novo?",
+	"70":"Qual é o lugar que mais gosto de ir?",
+	"71":"Qual é o carro que eu gostaria de ter?",
+	"72":"Qual é a minha bebida favorita?",
+	"73":"Qual é o meu ator favorito?",
+	"74":"Qual é a minha atriz favorita?",
+	"75":"Qual é o meu jogo de tabuleiro favorito?",
+	"76":"Qual é a minha série/novela favorita?",
+	"77":"Praia ou piscina?",
+	"78":"Olimpíadas ou copa do mundo?",
 	}
 }

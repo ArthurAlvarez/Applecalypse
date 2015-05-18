@@ -57,11 +57,11 @@
 	knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
     NSLog(@"knowing percent: %f", knowingPercent);
 	
-	if (knowingPercent <= 0.2f) _percentLabel.text = @"Muito pouco...";
-	else if (knowingPercent <= 0.4f) _percentLabel.text = @"Pouco...";
-	else if (knowingPercent <= 0.6f) _percentLabel.text = @"Mais ou menos";
-	else if (knowingPercent <= 0.8f) _percentLabel.text = @"Bem!!";
-	else _percentLabel.text = @"Muito bem!!\nVocês são grandes amigos!!";
+	if (knowingPercent < 0.2f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMuito pouco...", (int)(knowingPercent * 100)];
+	else if (knowingPercent < 0.4f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nPouco...", (int)(knowingPercent * 100)];
+	else if (knowingPercent < 0.6f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMais ou menos", (int)(knowingPercent * 100)];
+	else if (knowingPercent < 0.8f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nBem!!", (int)(knowingPercent * 100)];
+	else _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMuito bem!!\nVocês são grandes amigos!!", (int)(knowingPercent * 100)];
 	
 	_btnBack1.layer.cornerRadius = 5;
 	_btnBack2.layer.cornerRadius = 5;
@@ -70,20 +70,17 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-- (IBAction)btnBackPressed:(id)sender {
+
+- (IBAction)playWithSame:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)playWithOther:(id)sender {
+	[_appDelegate.mcManager.session disconnect];
+	
+	[self.navigationController popToRootViewControllerAnimated:NO];
 }
-*/
+
 
 @end

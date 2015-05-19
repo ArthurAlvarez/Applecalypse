@@ -113,6 +113,7 @@
 	} else [self performSegueWithIdentifier:@"goNext" sender:self];
 	
 	[_nextBtn setEnabled:YES];
+	
 }
 
 #pragma mark - Action Methods

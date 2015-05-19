@@ -15,7 +15,10 @@
 
 @interface ConnectionsViewController ()
 {
-	int canStart; /// Flag to show when the game can start
+	/// Flag to show when the game can start
+	int canStart;
+	
+	BOOL didTouchInDisconnect;
 }
 
 #pragma mark - Interface Propeties
@@ -96,6 +99,8 @@
 	
 	[GameSettings setGameLenght:5];
 	[GameSettings setRound:0];
+	
+	didTouchInDisconnect = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -294,12 +299,15 @@
 				[_waitingIndicator stopAnimating];
 				canStart = 0;
 				
-				UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
-																	  message:@"A conexão com seu amigo foi perdida"
-																	 delegate:self
-															cancelButtonTitle:@"Ok"
-															otherButtonTitles: nil];
-				[disconected show];
+				if (!didTouchInDisconnect) {
+					UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
+																		  message:@"A conexão com seu amigo foi perdida"
+																		 delegate:self
+																cancelButtonTitle:@"Ok"
+																otherButtonTitles: nil];
+					[disconected show];
+				}
+				
 			} else {
 				if (canStart != 0) canStart = 0;
 				[_startBtn setEnabled:YES];

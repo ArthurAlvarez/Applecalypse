@@ -287,18 +287,7 @@
 			children = (
 				938E68731ACC297F009B7AE7 /* resources */,
 				B55B1DDE1AC992A100C7D68E /* images */,
-				1432C40D1AC2E28B00E15CDE /* VerifyAnswerViewController.h */,
-				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
-				1432C40A1AC2D40400E15CDE /* GameViewController.h */,
-				1432C40B1AC2D40400E15CDE /* GameViewController.m */,
-				14C4433A1AC18C6300103C35 /* viewController.h */,
-				14C4433B1AC18C6300103C35 /* viewController.m */,
-				939249E21AC1A549008D5500 /* ConnectionsViewController.h */,
-				939249E31AC1A549008D5500 /* ConnectionsViewController.m */,
-				938E686C1ACC08DD009B7AE7 /* FirstViewController.h */,
-				938E686D1ACC08DD009B7AE7 /* FirstViewController.m */,
-				1452A45B1AC97CEB00A46762 /* ResultsViewController.h */,
-				1452A45C1AC97CEB00A46762 /* ResultsViewController.m */,
+				939ADCB31B0B511600FDEA66 /* Controllers */,
 				14C443371AC18C6300103C35 /* AppDelegate.h */,
 				14C443381AC18C6300103C35 /* AppDelegate.m */,
 				939249DF1AC19883008D5500 /* Connectivity.h */,
@@ -332,6 +321,25 @@
 				93BF04191AD2C78100AFB30B /* questions.txt */,
 			);
 			name = resources;
+			sourceTree = "<group>";
+		};
+		939ADCB31B0B511600FDEA66 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1432C40D1AC2E28B00E15CDE /* VerifyAnswerViewController.h */,
+				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
+				1432C40A1AC2D40400E15CDE /* GameViewController.h */,
+				1432C40B1AC2D40400E15CDE /* GameViewController.m */,
+				14C4433A1AC18C6300103C35 /* viewController.h */,
+				14C4433B1AC18C6300103C35 /* viewController.m */,
+				939249E21AC1A549008D5500 /* ConnectionsViewController.h */,
+				939249E31AC1A549008D5500 /* ConnectionsViewController.m */,
+				938E686C1ACC08DD009B7AE7 /* FirstViewController.h */,
+				938E686D1ACC08DD009B7AE7 /* FirstViewController.m */,
+				1452A45B1AC97CEB00A46762 /* ResultsViewController.h */,
+				1452A45C1AC97CEB00A46762 /* ResultsViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		B55B1DDD1AC98F8B00C7D68E /* New Group */ = {

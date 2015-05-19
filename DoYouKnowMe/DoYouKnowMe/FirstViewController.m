@@ -28,9 +28,6 @@
 /// Label to ask the player's name
 @property (weak, nonatomic) IBOutlet UILabel *askNameLabel;
 
-/// Interface Label to show the name of the friend that you are connected with
-@property (weak, nonatomic) IBOutlet UILabel *browseLabel;
-
 /// Interface Button to look for another device
 @property (weak, nonatomic) IBOutlet UIButton *browseBtn;
 
@@ -55,7 +52,7 @@
 
 @end
 
-#pragma mark
+#pragma mark - Implementation
 
 @implementation FirstViewController
 
@@ -83,7 +80,6 @@
 	[_txtName setDelegate:self];
 	
 	// Hide buttons and labels
-	_browseLabel.hidden = YES;
 	_browseBtn.hidden = YES;
 	_disconectBtn.hidden = YES;
 	_connectedDevice.hidden = YES;
@@ -119,50 +115,15 @@
 	[_nextBtn setEnabled:YES];
 }
 
-#pragma mark - Text Field Delegate
-
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-	return YES;
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-	if ([textField.text length] > 0) {
-	
-	[_txtName resignFirstResponder];
-	
-	_appDelegate.mcManager.peerID = nil;
-	_appDelegate.mcManager.session = nil;
-	_appDelegate.mcManager.browser = nil;
-	
-	//[_appDelegate.mcManager.advertiser stop];
-	//_appDelegate.mcManager.advertiser = nil;
-	
-	[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
-	[_appDelegate.mcManager setupMCBrowser];
-	[_appDelegate.mcManager advertiseSelf:YES];
-    _appDelegate.mcManager.advertiser.delegate = self;
-	
-	_browseLabel.hidden = NO;
-	_browseBtn.hidden = NO;
-	
-	} else [self performShakeAnimation:_txtName];
-	
-	return YES;
-}
-
-#pragma mark - MCBrowserView Delegate
-
--(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
-	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
-	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark - Action Methods
+
+/**
+ Go back to the first view 
+ */
+- (IBAction)goBack:(id)sender
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
 
 /**
  Method to browse for new devices
@@ -176,38 +137,6 @@
 
 	//_appDelegate.mcManager.browser.maximumNumberOfPeers = 1;
 	//[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
-}
-
-/**
- Delegate for finding devices
- **/
-- (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
-    NSLog(@"Found a nearby advertising peer %@", peerID);
-    
-    //Manda convite para conexao
-    [[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
-}
-
-/**
- Delegate fot accepting invitations
- **/
-- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser
-didReceiveInvitationFromPeer:(MCPeerID *)peerID
-       withContext:(NSData *)context
- invitationHandler:(void (^)(BOOL accept,
-                             MCSession *session))invitationHandler{
-    NSLog(@"Got invite from %@", peerID);
-    
-    //Aceita convite
-    if (![_txtName.text isEqualToString:@""]) invitationHandler(YES, _appDelegate.mcManager.session);
-}
-
-/**
- Delegate called when peer is lost
- **/
-- (void)browser:(MCNearbyServiceBrowser *)browser
-       lostPeer:(MCPeerID *)peerID{
-    NSLog(@"Lost device %@", peerID);
 }
 
 /**
@@ -299,7 +228,7 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (!peersExist)
 			{
-				_connectedDevice.text = [NSString stringWithFormat:@"Ok, você está conectado com %@", peerDisplayName];
+				_connectedDevice.text = [NSString stringWithFormat:@"Você está conectado com %@", peerDisplayName];
 				_connectedDevice .hidden = NO;
 				_nextBtn.hidden = NO;
 				[_browseBtn setEnabled:NO];
@@ -356,6 +285,8 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 	
 }
 
+#pragma mark - Auxiliary Methods
+
 /**
  Perform a shake animation at the textfield when it is empty
  */
@@ -372,6 +303,83 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 	[shake setToValue:[NSValue valueWithCGPoint: CGPointMake(object.center.x + 5, object.center.y)]];
 	
 	[object.layer addAnimation:shake forKey:@"position"];
+}
+
+#pragma mark - Delegates
+#pragma mark - Text Field Delegate
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+	return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	if ([textField.text length] > 0) {
+		
+		[_txtName resignFirstResponder];
+		
+		_appDelegate.mcManager.peerID = nil;
+		_appDelegate.mcManager.session = nil;
+		_appDelegate.mcManager.browser = nil;
+		
+		//[_appDelegate.mcManager.advertiser stop];
+		//_appDelegate.mcManager.advertiser = nil;
+		
+		[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
+		[_appDelegate.mcManager setupMCBrowser];
+		[_appDelegate.mcManager advertiseSelf:YES];
+		_appDelegate.mcManager.advertiser.delegate = self;
+		
+		_browseBtn.hidden = NO;
+		
+	} else [self performShakeAnimation:_txtName];
+	
+	return YES;
+}
+
+#pragma mark - NearbyServiceBrowser Delegate
+
+/**
+ Delegate for finding devices
+ **/
+- (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
+	NSLog(@"Found a nearby advertising peer %@", peerID);
+	
+	//Manda convite para conexao
+	[[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+}
+
+/**
+ Delegate fot accepting invitations
+ **/
+- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser
+didReceiveInvitationFromPeer:(MCPeerID *)peerID
+	   withContext:(NSData *)context
+ invitationHandler:(void (^)(BOOL accept,
+							 MCSession *session))invitationHandler{
+	NSLog(@"Got invite from %@", peerID);
+	
+	//Aceita convite
+	if (![_txtName.text isEqualToString:@""]) invitationHandler(YES, _appDelegate.mcManager.session);
+}
+
+/**
+ Delegate called when peer is lost
+ **/
+- (void)browser:(MCNearbyServiceBrowser *)browser
+	   lostPeer:(MCPeerID *)peerID{
+	NSLog(@"Lost device %@", peerID);
+}
+
+#pragma mark - MCBrowserView Delegate
+
+-(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
+	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
+	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

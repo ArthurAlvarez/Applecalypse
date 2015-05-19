@@ -297,7 +297,7 @@
 				UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
 																	  message:@"A conexão com seu amigo foi perdida"
 																	 delegate:self
-															cancelButtonTitle:@"Voltar para o início"
+															cancelButtonTitle:@"Ok"
 															otherButtonTitles: nil];
 				[disconected show];
 			} else {
@@ -406,22 +406,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	NSString *tittle = [alertView buttonTitleAtIndex:buttonIndex];
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-	NSError *error;
-	NSData *dataToSend;
 	
-	if ([tittle isEqualToString:@"Voltar para o início"]) {
+	if ([tittle isEqualToString:@"Ok"]) {
 		[[self navigationController] popToRootViewControllerAnimated:YES];
 		
-	} else if ([tittle isEqualToString:@"Terminar o jogo"]){
-		dataToSend = [@"@@@" dataUsingEncoding:NSUTF8StringEncoding];
-		
-		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:allPeers
-										withMode:MCSessionSendDataReliable
-										   error:&error];
-		
-		[[self navigationController] popToRootViewControllerAnimated:YES];
 	}
 	
 	

@@ -529,6 +529,7 @@
     }
 }
 
+#pragma mark - Delegates
 #pragma mark - PauseMenuView Delegate
 
 -(void)resumeGame

@@ -22,6 +22,7 @@
 		938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* FirstViewController.m */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* ConnectionsViewController.m */; };
+		939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939ADCB41B0E2FD900FDEA66 /* varground.ttf */; };
 		93BF041A1AD2C78100AFB30B /* questions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93BF04191AD2C78100AFB30B /* questions.txt */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
 		939249E31AC1A549008D5500 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
+		939ADCB41B0E2FD900FDEA66 /* varground.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = varground.ttf; sourceTree = "<group>"; };
 		93BF04191AD2C78100AFB30B /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questions.txt; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 		14C443321AC18C6300103C35 /* DoYouKnowMe */ = {
 			isa = PBXGroup;
 			children = (
+				939ADCB41B0E2FD900FDEA66 /* varground.ttf */,
 				938E68731ACC297F009B7AE7 /* resources */,
 				939ADCB31B0B511600FDEA66 /* Controllers */,
 				14C443371AC18C6300103C35 /* AppDelegate.h */,
@@ -208,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */,
 				93009F211ACD74250075610E /* Launch Screen.xib in Resources */,
 				14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */,
 				14C443411AC18C6300103C35 /* Images.xcassets in Resources */,

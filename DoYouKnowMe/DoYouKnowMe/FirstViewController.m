@@ -34,14 +34,11 @@
 /// Interface Button to disconect with the other device
 @property (weak, nonatomic) IBOutlet UIButton *disconectBtn;
 
-/// Interface Label to show the name from the device that you are connected with
-@property (weak, nonatomic) IBOutlet UILabel *connectedDevice;
-
-/// Interface  Button to go to the next View
-@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
-
 /// Interface Activity Indicator to show that the player is waiting the other
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingGoNext;
+
+/// Table view to display the connected devices
+@property (weak, nonatomic) IBOutlet UITableView *connectedDevices;
 
 #pragma mark - Other Properties
 /// AppDelegate object to creat an access to the Connectivity class trough the app delegate
@@ -82,14 +79,11 @@
 	// Hide buttons and labels
 	_browseBtn.hidden = YES;
 	_disconectBtn.hidden = YES;
-	_connectedDevice.hidden = YES;
-	_nextBtn.hidden = YES;
-	
-	_nextBtn.layer.cornerRadius = 5;
+
 	_browseBtn.layer.cornerRadius = 5;
 	
 	// Initiates the array of connected devices
-	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
+	_arrConnectedDevices = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,12 +102,9 @@
 	if ([allPeers count] == 0) {
 		[_arrConnectedDevices removeAllObjects];
 		
-		_connectedDevice.hidden = YES;
-		_nextBtn.hidden = YES;
 	} else [self performSegueWithIdentifier:@"goNext" sender:self];
 	
-	[_nextBtn setEnabled:YES];
-	
+	[self.connectedDevices reloadData];
 }
 
 #pragma mark - Action Methods
@@ -145,7 +136,6 @@
  **/
 - (IBAction)Disconect:(id)sender
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
 	[_appDelegate.mcManager.session disconnect];
@@ -155,7 +145,7 @@
 	});
 	
 	[_appDelegate.mcManager.session sendData:[@"!disconnect" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -168,6 +158,8 @@
 	[_waitingGoNext stopAnimating];
 	
 	canGoNext = 0;
+	
+	[self.connectedDevices reloadData];
 }
 
 /**
@@ -175,7 +167,6 @@
  **/
 - (IBAction)goNext:(id)sender
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
 	if (canGoNext == 0) {
@@ -186,10 +177,9 @@
 
 	
 	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
-										 toPeers:allPeers
+										 toPeers:@[self.appDelegate.connectedPeer]
 										withMode:MCSessionSendDataReliable
 										error:&error];
-	[_nextBtn setEnabled:NO];
 }
 
 #pragma mark - Selectors
@@ -207,11 +197,10 @@
 	{
 		if (state == MCSessionStateConnected)
 		{
-			if ([_arrConnectedDevices count] > 0)
-			{
-					[_arrConnectedDevices removeAllObjects];
-			}
-			[_arrConnectedDevices addObject:peerDisplayName];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[_arrConnectedDevices addObject:peerDisplayName];
+				[self.connectedDevices reloadData];
+			});
 		}
 		else if (state == MCSessionStateNotConnected)
 		{
@@ -219,6 +208,7 @@
 			{
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[_arrConnectedDevices removeAllObjects];
+					[self.connectedDevices reloadData];
 				});
 			}
 		}
@@ -229,9 +219,6 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (!peersExist)
 			{
-				_connectedDevice.text = [NSString stringWithFormat:@"Você está conectado com %@", peerDisplayName];
-				_connectedDevice .hidden = NO;
-				_nextBtn.hidden = NO;
 				[_browseBtn setEnabled:NO];
 				_disconectBtn.hidden = NO;
 				
@@ -239,8 +226,6 @@
 			}
 			else
 			{
-				_connectedDevice.hidden = YES;
-				_nextBtn.hidden = YES;
 				[_browseBtn setEnabled:YES];
 				_disconectBtn.hidden = YES;
 				[_waitingGoNext stopAnimating];
@@ -269,8 +254,6 @@
 			NSLog(@"RECEBEU DISCONNECT");
 			
 			canGoNext = 0;
-			_connectedDevice.hidden = YES;
-			[_nextBtn setHidden:YES];
 			[_waitingGoNext stopAnimating];
 			
 			_disconectBtn.hidden = YES;
@@ -382,5 +365,55 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 -(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
 	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	self.appDelegate.connectedPeer = [self.appDelegate.mcManager.session.connectedPeers objectAtIndex:indexPath.row];
+	
+	NSError *error;
+	
+	if (canGoNext == 0) {
+		canGoNext = 1;
+		
+		[_waitingGoNext startAnimating];
+	} else [self performSegueWithIdentifier:@"goNext" sender:self];
+	
+	
+	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
+									 toPeers:@[self.appDelegate.connectedPeer]
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+}
+
+
+#pragma mark - Datasources
+#pragma mark - TableView Datasource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.arrConnectedDevices count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *CellIdentifier = @"Cell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+	}
+	
+	cell.textLabel.text = [self.arrConnectedDevices objectAtIndex:indexPath.row];
+	
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
+	return cell;
+}
+
+
 
 @end

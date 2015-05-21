@@ -163,8 +163,7 @@
  @author Arthur Alvarez
  */
 -(void)gameSetup{
-    MCPeerID *id;
-
+	
     //Timer setup
     self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
 													   target:self
@@ -178,9 +177,8 @@
         [self questionTextFromIndex:[self getQuestion]];
     }
     else{
-        if(_appDelegate.mcManager.session.connectedPeers.count > 0){
-            id = _appDelegate.mcManager.session.connectedPeers[0];
-            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", id.displayName];
+        if(self.appDelegate.connectedPeer != nil){
+            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", self.appDelegate.connectedPeer.displayName];
         }
     }
 	
@@ -207,7 +205,6 @@
  */
 -(NSNumber *)getQuestion{
     NSNumber *numQuestions, *selectedQuestion;
-    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
     NSData *dataToSend;
     bool decided = NO, repeated = NO;
@@ -241,7 +238,7 @@
     NSLog(@"Sending question: %@", dataToSend);
     
     [_appDelegate.mcManager.session sendData:dataToSend
-                                     toPeers:allPeers
+                                     toPeers:@[self.appDelegate.connectedPeer]
                                     withMode:MCSessionSendDataReliable
                                        error:&error];
     
@@ -267,12 +264,11 @@
  */
 -(void)sendAnswer:(NSString*)strAnswer
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -393,13 +389,12 @@
 
 -(void)syncroGame {
 	NSData *dataToSend = [[NSString stringWithFormat:@"@start"] dataUsingEncoding:NSUTF8StringEncoding];
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
 	if([GameSettings getOtherDidLoad] == YES && gameDidStart == NO){
 		
 		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:allPeers
+										 toPeers:@[self.appDelegate.connectedPeer]
 										withMode:MCSessionSendDataReliable
 										   error:&error];
 		
@@ -414,7 +409,7 @@
 		NSLog(@"Sending ready_to_start: %@", dataToSend);
 		
 		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:allPeers
+										 toPeers:@[self.appDelegate.connectedPeer]
 										withMode:MCSessionSendDataReliable
 										   error:&error];
 		if (error) {
@@ -490,12 +485,11 @@
 	
     [self.pauseMenu show];
     
-    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
     NSError *error;
     NSData *dataToSend = [@"||" dataUsingEncoding:NSUTF8StringEncoding];
     
     [_appDelegate.mcManager.session sendData:dataToSend
-                                     toPeers:allPeers
+                                     toPeers:@[self.appDelegate.connectedPeer ]
                                     withMode:MCSessionSendDataReliable
                                        error:&error];
     
@@ -522,12 +516,11 @@
     VerifyAnswerViewController *vc = segue.destinationViewController;
     ResultsViewController *vc2 = segue.destinationViewController;
 	
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend = [@"@notwaiting" dataUsingEncoding:NSUTF8StringEncoding];
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -555,7 +548,6 @@
 
 -(void)resumeGame
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend;
 	
@@ -573,7 +565,7 @@
 		}
 		
 		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:allPeers
+										 toPeers:@[self.appDelegate.connectedPeer]
 										withMode:MCSessionSendDataReliable
 										   error:&error];
 	[self.pauseMenu hide];
@@ -581,14 +573,13 @@
 
 -(void)endGame
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend;
 	
 	dataToSend = [@"<" dataUsingEncoding:NSUTF8StringEncoding];
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	

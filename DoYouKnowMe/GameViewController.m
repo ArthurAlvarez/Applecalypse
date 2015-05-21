@@ -18,9 +18,10 @@
 {
     int shouldContinue;
     int currentAnswers;
-    bool didAnswer;
-    bool gameDidEnd;
-    bool gameDidStart;
+    BOOL didAnswer;
+    BOOL gameDidEnd;
+    BOOL gameDidStart;
+	BOOL otherWaiting;
 }
 
 # pragma mark - Interface Properties
@@ -52,33 +53,32 @@
 /// Interface Label to show the raound that the game is
 @property (weak, nonatomic) IBOutlet UILabel *showRound;
 
-/// Button to force the segue when the user is stucked at the screen
-@property (weak, nonatomic) IBOutlet UIButton *forceSegueButton;
-
 /// View that appear when the game is paused
 @property (weak, nonatomic) IBOutlet PauseMenuView *pauseMenu;
 
 #pragma mark - Controller Properties
-///Number that represents the score of the current player
+/// Number that represents the score of the current player
 @property (strong, nonatomic) NSNumber *playerScore;
 
-///Delegate for comunications
+/// Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
-///String containing the answer of the other user
+/// String containing the answer of the other user
 @property (strong, nonatomic) NSString *otherAnswer;
 
-///Timer used for clock
+/// Timer used for clock
 @property (strong, nonatomic) NSTimer *clockTimer;
 
-///Timer used for syncronizing
+/// Timer used for syncronizing
 @property (strong, nonatomic) NSTimer *syncTimer;
 
-///How much time the user still has
+/// How much time the user still has
 @property (strong, nonatomic) NSNumber *timeLeft;
 
+/// Dictionary to keep the questions from the Json file
 @property NSDictionary *questionsJson;
 
+/// Array to know which questions already were made
 @property NSMutableArray *repeatedQuestions;
 
 @end
@@ -88,6 +88,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
     //Setup notification for receiving packets
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveDataWithNotification:)
@@ -118,28 +119,36 @@
     
     //Initializing properties
     gameDidStart = NO;
+	
     [self readJsonFile];
+	
     self.playerScore = [NSNumber numberWithInt:0];
+	
     shouldContinue = currentAnswers = 0;
     didAnswer = NO;
+	
     self.submitButton.enabled = YES;
+	
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	
     self.timeLeft = [NSNumber numberWithInt:[GameSettings getTime]];
     self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
+	
     [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
+	
     self.answerTextField.text = @"";
     self.questionLabel.text = @"Carregando pergunta...";
-    
-    //while([GameSettings getOtherDidLoad ] == NO);
-    self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
-                                                   target:self
-                                                 selector:@selector(syncroGame)
-                                                 userInfo:nil
-                                                  repeats:YES];
+	
+	self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
+													  target:self
+													selector:@selector(syncroGame)
+													userInfo:nil
+													 repeats:YES];
 	
 	[_answerTextField setEnabled:YES];
 	[self.pauseMenu hide];
-	self.forceSegueButton.hidden = YES;
+	
+	otherWaiting = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,10 +166,14 @@
     MCPeerID *id;
 
     //Timer setup
-    self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateTimerLabel) userInfo:nil repeats:YES];
+    self.clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
+													   target:self
+													 selector:@selector(updateTimerLabel)
+													 userInfo:nil
+													  repeats:YES];
     
     //Setup Player Label
-    if([Player getPlayerID] == 1){
+    if([Player getPlayerID] == 1) {
         self.playerLabel.text = @"Pergunta sobre você";
         [self questionTextFromIndex:[self getQuestion]];
     }
@@ -172,39 +185,6 @@
     }
 	
 	_showRound.text = [NSString stringWithFormat:@"%d/%d", [GameSettings getCurrentRound], [GameSettings getGameLength]];
-}
-
--(void)syncroGame{
-    NSData *dataToSend = [[NSString stringWithFormat:@"@start"] dataUsingEncoding:NSUTF8StringEncoding];
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-    NSError *error;
-    
-    if([GameSettings getOtherDidLoad] == YES && gameDidStart == NO){
-		
-		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:allPeers
-										withMode:MCSessionSendDataReliable
-										   error:&error];
-		
-        [self.syncTimer invalidate];
-        self.syncTimer = nil;
-        gameDidStart = YES;
-        [self gameSetup];
-		NSLog(@"Recebeu a info");
-    }
-    else{
-        /* Syncronizing Players */
-        
-        NSLog(@"Sending ready_to_start: %@", dataToSend);
-        
-        [_appDelegate.mcManager.session sendData:dataToSend
-                                         toPeers:allPeers
-                                        withMode:MCSessionSendDataReliable
-                                           error:&error];
-        if (error) {
-            NSLog(@"%@", [error localizedDescription]);
-        }
-    }
 }
 
 /**
@@ -282,6 +262,26 @@
 }
 
 /**
+ Sends the string containing the answer to the other player
+ @author Arthur Alvarez
+ */
+-(void)sendAnswer:(NSString*)strAnswer
+{
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
+	
+	[_appDelegate.mcManager.session sendData:dataToSend
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (error) {
+		NSLog(@"%@", [error localizedDescription]);
+	}
+}
+
+/**
  Perform a shake animation at the textfield when it is empty
  */
 - (void) performShakeAnimation:(UIView *)object {
@@ -324,24 +324,25 @@
         
         if([receivedInfo isEqualToString:@"@start"]){
             [GameSettings setOtherDidLoad:YES];
-        }
-        
-        else if([receivedInfo hasPrefix:@"$"]){
-            
+		} else if ([receivedInfo isEqualToString:@"@notwaiting"]) {
+			otherWaiting = NO;
+		} else if([receivedInfo hasPrefix:@"$"]) {
+			
             self.otherAnswer = receivedInfo;
             
-            if(currentAnswers == 0)
-                currentAnswers = 1;
-            else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-        }
-        
-        else if([receivedInfo hasPrefix:@"*&*"]){
+			if(currentAnswers == 0) {
+				otherWaiting = NO;
+				currentAnswers = 1;
+			} else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+			
+        } else if([receivedInfo hasPrefix:@"*&*"]){
+			
+			
             NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
             NSString *formatted = [receivedInfo stringByReplacingOccurrencesOfString:@"*&*" withString:@""];
             [self questionTextFromIndex:[f numberFromString:formatted]];
-        }
-        
-        else if ([receivedInfo isEqualToString:@">"]){
+			
+        } else if ([receivedInfo isEqualToString:@">"]){
             if (shouldContinue == 0) shouldContinue = 1;
             else {
                 [_waitingPause stopAnimating];
@@ -369,7 +370,7 @@
 }
 
 /**
- this method is called when the state of the connection is changed
+ This method is called when the state of the connection is changed
  **/
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
@@ -388,6 +389,38 @@
         }
         
     }
+}
+
+-(void)syncroGame {
+	NSData *dataToSend = [[NSString stringWithFormat:@"@start"] dataUsingEncoding:NSUTF8StringEncoding];
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	
+	if([GameSettings getOtherDidLoad] == YES && gameDidStart == NO){
+		
+		[_appDelegate.mcManager.session sendData:dataToSend
+										 toPeers:allPeers
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+		
+		[self.syncTimer invalidate];
+		self.syncTimer = nil;
+		gameDidStart = YES;
+		[self gameSetup];
+		NSLog(@"Recebeu a info");
+	} else {
+		/* Syncronizing Players */
+		
+		NSLog(@"Sending ready_to_start: %@", dataToSend);
+		
+		[_appDelegate.mcManager.session sendData:dataToSend
+										 toPeers:allPeers
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+		if (error) {
+			NSLog(@"%@", [error localizedDescription]);
+		}
+	}
 }
 
 /**
@@ -435,8 +468,6 @@
     
     if(self.answerTextField.text.length > 0){
 		
-		self.forceSegueButton.hidden = NO;
-        
         [self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
         
         if (currentAnswers == 0) {
@@ -444,8 +475,9 @@
 			self.submitButton.enabled = NO;
 			didAnswer = YES;
 			[_waitingAnswer startAnimating];
-        } else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-        
+		} else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+
+			
 	} else [self performShakeAnimation:_answerTextField];
 }
 
@@ -479,42 +511,31 @@
 }
 
 /**
- Sends the string containing the answer to the other player
- @author Arthur Alvarez
- */
--(void)sendAnswer:(NSString*)strAnswer
-{
-    NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-    NSError *error;
-    NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
-    
-    [_appDelegate.mcManager.session sendData:dataToSend
-                                     toPeers:allPeers
-                                    withMode:MCSessionSendDataReliable
-                                       error:&error];
-    
-    if (error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
-}
-
-- (IBAction)forceSegue:(id)sender
-{
-	[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-}
-
-/**
  This method is called upon transition to the next view
  @author Arthur Alvarez
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+	
     //Stops timer
     [_clockTimer invalidate];
     
     VerifyAnswerViewController *vc = segue.destinationViewController;
     ResultsViewController *vc2 = segue.destinationViewController;
-    
+	
+	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
+	NSError *error;
+	NSData *dataToSend = [@"@notwaiting" dataUsingEncoding:NSUTF8StringEncoding];
+	
+	[_appDelegate.mcManager.session sendData:dataToSend
+									 toPeers:allPeers
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	
+	if (otherWaiting) {
+		[self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
+	}
+	
     //Go to VerifyAnswerView
     if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
         

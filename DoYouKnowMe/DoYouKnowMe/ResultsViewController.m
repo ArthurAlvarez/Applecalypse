@@ -26,6 +26,8 @@
 ///Interface button
 @property (weak, nonatomic) IBOutlet UIButton *btnBack2;
 
+@property (weak, nonatomic) IBOutlet UIProgressView *rate;
+
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
@@ -55,15 +57,24 @@
 	knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
     NSLog(@"knowing percent: %f", knowingPercent);
 	
-	if (knowingPercent < 0.2f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMuito pouco...", (int)(knowingPercent * 100)];
-	else if (knowingPercent < 0.4f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nPouco...", (int)(knowingPercent * 100)];
-	else if (knowingPercent < 0.6f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMais ou menos", (int)(knowingPercent * 100)];
-	else if (knowingPercent < 0.8f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nBem!!", (int)(knowingPercent * 100)];
-	else _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMuito bem!!\nVocês são grandes amigos!!", (int)(knowingPercent * 100)];
+	if (knowingPercent <= 0.2f) _percentLabel.text = [NSString stringWithFormat:@"Muito pouco...\nTente novamente!"];
+	else if (knowingPercent <= 0.4f) _percentLabel.text = [NSString stringWithFormat:@"Pouco...\nDá para melhorar isso, hein?"];
+	else if (knowingPercent <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Mais ou menos\nQuase lá!"];
+	else if (knowingPercent <= 0.8f) _percentLabel.text = [NSString stringWithFormat:@"Bem!"];
+	else _percentLabel.text = [NSString stringWithFormat:@"Muito bem!!\nVocês são grandes amigos!!"];
 	
 	_btnBack1.layer.cornerRadius = 5;
 	_btnBack2.layer.cornerRadius = 5;
 	
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	float knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
+	
+	[self.rate setProgress:knowingPercent animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,12 +82,11 @@
 }
 
 - (IBAction)playWithSame:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
+	[self.navigationController popToRootViewControllerAnimated:NO];
+	[self.delegate playWithSame];
 }
 
 - (IBAction)playWithOther:(id)sender {
-	[_appDelegate.mcManager.session disconnect];
-	
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 

@@ -55,6 +55,7 @@
 	
 	// Set the Visual Effect
 	self.visualEffect = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+	self.visualEffect.alpha = 0.75f;
 	[self addSubview:self.visualEffect];
 	
 	// Set the View
@@ -132,11 +133,21 @@
 															 options: 0
 															 metrics:nil
 															   views:views];
-	NSArray *vPosY = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[v]-200-|"
-															 options: 0
-															 metrics:nil
-															   views:views];
-	[self addConstraints:vPosX]; [self addConstraints:vPosY];
+	NSLayoutConstraint *vPosY = [NSLayoutConstraint constraintWithItem:self.view
+												  attribute:NSLayoutAttributeCenterY
+												  relatedBy:NSLayoutRelationEqual
+													 toItem:self
+												  attribute:NSLayoutAttributeCenterY
+												 multiplier:1
+												   constant:0];
+	NSLayoutConstraint *vHnW = [NSLayoutConstraint constraintWithItem:self.view
+															attribute:NSLayoutAttributeHeight
+															relatedBy:NSLayoutRelationEqual
+															   toItem:self.view
+															attribute:NSLayoutAttributeWidth
+														   multiplier:1
+															 constant:0];
+	[self addConstraints:vPosX]; [self addConstraint:vPosY]; [self addConstraint:vHnW];
 	
 	// Pause Label constraints
 	NSArray *plPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pl]|"

@@ -22,6 +22,7 @@
     BOOL gameDidEnd;
     BOOL gameDidStart;
 	BOOL otherWaiting;
+	BOOL alreadyPerformedSegue;
 }
 
 # pragma mark - Interface Properties
@@ -55,6 +56,12 @@
 
 /// View that appear when the game is paused
 @property (weak, nonatomic) IBOutlet PauseMenuView *pauseMenu;
+
+/// ImageView to show a baloon with the question
+@property (weak, nonatomic) IBOutlet UIImageView *question;
+
+/// ImageView to display a baloon to the answer
+@property (weak, nonatomic) IBOutlet UIImageView *answer;
 
 #pragma mark - Controller Properties
 /// Number that represents the score of the current player
@@ -108,6 +115,9 @@
     gameDidEnd = NO;
 	
 	self.repeatedQuestions = [[NSMutableArray alloc]init];
+	
+	UITapGestureRecognizer *touchToAnswer = [[UITapGestureRecognizer alloc] initWithTarget:self.answer action:@selector(startAnswering:)];
+	[self.answer addGestureRecognizer:touchToAnswer];
 }
 
 /**
@@ -149,6 +159,7 @@
 	[self.pauseMenu hide];
 	
 	otherWaiting = YES;
+	alreadyPerformedSegue = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -329,7 +340,7 @@
 			if(currentAnswers == 0) {
 				otherWaiting = NO;
 				currentAnswers = 1;
-			} else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+			} else if (!alreadyPerformedSegue) [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
 			
         } else if([receivedInfo hasPrefix:@"*&*"]){
 			
@@ -445,6 +456,11 @@
 	}
 }
 
+-(void) startAnswering:(UITapGestureRecognizer *) sender
+{
+	[self.answerTextField becomeFirstResponder];
+}
+
 #pragma mark - Action Methods
 
 /**
@@ -524,6 +540,7 @@
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
+	alreadyPerformedSegue = YES;
 	
 	if (otherWaiting) {
 		[self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];

@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "GameViewController.h"
 
+
+@protocol ResultViewDelegate <NSObject>
+
+-(void)playWithSame;
+
+@end
+
 @interface ResultsViewController : UIViewController
+
 @property (strong, nonatomic) GameViewController *gameView;
+@property (weak, nonatomic) id<ResultViewDelegate> delegate;
+
 @end

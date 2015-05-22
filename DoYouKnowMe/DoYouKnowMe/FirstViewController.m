@@ -79,6 +79,7 @@
 	// Hide buttons and labels
 	_browseBtn.hidden = YES;
 	_disconectBtn.hidden = YES;
+	_connectedDevices.hidden = YES;
 
 	_browseBtn.layer.cornerRadius = 5;
 	
@@ -101,9 +102,11 @@
 	
 	if ([allPeers count] == 0) {
 		[_arrConnectedDevices removeAllObjects];
-		
-	} else [self performSegueWithIdentifier:@"goNext" sender:self];
+		self.connectedDevices.hidden = true;
+	}
 	
+	self.connectedDevices.allowsSelection = YES;
+
 	[self.connectedDevices reloadData];
 }
 
@@ -126,9 +129,6 @@
 	[[[_appDelegate mcManager] browser] setDelegate:self];
 
     [[[_appDelegate mcManager] browser] startBrowsingForPeers];
-
-	//_appDelegate.mcManager.browser.maximumNumberOfPeers = 1;
-	//[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
 }
 
 /**
@@ -162,26 +162,6 @@
 	[self.connectedDevices reloadData];
 }
 
-/**
- Method to go to the next View
- **/
-- (IBAction)goNext:(id)sender
-{
-	NSError *error;
-	
-	if (canGoNext == 0) {
-		canGoNext = 1;
-		
-		[_waitingGoNext startAnimating];
-	} else [self performSegueWithIdentifier:@"goNext" sender:self];
-
-	
-	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
-										 toPeers:@[self.appDelegate.connectedPeer]
-										withMode:MCSessionSendDataReliable
-										error:&error];
-}
-
 #pragma mark - Selectors
 
 /**
@@ -207,7 +187,7 @@
 			if ([_arrConnectedDevices count] > 0)
 			{
 				dispatch_async(dispatch_get_main_queue(), ^{
-					[_arrConnectedDevices removeAllObjects];
+					[_arrConnectedDevices removeObject:peerDisplayName];
 					[self.connectedDevices reloadData];
 				});
 			}
@@ -221,6 +201,7 @@
 			{
 				[_browseBtn setEnabled:NO];
 				_disconectBtn.hidden = NO;
+				_connectedDevices.hidden = NO;
 				
 				NSLog(@"PEER EXIST! and is named %@", peerDisplayName);
 			}
@@ -229,6 +210,7 @@
 				[_browseBtn setEnabled:YES];
 				_disconectBtn.hidden = YES;
 				[_waitingGoNext stopAnimating];
+				_connectedDevices.hidden = YES;
 				
 				NSLog(@"PEER DONT EXIST");
 			}
@@ -356,14 +338,13 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 	NSLog(@"Lost device %@", peerID);
 }
 
-#pragma mark - MCBrowserView Delegate
+#pragma mark - ResultView Delegate
 
--(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
-	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
-	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
+-(void)playWithSame
+{
+	if ([self.appDelegate.mcManager.session.connectedPeers containsObject:self.appDelegate.connectedPeer]) {
+		[self performSegueWithIdentifier:@"goNext" sender:self];
+	}
 }
 
 #pragma mark - TableView Delegate
@@ -382,6 +363,7 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 		[_waitingGoNext startAnimating];
 	} else [self performSegueWithIdentifier:@"goNext" sender:self];
 	
+	self.connectedDevices.allowsSelection = NO;
 	
 	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:@[self.appDelegate.connectedPeer]
@@ -407,6 +389,10 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}
 	
+	cell.backgroundColor = tableView.backgroundColor;
+	
+	cell.textLabel.font = self.helloLabel.font;
+	cell.textLabel.textColor = self.helloLabel.textColor;
 	cell.textLabel.text = [self.arrConnectedDevices objectAtIndex:indexPath.row];
 	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

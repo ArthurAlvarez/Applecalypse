@@ -611,20 +611,23 @@
                                     <action selector="pauseGame:" destination="EzG-sG-hhN" eventType="touchUpInside" id="ygV-IL-mVj"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QuestionSelf" translatesAutoresizingMaskIntoConstraints="NO" id="sSV-FU-E0D">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OtherAnswer" translatesAutoresizingMaskIntoConstraints="NO" id="sSV-FU-E0D">
                                 <rect key="frame" x="16" y="140" width="568" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sSV-FU-E0D" secondAttribute="height" multiplier="568:125" id="mI3-QB-9rb"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyAnswer" translatesAutoresizingMaskIntoConstraints="NO" id="FGc-Ld-G88">
                                 <rect key="frame" x="16" y="274" width="568" height="125"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carregando pergunta..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wgz-EY-fsS">
-                                <rect key="frame" x="23" y="135" width="538" height="125"/>
+                                <rect key="frame" x="44" y="135" width="517" height="125"/>
                                 <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="ArialHebrew" family="Arial Hebrew" pointSize="30"/>
                                 <color key="highlightedColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rodada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rodada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
                                 <rect key="frame" x="508" y="19" width="59" height="31"/>
                                 <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="13"/>
                                 <color key="textColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -688,22 +691,22 @@
                             <constraint firstItem="wgz-EY-fsS" firstAttribute="top" secondItem="WgR-Jd-Ter" secondAttribute="bottom" constant="10" id="CpE-Ny-kiG"/>
                             <constraint firstItem="kdy-20-3FX" firstAttribute="leading" secondItem="Vxi-TD-l34" secondAttribute="leadingMargin" constant="-16" id="DHn-uf-4Hd"/>
                             <constraint firstAttribute="centerX" secondItem="Bs4-Gz-WI9" secondAttribute="centerX" constant="-0.5" id="Fxx-Sa-Ixi"/>
-                            <constraint firstItem="wgz-EY-fsS" firstAttribute="width" secondItem="FGc-Ld-G88" secondAttribute="width" constant="-30" id="JyK-PX-8lR"/>
+                            <constraint firstItem="wgz-EY-fsS" firstAttribute="width" secondItem="FGc-Ld-G88" secondAttribute="width" constant="-51" id="JyK-PX-8lR"/>
                             <constraint firstAttribute="centerY" secondItem="sSV-FU-E0D" secondAttribute="centerY" constant="98" id="LPW-LD-6Mg"/>
                             <constraint firstItem="FGc-Ld-G88" firstAttribute="top" secondItem="wgz-EY-fsS" secondAttribute="bottom" constant="14" id="N2L-hl-VGg"/>
                             <constraint firstItem="Uc6-3l-QPX" firstAttribute="top" secondItem="FGc-Ld-G88" secondAttribute="bottom" constant="8" id="NjW-34-Ja8"/>
                             <constraint firstItem="TDV-1E-jzr" firstAttribute="centerY" secondItem="FGc-Ld-G88" secondAttribute="centerY" id="OAg-BD-xAf"/>
                             <constraint firstItem="Bs4-Gz-WI9" firstAttribute="bottom" secondItem="OyF-Od-voM" secondAttribute="bottom" id="RWw-rl-6TD"/>
                             <constraint firstItem="sSV-FU-E0D" firstAttribute="height" secondItem="wgz-EY-fsS" secondAttribute="height" id="Rdv-q1-jfC"/>
-                            <constraint firstItem="wgz-EY-fsS" firstAttribute="leading" secondItem="Vxi-TD-l34" secondAttribute="leadingMargin" constant="7" id="RrB-Nw-pUR"/>
+                            <constraint firstItem="wgz-EY-fsS" firstAttribute="leading" secondItem="Vxi-TD-l34" secondAttribute="leadingMargin" constant="28" id="RrB-Nw-pUR"/>
                             <constraint firstItem="FGc-Ld-G88" firstAttribute="trailing" secondItem="TDV-1E-jzr" secondAttribute="trailing" constant="25" id="SRZ-Rd-aML"/>
                             <constraint firstItem="sSV-FU-E0D" firstAttribute="centerY" secondItem="wgz-EY-fsS" secondAttribute="centerY" constant="5" id="TCd-Yo-S35"/>
                             <constraint firstItem="sSV-FU-E0D" firstAttribute="trailing" secondItem="Vxi-TD-l34" secondAttribute="trailingMargin" id="TYC-g8-hPk"/>
                             <constraint firstItem="9to-qa-g0y" firstAttribute="centerX" secondItem="dYt-a8-SDf" secondAttribute="centerX" id="Ul3-jz-jN1"/>
                             <constraint firstItem="sSV-FU-E0D" firstAttribute="leading" secondItem="Vxi-TD-l34" secondAttribute="leadingMargin" id="XKg-Px-vOq"/>
                             <constraint firstItem="WgR-Jd-Ter" firstAttribute="top" secondItem="F3N-x9-1e9" secondAttribute="bottom" constant="8" symbolic="YES" id="cFh-CP-1pH"/>
-                            <constraint firstItem="sSV-FU-E0D" firstAttribute="width" secondItem="wgz-EY-fsS" secondAttribute="width" constant="30" id="cc8-YE-h3W"/>
-                            <constraint firstItem="sSV-FU-E0D" firstAttribute="centerX" secondItem="wgz-EY-fsS" secondAttribute="centerX" constant="8" id="dAD-Ls-FqT"/>
+                            <constraint firstItem="sSV-FU-E0D" firstAttribute="width" secondItem="wgz-EY-fsS" secondAttribute="width" constant="51" id="cc8-YE-h3W"/>
+                            <constraint firstItem="sSV-FU-E0D" firstAttribute="centerX" secondItem="wgz-EY-fsS" secondAttribute="centerX" constant="-2.5" id="dAD-Ls-FqT"/>
                             <constraint firstItem="OyF-Od-voM" firstAttribute="top" secondItem="iiT-yc-PXi" secondAttribute="bottom" id="dRJ-2E-0vd"/>
                             <constraint firstItem="F3N-x9-1e9" firstAttribute="trailing" secondItem="Bs4-Gz-WI9" secondAttribute="trailing" id="eWc-Ze-adX"/>
                             <constraint firstItem="OyF-Od-voM" firstAttribute="top" secondItem="iiT-yc-PXi" secondAttribute="bottom" id="eg3-e6-M6L"/>
@@ -1036,7 +1039,6 @@
         <image name="Layer 7" width="513" height="134"/>
         <image name="MyAnswer" width="522" height="142"/>
         <image name="OtherAnswer" width="522" height="142"/>
-        <image name="QuestionSelf" width="523" height="144"/>
         <image name="logo_big" width="261" height="344"/>
         <image name="right" width="299" height="244"/>
         <image name="wrong" width="299" height="244"/>

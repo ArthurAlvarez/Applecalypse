@@ -60,8 +60,7 @@
 -(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
 	NSDictionary *dict = @{@"data": data,
-						   @"peerID": peerID
-						   };
+						   @"peerID": peerID};
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidReceiveDataNotification"
 														object:nil

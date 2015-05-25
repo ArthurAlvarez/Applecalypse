@@ -174,6 +174,24 @@
 	
 	if (state != MCSessionStateConnecting)
 	{
+		if (state == MCSessionStateConnected)
+		{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[_arrConnectedDevices addObject:peerDisplayName];
+				[self.connectedDevices reloadData];
+			});
+		}
+		else if (state == MCSessionStateNotConnected)
+		{
+			if ([_arrConnectedDevices count] > 0)
+			{
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[_arrConnectedDevices removeObject:peerDisplayName];
+					[self.connectedDevices reloadData];
+				});
+			}
+		}
+		
 		BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
 		[_txtName setEnabled:peersExist];
 		
@@ -291,8 +309,8 @@
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
 	NSLog(@"Found a nearby advertising peer %@", peerID);
 	
-	[self.arrConnectedDevices addObject:peerID];
-	[self.connectedDevices reloadData];
+	//Manda convite para conexao
+	[[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
 }
 
 /**
@@ -321,32 +339,34 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	
-	MCPeerID *peerID = self.arrConnectedDevices[indexPath.row];
-	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	[[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+	self.appDelegate.connectedPeer = nil;
 	
-	if ([self.appDelegate.mcManager.session.connectedPeers count] > 0) {
-	
-	self.appDelegate.connectedPeer = self.appDelegate.mcManager.session.connectedPeers[0];
-	
-		NSError *error;
-		
-		if (canGoNext == 0) {
-			canGoNext = 1;
-			
-			[_waitingGoNext startAnimating];
-		} else [self performSegueWithIdentifier:@"goNext" sender:self];
-		
-		self.connectedDevices.allowsSelection = NO;
-		
-		[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
-										 toPeers:@[self.appDelegate.connectedPeer]
-										withMode:MCSessionSendDataReliable
-										   error:&error];
+	for (MCPeerID *peer in self.appDelegate.mcManager.session.connectedPeers) {
+		if (peer.displayName == [tableView cellForRowAtIndexPath:indexPath].textLabel.text) {
+			self.appDelegate.connectedPeer = [self.appDelegate.mcManager.session.connectedPeers objectAtIndex:indexPath.row];
+		}
 	}
+	
+	if (self.appDelegate.connectedPeer == nil) return;
+	
+	NSLog(@"%@ %@", [tableView cellForRowAtIndexPath:indexPath].textLabel.text, self.appDelegate.mcManager.session.connectedPeers[indexPath.row]);
+	
+	NSError *error;
+	
+	if (canGoNext == 0) {
+		canGoNext = 1;
+		
+		[_waitingGoNext startAnimating];
+	} else [self performSegueWithIdentifier:@"goNext" sender:self];
+	
+	self.connectedDevices.allowsSelection = NO;
+	
+	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
+									 toPeers:@[self.appDelegate.connectedPeer]
+									withMode:MCSessionSendDataReliable
+									   error:&error];
 }
 
 
@@ -355,14 +375,11 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if ([self.arrConnectedDevices count] > 0) tableView.hidden = NO;
-	else tableView.hidden = YES;
-	
 	return [self.arrConnectedDevices count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{	
+{
 	static NSString *CellIdentifier = @"Cell";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -374,7 +391,7 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 	
 	cell.textLabel.font = self.helloLabel.font;
 	cell.textLabel.textColor = self.helloLabel.textColor;
-	cell.textLabel.text = ((MCPeerID*)[self.arrConnectedDevices objectAtIndex:indexPath.row]).displayName;
+	cell.textLabel.text = [self.arrConnectedDevices objectAtIndex:indexPath.row];
 	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	

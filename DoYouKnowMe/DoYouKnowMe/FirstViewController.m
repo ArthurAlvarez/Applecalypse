@@ -359,6 +359,8 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 		canGoNext = 1;
 		
 		[_waitingGoNext startAnimating];
+        [self.appDelegate.mcManager.browser stopBrowsingForPeers];
+        [self.appDelegate.mcManager.advertiser stopAdvertisingPeer];
 	} else [self performSegueWithIdentifier:@"goNext" sender:self];
 	
 	self.connectedDevices.allowsSelection = NO;

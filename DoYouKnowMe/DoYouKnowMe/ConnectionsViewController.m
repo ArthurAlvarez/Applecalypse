@@ -59,9 +59,7 @@
 	
 	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	
-	MCPeerID *peer = _appDelegate.mcManager.session.connectedPeers[0];
-	
-	[_questionTo setTitle:[NSString stringWithFormat:@"%@", peer.displayName]
+	[_questionTo setTitle:[NSString stringWithFormat:@"%@", self.appDelegate.connectedPeer.displayName]
 		forSegmentAtIndex:1];
 	
 	[_waitingIndicator stopAnimating];
@@ -101,6 +99,38 @@
 	[GameSettings setRound:0];
 	
 	didTouchInDisconnect = NO;
+	
+	int indexNOQ = (int)_numberOfQuestions.selectedSegmentIndex;
+	
+	switch (indexNOQ) {
+		case 0:
+			[GameSettings setGameLenght:5];
+			break;
+		case 1:
+			[GameSettings setGameLenght:10];
+			break;
+		case 2:
+			[GameSettings setGameLenght:15];
+			break;
+		default:
+			break;
+	}
+	int indexTTA = (int)_timeToAnswer.selectedSegmentIndex;
+	
+	switch (indexTTA) {
+		case 0:
+			[GameSettings setTime:20];
+			break;
+		case 1:
+			[GameSettings setTime:30];
+			break;
+		case 2:
+			[GameSettings setTime:40];
+			break;
+		default:
+			break;
+	}
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,7 +145,6 @@
  **/
 - (IBAction)questionsTo:(id)sender
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend;
 	
@@ -133,7 +162,7 @@
 	NSLog(@"ID %d", [Player getPlayerID]);
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -149,7 +178,6 @@
  **/
 - (IBAction)numberOfQuestons:(id)sender
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend = [[NSString stringWithFormat:@"()%ld", (long)_numberOfQuestions.selectedSegmentIndex]
 						  dataUsingEncoding:NSUTF8StringEncoding];
@@ -170,7 +198,7 @@
 	}
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -185,7 +213,6 @@
  */
 - (IBAction)timeToAnswer:(id)sender
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend = [[NSString stringWithFormat:@"....%ld", (long)_timeToAnswer.selectedSegmentIndex]
 						  dataUsingEncoding:NSUTF8StringEncoding];
@@ -206,7 +233,7 @@
 	}
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -220,7 +247,6 @@
  **/
 - (IBAction)disconnect:(id)sender
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
 	[_appDelegate.mcManager.session disconnect];
@@ -231,7 +257,7 @@
 	});
 	
 	[_appDelegate.mcManager.session sendData:[@"!disconnect" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -250,7 +276,6 @@
  **/
 - (IBAction)startGame:(id)sender {
 	
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
 	[_startBtn setEnabled:NO];
@@ -264,18 +289,17 @@
 	
 
 	[_appDelegate.mcManager.session sendData:[@"!start" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 }
 
 - (IBAction)goBack:(id)sender
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
 	[_appDelegate.mcManager.session sendData:[@"!goBack" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -290,7 +314,7 @@
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
+			BOOL peersExist = ([_appDelegate.mcManager.session.connectedPeers count] == 0);
 			[_btnDisconnect setEnabled:!peersExist];
 			[_startBtn setEnabled:!peersExist];
 			

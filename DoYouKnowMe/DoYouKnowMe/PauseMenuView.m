@@ -55,6 +55,7 @@
 	
 	// Set the Visual Effect
 	self.visualEffect = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+	self.visualEffect.alpha = 0.75f;
 	[self addSubview:self.visualEffect];
 	
 	// Set the View
@@ -70,7 +71,7 @@
 	self.pauseLabel.textAlignment = NSTextAlignmentCenter;
 	self.pauseLabel.text = [NSString stringWithFormat:@"Jogo pausado\n\nO que deseja fazer?"];
 	self.pauseLabel.numberOfLines = 0;
-	self.pauseLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:20.0];
+	self.pauseLabel.font = [UIFont fontWithName:@"VAGRoundedBT-Regular" size:20.0];
 	self.pauseLabel.textColor = [UIColor colorWithHue:0.0333 saturation:0.51 brightness:1 alpha:1];
 	self.pauseLabel.shadowColor = [UIColor blackColor];
 	self.pauseLabel.shadowOffset = CGSizeMake(1, 1);
@@ -81,7 +82,7 @@
 	self.endGameButton.layer.cornerRadius = 10;
 	self.endGameButton.layer.backgroundColor = [UIColor colorWithHue:0.0333 saturation:0.51 brightness:1 alpha:1].CGColor;
 	[self.endGameButton setTitle:@"Terminar" forState:UIControlStateNormal];
-	self.endGameButton.titleLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:15.0];
+	self.endGameButton.titleLabel.font = [UIFont fontWithName:@"VAGRoundedBT-Regular" size:15.0];
 	self.endGameButton.titleLabel.textColor = [UIColor whiteColor];
 	[self.endGameButton addTarget:self
 				   action:@selector(endGame:)
@@ -93,7 +94,7 @@
 	self.continueButton.layer.cornerRadius = 10;
 	self.continueButton.layer.backgroundColor = [UIColor colorWithHue:0.0333 saturation:0.51 brightness:1 alpha:1].CGColor;
 	[self.continueButton setTitle:@"Continuar" forState:UIControlStateNormal];
-	self.continueButton.titleLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:15.0];
+	self.continueButton.titleLabel.font = [UIFont fontWithName:@"VAGRoundedBT-Regular" size:15.0];
 	self.continueButton.titleLabel.textColor = [UIColor whiteColor];
 	[self.continueButton addTarget:self
 				   action:@selector(resumeGame:)
@@ -132,11 +133,21 @@
 															 options: 0
 															 metrics:nil
 															   views:views];
-	NSArray *vPosY = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[v]-200-|"
-															 options: 0
-															 metrics:nil
-															   views:views];
-	[self addConstraints:vPosX]; [self addConstraints:vPosY];
+	NSLayoutConstraint *vPosY = [NSLayoutConstraint constraintWithItem:self.view
+												  attribute:NSLayoutAttributeCenterY
+												  relatedBy:NSLayoutRelationEqual
+													 toItem:self
+												  attribute:NSLayoutAttributeCenterY
+												 multiplier:1
+												   constant:0];
+	NSLayoutConstraint *vHnW = [NSLayoutConstraint constraintWithItem:self.view
+															attribute:NSLayoutAttributeHeight
+															relatedBy:NSLayoutRelationEqual
+															   toItem:self.view
+															attribute:NSLayoutAttributeWidth
+														   multiplier:1
+															 constant:0];
+	[self addConstraints:vPosX]; [self addConstraint:vPosY]; [self addConstraint:vHnW];
 	
 	// Pause Label constraints
 	NSArray *plPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pl]|"

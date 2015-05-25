@@ -16,5 +16,7 @@
 /// Object fraom the created class to let the class be used over the app delegate
 @property (nonatomic, strong) Connectivity *mcManager;
 
+@property (nonatomic, strong) MCPeerID *connectedPeer;
+
 @end
 

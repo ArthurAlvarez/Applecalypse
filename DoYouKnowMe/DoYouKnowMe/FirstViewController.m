@@ -34,14 +34,11 @@
 /// Interface Button to disconect with the other device
 @property (weak, nonatomic) IBOutlet UIButton *disconectBtn;
 
-/// Interface Label to show the name from the device that you are connected with
-@property (weak, nonatomic) IBOutlet UILabel *connectedDevice;
-
-/// Interface  Button to go to the next View
-@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
-
 /// Interface Activity Indicator to show that the player is waiting the other
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingGoNext;
+
+/// Table view to display the connected devices
+@property (weak, nonatomic) IBOutlet UITableView *connectedDevices;
 
 #pragma mark - Other Properties
 /// AppDelegate object to creat an access to the Connectivity class trough the app delegate
@@ -75,21 +72,18 @@
 											 selector:@selector(didReceiveDataWithNotification:)
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
-	
 	// Set Tex Field delegate
 	[_txtName setDelegate:self];
 	
 	// Hide buttons and labels
 	_browseBtn.hidden = YES;
 	_disconectBtn.hidden = YES;
-	_connectedDevice.hidden = YES;
-	_nextBtn.hidden = YES;
-	
-	_nextBtn.layer.cornerRadius = 5;
+	_connectedDevices.hidden = YES;
+
 	_browseBtn.layer.cornerRadius = 5;
 	
 	// Initiates the array of connected devices
-	_arrConnectedDevices = [[NSMutableArray alloc] initWithCapacity:1];
+	_arrConnectedDevices = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,13 +101,12 @@
 	
 	if ([allPeers count] == 0) {
 		[_arrConnectedDevices removeAllObjects];
-		
-		_connectedDevice.hidden = YES;
-		_nextBtn.hidden = YES;
-	} else [self performSegueWithIdentifier:@"goNext" sender:self];
+		self.connectedDevices.hidden = true;
+	}
 	
-	[_nextBtn setEnabled:YES];
-	
+	self.connectedDevices.allowsSelection = YES;
+
+	[self.connectedDevices reloadData];
 }
 
 #pragma mark - Action Methods
@@ -135,9 +128,6 @@
 	[[[_appDelegate mcManager] browser] setDelegate:self];
 
     [[[_appDelegate mcManager] browser] startBrowsingForPeers];
-
-	//_appDelegate.mcManager.browser.maximumNumberOfPeers = 1;
-	//[self presentViewController:[[_appDelegate mcManager] browser] animated:YES completion:nil];
 }
 
 /**
@@ -145,7 +135,6 @@
  **/
 - (IBAction)Disconect:(id)sender
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	
 	[_appDelegate.mcManager.session disconnect];
@@ -155,7 +144,7 @@
 	});
 	
 	[_appDelegate.mcManager.session sendData:[@"!disconnect" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
@@ -168,28 +157,8 @@
 	[_waitingGoNext stopAnimating];
 	
 	canGoNext = 0;
-}
-
-/**
- Method to go to the next View
- **/
-- (IBAction)goNext:(id)sender
-{
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
-	NSError *error;
 	
-	if (canGoNext == 0) {
-		canGoNext = 1;
-		
-		[_waitingGoNext startAnimating];
-	} else [self performSegueWithIdentifier:@"goNext" sender:self];
-
-	
-	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
-										 toPeers:allPeers
-										withMode:MCSessionSendDataReliable
-										error:&error];
-	[_nextBtn setEnabled:NO];
+	[self.connectedDevices reloadData];
 }
 
 #pragma mark - Selectors
@@ -207,18 +176,18 @@
 	{
 		if (state == MCSessionStateConnected)
 		{
-			if ([_arrConnectedDevices count] > 0)
-			{
-					[_arrConnectedDevices removeAllObjects];
-			}
-			[_arrConnectedDevices addObject:peerDisplayName];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[_arrConnectedDevices addObject:peerDisplayName];
+				[self.connectedDevices reloadData];
+			});
 		}
 		else if (state == MCSessionStateNotConnected)
 		{
 			if ([_arrConnectedDevices count] > 0)
 			{
 				dispatch_async(dispatch_get_main_queue(), ^{
-					[_arrConnectedDevices removeAllObjects];
+					[_arrConnectedDevices removeObject:peerDisplayName];
+					[self.connectedDevices reloadData];
 				});
 			}
 		}
@@ -229,21 +198,19 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (!peersExist)
 			{
-				_connectedDevice.text = [NSString stringWithFormat:@"Você está conectado com %@", peerDisplayName];
-				_connectedDevice .hidden = NO;
-				_nextBtn.hidden = NO;
 				[_browseBtn setEnabled:NO];
 				_disconectBtn.hidden = NO;
+				_connectedDevices.hidden = NO;
+				if (canGoNext == 0) _connectedDevices.allowsSelection = YES;
 				
 				NSLog(@"PEER EXIST! and is named %@", peerDisplayName);
 			}
 			else
 			{
-				_connectedDevice.hidden = YES;
-				_nextBtn.hidden = YES;
 				[_browseBtn setEnabled:YES];
 				_disconectBtn.hidden = YES;
 				[_waitingGoNext stopAnimating];
+				_connectedDevices.hidden = YES;
 				
 				NSLog(@"PEER DONT EXIST");
 			}
@@ -269,8 +236,6 @@
 			NSLog(@"RECEBEU DISCONNECT");
 			
 			canGoNext = 0;
-			_connectedDevice.hidden = YES;
-			[_nextBtn setHidden:YES];
 			[_waitingGoNext stopAnimating];
 			
 			_disconectBtn.hidden = YES;
@@ -324,9 +289,6 @@
 		_appDelegate.mcManager.session = nil;
 		_appDelegate.mcManager.browser = nil;
 		
-		//[_appDelegate.mcManager.advertiser stop];
-		//_appDelegate.mcManager.advertiser = nil;
-		
 		[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
 		[_appDelegate.mcManager setupMCBrowser];
 		[_appDelegate.mcManager advertiseSelf:YES];
@@ -373,14 +335,59 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 	NSLog(@"Lost device %@", peerID);
 }
 
-#pragma mark - MCBrowserView Delegate
+#pragma mark - TableView Delegate
 
--(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController{
-	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	self.appDelegate.connectedPeer = [self.appDelegate.mcManager.session.connectedPeers objectAtIndex:indexPath.row];
+	
+	NSError *error;
+	
+	if (canGoNext == 0) {
+		canGoNext = 1;
+		
+		[_waitingGoNext startAnimating];
+	} else [self performSegueWithIdentifier:@"goNext" sender:self];
+	
+	self.connectedDevices.allowsSelection = NO;
+	
+	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
+									 toPeers:@[self.appDelegate.connectedPeer]
+									withMode:MCSessionSendDataReliable
+									   error:&error];
 }
 
--(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController{
-	//[_appDelegate.mcManager.browser dismissViewControllerAnimated:YES completion:nil];
+
+#pragma mark - Datasources
+#pragma mark - TableView Datasource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.arrConnectedDevices count];
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *CellIdentifier = @"Cell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+	}
+	
+	cell.backgroundColor = tableView.backgroundColor;
+	
+	cell.textLabel.font = self.helloLabel.font;
+	cell.textLabel.textColor = self.helloLabel.textColor;
+	cell.textLabel.text = [self.arrConnectedDevices objectAtIndex:indexPath.row];
+	
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
+	return cell;
+}
+
+
 
 @end

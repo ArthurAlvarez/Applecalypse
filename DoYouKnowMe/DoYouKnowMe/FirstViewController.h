@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "ResultsViewController.h"
 
-@interface FirstViewController : UIViewController <MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface FirstViewController : UIViewController <MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

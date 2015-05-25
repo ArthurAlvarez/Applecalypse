@@ -66,7 +66,7 @@
     self.playerLabel.text = _appDelegate.mcManager.session.myPeerID.displayName;
 	self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
 	self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
-	MCPeerID *friend = _appDelegate.mcManager.session.connectedPeers[0];
+	MCPeerID *friend = self.appDelegate.connectedPeer;
 	_showFriendName.text = [NSString stringWithFormat:@"%@:", friend.displayName];
 	
 	//Modifies interface acording to user
@@ -119,14 +119,13 @@
  */
 -(void)sendAnswer:(NSString*)strAnswer
 {
-	NSArray *allPeers = _appDelegate.mcManager.session.connectedPeers;
 	NSError *error;
 	NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
 	
-	NSLog(@"Sending Data to: %@", allPeers);
+	NSLog(@"Sending Data to: %@", self.appDelegate.connectedPeer);
 	
 	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:allPeers
+									 toPeers:@[self.appDelegate.connectedPeer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	

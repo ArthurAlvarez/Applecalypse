@@ -26,6 +26,9 @@
 ///Interface button
 @property (weak, nonatomic) IBOutlet UIButton *btnBack2;
 
+/// ProgressView to display the results
+@property (weak, nonatomic) IBOutlet UIProgressView *rate;
+
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
@@ -37,19 +40,17 @@
 {
     [super viewDidLoad];
 	
-	MCPeerID *ID;
 	float knowingPercent;
     
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-	ID = _appDelegate.mcManager.session.connectedPeers[0];
-    
+	
     if([Player getPlayerID] == 1){
-        self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", ID.displayName];
+        self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", self.appDelegate.connectedPeer.displayName];
     }
     
     else if([Player getPlayerID] == 2){
-        self.topLabel.text = [NSString stringWithFormat:@"Quanto conheço %@...", ID.displayName];
+        self.topLabel.text = [NSString stringWithFormat:@"Quanto conheço %@...", self.appDelegate.connectedPeer.displayName];
     }
     
     NSLog(@"score final: %d", [Player getScore]);
@@ -57,28 +58,40 @@
 	knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
     NSLog(@"knowing percent: %f", knowingPercent);
 	
-	if (knowingPercent < 0.2f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMuito pouco...", (int)(knowingPercent * 100)];
-	else if (knowingPercent < 0.4f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nPouco...", (int)(knowingPercent * 100)];
-	else if (knowingPercent < 0.6f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMais ou menos", (int)(knowingPercent * 100)];
-	else if (knowingPercent < 0.8f) _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nBem!!", (int)(knowingPercent * 100)];
-	else _percentLabel.text = [NSString stringWithFormat:@"%d%%\n\nMuito bem!!\nVocês são grandes amigos!!", (int)(knowingPercent * 100)];
+	if (knowingPercent <= 0.2f) _percentLabel.text = [NSString stringWithFormat:@"Muito pouco...\nTente novamente!"];
+	else if (knowingPercent <= 0.4f) _percentLabel.text = [NSString stringWithFormat:@"Pouco...\nDá para melhorar bastante isso, hein?"];
+	else if (knowingPercent <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Nem muito, nem pouco...\nAinda dá para melhor isso!"];
+	else if (knowingPercent <= 0.8f) _percentLabel.text = [NSString stringWithFormat:@"Bem!"];
+	else _percentLabel.text = [NSString stringWithFormat:@"Muito bem!!\nVocês são grandes amigos!!"];
 	
 	_btnBack1.layer.cornerRadius = 5;
 	_btnBack2.layer.cornerRadius = 5;
 	
 }
 
-- (void)didReceiveMemoryWarning {
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	float knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
+	
+	[self.rate setProgress:knowingPercent animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)playWithSame:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:NO];
+- (IBAction)playWithSame:(id)sender
+{
+	UIViewController *viewController = self.navigationController.viewControllers[1];
+	
+	[self.navigationController popToViewController:viewController animated:NO];
 }
 
-- (IBAction)playWithOther:(id)sender {
-	[_appDelegate.mcManager.session disconnect];
-	
+- (IBAction)playWithOther:(id)sender
+{
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 

@@ -787,6 +787,9 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dO8-sE-OCP" secondAttribute="height" multiplier="285:233" id="bb5-Zn-wuI"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" backgroundImage="right">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

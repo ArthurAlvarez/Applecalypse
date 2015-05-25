@@ -103,6 +103,11 @@
 		[_arrConnectedDevices removeAllObjects];
 		self.connectedDevices.hidden = true;
 	}
+
+	if ([self.txtName.text length] > 0) {
+		[self.appDelegate.mcManager.browser startBrowsingForPeers];
+		[self.appDelegate.mcManager.advertiser startAdvertisingPeer];
+	}
 	
 	self.connectedDevices.allowsSelection = YES;
 

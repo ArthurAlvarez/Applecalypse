@@ -19,6 +19,8 @@
 	int canStart;
 	
 	BOOL didTouchInDisconnect;
+	
+	BOOL alreadyShownAlert;
 }
 
 #pragma mark - Interface Propeties
@@ -79,6 +81,7 @@
 											   object:nil];
 	
 	_startBtn.layer.cornerRadius = 5;
+	
 }
 /**
  Set all constants  and infos
@@ -131,6 +134,7 @@
 			break;
 	}
 
+	alreadyShownAlert = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -323,7 +327,8 @@
 				[_waitingIndicator stopAnimating];
 				canStart = 0;
 				
-				if (!didTouchInDisconnect) {
+				if (!didTouchInDisconnect && !alreadyShownAlert &&
+					![self.appDelegate.mcManager.session.connectedPeers containsObject:self.appDelegate.connectedPeer]) {
 					UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
 																		  message:@"A conexão com seu amigo foi perdida"
 																		 delegate:self
@@ -441,7 +446,6 @@
 	
 	if ([tittle isEqualToString:@"Ok"]) {
 		[[self navigationController] popToRootViewControllerAnimated:YES];
-		
 	}
 	
 	

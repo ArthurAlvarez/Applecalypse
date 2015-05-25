@@ -625,7 +625,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rodada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
-                                <rect key="frame" x="508" y="19" width="59" height="30"/>
+                                <rect key="frame" x="508" y="19" width="59" height="31"/>
                                 <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="13"/>
                                 <color key="textColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -731,7 +731,6 @@
                         <outlet property="answer" destination="FGc-Ld-G88" id="n5C-mv-8zI"/>
                         <outlet property="answerTextField" destination="TDV-1E-jzr" id="8dY-rA-cNY"/>
                         <outlet property="pauseBtn" destination="OyF-Od-voM" id="1fU-lv-ZVW"/>
-                        <outlet property="pauseMenu" destination="kdy-20-3FX" id="edI-tB-GoV"/>
                         <outlet property="question" destination="sSV-FU-E0D" id="8Ox-P3-7o0"/>
                         <outlet property="questionLabel" destination="wgz-EY-fsS" id="uFo-EJ-HfE"/>
                         <outlet property="showRound" destination="9to-qa-g0y" id="aEC-EC-dFE"/>
@@ -962,7 +961,7 @@
                                     <constraint firstAttribute="height" constant="52" id="yZW-iP-ahg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="28"/>
-                                <color key="textColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>

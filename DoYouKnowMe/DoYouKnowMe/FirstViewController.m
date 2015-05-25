@@ -344,14 +344,14 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 	self.appDelegate.connectedPeer = nil;
 	
 	for (MCPeerID *peer in self.appDelegate.mcManager.session.connectedPeers) {
-		if (peer.displayName == [tableView cellForRowAtIndexPath:indexPath].textLabel.text) {
-			self.appDelegate.connectedPeer = [self.appDelegate.mcManager.session.connectedPeers objectAtIndex:indexPath.row];
+		if ([peer.displayName isEqualToString:[tableView cellForRowAtIndexPath:indexPath].textLabel.text]) {
+			self.appDelegate.connectedPeer = peer;
 		}
 	}
 	
 	if (self.appDelegate.connectedPeer == nil) return;
 	
-	NSLog(@"%@ %@", [tableView cellForRowAtIndexPath:indexPath].textLabel.text, self.appDelegate.mcManager.session.connectedPeers[indexPath.row]);
+	NSLog(@"%@ %@", [tableView cellForRowAtIndexPath:indexPath].textLabel.text, self.appDelegate.connectedPeer);
 	
 	NSError *error;
 	

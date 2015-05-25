@@ -26,6 +26,7 @@
 ///Interface button
 @property (weak, nonatomic) IBOutlet UIButton *btnBack2;
 
+/// ProgressView to display the results
 @property (weak, nonatomic) IBOutlet UIProgressView *rate;
 
 ///Delegate for comunications
@@ -58,8 +59,8 @@
     NSLog(@"knowing percent: %f", knowingPercent);
 	
 	if (knowingPercent <= 0.2f) _percentLabel.text = [NSString stringWithFormat:@"Muito pouco...\nTente novamente!"];
-	else if (knowingPercent <= 0.4f) _percentLabel.text = [NSString stringWithFormat:@"Pouco...\nDá para melhorar isso, hein?"];
-	else if (knowingPercent <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Mais ou menos\nQuase lá!"];
+	else if (knowingPercent <= 0.4f) _percentLabel.text = [NSString stringWithFormat:@"Pouco...\nDá para melhorar bastante isso, hein?"];
+	else if (knowingPercent <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Nem muito, nem pouco...\nAinda dá para melhor isso!"];
 	else if (knowingPercent <= 0.8f) _percentLabel.text = [NSString stringWithFormat:@"Bem!"];
 	else _percentLabel.text = [NSString stringWithFormat:@"Muito bem!!\nVocês são grandes amigos!!"];
 	
@@ -77,16 +78,20 @@
 	[self.rate setProgress:knowingPercent animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)playWithSame:(id)sender {
-	[self.navigationController popToRootViewControllerAnimated:NO];
-	[self.delegate playWithSame];
+- (IBAction)playWithSame:(id)sender
+{
+	UIViewController *viewController = self.navigationController.viewControllers[1];
+	
+	[self.navigationController popToViewController:viewController animated:NO];
 }
 
-- (IBAction)playWithOther:(id)sender {
+- (IBAction)playWithOther:(id)sender
+{
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 

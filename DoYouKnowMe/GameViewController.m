@@ -93,6 +93,8 @@
 #pragma mark - Controller Implementation
 @implementation GameViewController
 
+#pragma mark - Life Cycle Methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
@@ -118,6 +120,9 @@
 	
 	UITapGestureRecognizer *touchToAnswer = [[UITapGestureRecognizer alloc] initWithTarget:self.answer action:@selector(startAnswering:)];
 	[self.answer addGestureRecognizer:touchToAnswer];
+	
+	if ([Player getPlayerID] == 1) self.question.image = [UIImage imageNamed:@"QuestionSelf"];
+	else self.question.image = [UIImage imageNamed:@"OtherAnswer"];
 }
 
 /**
@@ -160,6 +165,10 @@
 	
 	otherWaiting = YES;
 	alreadyPerformedSegue = NO;
+	
+	
+	
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -456,8 +465,9 @@
 	}
 }
 
--(void) startAnswering:(UITapGestureRecognizer *) sender
+-(void) startAnswering:(UITapGestureRecognizer *)tap
 {
+	NSLog(@"ENTROU");
 	[self.answerTextField becomeFirstResponder];
 }
 

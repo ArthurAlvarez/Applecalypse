@@ -72,7 +72,6 @@
 											 selector:@selector(didReceiveDataWithNotification:)
 												 name:@"MCDidReceiveDataNotification"
 											   object:nil];
-	
 	// Set Tex Field delegate
 	[_txtName setDelegate:self];
 	
@@ -202,6 +201,7 @@
 				[_browseBtn setEnabled:NO];
 				_disconectBtn.hidden = NO;
 				_connectedDevices.hidden = NO;
+				if (canGoNext == 0) _connectedDevices.allowsSelection = YES;
 				
 				NSLog(@"PEER EXIST! and is named %@", peerDisplayName);
 			}
@@ -289,9 +289,6 @@
 		_appDelegate.mcManager.session = nil;
 		_appDelegate.mcManager.browser = nil;
 		
-		//[_appDelegate.mcManager.advertiser stop];
-		//_appDelegate.mcManager.advertiser = nil;
-		
 		[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:_txtName.text];
 		[_appDelegate.mcManager setupMCBrowser];
 		[_appDelegate.mcManager advertiseSelf:YES];
@@ -336,15 +333,6 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 - (void)browser:(MCNearbyServiceBrowser *)browser
 	   lostPeer:(MCPeerID *)peerID{
 	NSLog(@"Lost device %@", peerID);
-}
-
-#pragma mark - ResultView Delegate
-
--(void)playWithSame
-{
-	if ([self.appDelegate.mcManager.session.connectedPeers containsObject:self.appDelegate.connectedPeer]) {
-		[self performSegueWithIdentifier:@"goNext" sender:self];
-	}
 }
 
 #pragma mark - TableView Delegate

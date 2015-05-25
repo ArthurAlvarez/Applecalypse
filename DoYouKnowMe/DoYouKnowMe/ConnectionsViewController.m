@@ -99,6 +99,38 @@
 	[GameSettings setRound:0];
 	
 	didTouchInDisconnect = NO;
+	
+	int indexNOQ = (int)_numberOfQuestions.selectedSegmentIndex;
+	
+	switch (indexNOQ) {
+		case 0:
+			[GameSettings setGameLenght:5];
+			break;
+		case 1:
+			[GameSettings setGameLenght:10];
+			break;
+		case 2:
+			[GameSettings setGameLenght:15];
+			break;
+		default:
+			break;
+	}
+	int indexTTA = (int)_timeToAnswer.selectedSegmentIndex;
+	
+	switch (indexTTA) {
+		case 0:
+			[GameSettings setTime:20];
+			break;
+		case 1:
+			[GameSettings setTime:30];
+			break;
+		case 2:
+			[GameSettings setTime:40];
+			break;
+		default:
+			break;
+	}
+
 }
 
 - (void)didReceiveMemoryWarning {

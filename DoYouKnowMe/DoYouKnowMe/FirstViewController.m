@@ -362,9 +362,7 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	NSLog(@"ENTROU");
-	
+{	
 	static NSString *CellIdentifier = @"Cell";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

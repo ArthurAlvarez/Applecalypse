@@ -174,24 +174,6 @@
 	
 	if (state != MCSessionStateConnecting)
 	{
-		if (state == MCSessionStateConnected)
-		{
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[_arrConnectedDevices addObject:peerDisplayName];
-				[self.connectedDevices reloadData];
-			});
-		}
-		else if (state == MCSessionStateNotConnected)
-		{
-			if ([_arrConnectedDevices count] > 0)
-			{
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[_arrConnectedDevices removeObject:peerDisplayName];
-					[self.connectedDevices reloadData];
-				});
-			}
-		}
-		
 		BOOL peersExist = ([[_appDelegate.mcManager.session connectedPeers] count] == 0);
 		[_txtName setEnabled:peersExist];
 		
@@ -309,8 +291,8 @@
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
 	NSLog(@"Found a nearby advertising peer %@", peerID);
 	
-	//Manda convite para conexao
-	[[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+	[self.arrConnectedDevices addObject:peerID];
+	[self.connectedDevices reloadData];
 }
 
 /**
@@ -339,24 +321,32 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	
+	MCPeerID *peerID = self.arrConnectedDevices[indexPath.row];
+	
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	self.appDelegate.connectedPeer = [self.appDelegate.mcManager.session.connectedPeers objectAtIndex:indexPath.row];
+	[[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
 	
-	NSError *error;
+	if ([self.appDelegate.mcManager.session.connectedPeers count] > 0) {
 	
-	if (canGoNext == 0) {
-		canGoNext = 1;
+	self.appDelegate.connectedPeer = self.appDelegate.mcManager.session.connectedPeers[0];
+	
+		NSError *error;
 		
-		[_waitingGoNext startAnimating];
-	} else [self performSegueWithIdentifier:@"goNext" sender:self];
-	
-	self.connectedDevices.allowsSelection = NO;
-	
-	[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
+		if (canGoNext == 0) {
+			canGoNext = 1;
+			
+			[_waitingGoNext startAnimating];
+		} else [self performSegueWithIdentifier:@"goNext" sender:self];
+		
+		self.connectedDevices.allowsSelection = NO;
+		
+		[_appDelegate.mcManager.session sendData:[@"!goNext" dataUsingEncoding:NSUTF8StringEncoding]
+										 toPeers:@[self.appDelegate.connectedPeer]
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+	}
 }
 
 
@@ -365,11 +355,14 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+	if ([self.arrConnectedDevices count] > 0) tableView.hidden = NO;
+	else tableView.hidden = YES;
+	
 	return [self.arrConnectedDevices count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{	
 	static NSString *CellIdentifier = @"Cell";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -381,7 +374,7 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 	
 	cell.textLabel.font = self.helloLabel.font;
 	cell.textLabel.textColor = self.helloLabel.textColor;
-	cell.textLabel.text = [self.arrConnectedDevices objectAtIndex:indexPath.row];
+	cell.textLabel.text = ((MCPeerID*)[self.arrConnectedDevices objectAtIndex:indexPath.row]).displayName;
 	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	

@@ -55,7 +55,6 @@
 	
 	// Set the Visual Effect
 	self.visualEffect = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-	self.visualEffect.alpha = 0.75f;
 	[self addSubview:self.visualEffect];
 	
 	// Set the View

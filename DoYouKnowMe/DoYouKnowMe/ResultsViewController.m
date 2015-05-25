@@ -91,9 +91,7 @@
 }
 
 - (IBAction)playWithOther:(id)sender
-{
-	[self.appDelegate.mcManager.session disconnect];
-	
+{	
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 

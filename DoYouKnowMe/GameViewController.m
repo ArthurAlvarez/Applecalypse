@@ -63,6 +63,9 @@
 /// ImageView to display a baloon to the answer
 @property (weak, nonatomic) IBOutlet UIImageView *answer;
 
+
+@property (weak, nonatomic) IBOutlet UILabel *questionsAbout;
+
 #pragma mark - Controller Properties
 /// Number that represents the score of the current player
 @property (strong, nonatomic) NSNumber *playerScore;
@@ -98,6 +101,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	
     //Setup notification for receiving packets
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didReceiveDataWithNotification:)
@@ -121,8 +126,14 @@
 	UITapGestureRecognizer *touchToAnswer = [[UITapGestureRecognizer alloc] initWithTarget:self.answer action:@selector(startAnswering:)];
 	[self.answer addGestureRecognizer:touchToAnswer];
 	
-	if ([Player getPlayerID] == 1) self.question.image = [UIImage imageNamed:@"QuestionSelf"];
-	else self.question.image = [UIImage imageNamed:@"OtherAnswer"];
+	if ([Player getPlayerID] == 1) {
+		self.question.image = [UIImage imageNamed:@"QuestionSelf"];
+		self.questionsAbout.text = @"Pergunta sobre você";
+	}
+	else {
+		self.question.image = [UIImage imageNamed:@"OtherAnswer"];
+		self.questionsAbout.text = [NSString stringWithFormat:@"Pergunta sobre %@", self.appDelegate.connectedPeer.displayName];
+	}
 }
 
 /**
@@ -143,8 +154,6 @@
     didAnswer = NO;
 	
     self.submitButton.enabled = YES;
-	
-    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	
     self.timeLeft = [NSNumber numberWithInt:[GameSettings getTime]];
     self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
@@ -446,7 +455,6 @@
 	if (_answerTextField.text.length == 0) self.answerTextField.text = @"Não sei";
 	
 	[self answerPressed:self];
-	
 }
 
 /**
@@ -478,12 +486,6 @@
  @author Arthur Alvarez
  */
 - (IBAction)answerPressed:(id)sender {
-	
-	if ([self.timeLeft intValue] == 0) {
-		[self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-		
-		return;
-	}
 	
     [self.view endEditing:YES];
     

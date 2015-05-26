@@ -121,6 +121,10 @@
  */
 - (IBAction)goBack:(id)sender
 {
+	[self.appDelegate.mcManager.browser stopBrowsingForPeers];
+	[self.appDelegate.mcManager.advertiser stopAdvertisingPeer];
+	[self.appDelegate.mcManager.session disconnect];
+	
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 

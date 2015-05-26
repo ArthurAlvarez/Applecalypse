@@ -60,7 +60,7 @@
 	
 	if (knowingPercent <= 0.2f) _percentLabel.text = [NSString stringWithFormat:@"Muito pouco...\nTente novamente!"];
 	else if (knowingPercent <= 0.4f) _percentLabel.text = [NSString stringWithFormat:@"Pouco...\nDá para melhorar bastante isso, hein?"];
-	else if (knowingPercent <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Nem muito, nem pouco...\nAinda dá para melhor isso!"];
+	else if (knowingPercent <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Nem muito, nem pouco...\nAinda dá para melhorar isso!"];
 	else if (knowingPercent <= 0.8f) _percentLabel.text = [NSString stringWithFormat:@"Bem!"];
 	else _percentLabel.text = [NSString stringWithFormat:@"Muito bem!!\nVocês são grandes amigos!!"];
 	

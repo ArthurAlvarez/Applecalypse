@@ -133,6 +133,8 @@
 		default:
 			break;
 	}
+	
+	if ([Player getPlayerID] != -1) self.startBtn.hidden = NO;
 
 	alreadyShownAlert = NO;
 }
@@ -329,6 +331,8 @@
 				
 				if (!didTouchInDisconnect && !alreadyShownAlert &&
 					![self.appDelegate.mcManager.session.connectedPeers containsObject:self.appDelegate.connectedPeer]) {
+					alreadyShownAlert = YES;
+					
 					UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
 																		  message:@"A conexão com seu amigo foi perdida"
 																		 delegate:self

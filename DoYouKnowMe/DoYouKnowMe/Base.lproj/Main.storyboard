@@ -96,6 +96,7 @@
                             <constraint firstItem="Eb3-YU-CJz" firstAttribute="top" secondItem="PER-Ml-i3b" secondAttribute="bottom" constant="75" id="Ccg-8N-wAk"/>
                             <constraint firstItem="8XA-rr-pJD" firstAttribute="top" secondItem="Eb3-YU-CJz" secondAttribute="bottom" constant="36" id="FUh-KX-wok"/>
                             <constraint firstItem="Eb3-YU-CJz" firstAttribute="centerX" secondItem="6a8-eP-Vqz" secondAttribute="centerX" id="Igd-9Z-YcU"/>
+                            <constraint firstAttribute="centerX" secondItem="8XA-rr-pJD" secondAttribute="centerX" id="LQf-pz-Oci"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8XA-rr-pJD" secondAttribute="bottom" constant="94" id="aaz-vg-DEY"/>
                             <constraint firstItem="6a8-eP-Vqz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="102" id="bQm-pv-Dju"/>
                             <constraint firstItem="PER-Ml-i3b" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="cRv-Gu-Riz"/>
@@ -103,6 +104,11 @@
                             <constraint firstItem="PER-Ml-i3b" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="poE-xk-Axk"/>
                             <constraint firstItem="PER-Ml-i3b" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="50" id="tfu-wI-LeU"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fcQ-xH-QTX"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="btn_StartApp" destination="8XA-rr-pJD" id="9rO-ue-a6Y"/>

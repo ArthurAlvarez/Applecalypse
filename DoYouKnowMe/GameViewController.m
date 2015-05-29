@@ -12,6 +12,8 @@
 #import "AppDelegate.h"
 #import "GameSettings.h"
 #import "ResultsViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
+
 
 @interface GameViewController()
 {
@@ -91,6 +93,12 @@
 /// Array to know which questions already were made
 @property NSMutableArray *repeatedQuestions;
 
+/// Feedback sound
+@property SystemSoundID rightAudio;
+
+/// Feedback sound
+@property SystemSoundID wrongAudio;
+
 @end
 
 #pragma mark - Controller Implementation
@@ -134,7 +142,16 @@
 		self.question.image = [UIImage imageNamed:@"OtherAnswer"];
 		self.questionsAbout.text = [NSString stringWithFormat:@"Pergunta sobre %@", self.appDelegate.connectedPeer.displayName];
 	}
-	
+    
+    NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"sound_error"
+                                              withExtension:@"aiff"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_wrongAudio);
+    
+    
+    NSURL *soundURL2 = [[NSBundle mainBundle] URLForResource:@"sound_right"
+                                              withExtension:@"aiff"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL2, &_rightAudio);
+    
 	self.showROrW.hidden = true;
 }
 
@@ -597,6 +614,13 @@
 	else self.showROrW.image = [UIImage imageNamed:@"wrong-mark"];
 	
 	self.showROrW.hidden = NO;
+    
+    if(right){
+        AudioServicesPlaySystemSound(_rightAudio);
+
+    }
+    else
+        AudioServicesPlayAlertSound(_wrongAudio);
 }
 
 #pragma mark - PauseMenuView Delegate

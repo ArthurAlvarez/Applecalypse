@@ -11,6 +11,7 @@
 #import "GameSettings.h"
 #import "Player.h"
 #import "GameViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface ResultsViewController ()
 {
@@ -36,6 +37,12 @@
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
 @property (weak, nonatomic) IBOutlet UIImageView *showWOrR;
+
+/// Feedback sound
+@property SystemSoundID rightAudio;
+
+/// Feedback sound
+@property SystemSoundID wrongAudio;
 
 @end
 
@@ -71,15 +78,27 @@
 	
 	_btnBack1.layer.cornerRadius = 5;
 	_btnBack2.layer.cornerRadius = 5;
+    
+    NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"sound_error"
+                                              withExtension:@"aiff"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_wrongAudio);
+    
+    NSURL *soundURL2 = [[NSBundle mainBundle] URLForResource:@"sound_right"
+                                               withExtension:@"aiff"];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL2, &_rightAudio);
+    
 	
 	if ([Player getPlayerID] == 2) {
 		if (_right) {
 			self.showWOrR.image = [UIImage imageNamed:@"right-mark"];
 			self.showWOrR.hidden = NO;
+            AudioServicesPlaySystemSound(_rightAudio);
 		}
 		else {
 			self.showWOrR.image = [UIImage imageNamed:@"wrong-mark"];
 			self.showWOrR.hidden = NO;
+            AudioServicesPlayAlertSound(_wrongAudio);
+
 		}
 	} else {
 		self.showWOrR.hidden = YES;

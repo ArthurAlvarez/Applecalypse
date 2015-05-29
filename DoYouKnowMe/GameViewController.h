@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PauseMenuView.h"
+#import "VerifyAnswerViewController.h"
 
-@interface GameViewController : UIViewController <UIAlertViewDelegate, UIApplicationDelegate, UITextFieldDelegate, PauseMenuViewDelegate>
+@interface GameViewController : UIViewController <UIAlertViewDelegate, UIApplicationDelegate, UITextFieldDelegate, PauseMenuViewDelegate,VerifyAnswerControllerDelegate>
 
 @end

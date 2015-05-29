@@ -13,6 +13,9 @@
 #import "GameViewController.h"
 
 @interface ResultsViewController ()
+{
+	BOOL _right;
+}
 
 ///Interface label that shows title
 @property (weak, nonatomic) IBOutlet UILabel *topLabel;
@@ -31,6 +34,8 @@
 
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
+
+@property (weak, nonatomic) IBOutlet UIImageView *showWOrR;
 
 @end
 
@@ -67,6 +72,18 @@
 	_btnBack1.layer.cornerRadius = 5;
 	_btnBack2.layer.cornerRadius = 5;
 	
+	if ([Player getPlayerID] == 2) {
+		if (_right) {
+			self.showWOrR.image = [UIImage imageNamed:@"right-mark"];
+			self.showWOrR.hidden = NO;
+		}
+		else {
+			self.showWOrR.image = [UIImage imageNamed:@"wrong-mark"];
+			self.showWOrR.hidden = NO;
+		}
+	} else {
+		self.showWOrR.hidden = YES;
+	}
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -76,6 +93,19 @@
 	float knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
 	
 	[self.rate setProgress:knowingPercent animated:YES];
+	
+	[super viewDidAppear:animated];
+	
+	if (![self.showWOrR isHidden]) {
+		[UIView animateWithDuration:0.1
+						 animations:^{
+							 self.showWOrR.alpha = 0;
+						 }
+						 completion:^(BOOL completed){
+							 self.showWOrR.hidden = YES;
+							 self.showWOrR.alpha = 1;
+						 }];
+	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,6 +123,13 @@
 - (IBAction)playWithOther:(id)sender
 {	
 	[self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+#pragma mark - VerifyAnswerControllerDelegate Delegate
+
+-(void)didShowImage: (BOOL)right
+{
+	_right = right;
 }
 
 

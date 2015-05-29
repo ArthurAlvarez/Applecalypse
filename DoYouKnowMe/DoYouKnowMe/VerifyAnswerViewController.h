@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
+@protocol VerifyAnswerControllerDelegate <NSObject>
+
+- (void) didShowImage:(BOOL)right;
+
+@end
+
+
 @interface VerifyAnswerViewController : UIViewController
 
 @property (strong, nonatomic) NSString *yourAnswer;
 
 @property (strong, nonatomic) NSString *hisAnswer;
+
+@property (weak) id<VerifyAnswerControllerDelegate> delegate;
 
 @end

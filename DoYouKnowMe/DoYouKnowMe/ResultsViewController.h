@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GameViewController.h"
+#import "VerifyAnswerViewController.h"
 
-@interface ResultsViewController : UIViewController
+@interface ResultsViewController : UIViewController <VerifyAnswerControllerDelegate>
 
 @property (strong, nonatomic) GameViewController *gameView;
 

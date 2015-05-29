@@ -91,6 +91,7 @@
 	[super viewWillAppear:YES];
 	
 	_startBtn.hidden = YES;
+	_startBtn.enabled = YES;
 	
 	[_waitingIndicator stopAnimating];
 	[_waitingOtherLabel setText:@""];

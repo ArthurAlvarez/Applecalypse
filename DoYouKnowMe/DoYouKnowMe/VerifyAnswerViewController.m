@@ -16,6 +16,11 @@
 #pragma mark - Properties
 
 @interface VerifyAnswerViewController ()
+
+{
+	BOOL right;
+}
+
 ///Interface Button where the user Accepts the answer
 @property (weak, nonatomic) IBOutlet UIButton *btnAcceptAnswer;
 
@@ -38,9 +43,6 @@
 /// Label to show a message to the player, indicating to him answer if
 /// the other player is right or wrong
 @property (weak, nonatomic) IBOutlet UILabel *wOrRLabel;
-
-/// Interface Label to show the name of the other player
-@property (weak, nonatomic) IBOutlet UILabel *showFriendName;
 
 ///Delegate for comunications
 @property (strong, nonatomic) AppDelegate *appDelegate;
@@ -66,22 +68,18 @@
     self.playerLabel.text = _appDelegate.mcManager.session.myPeerID.displayName;
 	self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
 	self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
-	MCPeerID *friend = self.appDelegate.connectedPeer;
-	_showFriendName.text = [NSString stringWithFormat:@"%@:", friend.displayName];
 	
 	//Modifies interface acording to user
 	if([Player getPlayerID] == 1){
 		NSLog(@"Player1");
 		_wOrRLabel.hidden = NO;
-		[self.btnAcceptAnswer setHidden:NO];
-		[self.btnRejectAnswer setHidden:NO];
 		[_waitingIndicator stopAnimating];
 	}
 	else{
 		NSLog(@"Player2");
 		_wOrRLabel.hidden = YES;
-		[self.btnAcceptAnswer setHidden: YES];
-		[self.btnRejectAnswer setHidden:YES];
+		_btnAcceptAnswer.hidden = YES;
+		_btnRejectAnswer.hidden = YES;
 		[_waitingIndicator startAnimating];
 	}
 	
@@ -152,11 +150,15 @@
         if([receivedInfo isEqualToString:@"#0"]){
             NSLog(@"Vibrate");
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+			right = NO;
+			
             [self checkEndGame];
         }
 		else if([receivedInfo isEqualToString:@"#1"]){
             NSLog(@"Somando pontuacao");
             [Player setScore:[Player getScore] +1];
+			right = YES;
+			
             [self checkEndGame];
         }
 	});
@@ -170,8 +172,19 @@
         NSLog(@"Segue");
         [self performSegueWithIdentifier:@"finalResults" sender:self];
     }
-    else
+	else {
+		if ([Player getPlayerID] == 2) [self.delegate didShowImage:right];
         [[self navigationController] popViewControllerAnimated:YES];
+	}
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"finalResults"]) {
+		self.delegate = segue.destinationViewController;
+	}
+	
+	if ([Player getPlayerID] == 2) [self.delegate didShowImage:right];
 }
 
 @end

@@ -10,11 +10,10 @@
 #import "Player.h"
 #import "Connectivity.h"
 #import "AppDelegate.h"
-#import "VerifyAnswerViewController.h"
 #import "GameSettings.h"
 #import "ResultsViewController.h"
 
-@interface GameViewController ()
+@interface GameViewController()
 {
     int shouldContinue;
     int currentAnswers;
@@ -63,6 +62,7 @@
 /// ImageView to display a baloon to the answer
 @property (weak, nonatomic) IBOutlet UIImageView *answer;
 
+@property (weak, nonatomic) IBOutlet UIImageView *showROrW;
 
 @property (weak, nonatomic) IBOutlet UILabel *questionsAbout;
 
@@ -134,6 +134,8 @@
 		self.question.image = [UIImage imageNamed:@"OtherAnswer"];
 		self.questionsAbout.text = [NSString stringWithFormat:@"Pergunta sobre %@", self.appDelegate.connectedPeer.displayName];
 	}
+	
+	self.showROrW.hidden = true;
 }
 
 /**
@@ -174,10 +176,22 @@
 	
 	otherWaiting = YES;
 	alreadyPerformedSegue = NO;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
 	
-	
-	
-	
+	if (![self.showROrW isHidden]) {
+		[UIView animateWithDuration:0.1
+						 animations:^{
+							 self.showROrW.alpha = 0;
+						 }
+						 completion:^(BOOL completed){
+							 self.showROrW.hidden = YES;
+							 self.showROrW.alpha = 1;
+						 }];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -399,7 +413,6 @@
  **/
 -(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
-    
     MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
     
     if (state != MCSessionStateConnecting)
@@ -564,6 +577,8 @@
         //Pass information to next view
         vc.yourAnswer = self.answerTextField.text;
         vc.hisAnswer = self.otherAnswer;
+		
+		vc.delegate = self;
     }
     
     //Go to ResultsView
@@ -573,6 +588,17 @@
 }
 
 #pragma mark - Delegates
+
+#pragma mark - VerifyAnswerControllerDelegate Delegate
+
+-(void)didShowImage: (BOOL)right
+{
+	if (right) self.showROrW.image = [UIImage imageNamed:@"right-mark"];
+	else self.showROrW.image = [UIImage imageNamed:@"wrong-mark"];
+	
+	self.showROrW.hidden = NO;
+}
+
 #pragma mark - PauseMenuView Delegate
 
 -(void)resumeGame

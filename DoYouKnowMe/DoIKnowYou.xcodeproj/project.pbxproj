@@ -18,6 +18,9 @@
 		14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C4433D1AC18C6300103C35 /* Main.storyboard */; };
 		14C443411AC18C6300103C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C443401AC18C6300103C35 /* Images.xcassets */; };
 		93009F211ACD74250075610E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93009F201ACD74250075610E /* Launch Screen.xib */; };
+		9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEB1B176AF2004A20CE /* sound_error.aiff */; };
+		9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEC1B176AF2004A20CE /* sound_right.aiff */; };
+		9382EFF01B176CD3004A20CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */; };
 		9385D9461B0936900006D08D /* PauseMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9451B0936900006D08D /* PauseMenuView.m */; };
 		938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* FirstViewController.m */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
@@ -47,6 +50,9 @@
 		14C4433E1AC18C6300103C35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14C443401AC18C6300103C35 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		93009F201ACD74250075610E /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		9382EFEB1B176AF2004A20CE /* sound_error.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_error.aiff; sourceTree = "<group>"; };
+		9382EFEC1B176AF2004A20CE /* sound_right.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_right.aiff; sourceTree = "<group>"; };
+		9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9385D9441B0936900006D08D /* PauseMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuView.h; sourceTree = "<group>"; };
 		9385D9451B0936900006D08D /* PauseMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuView.m; sourceTree = "<group>"; };
 		938E686C1ACC08DD009B7AE7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
@@ -64,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9382EFF01B176CD3004A20CE /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +80,7 @@
 		14C443271AC18C6300103C35 = {
 			isa = PBXGroup;
 			children = (
+				9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */,
 				14C443321AC18C6300103C35 /* DoYouKnowMe */,
 				14C443311AC18C6300103C35 /* Products */,
 			);
@@ -123,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				93BF04191AD2C78100AFB30B /* questions.txt */,
+				9382EFEB1B176AF2004A20CE /* sound_error.aiff */,
+				9382EFEC1B176AF2004A20CE /* sound_right.aiff */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -215,6 +225,8 @@
 				93009F211ACD74250075610E /* Launch Screen.xib in Resources */,
 				14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */,
 				14C443411AC18C6300103C35 /* Images.xcassets in Resources */,
+				9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */,
+				9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */,
 				93BF041A1AD2C78100AFB30B /* questions.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

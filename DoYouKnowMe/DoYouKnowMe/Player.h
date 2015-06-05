@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameSettings.h"
 
 @interface Player : NSObject
 
@@ -24,16 +25,21 @@
  */
 +(int)getPlayerID;
 
-
 /**
  Sets the score of player 2.
  @author Arthur Alvarez
  */
 +(void)setScore:(int)newScore;
+
 /**
  Gets the score of player  2.
  @author Arthur Alvarez
  */
 +(int)getScore;
+
+/**
+ Gets the knowing percent
+ */
++(float)knowingPercent;
 
 @end

@@ -14,7 +14,7 @@
 		1457877D1AC4200F007D76A1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1457877C1AC4200F007D76A1 /* Player.m */; };
 		14C443361AC18C6300103C35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443351AC18C6300103C35 /* main.m */; };
 		14C443391AC18C6300103C35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443381AC18C6300103C35 /* AppDelegate.m */; };
-		14C4433C1AC18C6300103C35 /* viewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4433B1AC18C6300103C35 /* viewController.m */; };
+		14C4433C1AC18C6300103C35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4433B1AC18C6300103C35 /* ViewController.m */; };
 		14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C4433D1AC18C6300103C35 /* Main.storyboard */; };
 		14C443411AC18C6300103C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C443401AC18C6300103C35 /* Images.xcassets */; };
 		93009F211ACD74250075610E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93009F201ACD74250075610E /* Launch Screen.xib */; };
@@ -22,11 +22,17 @@
 		9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEC1B176AF2004A20CE /* sound_right.aiff */; };
 		9382EFF01B176CD3004A20CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */; };
 		9385D9461B0936900006D08D /* PauseMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9451B0936900006D08D /* PauseMenuView.m */; };
-		938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* FirstViewController.m */; };
+		938E686E1ACC08DD009B7AE7 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* ConnectionsViewController.m */; };
+		938F0CFA1B20BFFD006E5864 /* ReceiveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0CF91B20BFFD006E5864 /* ReceiveData.m */; };
+		938F0CFD1B20C017006E5864 /* ReceiveFromCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0CFC1B20C017006E5864 /* ReceiveFromCVC.m */; };
+		938F0D001B20C024006E5864 /* ReceiveFromSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0CFF1B20C024006E5864 /* ReceiveFromSVC.m */; };
+		938F0D031B20C030006E5864 /* ReceiveFromGVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0D021B20C030006E5864 /* ReceiveFromGVC.m */; };
+		938F0D061B20C03E006E5864 /* ReceiveFromVAVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0D051B20C03E006E5864 /* ReceiveFromVAVC.m */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
-		939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* ConnectionsViewController.m */; };
+		939249E41AC1A549008D5500 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* SettingsViewController.m */; };
 		939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939ADCB41B0E2FD900FDEA66 /* varground.ttf */; };
 		93BF041A1AD2C78100AFB30B /* questions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93BF04191AD2C78100AFB30B /* questions.txt */; };
+		93F067511B1F44C4003B7F84 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F067501B1F44C4003B7F84 /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +51,8 @@
 		14C443351AC18C6300103C35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14C443371AC18C6300103C35 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14C443381AC18C6300103C35 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		14C4433A1AC18C6300103C35 /* viewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = viewController.h; sourceTree = "<group>"; };
-		14C4433B1AC18C6300103C35 /* viewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = viewController.m; sourceTree = "<group>"; };
+		14C4433A1AC18C6300103C35 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		14C4433B1AC18C6300103C35 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		14C4433E1AC18C6300103C35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14C443401AC18C6300103C35 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		93009F201ACD74250075610E /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
@@ -55,14 +61,27 @@
 		9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9385D9441B0936900006D08D /* PauseMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuView.h; sourceTree = "<group>"; };
 		9385D9451B0936900006D08D /* PauseMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuView.m; sourceTree = "<group>"; };
-		938E686C1ACC08DD009B7AE7 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		938E686D1ACC08DD009B7AE7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		938E686C1ACC08DD009B7AE7 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
+		938E686D1ACC08DD009B7AE7 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
+		938F0CF81B20BFFD006E5864 /* ReceiveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveData.h; sourceTree = "<group>"; };
+		938F0CF91B20BFFD006E5864 /* ReceiveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveData.m; sourceTree = "<group>"; };
+		938F0CFB1B20C017006E5864 /* ReceiveFromCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveFromCVC.h; sourceTree = "<group>"; };
+		938F0CFC1B20C017006E5864 /* ReceiveFromCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromCVC.m; sourceTree = "<group>"; };
+		938F0CFE1B20C024006E5864 /* ReceiveFromSVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveFromSVC.h; sourceTree = "<group>"; };
+		938F0CFF1B20C024006E5864 /* ReceiveFromSVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromSVC.m; sourceTree = "<group>"; };
+		938F0D011B20C030006E5864 /* ReceiveFromGVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveFromGVC.h; sourceTree = "<group>"; };
+		938F0D021B20C030006E5864 /* ReceiveFromGVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromGVC.m; sourceTree = "<group>"; };
+		938F0D041B20C03E006E5864 /* ReceiveFromVAVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveFromVAVC.h; sourceTree = "<group>"; };
+		938F0D051B20C03E006E5864 /* ReceiveFromVAVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromVAVC.m; sourceTree = "<group>"; };
 		939249DF1AC19883008D5500 /* Connectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connectivity.h; sourceTree = "<group>"; };
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
-		939249E21AC1A549008D5500 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
-		939249E31AC1A549008D5500 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
+		939249E21AC1A549008D5500 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		939249E31AC1A549008D5500 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		939ADCB41B0E2FD900FDEA66 /* varground.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = varground.ttf; sourceTree = "<group>"; };
 		93BF04191AD2C78100AFB30B /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questions.txt; sourceTree = SOURCE_ROOT; };
+		93F0674D1B1DF752003B7F84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		93F0674F1B1F44C4003B7F84 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		93F067501B1F44C4003B7F84 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,15 +118,12 @@
 			children = (
 				939ADCB41B0E2FD900FDEA66 /* varground.ttf */,
 				938E68731ACC297F009B7AE7 /* resources */,
-				939ADCB31B0B511600FDEA66 /* Controllers */,
+				93F067521B1F44E4003B7F84 /* Model */,
+				939ADCB31B0B511600FDEA66 /* Controller */,
 				14C443371AC18C6300103C35 /* AppDelegate.h */,
 				14C443381AC18C6300103C35 /* AppDelegate.m */,
 				939249DF1AC19883008D5500 /* Connectivity.h */,
 				939249E01AC19883008D5500 /* Connectivity.m */,
-				1457877B1AC4200F007D76A1 /* Player.h */,
-				1457877C1AC4200F007D76A1 /* Player.m */,
-				1452A45E1AC988E400A46762 /* GameSettings.h */,
-				1452A45F1AC988E400A46762 /* GameSettings.m */,
 				14C4433D1AC18C6300103C35 /* Main.storyboard */,
 				14C443401AC18C6300103C35 /* Images.xcassets */,
 				93009F201ACD74250075610E /* Launch Screen.xib */,
@@ -137,23 +153,54 @@
 			name = resources;
 			sourceTree = "<group>";
 		};
-		939ADCB31B0B511600FDEA66 /* Controllers */ = {
+		938F0CE81B209E1C006E5864 /* ReceiveData */ = {
 			isa = PBXGroup;
 			children = (
-				1432C40D1AC2E28B00E15CDE /* VerifyAnswerViewController.h */,
-				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
+				938F0CF81B20BFFD006E5864 /* ReceiveData.h */,
+				938F0CF91B20BFFD006E5864 /* ReceiveData.m */,
+				938F0CFB1B20C017006E5864 /* ReceiveFromCVC.h */,
+				938F0CFC1B20C017006E5864 /* ReceiveFromCVC.m */,
+				938F0CFE1B20C024006E5864 /* ReceiveFromSVC.h */,
+				938F0CFF1B20C024006E5864 /* ReceiveFromSVC.m */,
+				938F0D011B20C030006E5864 /* ReceiveFromGVC.h */,
+				938F0D021B20C030006E5864 /* ReceiveFromGVC.m */,
+				938F0D041B20C03E006E5864 /* ReceiveFromVAVC.h */,
+				938F0D051B20C03E006E5864 /* ReceiveFromVAVC.m */,
+			);
+			name = ReceiveData;
+			sourceTree = "<group>";
+		};
+		939ADCB31B0B511600FDEA66 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				14C4433A1AC18C6300103C35 /* ViewController.h */,
+				14C4433B1AC18C6300103C35 /* ViewController.m */,
+				938E686C1ACC08DD009B7AE7 /* ConnectionsViewController.h */,
+				938E686D1ACC08DD009B7AE7 /* ConnectionsViewController.m */,
+				939249E21AC1A549008D5500 /* SettingsViewController.h */,
+				939249E31AC1A549008D5500 /* SettingsViewController.m */,
 				1432C40A1AC2D40400E15CDE /* GameViewController.h */,
 				1432C40B1AC2D40400E15CDE /* GameViewController.m */,
-				14C4433A1AC18C6300103C35 /* viewController.h */,
-				14C4433B1AC18C6300103C35 /* viewController.m */,
-				939249E21AC1A549008D5500 /* ConnectionsViewController.h */,
-				939249E31AC1A549008D5500 /* ConnectionsViewController.m */,
-				938E686C1ACC08DD009B7AE7 /* FirstViewController.h */,
-				938E686D1ACC08DD009B7AE7 /* FirstViewController.m */,
+				1432C40D1AC2E28B00E15CDE /* VerifyAnswerViewController.h */,
+				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
 				1452A45B1AC97CEB00A46762 /* ResultsViewController.h */,
 				1452A45C1AC97CEB00A46762 /* ResultsViewController.m */,
 			);
-			name = Controllers;
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		93F067521B1F44E4003B7F84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				93F0674F1B1F44C4003B7F84 /* Game.h */,
+				93F067501B1F44C4003B7F84 /* Game.m */,
+				938F0CE81B209E1C006E5864 /* ReceiveData */,
+				1457877B1AC4200F007D76A1 /* Player.h */,
+				1457877C1AC4200F007D76A1 /* Player.m */,
+				1452A45E1AC988E400A46762 /* GameSettings.h */,
+				1452A45F1AC988E400A46762 /* GameSettings.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		B55B1DDD1AC98F8B00C7D68E /* New Group */ = {
@@ -195,6 +242,7 @@
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 2T9YCH946H;
 					};
 				};
 			};
@@ -203,7 +251,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 14C443271AC18C6300103C35;
@@ -238,10 +285,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				938E686E1ACC08DD009B7AE7 /* FirstViewController.m in Sources */,
+				938F0D001B20C024006E5864 /* ReceiveFromSVC.m in Sources */,
+				938F0CFA1B20BFFD006E5864 /* ReceiveData.m in Sources */,
+				93F067511B1F44C4003B7F84 /* Game.m in Sources */,
+				938E686E1ACC08DD009B7AE7 /* ConnectionsViewController.m in Sources */,
+				938F0CFD1B20C017006E5864 /* ReceiveFromCVC.m in Sources */,
+				938F0D031B20C030006E5864 /* ReceiveFromGVC.m in Sources */,
 				1457877D1AC4200F007D76A1 /* Player.m in Sources */,
-				939249E41AC1A549008D5500 /* ConnectionsViewController.m in Sources */,
-				14C4433C1AC18C6300103C35 /* viewController.m in Sources */,
+				939249E41AC1A549008D5500 /* SettingsViewController.m in Sources */,
+				14C4433C1AC18C6300103C35 /* ViewController.m in Sources */,
 				1432C40F1AC2E28B00E15CDE /* VerifyAnswerViewController.m in Sources */,
 				939249E11AC19883008D5500 /* Connectivity.m in Sources */,
 				14C443391AC18C6300103C35 /* AppDelegate.m in Sources */,
@@ -250,6 +302,7 @@
 				1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */,
 				1452A4601AC988E400A46762 /* GameSettings.m in Sources */,
 				14C443361AC18C6300103C35 /* main.m in Sources */,
+				938F0D061B20C03E006E5864 /* ReceiveFromVAVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +313,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				14C4433E1AC18C6300103C35 /* Base */,
+				93F0674D1B1DF752003B7F84 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

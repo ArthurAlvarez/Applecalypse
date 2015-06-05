@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Game.h"
 #import "GameViewController.h"
 #import "VerifyAnswerViewController.h"
 
 @interface ResultsViewController : UIViewController <VerifyAnswerControllerDelegate>
+
+@property Game *game;
 
 @property (strong, nonatomic) GameViewController *gameView;
 

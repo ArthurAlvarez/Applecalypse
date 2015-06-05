@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "Game.h"
+#import "ConnectionsViewController.h"
 
 @interface ViewController ()
 

@@ -27,9 +27,6 @@
 ///Interface Button where the user Rejects the answer
 @property (weak, nonatomic) IBOutlet UIButton *btnRejectAnswer;
 
-///Interface Label that identifies local user
-@property (weak, nonatomic) IBOutlet UILabel *playerLabel;
-
 ///Interface Label that shows local user answer
 @property (weak, nonatomic) IBOutlet UILabel *myAsnwerLabel;
 
@@ -44,9 +41,6 @@
 /// the other player is right or wrong
 @property (weak, nonatomic) IBOutlet UILabel *wOrRLabel;
 
-///Delegate for comunications
-@property (strong, nonatomic) AppDelegate *appDelegate;
-
 @end
 
 #pragma mark - Controller Implementation
@@ -55,19 +49,10 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view.
 	
-    //Setup of comunications
-    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveDataWithNotification:)
-                                                 name:@"MCDidReceiveDataNotification"
-                                               object:nil];
-    
 	//Setup of label texts
-    self.playerLabel.text = _appDelegate.mcManager.session.myPeerID.displayName;
-	self.myAsnwerLabel.text = [_yourAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
-	self.hisAsnwerLabel.text =[_hisAnswer stringByReplacingOccurrencesOfString:@"$" withString:@""];
+	self.myAsnwerLabel.text = _game.myAnswer;
+	self.hisAsnwerLabel.text = _game.otherAnswer;
 	
 	//Modifies interface acording to user
 	if([Player getPlayerID] == 1){
@@ -82,8 +67,6 @@
 		_btnRejectAnswer.hidden = YES;
 		[_waitingIndicator startAnimating];
 	}
-	
-	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,86 +77,26 @@
 #pragma mark - Action Methods
 
 /**
- This method is called when the user presses btnAcceptAnswer
+ This method is called when the user presses btnAcceptAnswer or btnRejectAnswer
  @author Arthur Alvarez
  */
-- (IBAction)acceptAnswer:(id)sender {
-	[self sendAnswer:@"#1"];
-	[Player setScore:[Player getScore] +1];
-    [self checkEndGame];
-}
-
-/**
- This method is called when the user presses btnRejectAnswer
- @author Arthur Alvarez
- */
-- (IBAction)rejectAnswer:(id)sender {
-	[self sendAnswer:@"#0"];
-    [self checkEndGame];
-}
-
-/**
- This method is called when Player1 evaluates the answer and sends the result to Player2
- */
--(void)sendAnswer:(NSString*)strAnswer
+- (IBAction)judgeAnswer:(UIButton*)sender
 {
-	NSError *error;
-	NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
-	
-	NSLog(@"Sending Data to: %@", self.appDelegate.connectedPeer);
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
-	}
-}
-
-#pragma mark - Selectors
-
-/**
- This method is called when the device receives data from other connected devices
- @author Arthur Alvarez
- */
--(void)didReceiveDataWithNotification:(NSNotification *)notification
-{
-	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
- 
-	NSLog(@"Received Data: %@", receivedInfo);
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		
-        if([receivedInfo isEqualToString:@"#0"]){
-            NSLog(@"Vibrate");
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
-			right = NO;
-			
-            [self checkEndGame];
-        }
-		else if([receivedInfo isEqualToString:@"#1"]){
-            NSLog(@"Somando pontuacao");
-            [Player setScore:[Player getScore] +1];
-			right = YES;
-			
-            [self checkEndGame];
-        }
-	});
+    [self verifyAnswer:sender.tag == 1];
 }
 
 #pragma mark - Others Methods
 
--(void)checkEndGame{
-    //Verifica fim do jogo
-    if([GameSettings getCurrentRound] == [GameSettings getGameLength]){
-        NSLog(@"Segue");
-        [self performSegueWithIdentifier:@"finalResults" sender:self];
-    }
+- (void) verifyAnswer:(BOOL)isCorrect
+{
+	if ([Player getPlayerID] == 1) {
+		if (!isCorrect) [_game sendData:@"#0" fromViewController:self];
+		else [_game sendData:@"#1" fromViewController:self];
+	} else if (!isCorrect) AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+
+	if ([_game addScore:YES]) [self performSegueWithIdentifier:@"finalResults" sender:self];
 	else {
-		if ([Player getPlayerID] == 2) [self.delegate didShowImage:right];
+		if ([Player getPlayerID] == 2) [self.delegate didShowImage:isCorrect];
         [[self navigationController] popViewControllerAnimated:YES];
 	}
 }

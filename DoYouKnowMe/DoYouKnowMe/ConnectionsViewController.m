@@ -1,53 +1,44 @@
 //
-//  ConnectionsViewController.m
+//  FirstViewController.m
 //  DoYouKnowMe
 //
-//  Created by Felipe Eulalio on 24/03/15.
+//  Created by Felipe Eulálio on 31/03/15.
 //  Copyright (c) 2015 Arthur Alvarez. All rights reserved.
 //
 
 #import "ConnectionsViewController.h"
 #import "AppDelegate.h"
 #import "Player.h"
-#import "GameSettings.h"
 
 #pragma mark - Private Interface
 
 @interface ConnectionsViewController ()
 {
-	/// Flag to show when the game can start
-	int canStart;
-	
-	BOOL didTouchInDisconnect;
-	
-	BOOL alreadyShownAlert;
+	/// Flag to know when the game can go to the next View
+	int canGoNext;
 }
 
-#pragma mark - Interface Propeties
-/// Interface Segmented Control to know which kind the player is
-@property (weak, nonatomic) IBOutlet UISegmentedControl *questionTo;
+#pragma mark - Interface Properties
+/// Interface Text Field to edit the display name from the device
+@property (weak, nonatomic) IBOutlet UITextField *txtName;
 
-/// Interface Segmented Control to know how many questions the game will have
-@property (weak, nonatomic) IBOutlet UISegmentedControl *numberOfQuestions;
+/// Label to say hello to the player
+@property (weak, nonatomic) IBOutlet UILabel *helloLabel;
 
-/// Interface Segmented Control to select the time to answer the question
-@property (weak, nonatomic) IBOutlet UISegmentedControl *timeToAnswer;
+/// Label to ask the player's name
+@property (weak, nonatomic) IBOutlet UILabel *askNameLabel;
 
-/// Interface Button to start the game
-@property (weak, nonatomic) IBOutlet UIButton *startBtn;
+/// Interface Button to look for another device
+@property (weak, nonatomic) IBOutlet UIButton *browseBtn;
 
-/// Intarface Button to disconnect with the other device
-@property (weak, nonatomic) IBOutlet UIButton *btnDisconnect;
+/// Interface Button to disconect with the other device
+@property (weak, nonatomic) IBOutlet UIButton *disconectBtn;
 
-/// Interface Label to show a message to the player know that he is waiting the other player
-@property (weak, nonatomic) IBOutlet UILabel *waitingOtherLabel;
+/// Interface Activity Indicator to show that the player is waiting the other
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingGoNext;
 
-/// Interface Indicator to show to the player that he is waiting to the other player
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
-
-#pragma mark - Others Properties
-/// AppDelegate object to creat an access to the Connectivity class trough the app delegate
-@property (nonatomic, strong) AppDelegate *appDelegate;
+/// Table view to display the connected devices
+@property (weak, nonatomic) IBOutlet UITableView *connectedDevices;
 
 @end
 
@@ -55,89 +46,26 @@
 
 @implementation ConnectionsViewController
 
+#pragma mark - Life Cycle Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-	
-	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	
-	[_questionTo setTitle:[NSString stringWithFormat:@"%@", self.appDelegate.connectedPeer.displayName]
-		forSegmentAtIndex:1];
-	
-	[_waitingIndicator stopAnimating];
-	
-	[Player setPlayerID:-1];
-	
-	canStart = 0;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(peerDidChangeStateWithNotification:)
-												 name:@"MCDidChangeStateNotification"
+											 selector:@selector(peerDidChangeStateWithNotification)
+												 name:@"changeState"
 											   object:nil];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(didReceiveDataWithNotification:)
-												 name:@"MCDidReceiveDataNotification"
-											   object:nil];
+	_game = [[Game alloc] initWithSender:self];
 	
-	_startBtn.layer.cornerRadius = 5;
+	// Set Tex Field delegate
+	[_txtName setDelegate:self];
 	
-}
-/**
- Set all constants  and infos
- */
--(void) viewWillAppear:(BOOL)animated{
-	
-	[super viewWillAppear:YES];
-	
-	_startBtn.hidden = YES;
-	_startBtn.enabled = YES;
-	
-	[_waitingIndicator stopAnimating];
-	[_waitingOtherLabel setText:@""];
-	
-	[Player setScore:0];
-	canStart = 0;
-	
-	[GameSettings setGameLenght:5];
-	[GameSettings setRound:0];
-	
-	didTouchInDisconnect = NO;
-	
-	int indexNOQ = (int)_numberOfQuestions.selectedSegmentIndex;
-	
-	switch (indexNOQ) {
-		case 0:
-			[GameSettings setGameLenght:5];
-			break;
-		case 1:
-			[GameSettings setGameLenght:10];
-			break;
-		case 2:
-			[GameSettings setGameLenght:15];
-			break;
-		default:
-			break;
-	}
-	int indexTTA = (int)_timeToAnswer.selectedSegmentIndex;
-	
-	switch (indexTTA) {
-		case 0:
-			[GameSettings setTime:20];
-			break;
-		case 1:
-			[GameSettings setTime:30];
-			break;
-		case 2:
-			[GameSettings setTime:40];
-			break;
-		default:
-			break;
-	}
-	
-	if ([Player getPlayerID] != -1) self.startBtn.hidden = NO;
+	// Hide buttons and labels
+	_browseBtn.hidden = YES;
+	_disconectBtn.hidden = YES;
+	_connectedDevices.hidden = YES;
 
-	alreadyShownAlert = NO;
+	_browseBtn.layer.cornerRadius = 5;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,315 +73,203 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	canGoNext = 0;
+	[_waitingGoNext stopAnimating];
+	
+	
+	if ([_game.connectedDevices count] == 0) {
+		self.connectedDevices.hidden = true;
+	}
+
+	if ([self.txtName.text length] > 0) [_game initiateBrowsing];
+	
+	self.connectedDevices.allowsSelection = YES;
+
+	[self.connectedDevices reloadData];
+}
+
 #pragma mark - Action Methods
 
 /**
- Method to select to who the questions are going to be made
- **/
-- (IBAction)questionsTo:(id)sender
-{
-	NSError *error;
-	NSData *dataToSend;
-	
-	if (_questionTo.selectedSegmentIndex == 0)
-	{
-		dataToSend = [@"!1" dataUsingEncoding:NSUTF8StringEncoding];
-		[Player setPlayerID:1];
-	}
-	else
-	{
-		dataToSend = [@"!0" dataUsingEncoding:NSUTF8StringEncoding];
-		[Player setPlayerID:2];
-	}
-	
-	NSLog(@"ID %d", [Player getPlayerID]);
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
-	}
-	
-	_startBtn.hidden = NO;
-}
-
-/**
- Defines the number of questions that the game will have
- **/
-- (IBAction)numberOfQuestons:(id)sender
-{
-	NSError *error;
-	NSData *dataToSend = [[NSString stringWithFormat:@"()%ld", (long)_numberOfQuestions.selectedSegmentIndex]
-						  dataUsingEncoding:NSUTF8StringEncoding];
-	int index = (int)_numberOfQuestions.selectedSegmentIndex;
-	
-	switch (index) {
-		case 0:
-			[GameSettings setGameLenght:5];
-			break;
-		case 1:
-			[GameSettings setGameLenght:10];
-			break;
-		case 2:
-			[GameSettings setGameLenght:15];
-			break;
-		default:
-			break;
-	}
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
-	}
-	
-}
-
-/**
- Set the time that the players have to answer the questions
+ Go back to the first view 
  */
-- (IBAction)timeToAnswer:(id)sender
-{
-	NSError *error;
-	NSData *dataToSend = [[NSString stringWithFormat:@"....%ld", (long)_timeToAnswer.selectedSegmentIndex]
-						  dataUsingEncoding:NSUTF8StringEncoding];
-	int index = (int)_timeToAnswer.selectedSegmentIndex;
-	
-	switch (index) {
-		case 0:
-			[GameSettings setTime:20];
-			break;
-		case 1:
-			[GameSettings setTime:30];
-			break;
-		case 2:
-			[GameSettings setTime:40];
-			break;
-		default:
-			break;
-	}
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
-	}
-}
-
-/** 
- Method to disconnect with the other device
- **/
-- (IBAction)disconnect:(id)sender
-{
-	NSError *error;
-	
-	[_appDelegate.mcManager.session disconnect];
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[_btnDisconnect setEnabled:NO];
-		[_startBtn setEnabled:NO];
-	});
-	
-	[_appDelegate.mcManager.session sendData:[@"!disconnect" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
-	[Player setPlayerID:-1];
-	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
-	}
-	
-	[[self navigationController] popToRootViewControllerAnimated:YES];
-}
-
-/**
- Method to start the game. Verifies if both players had pressed the button. If both had pressed,
- initiates the game, otherwise, show to the player that he is waiting for the other player
- **/
-- (IBAction)startGame:(id)sender {
-	
-	NSError *error;
-	
-	[_startBtn setEnabled:NO];
-	
-	if (canStart == 0) {
-		canStart = 1;
-		[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
-	 
-		[_waitingIndicator startAnimating];
-	} else [self performSegueWithIdentifier:@"startGame" sender:self];;
-	
-
-	[_appDelegate.mcManager.session sendData:[@"!start" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-}
-
 - (IBAction)goBack:(id)sender
 {
-	NSError *error;
+	[_game finishSession];
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/**
+ Method to browse for new devices
+ **/
+- (IBAction)browseForDevices:(id)sender
+{
+	[_game initiateBrowsing];
+}
+
+/**
+ Method to disconnect with the other device
+ **/
+- (IBAction)Disconect:(id)sender
+{
+	[_game finishSession];
 	
-	[_appDelegate.mcManager.session sendData:[@"!goBack" dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		_disconectBtn.hidden = YES;
+	});
 	
-	[[self navigationController] popToRootViewControllerAnimated:YES];
+	[_waitingGoNext stopAnimating];
+	
+	canGoNext = 0;
+	
+	[self.connectedDevices reloadData];
 }
 
 #pragma mark - Selectors
 
 /**
- Methodd to verify when the connection chances its state
+ Method to when the device change the state of the connection
  **/
--(void)peerDidChangeStateWithNotification:(NSNotification *)notification
+-(void)peerDidChangeStateWithNotification
 {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			BOOL peersExist = ([_appDelegate.mcManager.session.connectedPeers count] == 0);
-			[_btnDisconnect setEnabled:!peersExist];
-			[_startBtn setEnabled:!peersExist];
-			
-			if (peersExist){
-				[_waitingOtherLabel setText:@""];
-				[_waitingIndicator stopAnimating];
-				canStart = 0;
-				
-				if (!didTouchInDisconnect && !alreadyShownAlert &&
-					![self.appDelegate.mcManager.session.connectedPeers containsObject:self.appDelegate.connectedPeer]) {
-					alreadyShownAlert = YES;
-					
-					UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
-																		  message:@"A conexão com seu amigo foi perdida"
-																		 delegate:self
-																cancelButtonTitle:@"Ok"
-																otherButtonTitles: nil];
-					[disconected show];
-				}
-				
-			} else {
-				if (canStart != 0) canStart = 0;
-				[_startBtn setEnabled:YES];
-			}
-		});
+	BOOL peersExist = ([_game.connectedDevices count] == 0);
+	[_txtName setEnabled:peersExist];
 	
+	dispatch_async(dispatch_get_main_queue(),
+	^{
+		if (!peersExist) {
+			[_browseBtn setEnabled:NO];
+			_disconectBtn.hidden = NO;
+			if (canGoNext == 0) _connectedDevices.allowsSelection = YES;
+		} else {
+			[_browseBtn setEnabled:YES];
+			_disconectBtn.hidden = YES;
+			[_waitingGoNext stopAnimating];
+		}
+		
+		[self.connectedDevices reloadData];
+	});
+}
+
+#pragma mark - Auxiliary Methods
+
+/**
+ Perform a shake animation at the textfield when it is empty
+ */
+- (void) performShakeAnimation:(UIView *)object {
+	
+	CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
+	
+	[shake setDuration:0.1];
+	[shake setRepeatCount:2];
+	[shake setAutoreverses:YES];
+	
+	[shake setFromValue:[NSValue valueWithCGPoint: CGPointMake(object.center.x - 5, object.center.y)]];
+	
+	[shake setToValue:[NSValue valueWithCGPoint: CGPointMake(object.center.x + 5, object.center.y)]];
+	
+	[object.layer addAnimation:shake forKey:@"position"];
 }
 
 /**
- Method to when the devide receive some data
+ Method to the device receive some data
  **/
--(void)didReceiveDataWithNotification:(NSNotification *)notification
+- (void) canGoNext
 {
-	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-        
-        if([receivedInfo isEqualToString:@"@start"]){
-            NSLog(@"Received start");
-            [GameSettings setOtherDidLoad:YES];
-        }
-		else if ([receivedInfo isEqualToString:@"!1"] || [receivedInfo isEqualToString:@"!0"]){
-			
-			if ([receivedInfo isEqualToString:@"!0"])
-			{
-				[Player setPlayerID:1];
-				_questionTo.selectedSegmentIndex = 0;
-			}
-			else
-			{
-				[Player setPlayerID:2];
-				_questionTo.selectedSegmentIndex = 1;
-			}
-			
-			_startBtn.hidden = NO;
-			
-			NSLog(@"ID %d", [Player getPlayerID]);
-		}
-		else if ([receivedInfo isEqualToString:@"!disconnect"]){
-			[_appDelegate.mcManager.session disconnect];
-			
-			NSLog(@"RECEBEU DISCONNECT");
-			
-			[_btnDisconnect setEnabled:NO];
-			
-			[[self navigationController] popToRootViewControllerAnimated:YES];
-		}
-		else if ([receivedInfo isEqualToString:@"!start"]){
-			if (canStart == 0) {
-				canStart = 1;
-			} else
-				if ([Player getPlayerID] != -1) [self performSegueWithIdentifier:@"startGame" sender:self];
-			
-		}
-		else if ([receivedInfo hasPrefix:@"()"]){
-			int index = [[receivedInfo stringByReplacingOccurrencesOfString:@"()" withString:@""] intValue];
-			
-			_numberOfQuestions.selectedSegmentIndex = index;
-			
-			switch (index) {
-				case 0:
-					[GameSettings setGameLenght:5];
-					break;
-				case 1:
-					[GameSettings setGameLenght:10];
-					break;
-				case 2:
-					[GameSettings setGameLenght:15];
-					break;
-				default:
-					break;
-			}
-			
-		}
-		else if ([receivedInfo isEqualToString:@"!goBack"]){
-			[[self navigationController] popToRootViewControllerAnimated:YES];
-		}
-		else if ([receivedInfo hasPrefix:@"...."]) {
-			int index = [[receivedInfo stringByReplacingOccurrencesOfString:@"...." withString:@""] intValue];
-
-			_timeToAnswer.selectedSegmentIndex = index;
-
-			switch (index) {
-				case 0:
-					[GameSettings setTime:20];
-					break;
-				case 1:
-					[GameSettings setTime:30];
-					break;
-				case 2:
-					[GameSettings setTime:40];
-					break;
-				default:
-					break;
-			}
-		}
-	});
-
+	if (canGoNext == 0) canGoNext = 1;
+	else [self performSegueWithIdentifier:@"goNext" sender:self];
 }
 
-#pragma mark - Alert View Delegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	NSString *tittle = [alertView buttonTitleAtIndex:buttonIndex];
+	UIViewController *vc = segue.destinationViewController;
 	
-	if ([tittle isEqualToString:@"Ok"]) {
-		[[self navigationController] popToRootViewControllerAnimated:YES];
+	if ([vc isKindOfClass:[SettingsViewController class]]) {
+		((SettingsViewController*) vc).game = _game;
+	}
+}
+
+#pragma mark - Delegates
+#pragma mark - Text Field Delegate
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+	return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	if ([textField.text length] > 0) {
+		
+		[_txtName resignFirstResponder];
+		
+		[self.game initiateSession:textField.text];
+		
+		_browseBtn.hidden = NO;
+		
+	} else [self performShakeAnimation:_txtName];
+	
+	return YES;
+}
+
+#pragma mark - TableView Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	for (MCPeerID *peer in _game.connectedDevices) {
+		if ([peer.displayName isEqualToString:[tableView cellForRowAtIndexPath:indexPath].textLabel.text]) {
+			_game.otherPlayer = peer;
+		}
 	}
 	
+	[self canGoNext];
 	
+	[_waitingGoNext startAnimating];
+	
+	[_game pauseBrowsing];
+	
+	self.connectedDevices.allowsSelection = NO;
+	
+	[_game sendData:@"goNext" fromViewController:self];
+}
+
+
+#pragma mark - Datasources
+#pragma mark - TableView Datasource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	NSInteger size = [_game.connectedDevices count];
+	
+	if (size == 0) tableView.hidden = true;
+	else tableView.hidden = false;
+	
+	return size;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *CellIdentifier = @"Cell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+	}
+	
+	cell.backgroundColor = tableView.backgroundColor;
+	
+	cell.textLabel.font = self.helloLabel.font;
+	cell.textLabel.textColor = self.helloLabel.textColor;
+	cell.textLabel.text = ((MCPeerID*)[_game.connectedDevices objectAtIndex:indexPath.row]).displayName;
+	
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
+	return cell;
 }
 
 @end

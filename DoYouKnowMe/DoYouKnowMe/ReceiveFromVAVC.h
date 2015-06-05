@@ -1,0 +1,17 @@
+//
+//  ReceiveFromVAVC.h
+//  DoIKnowYou
+//
+//  Created by Felipe Eulalio on 04/06/15.
+//  Copyright (c) 2015 Arthur Alvarez. All rights reserved.
+//
+
+#import "ReceiveData.h"
+#import "Game.h"
+#import "VerifyAnswerViewController.h"
+
+@interface ReceiveFromVAVC : ReceiveData
+
+@property (weak, nonatomic) VerifyAnswerViewController *viewController;
+
+@end

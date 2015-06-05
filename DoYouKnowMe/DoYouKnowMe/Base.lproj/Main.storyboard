@@ -19,7 +19,6 @@
             <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
-            <string>VAGRoundedBT-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -135,10 +134,10 @@
             </objects>
             <point key="canvasLocation" x="271" y="604"/>
         </scene>
-        <!--First View Controller-->
+        <!--Connections View Controller-->
         <scene sceneID="Ja0-Ek-OCT">
             <objects>
-                <viewController id="EWF-ZV-0wl" customClass="FirstViewController" sceneMemberID="viewController">
+                <viewController id="EWF-ZV-0wl" customClass="ConnectionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Unh-OK-K0Y"/>
                         <viewControllerLayoutGuide type="bottom" id="BUD-kF-fvd"/>
@@ -318,10 +317,10 @@
             </objects>
             <point key="canvasLocation" x="1099" y="604"/>
         </scene>
-        <!--Connections View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="VJx-o4-2aC">
             <objects>
-                <viewController id="gXl-Md-Q7V" customClass="ConnectionsViewController" sceneMemberID="viewController">
+                <viewController id="gXl-Md-Q7V" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JU0-D1-ydj"/>
                         <viewControllerLayoutGuide type="bottom" id="nNb-Au-uZS"/>
@@ -645,7 +644,7 @@
                                 <color key="highlightedColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rodada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rodada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
                                 <rect key="frame" x="508" y="19" width="59" height="30"/>
                                 <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="13"/>
                                 <color key="textColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -809,18 +808,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyAnswer" translatesAutoresizingMaskIntoConstraints="NO" id="BaL-x6-dKm">
                                 <rect key="frame" x="10" y="20" width="580" height="142"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upZ-Z9-diV">
-                                <rect key="frame" x="275" y="20" width="51" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="FCZ-9Z-fDO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.58749343129999998" blue="0.4864175684" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <size key="shadowOffset" width="1" height="1"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dO8-sE-OCP">
+                            <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dO8-sE-OCP">
                                 <rect key="frame" x="10" y="357" width="285" height="233"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
@@ -833,7 +821,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="acceptAnswer:" destination="1Lr-Ql-gVg" eventType="touchUpInside" id="auF-st-0X7"/>
+                                    <action selector="judgeAnswer:" destination="1Lr-Ql-gVg" eventType="touchUpInside" id="C2R-tj-y90"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giX-8V-CWa">
@@ -846,7 +834,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="rejectAnswer:" destination="1Lr-Ql-gVg" eventType="touchUpInside" id="Mxc-sr-JqS"/>
+                                    <action selector="judgeAnswer:" destination="1Lr-Ql-gVg" eventType="touchUpInside" id="NVI-RY-ZvG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resposta" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4W1-5u-G9S">
@@ -897,7 +885,6 @@
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="width" secondItem="nnv-hu-5Q1" secondAttribute="width" constant="-31" id="Afd-cR-DTw"/>
                             <constraint firstItem="fgn-0m-1oW" firstAttribute="top" secondItem="TWm-nD-3Bk" secondAttribute="bottom" constant="10" id="Awc-gb-DyA"/>
                             <constraint firstItem="W0S-5l-nER" firstAttribute="top" secondItem="jPM-VD-5ml" secondAttribute="bottom" constant="140" id="D4i-0M-RiZ"/>
-                            <constraint firstItem="upZ-Z9-diV" firstAttribute="top" secondItem="7gn-D5-ypy" secondAttribute="bottom" id="GSg-bn-XgC"/>
                             <constraint firstItem="giX-8V-CWa" firstAttribute="width" secondItem="dO8-sE-OCP" secondAttribute="width" id="KUi-Lf-SjX"/>
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="height" secondItem="nJf-dx-rx6" secondAttribute="height" multiplier="1/4" priority="950" constant="-8" id="Qc3-F2-hVY"/>
                             <constraint firstItem="TWm-nD-3Bk" firstAttribute="centerX" secondItem="nnv-hu-5Q1" secondAttribute="centerX" constant="9" id="QlY-aj-OGn"/>
@@ -920,7 +907,6 @@
                             <constraint firstItem="W0S-5l-nER" firstAttribute="top" secondItem="jPM-VD-5ml" secondAttribute="bottom" constant="140" id="rMj-w7-INZ"/>
                             <constraint firstAttribute="height" secondItem="4W1-5u-G9S" secondAttribute="height" multiplier="1/4" priority="950" constant="564.5" id="tnI-LX-nvx"/>
                             <constraint firstItem="jPM-VD-5ml" firstAttribute="centerX" secondItem="fgn-0m-1oW" secondAttribute="centerX" id="zf2-Jf-kWY"/>
-                            <constraint firstAttribute="centerX" secondItem="upZ-Z9-diV" secondAttribute="centerX" id="zoZ-zF-9Ed"/>
                         </constraints>
                     </view>
                     <connections>
@@ -928,7 +914,6 @@
                         <outlet property="btnRejectAnswer" destination="giX-8V-CWa" id="jfn-Fk-OmF"/>
                         <outlet property="hisAsnwerLabel" destination="TWm-nD-3Bk" id="Ael-sa-1xx"/>
                         <outlet property="myAsnwerLabel" destination="4W1-5u-G9S" id="f3L-kc-xd2"/>
-                        <outlet property="playerLabel" destination="upZ-Z9-diV" id="Zb3-51-RaX"/>
                         <outlet property="wOrRLabel" destination="fgn-0m-1oW" id="Vb6-uy-6Tf"/>
                         <outlet property="waitingIndicator" destination="jPM-VD-5ml" id="sOE-S5-Bid"/>
                         <segue destination="onG-ap-POS" kind="show" identifier="finalResults" id="05D-mY-82Y"/>

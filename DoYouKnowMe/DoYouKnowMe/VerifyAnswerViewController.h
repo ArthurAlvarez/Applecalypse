@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "Game.h"
 
 @protocol VerifyAnswerControllerDelegate <NSObject>
 
@@ -15,13 +16,16 @@
 
 @end
 
-
 @interface VerifyAnswerViewController : UIViewController
+
+@property Game *game;
 
 @property (strong, nonatomic) NSString *yourAnswer;
 
 @property (strong, nonatomic) NSString *hisAnswer;
 
 @property (weak) id<VerifyAnswerControllerDelegate> delegate;
+
+- (void) verifyAnswer:(BOOL)isCorrect;
 
 @end

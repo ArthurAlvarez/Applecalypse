@@ -26,13 +26,17 @@ static int _score; // Score of player 2
     return _playerID;
 }
 
-
 +(void) setScore:(int)newScore{
     _score = newScore;
 }
 
 +(int) getScore{
     return _score;
+}
+
++(float)knowingPercent
+{
+	return _score/[GameSettings getGameLength];
 }
 
 @end

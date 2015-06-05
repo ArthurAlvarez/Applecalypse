@@ -33,9 +33,6 @@
 /// ProgressView to display the results
 @property (weak, nonatomic) IBOutlet UIProgressView *rate;
 
-///Delegate for comunications
-@property (strong, nonatomic) AppDelegate *appDelegate;
-
 @property (weak, nonatomic) IBOutlet UIImageView *showWOrR;
 
 /// Feedback sound
@@ -52,29 +49,21 @@
 {
     [super viewDidLoad];
 	
-	float knowingPercent;
-    
-    _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-	
     if([Player getPlayerID] == 1){
-        self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", self.appDelegate.connectedPeer.displayName];
+        self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", _game.otherPlayer.displayName];
     }
-    
     else if([Player getPlayerID] == 2){
-        self.topLabel.text = [NSString stringWithFormat:@"Quanto conheço %@...", self.appDelegate.connectedPeer.displayName];
+        self.topLabel.text = [NSString stringWithFormat:@"Quanto conheço %@...", _game.otherPlayer.displayName];
     }
     
     NSLog(@"score final: %d", [Player getScore]);
+    NSLog(@"knowing percent: %f", [Player knowingPercent]);
 	
-	knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
-    NSLog(@"knowing percent: %f", knowingPercent);
-	
-	if (knowingPercent <= 0.2f) _percentLabel.text = [NSString stringWithFormat:@"Muito pouco...\nTente novamente!"];
-	else if (knowingPercent <= 0.4f) _percentLabel.text = [NSString stringWithFormat:@"Pouco...\nDá para melhorar bastante isso, hein?"];
-	else if (knowingPercent <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Nem muito, nem pouco...\nAinda dá para melhorar isso!"];
-	else if (knowingPercent <= 0.8f) _percentLabel.text = [NSString stringWithFormat:@"Bem!"];
-	else _percentLabel.text = [NSString stringWithFormat:@"Muito bem!!\nVocês são grandes amigos!!"];
+	if ([Player knowingPercent] <= 0.2f) _percentLabel.text = [NSString stringWithFormat:@"Muito pouco...\n\nTente novamente!"];
+	else if ([Player knowingPercent] <= 0.4f) _percentLabel.text = [NSString stringWithFormat:@"Pouco...\n\nDá para melhorar bastante isso, hein?"];
+	else if ([Player knowingPercent] <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Nem muito, nem pouco...\n\nAinda dá para melhorar isso!"];
+	else if ([Player knowingPercent] <= 0.8f) _percentLabel.text = [NSString stringWithFormat:@"Bem!"];
+	else _percentLabel.text = [NSString stringWithFormat:@"Muito bem!!\n\nVocês são grandes amigos!!"];
 	
 	_btnBack1.layer.cornerRadius = 5;
 	_btnBack2.layer.cornerRadius = 5;
@@ -98,7 +87,6 @@
 			self.showWOrR.image = [UIImage imageNamed:@"wrong-mark"];
 			self.showWOrR.hidden = NO;
             AudioServicesPlayAlertSound(_wrongAudio);
-
 		}
 	} else {
 		self.showWOrR.hidden = YES;
@@ -109,9 +97,7 @@
 {
 	[super viewDidAppear:animated];
 	
-	float knowingPercent = (float)[Player getScore]/[GameSettings getGameLength]; // Calculates the percentage of correct answers
-	
-	[self.rate setProgress:knowingPercent animated:YES];
+	[self.rate setProgress:[Player knowingPercent] animated:YES];
 	
 	[super viewDidAppear:animated];
 	
@@ -146,7 +132,7 @@
 
 #pragma mark - VerifyAnswerControllerDelegate Delegate
 
--(void)didShowImage: (BOOL)right
+-(void)didShowImage:(BOOL)right
 {
 	_right = right;
 }

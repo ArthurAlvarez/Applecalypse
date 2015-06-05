@@ -1,0 +1,253 @@
+//
+//  Game.m
+//  DoIKnowYou
+//
+//  Created by Felipe Eulalio on 03/06/15.
+//  Copyright (c) 2015 Arthur Alvarez. All rights reserved.
+//
+
+#import "Game.h"
+#import "ConnectionsViewController.h"
+#import "SettingsViewController.h"
+#import "GameViewController.h"
+#import "VerifyAnswerViewController.h"
+#import "ReceiveData.h"
+#import "ReceiveFromCVC.h"
+#import "ReceiveFromSVC.h"
+#import "ReceiveFromGVC.h"
+#import "ReceiveFromVAVC.h"
+
+#pragma mark - Private Interface
+@interface Game ()
+
+@property UIViewController *rootViewController;
+
+@end
+
+#pragma mark - Implementation
+@implementation Game
+
+#pragma mark - Initializer Methods
+-(id)initWithSender:(UIViewController*)sender
+{
+	self = [super init];
+	
+	if (self) {
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(peerDidChangeStateWithNotification:)
+													 name:@"MCDidChangeStateNotification"
+												   object:nil];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(didReceiveDataWithNotification:)
+													 name:@"MCDidReceiveDataNotification"
+												   object:nil];
+		
+		_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+		_connectedDevices = [[NSMutableArray alloc] init];
+		_rootViewController = sender;
+	}
+	
+	return self;
+}
+
+#pragma mark - Connection mMthods
+
+-(void)initiateBrowsing
+{
+	[_appDelegate.mcManager.browser startBrowsingForPeers];
+	[_appDelegate.mcManager.advertiser startAdvertisingPeer];
+}
+
+-(void)pauseBrowsing
+{
+	[_appDelegate.mcManager.browser stopBrowsingForPeers];
+	[_appDelegate.mcManager.advertiser stopAdvertisingPeer];
+}
+
+/**
+ Initiate a new session. If there is another session, finish it and start a new one
+ */
+-(void)initiateSession:(NSString *)userName
+{
+	if (_appDelegate.mcManager.session != nil) [self finishSession];
+		
+	[_appDelegate.mcManager setupPeerAndSessionWithDisplayName:userName];
+	[_appDelegate.mcManager advertiseSelf:YES];
+	[_appDelegate.mcManager setupMCBrowser];
+	_appDelegate.mcManager.advertiser.delegate = self;
+	_appDelegate.mcManager.browser.delegate = self;
+}
+
+/**
+ Finish the currently session
+ */
+-(void)finishSession
+{
+	_appDelegate.mcManager.peerID = nil;
+	_appDelegate.mcManager.session = nil;
+	_appDelegate.mcManager.browser = nil;
+	[_appDelegate.mcManager advertiseSelf:NO];
+
+	[_appDelegate.mcManager.session disconnect];
+}
+
+-(void)sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController
+{
+	NSString *_dataToSend;
+	
+	if ([viewController isKindOfClass:[ConnectionsViewController class]]) _dataToSend = [@"CVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[SettingsViewController class]]) _dataToSend = [@"SVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[GameViewController class]]) _dataToSend = [@"GVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[VerifyAnswerViewController class]]) _dataToSend = [@"VAVC" stringByAppendingString:dataToSend];
+	
+	NSError *error;
+	
+	[_appDelegate.mcManager.session sendData:[_dataToSend dataUsingEncoding:NSUTF8StringEncoding]
+									 toPeers:@[_otherPlayer]
+									withMode:MCSessionSendDataReliable
+									   error:&error];
+	
+	if (error) {
+		NSLog(@"%@", [error localizedDescription]);
+	}
+}
+
+-(void)didReceiveDataWithNotification:(NSNotification *)notification
+{
+	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		
+		if ([receivedInfo hasPrefix:@"CVC"]) {
+			
+			ReceiveFromCVC *_receiveData = [[ReceiveFromCVC alloc] init];
+			for (UIViewController *vc in [_rootViewController.navigationController viewControllers]) {
+				if ([vc isKindOfClass:[ConnectionsViewController class]]) {
+					_receiveData.game = self;
+					_receiveData.viewController = (ConnectionsViewController*) vc;
+					break;
+				}
+			}
+			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"CVC" withString:@""]];
+			
+		} else if ([receivedInfo hasPrefix:@"SVC"]) {
+			
+			ReceiveFromSVC *_receiveData = [[ReceiveFromSVC alloc] init];
+			for (UIViewController *vc in [_rootViewController.navigationController viewControllers]) {
+				if ([vc isKindOfClass:[SettingsViewController class]]) {
+					_receiveData.game = self;
+					_receiveData.viewController = (SettingsViewController*) vc;
+					break;
+				}
+			}
+			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"SVC" withString:@""]];
+			
+		} else if ([receivedInfo hasPrefix:@"GVC"]) {
+			
+			ReceiveFromGVC *_receiveData = [[ReceiveFromGVC alloc] init];
+			for (UIViewController *vc in [_rootViewController.navigationController viewControllers]) {
+				if ([vc isKindOfClass:[GameViewController class]]) {
+					_receiveData.game = self;
+					_receiveData.viewController = (GameViewController*) vc;
+					break;
+				}
+			}
+			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"GVC" withString:@""]];
+			
+		} else if ([receivedInfo hasPrefix:@"VAVC"]) {
+			
+			ReceiveFromVAVC *_receiveData = [[ReceiveFromVAVC alloc] init];
+			for (UIViewController *vc in [_rootViewController.navigationController viewControllers]) {
+				if ([vc isKindOfClass:[VerifyAnswerViewController class]]) {
+					_receiveData.game = self;
+					_receiveData.viewController = (VerifyAnswerViewController*) vc;
+					break;
+				}
+			}
+			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"VAVC" withString:@""]];
+		}
+	});
+}
+
+-(void)peerDidChangeStateWithNotification:(NSNotification *)notification
+{
+	MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+	MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		
+		if (state != MCSessionStateConnecting)
+		{
+			if (state == MCSessionStateConnected)
+			{
+				[_connectedDevices addObject:peerID];
+			}
+			else if (state == MCSessionStateNotConnected)
+			{
+				if ([_connectedDevices count] > 0)
+				{
+					if ([peerID isEqual:_otherPlayer]) {
+						[Player setPlayerID:-1];
+					}
+					[_connectedDevices removeObject:peerID];
+				}
+			}
+		}
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"changeState"
+															object:nil
+														  userInfo:nil];
+	});
+}
+
+- (BOOL) addScore:(BOOL)isCorrect
+{
+	if (isCorrect) {
+		[Player setScore:[Player getScore] + 1];
+	}
+	
+	return [self checkEndGame];
+}
+
+- (BOOL) checkEndGame
+{
+	if ([GameSettings getGameLength] == [GameSettings getCurrentRound]) return YES;
+	
+	return NO;
+}
+
+#pragma mark - Nearby Service Browser and Advertise Delegates
+
+/**
+ Delegate for finding devices
+ **/
+- (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
+{
+	NSLog(@"Found a nearby advertising peer %@", peerID);
+	
+	//Manda convite para conexao
+	[[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+}
+
+/**
+ Delegate called when peer is lost
+ **/
+- (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID
+{
+	NSLog(@"Lost device %@", peerID);
+}
+
+/**
+ Delegate fot accepting invitations
+ **/
+- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL accept,
+							 MCSession *session))invitationHandler
+{
+	NSLog(@"Got invite from %@", peerID);
+	
+	invitationHandler(YES, _appDelegate.mcManager.session);
+}
+
+@end

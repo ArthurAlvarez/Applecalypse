@@ -22,7 +22,6 @@
     BOOL didAnswer;
     BOOL gameDidEnd;
     BOOL gameDidStart;
-	BOOL otherWaiting;
 	BOOL alreadyPerformedSegue;
 }
 
@@ -72,9 +71,6 @@
 /// Number that represents the score of the current player
 @property (strong, nonatomic) NSNumber *playerScore;
 
-/// Delegate for comunications
-@property (strong, nonatomic) AppDelegate *appDelegate;
-
 /// String containing the answer of the other user
 @property (strong, nonatomic) NSString *otherAnswer;
 
@@ -109,17 +105,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	
     //Setup notification for receiving packets
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveDataWithNotification:)
-                                                 name:@"MCDidReceiveDataNotification"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(peerDidChangeStateWithNotification:)
-                                                 name:@"MCDidChangeStateNotification"
+                                                 name:@"changeState"
                                                object:nil];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -137,10 +126,9 @@
 	if ([Player getPlayerID] == 1) {
 		self.question.image = [UIImage imageNamed:@"QuestionSelf"];
 		self.questionsAbout.text = @"Pergunta sobre você";
-	}
-	else {
+	} else {
 		self.question.image = [UIImage imageNamed:@"OtherAnswer"];
-		self.questionsAbout.text = [NSString stringWithFormat:@"Pergunta sobre %@", self.appDelegate.connectedPeer.displayName];
+		self.questionsAbout.text = [NSString stringWithFormat:@"Pergunta sobre %@", _game.otherPlayer.displayName];
 	}
     
     NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"sound_error"
@@ -191,7 +179,7 @@
 	[_answerTextField setEnabled:YES];
 	[self.pauseMenu hide];
 	
-	otherWaiting = YES;
+	_otherWaiting = YES;
 	alreadyPerformedSegue = NO;
 }
 
@@ -237,8 +225,8 @@
         [self questionTextFromIndex:[self getQuestion]];
     }
     else{
-        if(self.appDelegate.connectedPeer != nil){
-            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", self.appDelegate.connectedPeer.displayName];
+        if(_game.otherPlayer != nil){
+            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", _game.otherPlayer.displayName];
         }
     }
 	
@@ -265,8 +253,6 @@
  */
 -(NSNumber *)getQuestion{
     NSNumber *numQuestions, *selectedQuestion;
-    NSError *error;
-    NSData *dataToSend;
     bool decided = NO, repeated = NO;
     
     
@@ -291,20 +277,8 @@
             NSLog(@"Repeated!");
         }
     }
-        
-    NSLog(@"selected: %@", selectedQuestion);
-    dataToSend = [[NSString stringWithFormat:@"*&*%@", selectedQuestion] dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSLog(@"Sending question: %@", dataToSend);
-    
-    [_appDelegate.mcManager.session sendData:dataToSend
-                                     toPeers:@[self.appDelegate.connectedPeer]
-                                    withMode:MCSessionSendDataReliable
-                                       error:&error];
-    
-    if (error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
+	[_game sendData:[NSString stringWithFormat:@"*&*%@", selectedQuestion] fromViewController:self];
     
     return selectedQuestion;
 }
@@ -316,25 +290,6 @@
     self.questionLabel.text = questionText;
     
     return questionText;
-}
-
-/**
- Sends the string containing the answer to the other player
- @author Arthur Alvarez
- */
--(void)sendAnswer:(NSString*)strAnswer
-{
-	NSError *error;
-	NSData *dataToSend = [strAnswer dataUsingEncoding:NSUTF8StringEncoding];
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
-	}
 }
 
 /**
@@ -355,6 +310,14 @@
 	[object.layer addAnimation:shake forKey:@"position"];
 }
 
+- (void) receivedAnswer
+{
+	if(currentAnswers == 0) {
+		_otherWaiting = NO;
+		currentAnswers = 1;
+	} else if (!alreadyPerformedSegue) [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+}
+
 #pragma mark - Selectors
 
 /**
@@ -363,66 +326,6 @@
 -(void)appDidEnterBG:(NSNotification *)notification{
 	NSLog(@"Entrou BG");
 	[self pauseGame:self];
-}
-
-/**
- This method is called when the device received some data from other peers
- @author Arthur Alvarez
- */
--(void)didReceiveDataWithNotification:(NSNotification *)notification{
-    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-    NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-    
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSLog(@"Received data: %@", receivedInfo);
-        
-        if([receivedInfo isEqualToString:@"@start"]){
-            [GameSettings setOtherDidLoad:YES];
-		} else if ([receivedInfo isEqualToString:@"@notwaiting"]) {
-			otherWaiting = NO;
-		} else if([receivedInfo hasPrefix:@"$"]) {
-			
-            self.otherAnswer = receivedInfo;
-            
-			if(currentAnswers == 0) {
-				otherWaiting = NO;
-				currentAnswers = 1;
-			} else if (!alreadyPerformedSegue) [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
-			
-        } else if([receivedInfo hasPrefix:@"*&*"]){
-			
-			
-            NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
-            NSString *formatted = [receivedInfo stringByReplacingOccurrencesOfString:@"*&*" withString:@""];
-            [self questionTextFromIndex:[f numberFromString:formatted]];
-			
-        } else if ([receivedInfo isEqualToString:@">"]){
-            if (shouldContinue == 0) shouldContinue = 1;
-            else {
-                [_waitingPause stopAnimating];
-                
-                _clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                               target:self
-                                                             selector:@selector(updateTimerLabel)
-                                                             userInfo:nil
-                                                              repeats:YES];
-                
-            }
-        }
-        else if ([receivedInfo isEqualToString:@"||"]){
-            shouldContinue = 0;
-            
-            [_clockTimer invalidate];
-			
-			[self.pauseMenu show];
-        }
-        
-        else if ([receivedInfo isEqualToString:@"<"]){
-            [[self navigationController] popToRootViewControllerAnimated:YES];
-        }
-    });
 }
 
 /**
@@ -446,35 +349,18 @@
     }
 }
 
--(void)syncroGame {
-	NSData *dataToSend = [[NSString stringWithFormat:@"@start"] dataUsingEncoding:NSUTF8StringEncoding];
-	NSError *error;
-	
+-(void)syncroGame
+{
 	if([GameSettings getOtherDidLoad] == YES && gameDidStart == NO){
-		
-		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:@[self.appDelegate.connectedPeer]
-										withMode:MCSessionSendDataReliable
-										   error:&error];
 		
 		[self.syncTimer invalidate];
 		self.syncTimer = nil;
 		gameDidStart = YES;
 		[self gameSetup];
 		NSLog(@"Recebeu a info");
-	} else {
-		/* Syncronizing Players */
-		
-		NSLog(@"Sending ready_to_start: %@", dataToSend);
-		
-		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:@[self.appDelegate.connectedPeer]
-										withMode:MCSessionSendDataReliable
-										   error:&error];
-		if (error) {
-			NSLog(@"%@", [error localizedDescription]);
-		}
 	}
+	
+	[_game sendData:@"@start" fromViewController:self];
 }
 
 /**
@@ -521,7 +407,7 @@
     
     if(self.answerTextField.text.length > 0){
 		
-        [self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
+        [_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self];
         
         if (currentAnswers == 0) {
             currentAnswers = 1;
@@ -541,20 +427,11 @@
 	
 	[_clockTimer invalidate];
 	
-    [self.pauseMenu show];
-    
-    NSError *error;
-    NSData *dataToSend = [@"||" dataUsingEncoding:NSUTF8StringEncoding];
-    
-    [_appDelegate.mcManager.session sendData:dataToSend
-                                     toPeers:@[self.appDelegate.connectedPeer ]
-                                    withMode:MCSessionSendDataReliable
-                                       error:&error];
-    
-    if (error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
-    
+	if ([sender isKindOfClass:[UIButton class]]) {
+		[_game sendData:@"||" fromViewController:self];
+	}
+	
+	[self.pauseMenu show];
     shouldContinue = 0;
 }
 
@@ -574,32 +451,24 @@
     VerifyAnswerViewController *vc = segue.destinationViewController;
     ResultsViewController *vc2 = segue.destinationViewController;
 	
-	NSError *error;
-	NSData *dataToSend = [@"@notwaiting" dataUsingEncoding:NSUTF8StringEncoding];
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
+	[_game sendData:@"@notwaiting" fromViewController:self];
 	
 	alreadyPerformedSegue = YES;
 	
-	if (otherWaiting) {
-		[self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
+	if (_otherWaiting) {
+		[_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self];
 	}
 	
     //Go to VerifyAnswerView
     if ([segue.identifier isEqualToString:@"verifyAnswer"]) {
-        
-        //Pass information to next view
-        vc.yourAnswer = self.answerTextField.text;
-        vc.hisAnswer = self.otherAnswer;
+		vc.game = _game;
 		
 		vc.delegate = self;
     }
     
     //Go to ResultsView
     else if([segue.identifier isEqualToString:@"finalResult"]){
+		
         vc2.gameView = self;
     }
 }
@@ -615,23 +484,16 @@
 	
 	self.showROrW.hidden = NO;
     
-    if(right){
-        AudioServicesPlaySystemSound(_rightAudio);
-
-    }
-    else
-        AudioServicesPlayAlertSound(_wrongAudio);
+    if(right) AudioServicesPlaySystemSound(_rightAudio);
+    else AudioServicesPlayAlertSound(_wrongAudio);
 }
 
 #pragma mark - PauseMenuView Delegate
 
 -(void)resumeGame
 {
-	NSError *error;
-	NSData *dataToSend;
+	[_game sendData:@">" fromViewController:self];
 	
-		dataToSend = [@">" dataUsingEncoding:NSUTF8StringEncoding];
-		
 		if (shouldContinue == 0){
 			shouldContinue = 1;
 			[_waitingPause startAnimating];
@@ -641,27 +503,13 @@
 														 selector:@selector(updateTimerLabel)
 														 userInfo:nil
 														  repeats:YES];
+			[self.pauseMenu hide];
 		}
-		
-		[_appDelegate.mcManager.session sendData:dataToSend
-										 toPeers:@[self.appDelegate.connectedPeer]
-										withMode:MCSessionSendDataReliable
-										   error:&error];
-	[self.pauseMenu hide];
 }
 
 -(void)endGame
 {
-	NSError *error;
-	NSData *dataToSend;
-	
-	dataToSend = [@"<" dataUsingEncoding:NSUTF8StringEncoding];
-	
-	[_appDelegate.mcManager.session sendData:dataToSend
-									 toPeers:@[self.appDelegate.connectedPeer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
-	
+	[_game sendData:@"<" fromViewController:self];
 	[[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
@@ -685,7 +533,8 @@
 	
 	if(self.answerTextField.text.length > 0){
 		
-		[self sendAnswer:[NSString stringWithFormat:@"$%@", self.answerTextField.text]];
+		[_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self];
+		_game.myAnswer = self.answerTextField.text;
 		
 		if (currentAnswers == 0) {
 			currentAnswers = 1;

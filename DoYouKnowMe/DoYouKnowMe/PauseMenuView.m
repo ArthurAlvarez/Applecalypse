@@ -128,7 +128,7 @@
 	[self addConstraints:vePosX]; [self addConstraints:vePosY];
 	
 	// View constraints
-	NSArray *vPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[v]-50-|"
+	NSArray *vPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(<=50)-[v]-(<=50)-|"
 															 options: 0
 															 metrics:nil
 															   views:views];
@@ -197,7 +197,6 @@
 }
 
 #pragma mark - Action Methods
-
 /**
  Method to when the button is selected, continue the game
  */

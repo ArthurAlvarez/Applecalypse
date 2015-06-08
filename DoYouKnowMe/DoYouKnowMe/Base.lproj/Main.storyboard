@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -10,6 +10,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="varground.ttf">
+            <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
@@ -54,23 +55,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XA-rr-pJD">
-                                <rect key="frame" x="230" y="418" width="140" height="88"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="DBa-8n-NCA"/>
-                                    <constraint firstAttribute="width" constant="140" id="F75-CR-Tsc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="39"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="Jogar">
-                                    <color key="titleColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startApp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="TtN-o4-5k7"/>
-                                    <segue destination="mEJ-Db-xej" kind="show" id="LA1-kN-PKw"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_big" translatesAutoresizingMaskIntoConstraints="NO" id="Eb3-YU-CJz">
                                 <rect key="frame" x="234" y="217" width="133" height="165"/>
                                 <constraints>
@@ -87,6 +71,22 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XA-rr-pJD">
+                                <rect key="frame" x="230" y="418" width="140" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="DBa-8n-NCA"/>
+                                    <constraint firstAttribute="width" constant="140" id="F75-CR-Tsc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="39"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Jogar">
+                                    <color key="titleColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ahI-FE-EaB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -110,7 +110,8 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="btn_StartApp" destination="8XA-rr-pJD" id="9rO-ue-a6Y"/>
+                        <segue destination="mEJ-Db-xej" kind="show" identifier="skipTutorial" id="NF6-W8-UGy"/>
+                        <segue destination="YJQ-Vl-L5F" kind="show" identifier="showTutorial" id="bIW-Rb-Xdg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -133,6 +134,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hjg-lR-9Hu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="271" y="604"/>
+        </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="fem-AL-ZNk">
+            <objects>
+                <viewController id="YJQ-Vl-L5F" customClass="TutorialViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JnO-j0-lsk"/>
+                        <viewControllerLayoutGuide type="bottom" id="oe0-E9-zlW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="97U-iT-qa4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFs-CE-jRi">
+                                <rect key="frame" x="-1" y="1" width="600" height="600"/>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1xS-wV-wdm">
+                                <rect key="frame" x="280" y="550" width="39" height="37"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLa-iO-ztl">
+                                <rect key="frame" x="249" y="482" width="102" height="60"/>
+                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="39"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
+                                <state key="normal" title="Jogar">
+                                    <color key="titleColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startApp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="RNr-L2-vuF"/>
+                                    <segue destination="mEJ-Db-xej" kind="show" id="pEm-xz-dhi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.098039215690000001" green="0.34509803919999998" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="1xS-wV-wdm" firstAttribute="centerX" secondItem="wFs-CE-jRi" secondAttribute="centerX" constant="0.5" id="38Q-Sk-a4W"/>
+                            <constraint firstItem="1xS-wV-wdm" firstAttribute="bottom" secondItem="QLa-iO-ztl" secondAttribute="bottom" constant="45" id="6VU-pd-vK1"/>
+                            <constraint firstAttribute="centerY" secondItem="wFs-CE-jRi" secondAttribute="centerY" constant="-1" id="9qq-cw-XEU"/>
+                            <constraint firstItem="1xS-wV-wdm" firstAttribute="leading" secondItem="97U-iT-qa4" secondAttribute="leadingMargin" constant="264" id="OSC-cD-PE8"/>
+                            <constraint firstItem="wFs-CE-jRi" firstAttribute="leading" secondItem="97U-iT-qa4" secondAttribute="leadingMargin" constant="-17" id="WE9-XO-tLn"/>
+                            <constraint firstAttribute="centerX" secondItem="1xS-wV-wdm" secondAttribute="centerX" constant="0.5" id="gkE-df-CB5"/>
+                            <constraint firstItem="wFs-CE-jRi" firstAttribute="top" secondItem="JnO-j0-lsk" secondAttribute="bottom" constant="-19" id="he4-MB-YFO"/>
+                            <constraint firstItem="wFs-CE-jRi" firstAttribute="centerX" secondItem="QLa-iO-ztl" secondAttribute="centerX" constant="-1" id="jYF-1g-wSP"/>
+                            <constraint firstItem="1xS-wV-wdm" firstAttribute="bottom" secondItem="wFs-CE-jRi" secondAttribute="bottom" constant="-14" id="og2-8h-8PN"/>
+                            <constraint firstAttribute="centerX" secondItem="wFs-CE-jRi" secondAttribute="centerX" constant="1" id="tJ9-2f-49n"/>
+                            <constraint firstItem="oe0-E9-zlW" firstAttribute="top" secondItem="1xS-wV-wdm" secondAttribute="bottom" constant="13" id="vBS-3d-ZrD"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="vBS-3d-ZrD"/>
+                                <exclude reference="OSC-cD-PE8"/>
+                                <exclude reference="gkE-df-CB5"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="btnStart" destination="QLa-iO-ztl" id="rmI-aH-9Iu"/>
+                        <outlet property="pageControl" destination="1xS-wV-wdm" id="5ry-nG-LrI"/>
+                        <outlet property="scrollView" destination="wFs-CE-jRi" id="TvT-Ny-40T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kO8-Sg-xqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-503" y="1328"/>
         </scene>
         <!--Connections View Controller-->
         <scene sceneID="Ja0-Ek-OCT">
@@ -644,7 +709,7 @@
                                 <color key="highlightedColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rodada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rodada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
                                 <rect key="frame" x="508" y="19" width="59" height="30"/>
                                 <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="13"/>
                                 <color key="textColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1081,4 +1146,7 @@
         <image name="wrong" width="299" height="244"/>
         <image name="wrong-mark" width="1920" height="1703"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="NF6-W8-UGy"/>
+    </inferredMetricsTieBreakers>
 </document>

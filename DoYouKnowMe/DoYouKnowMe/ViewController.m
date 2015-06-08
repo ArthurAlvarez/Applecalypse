@@ -11,7 +11,9 @@
 #import "ConnectionsViewController.h"
 
 @interface ViewController ()
-
+{
+    BOOL skipTutorial;
+}
 /// Interface button in the initial screen. (Screen label: 'Jogar')
 @property (weak, nonatomic) IBOutlet UIButton *btn_StartApp;
 
@@ -22,6 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    skipTutorial = [defaults boolForKey:@"passedTutorial"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,8 +41,15 @@
  @param sender: The object that called the method
  @author Arthur Alvarez
  */
-- (IBAction)startApp:(id)sender {
-    //TO DO
+- (IBAction)btnPressed:(id)sender {
+    if(skipTutorial){
+        [self performSegueWithIdentifier:@"skipTutorial" sender:self];
+    }
+    else{
+        [self performSegueWithIdentifier:@"showTutorial" sender:self];
+    }
+    
 }
+
 
 @end

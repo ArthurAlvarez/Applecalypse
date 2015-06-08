@@ -219,9 +219,7 @@
  initiates the game, otherwise, show to the player that he is waiting for the other player
  **/
 - (IBAction)startGame:(id)sender {
-	
-	NSError *error;
-	
+		
 	[_startBtn setEnabled:NO];
 	
 	[self canStart];

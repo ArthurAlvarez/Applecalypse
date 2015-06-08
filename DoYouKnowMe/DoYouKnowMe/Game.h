@@ -22,12 +22,15 @@
 @property NSString *otherAnswer;
 @property NSString *myAnswer;
 
-- (id)initWithSender:(UIViewController*)sender;
-- (void)initiateBrowsing;
-- (void)pauseBrowsing;
-- (void)initiateSession:(NSString*)userName;
-- (void)finishSession;
-- (void)sendData:(NSString*)dataToSend fromViewController:(UIViewController*)viewController;
+- (id) initWithSender:(UIViewController*)sender;
+- (void) initiateBrowsing;
+- (void) pauseBrowsing;
+- (void) initiateSession:(NSString*)userName;
+- (void) finishSession;
+- (void) sendData:(NSString*)dataToSend fromViewController:(UIViewController*)viewController;
 - (BOOL) addScore:(BOOL)isCorrect;
+- (void) getQuestion;
+- (void) questionTextFromIndex:(NSNumber *)index;
+
 
 @end

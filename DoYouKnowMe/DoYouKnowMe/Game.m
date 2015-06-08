@@ -12,6 +12,7 @@
 #import "GameViewController.h"
 #import "VerifyAnswerViewController.h"
 #import "ReceiveData.h"
+#import "ReceiveFromGAME.h"
 #import "ReceiveFromCVC.h"
 #import "ReceiveFromSVC.h"
 #import "ReceiveFromGVC.h"
@@ -21,6 +22,12 @@
 @interface Game ()
 
 @property UIViewController *rootViewController;
+
+/// Dictionary to keep the questions from the Json file
+@property NSDictionary *questionsJson;
+
+/// Array to know which questions already were made
+@property NSMutableArray *repeatedQuestions;
 
 @end
 
@@ -45,13 +52,15 @@
 		
 		_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 		_connectedDevices = [[NSMutableArray alloc] init];
+		_repeatedQuestions = [[NSMutableArray alloc]init];
 		_rootViewController = sender;
+		[self readJsonFile];
 	}
 	
 	return self;
 }
 
-#pragma mark - Connection mMthods
+#pragma mark - Connection Methods
 
 -(void)initiateBrowsing
 {
@@ -96,7 +105,8 @@
 {
 	NSString *_dataToSend;
 	
-	if ([viewController isKindOfClass:[ConnectionsViewController class]]) _dataToSend = [@"CVC" stringByAppendingString:dataToSend];
+	if (viewController == nil) _dataToSend = [@"GAME" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[ConnectionsViewController class]]) _dataToSend = [@"CVC" stringByAppendingString:dataToSend];
 	else if ([viewController isKindOfClass:[SettingsViewController class]]) _dataToSend = [@"SVC" stringByAppendingString:dataToSend];
 	else if ([viewController isKindOfClass:[GameViewController class]]) _dataToSend = [@"GVC" stringByAppendingString:dataToSend];
 	else if ([viewController isKindOfClass:[VerifyAnswerViewController class]]) _dataToSend = [@"VAVC" stringByAppendingString:dataToSend];
@@ -108,10 +118,98 @@
 									withMode:MCSessionSendDataReliable
 									   error:&error];
 	
-	if (error) {
-		NSLog(@"%@", [error localizedDescription]);
+	if (error) NSLog(@"%@", [error localizedDescription]);
+}
+
+#pragma mark - Game Logic Methods
+
+/**
+ Increase the score if the answer is correct
+ */
+- (BOOL) addScore:(BOOL)isCorrect
+{
+	if (isCorrect) [Player setScore:[Player getScore] + 1];
+	
+	return [self checkEndGame];
+}
+
+/**
+ Verifies if the game is finished
+ */
+- (BOOL) checkEndGame
+{
+	if ([GameSettings getGameLength] == [GameSettings getCurrentRound]) return YES;
+	
+	return NO;
+}
+
+/**
+ Reads the JSON file containing the questions into a dictionary
+ @author Arthur Alvarez
+ */
+-(void)readJsonFile{
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"questions" ofType:@"txt"];
+	
+	self.questionsJson = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
+	
+	if (self.questionsJson == nil) {
+		NSLog(@"ERROR OPENING JSON!!");
 	}
 }
+
+/**
+ Gets the index of selected question and sends to the other peer
+ @author Arthur Alvarez
+ */
+-(void)getQuestion
+{
+	NSNumber *numQuestions, *selectedQuestion;
+	BOOL decided = NO, repeated = NO;
+	
+	numQuestions = [NSNumber numberWithInt:[[self.questionsJson objectForKey:@"size"]intValue]];
+	
+	while(decided == NO){
+		selectedQuestion = [NSNumber numberWithInt:arc4random() % [numQuestions intValue]];
+		
+		repeated = NO;
+		for(NSNumber *n in self.repeatedQuestions){
+			if([selectedQuestion intValue] == [n intValue])
+				repeated = YES;
+		}
+		
+		if(repeated == NO){
+			[self.repeatedQuestions addObject:[NSNumber numberWithInt:[selectedQuestion intValue]]];
+			decided = YES;
+		}
+		else{
+			NSLog(@"Repeated!");
+		}
+	}
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self questionTextFromIndex:selectedQuestion];
+	});
+	
+	[self sendData:[NSString stringWithFormat:@"*&*%@", selectedQuestion] fromViewController:nil];
+}
+
+-(void)questionTextFromIndex:(NSNumber *)index
+{
+	NSArray *controllers = [_rootViewController.navigationController viewControllers];
+	NSDictionary *q = [self.questionsJson objectForKey:@"questions"];
+	NSString *questionText = [NSString stringWithFormat:@"%@", [q objectForKey:[NSString stringWithFormat:@"%@", index]]];
+	
+	for (UIViewController *vc in controllers) {
+		if ([vc isKindOfClass:[GameViewController class]]) {
+			GameViewController *_vc;
+			_vc = (GameViewController*) vc;
+			
+			[_vc setTheQuestion:questionText];
+		}
+	}
+}
+
+#pragma mark - Selectors
 
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
 {
@@ -120,7 +218,13 @@
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
-		if ([receivedInfo hasPrefix:@"CVC"]) {
+		if ([receivedInfo hasPrefix:@"GAME"]) {
+			ReceiveFromGAME *_receiveData = [[ReceiveFromGAME alloc] init];
+			
+			_receiveData.game = self;
+			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"GAME" withString:@""]];
+			
+		} else if ([receivedInfo hasPrefix:@"CVC"]) {
 			
 			ReceiveFromCVC *_receiveData = [[ReceiveFromCVC alloc] init];
 			for (UIViewController *vc in [_rootViewController.navigationController viewControllers]) {
@@ -200,22 +304,6 @@
 															object:nil
 														  userInfo:nil];
 	});
-}
-
-- (BOOL) addScore:(BOOL)isCorrect
-{
-	if (isCorrect) {
-		[Player setScore:[Player getScore] + 1];
-	}
-	
-	return [self checkEndGame];
-}
-
-- (BOOL) checkEndGame
-{
-	if ([GameSettings getGameLength] == [GameSettings getCurrentRound]) return YES;
-	
-	return NO;
 }
 
 #pragma mark - Nearby Service Browser and Advertise Delegates

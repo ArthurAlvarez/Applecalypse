@@ -128,7 +128,7 @@
 	[self addConstraints:vePosX]; [self addConstraints:vePosY];
 	
 	// View constraints
-	NSArray *vPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(<=50)-[v]-(<=50)-|"
+	NSArray *vPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(<=50)-[v(<=300)]-(<=50)-|"
 															 options: 0
 															 metrics:nil
 															   views:views];
@@ -219,6 +219,8 @@
  */
 -(void) show
 {
+	NSLog(@"%@",  NSStringFromCGSize(self.view.frame.size));
+
 	self.hidden = NO;
 }
 

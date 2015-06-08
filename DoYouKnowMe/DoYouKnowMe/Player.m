@@ -36,7 +36,8 @@ static int _score; // Score of player 2
 
 +(float)knowingPercent
 {
-	return _score/[GameSettings getGameLength];
+	NSLog(@"%d / %d", _score, [GameSettings getGameLength]);
+	return (float) _score/[GameSettings getGameLength];
 }
 
 @end

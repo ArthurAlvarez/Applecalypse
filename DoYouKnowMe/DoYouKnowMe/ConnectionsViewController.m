@@ -246,8 +246,12 @@
 {
 	NSInteger size = [_game.connectedDevices count];
 	
-	if (size == 0) tableView.hidden = true;
-	else tableView.hidden = false;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		
+		if (size == 0) tableView.hidden = true;
+		else tableView.hidden = false;
+		
+	});
 	
 	return size;
 }

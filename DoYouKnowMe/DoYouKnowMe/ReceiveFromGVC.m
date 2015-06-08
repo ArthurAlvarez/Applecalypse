@@ -23,7 +23,7 @@
 	} else if([data hasPrefix:@"*&*"]){
 		NSNumberFormatter *f = [[NSNumberFormatter alloc]init];
 		NSString *formatted = [data stringByReplacingOccurrencesOfString:@"*&*" withString:@""];
-		[_viewController questionTextFromIndex:[f numberFromString:formatted]];
+		[self.game questionTextFromIndex:[f numberFromString:formatted]];
 		
 	} else if ([data isEqualToString:@">"]) [_viewController resumeGame];
 	

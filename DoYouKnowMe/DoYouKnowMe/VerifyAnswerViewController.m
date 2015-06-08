@@ -12,6 +12,7 @@
 #import "Player.h"
 #import "AppDelegate.h"
 #import "GameSettings.h"
+#import "ResultsViewController.h"
 
 #pragma mark - Properties
 
@@ -82,7 +83,8 @@
  */
 - (IBAction)judgeAnswer:(UIButton*)sender
 {
-    [self verifyAnswer:sender.tag == 1];
+	// Verifies which is the tag from the sender, 1 for right and 0 for wrong
+	[self verifyAnswer:sender.tag == 1];
 }
 
 #pragma mark - Others Methods
@@ -94,7 +96,7 @@
 		else [_game sendData:@"#1" fromViewController:self];
 	} else if (!isCorrect) AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 
-	if ([_game addScore:YES]) [self performSegueWithIdentifier:@"finalResults" sender:self];
+	if ([_game addScore:isCorrect]) [self performSegueWithIdentifier:@"finalResults" sender:self];
 	else {
 		if ([Player getPlayerID] == 2) [self.delegate didShowImage:isCorrect];
         [[self navigationController] popViewControllerAnimated:YES];
@@ -106,6 +108,10 @@
 	if ([segue.identifier isEqualToString:@"finalResults"]) {
 		self.delegate = segue.destinationViewController;
 	}
+	
+	ResultsViewController *vc = segue.destinationViewController;
+	
+	vc.game = _game;
 	
 	if ([Player getPlayerID] == 2) [self.delegate didShowImage:right];
 }

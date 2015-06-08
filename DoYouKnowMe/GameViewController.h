@@ -17,9 +17,9 @@
 
 @property (weak, nonatomic) Game *game;
 
-- (NSString *)questionTextFromIndex:(NSNumber *)index;
 - (void) receivedAnswer;
-- (void)resumeGame;
-- (IBAction)pauseGame:(id)sender;
+- (void) resumeGame;
+- (IBAction) pauseGame:(id)sender;
+- (void) setTheQuestion:(NSString*)question;
 
 @end

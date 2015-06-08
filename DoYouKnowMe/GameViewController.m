@@ -32,14 +32,8 @@
 /// Interface label that shows the current game question
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 
-///Interface label that shows who the question is about
-@property (weak, nonatomic) IBOutlet UILabel *playerLabel;
-
 ///Interface TextField where the user inputs the answer to the game question
 @property (weak, nonatomic) IBOutlet UITextField *answerTextField;
-
-/// Interface Button that the user presses to submit the answer
-@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 /// Interface Activity Indicator View to show the player that he is waiting for the other answer
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingAnswer;
@@ -83,12 +77,6 @@
 /// How much time the user still has
 @property (strong, nonatomic) NSNumber *timeLeft;
 
-/// Dictionary to keep the questions from the Json file
-@property NSDictionary *questionsJson;
-
-/// Array to know which questions already were made
-@property NSMutableArray *repeatedQuestions;
-
 /// Feedback sound
 @property SystemSoundID rightAudio;
 
@@ -117,8 +105,6 @@
 											   object:nil];
 	
     gameDidEnd = NO;
-	
-	self.repeatedQuestions = [[NSMutableArray alloc]init];
 	
 	UITapGestureRecognizer *touchToAnswer = [[UITapGestureRecognizer alloc] initWithTarget:self.answer action:@selector(startAnswering:)];
 	[self.answer addGestureRecognizer:touchToAnswer];
@@ -149,18 +135,19 @@
 -(void)viewWillAppear:(BOOL)animated{
     //Incrementa round corrente
     [GameSettings incrementRound];
+	
+	
+	if ([Player getPlayerID] == 1) [_game getQuestion];
     
     //Initializing properties
     gameDidStart = NO;
 	
-    [self readJsonFile];
+//    [self readJsonFile];
 	
     self.playerScore = [NSNumber numberWithInt:0];
 	
     shouldContinue = currentAnswers = 0;
     didAnswer = NO;
-	
-    self.submitButton.enabled = YES;
 	
     self.timeLeft = [NSNumber numberWithInt:[GameSettings getTime]];
     self.timerLabel.text = [NSString stringWithFormat:@"%@", self.timeLeft];
@@ -218,78 +205,8 @@
 													 selector:@selector(updateTimerLabel)
 													 userInfo:nil
 													  repeats:YES];
-    
-    //Setup Player Label
-    if([Player getPlayerID] == 1) {
-        self.playerLabel.text = @"Pergunta sobre você";
-        [self questionTextFromIndex:[self getQuestion]];
-    }
-    else{
-        if(_game.otherPlayer != nil){
-            self.playerLabel.text = [NSString stringWithFormat:@"Pergunta sobre %@", _game.otherPlayer.displayName];
-        }
-    }
 	
 	_showRound.text = [NSString stringWithFormat:@"%d/%d", [GameSettings getCurrentRound], [GameSettings getGameLength]];
-}
-
-/**
-    Reads the JSON file containing the questions into a dictionary
-    @author Arthur Alvarez
- */
--(void)readJsonFile{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"questions" ofType:@"txt"];
-    
-    self.questionsJson = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
-	
-	if (self.questionsJson == nil) {
-		NSLog(@"ERROR OPENING JSON!!");
-	}
-}
-
-/**
-    Gets the index of selected question and sends to the other peer
-    @author Arthur Alvarez
- */
--(NSNumber *)getQuestion{
-    NSNumber *numQuestions, *selectedQuestion;
-    bool decided = NO, repeated = NO;
-    
-    
-    numQuestions = [NSNumber numberWithInt:[[self.questionsJson objectForKey:@"size"]intValue]];
-    NSLog(@"Size: %@", numQuestions);
-    
-    
-    while(decided == NO){
-        selectedQuestion = [NSNumber numberWithInt:arc4random() % [numQuestions intValue]];
-        
-        repeated = NO;
-        for(NSNumber *n in self.repeatedQuestions){
-            if([selectedQuestion intValue] == [n intValue])
-                repeated = YES;
-        }
-        
-        if(repeated == NO){
-            [self.repeatedQuestions addObject:[NSNumber numberWithInt:[selectedQuestion intValue]]];
-            decided = YES;
-        }
-        else{
-            NSLog(@"Repeated!");
-        }
-    }
-    
-	[_game sendData:[NSString stringWithFormat:@"*&*%@", selectedQuestion] fromViewController:self];
-    
-    return selectedQuestion;
-}
-
--(NSString *)questionTextFromIndex:(NSNumber *)index{
-    NSDictionary *q = [self.questionsJson objectForKey:@"questions"];
-    NSString *questionText = [NSString stringWithFormat:@"%@", [q objectForKey:[NSString stringWithFormat:@"%@", index]]];
-    
-    self.questionLabel.text = questionText;
-    
-    return questionText;
 }
 
 /**
@@ -316,6 +233,14 @@
 		_otherWaiting = NO;
 		currentAnswers = 1;
 	} else if (!alreadyPerformedSegue) [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
+}
+
+/** 
+ Set the label to display the question
+ */
+- (void) setTheQuestion:(NSString*)question
+{
+	_questionLabel.text = question;
 }
 
 #pragma mark - Selectors
@@ -411,7 +336,6 @@
         
         if (currentAnswers == 0) {
             currentAnswers = 1;
-			self.submitButton.enabled = NO;
 			didAnswer = YES;
 			[_waitingAnswer startAnimating];
 		} else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
@@ -433,6 +357,7 @@
 	
 	[self.pauseMenu show];
     shouldContinue = 0;
+	
 }
 
 - (IBAction)tapGestureRecognizer:(id)sender {
@@ -491,10 +416,9 @@
 #pragma mark - PauseMenuView Delegate
 
 -(void)resumeGame
-{
-	[_game sendData:@">" fromViewController:self];
-	
+{	
 		if (shouldContinue == 0){
+			[_game sendData:@">" fromViewController:self];
 			shouldContinue = 1;
 			[_waitingPause startAnimating];
 		} else {
@@ -518,9 +442,7 @@
 -(BOOL) textFieldShouldBeginEditing:(UITextField *)textField{
 	
 	[_waitingAnswer stopAnimating];
-	
-	[_submitButton setEnabled:YES];
-	
+		
 	currentAnswers = 0;
 	
 	return YES;
@@ -538,7 +460,6 @@
 		
 		if (currentAnswers == 0) {
 			currentAnswers = 1;
-			self.submitButton.enabled = NO;
 			didAnswer = YES;
 			[_waitingAnswer startAnimating];
 		} else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];

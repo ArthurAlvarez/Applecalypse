@@ -32,6 +32,7 @@
 		938F0D001B20C024006E5864 /* ReceiveFromSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0CFF1B20C024006E5864 /* ReceiveFromSVC.m */; };
 		938F0D031B20C030006E5864 /* ReceiveFromGVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0D021B20C030006E5864 /* ReceiveFromGVC.m */; };
 		938F0D061B20C03E006E5864 /* ReceiveFromVAVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0D051B20C03E006E5864 /* ReceiveFromVAVC.m */; };
+		938F0D0C1B25BE4A006E5864 /* ReceiveFromGAME.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0D0B1B25BE4A006E5864 /* ReceiveFromGAME.m */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* SettingsViewController.m */; };
 		939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939ADCB41B0E2FD900FDEA66 /* varground.ttf */; };
@@ -82,6 +83,8 @@
 		938F0D021B20C030006E5864 /* ReceiveFromGVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromGVC.m; sourceTree = "<group>"; };
 		938F0D041B20C03E006E5864 /* ReceiveFromVAVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveFromVAVC.h; sourceTree = "<group>"; };
 		938F0D051B20C03E006E5864 /* ReceiveFromVAVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromVAVC.m; sourceTree = "<group>"; };
+		938F0D0A1B25BE4A006E5864 /* ReceiveFromGAME.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveFromGAME.h; sourceTree = "<group>"; };
+		938F0D0B1B25BE4A006E5864 /* ReceiveFromGAME.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromGAME.m; sourceTree = "<group>"; };
 		939249DF1AC19883008D5500 /* Connectivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connectivity.h; sourceTree = "<group>"; };
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -125,7 +128,6 @@
 		14C443321AC18C6300103C35 /* DoYouKnowMe */ = {
 			isa = PBXGroup;
 			children = (
-				939ADCB41B0E2FD900FDEA66 /* varground.ttf */,
 				938E68731ACC297F009B7AE7 /* resources */,
 				93F067521B1F44E4003B7F84 /* Model */,
 				939ADCB31B0B511600FDEA66 /* Controller */,
@@ -133,12 +135,12 @@
 				14C443381AC18C6300103C35 /* AppDelegate.m */,
 				939249DF1AC19883008D5500 /* Connectivity.h */,
 				939249E01AC19883008D5500 /* Connectivity.m */,
+				9385D9441B0936900006D08D /* PauseMenuView.h */,
+				9385D9451B0936900006D08D /* PauseMenuView.m */,
 				14C4433D1AC18C6300103C35 /* Main.storyboard */,
 				14C443401AC18C6300103C35 /* Images.xcassets */,
 				93009F201ACD74250075610E /* Launch Screen.xib */,
-				B55B1DDD1AC98F8B00C7D68E /* New Group */,
-				9385D9441B0936900006D08D /* PauseMenuView.h */,
-				9385D9451B0936900006D08D /* PauseMenuView.m */,
+				14C443331AC18C6300103C35 /* Supporting Files */,
 			);
 			path = DoYouKnowMe;
 			sourceTree = "<group>";
@@ -155,6 +157,7 @@
 		938E68731ACC297F009B7AE7 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				939ADCB41B0E2FD900FDEA66 /* varground.ttf */,
 				93BF04191AD2C78100AFB30B /* questions.txt */,
 				9382EFEB1B176AF2004A20CE /* sound_error.aiff */,
 				9382EFEC1B176AF2004A20CE /* sound_right.aiff */,
@@ -170,6 +173,8 @@
 			children = (
 				938F0CF81B20BFFD006E5864 /* ReceiveData.h */,
 				938F0CF91B20BFFD006E5864 /* ReceiveData.m */,
+				938F0D0A1B25BE4A006E5864 /* ReceiveFromGAME.h */,
+				938F0D0B1B25BE4A006E5864 /* ReceiveFromGAME.m */,
 				938F0CFB1B20C017006E5864 /* ReceiveFromCVC.h */,
 				938F0CFC1B20C017006E5864 /* ReceiveFromCVC.m */,
 				938F0CFE1B20C024006E5864 /* ReceiveFromSVC.h */,
@@ -215,14 +220,6 @@
 				1452A45F1AC988E400A46762 /* GameSettings.m */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		B55B1DDD1AC98F8B00C7D68E /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				14C443331AC18C6300103C35 /* Supporting Files */,
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +315,7 @@
 				9385D9461B0936900006D08D /* PauseMenuView.m in Sources */,
 				1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */,
 				1452A4601AC988E400A46762 /* GameSettings.m in Sources */,
+				938F0D0C1B25BE4A006E5864 /* ReceiveFromGAME.m in Sources */,
 				14C443361AC18C6300103C35 /* main.m in Sources */,
 				938F0D061B20C03E006E5864 /* ReceiveFromVAVC.m in Sources */,
 				14FA15B81B25BFD500D2A263 /* TutorialViewController.m in Sources */,

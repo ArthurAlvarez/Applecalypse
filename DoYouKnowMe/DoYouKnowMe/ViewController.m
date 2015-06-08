@@ -27,16 +27,22 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    skipTutorial = [defaults boolForKey:@"passedTutorial"];
-    
-    skipTutorial = NO;
-    
+    skipTutorial = [defaults boolForKey:@"passedTutorial"];    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"skipTutorial"]){
+        UINavigationController *navController = [segue destinationViewController];
+        ConnectionsViewController *vc = (ConnectionsViewController *)([navController viewControllers][0]);
+        vc.cameFromTutorial = NO;
+    }
+}
+
 
 /**
  Starts the application from the initial view. This method is called when the user presses 'btn_StartButton'.

@@ -7,6 +7,7 @@
 //
 
 #import "TutorialViewController.h"
+#import "ConnectionsViewController.h"
 
 @interface TutorialViewController ()
 {
@@ -91,6 +92,13 @@
     [self.scrollView setContentOffset:offset animated:YES];
     pageControlBeingUsed = YES;
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UINavigationController *navController = [segue destinationViewController];
+    ConnectionsViewController *vc = (ConnectionsViewController *)([navController viewControllers][0]);
+    vc.cameFromTutorial = YES;
+}
+
 
 /*
 #pragma mark - Navigation

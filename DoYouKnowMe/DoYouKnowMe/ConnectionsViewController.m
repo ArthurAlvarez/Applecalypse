@@ -99,7 +99,13 @@
 - (IBAction)goBack:(id)sender
 {
 	[_game finishSession];
-	[self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"%d", self.cameFromTutorial);
+    if(self.cameFromTutorial){
+        [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 /**

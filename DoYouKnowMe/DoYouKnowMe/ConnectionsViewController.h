@@ -15,7 +15,7 @@
 @interface ConnectionsViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property Game *game;
-
+@property BOOL cameFromTutorial;
 - (void) canGoNext;
 
 @end

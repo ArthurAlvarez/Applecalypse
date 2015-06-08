@@ -147,11 +147,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFs-CE-jRi">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFs-CE-jRi">
                                 <rect key="frame" x="-1" y="1" width="600" height="600"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1xS-wV-wdm">
-                                <rect key="frame" x="280" y="550" width="39" height="37"/>
+                                <rect key="frame" x="50.5" y="550" width="501" height="37"/>
+                                <connections>
+                                    <action selector="changePage:" destination="YJQ-Vl-L5F" eventType="valueChanged" id="kDH-37-KJU"/>
+                                </connections>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLa-iO-ztl">
                                 <rect key="frame" x="249" y="482" width="102" height="60"/>
@@ -169,25 +172,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.098039215690000001" green="0.34509803919999998" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="1xS-wV-wdm" firstAttribute="centerX" secondItem="wFs-CE-jRi" secondAttribute="centerX" constant="0.5" id="38Q-Sk-a4W"/>
-                            <constraint firstItem="1xS-wV-wdm" firstAttribute="bottom" secondItem="QLa-iO-ztl" secondAttribute="bottom" constant="45" id="6VU-pd-vK1"/>
-                            <constraint firstAttribute="centerY" secondItem="wFs-CE-jRi" secondAttribute="centerY" constant="-1" id="9qq-cw-XEU"/>
-                            <constraint firstItem="1xS-wV-wdm" firstAttribute="leading" secondItem="97U-iT-qa4" secondAttribute="leadingMargin" constant="264" id="OSC-cD-PE8"/>
-                            <constraint firstItem="wFs-CE-jRi" firstAttribute="leading" secondItem="97U-iT-qa4" secondAttribute="leadingMargin" constant="-17" id="WE9-XO-tLn"/>
-                            <constraint firstAttribute="centerX" secondItem="1xS-wV-wdm" secondAttribute="centerX" constant="0.5" id="gkE-df-CB5"/>
-                            <constraint firstItem="wFs-CE-jRi" firstAttribute="top" secondItem="JnO-j0-lsk" secondAttribute="bottom" constant="-19" id="he4-MB-YFO"/>
-                            <constraint firstItem="wFs-CE-jRi" firstAttribute="centerX" secondItem="QLa-iO-ztl" secondAttribute="centerX" constant="-1" id="jYF-1g-wSP"/>
-                            <constraint firstItem="1xS-wV-wdm" firstAttribute="bottom" secondItem="wFs-CE-jRi" secondAttribute="bottom" constant="-14" id="og2-8h-8PN"/>
-                            <constraint firstAttribute="centerX" secondItem="wFs-CE-jRi" secondAttribute="centerX" constant="1" id="tJ9-2f-49n"/>
-                            <constraint firstItem="oe0-E9-zlW" firstAttribute="top" secondItem="1xS-wV-wdm" secondAttribute="bottom" constant="13" id="vBS-3d-ZrD"/>
+                            <constraint firstItem="1xS-wV-wdm" firstAttribute="leading" secondItem="97U-iT-qa4" secondAttribute="leadingMargin" constant="34.5" id="1kW-sJ-wBk"/>
+                            <constraint firstAttribute="centerX" secondItem="wFs-CE-jRi" secondAttribute="centerX" constant="1" id="8ah-EP-tjc"/>
+                            <constraint firstItem="1xS-wV-wdm" firstAttribute="top" secondItem="QLa-iO-ztl" secondAttribute="bottom" constant="8" symbolic="YES" id="9ax-YQ-O2D"/>
+                            <constraint firstItem="QLa-iO-ztl" firstAttribute="centerX" secondItem="97U-iT-qa4" secondAttribute="centerX" id="9im-A4-ERC"/>
+                            <constraint firstAttribute="centerX" secondItem="1xS-wV-wdm" secondAttribute="centerX" constant="-0.5" id="Gcb-53-Ec0"/>
+                            <constraint firstItem="wFs-CE-jRi" firstAttribute="leading" secondItem="97U-iT-qa4" secondAttribute="leadingMargin" constant="-17" id="W19-gH-vXc"/>
+                            <constraint firstAttribute="centerY" secondItem="wFs-CE-jRi" secondAttribute="centerY" constant="-1" id="dX9-j6-5sT"/>
+                            <constraint firstItem="oe0-E9-zlW" firstAttribute="top" secondItem="1xS-wV-wdm" secondAttribute="bottom" constant="13" id="ibx-Df-oBj"/>
+                            <constraint firstItem="oe0-E9-zlW" firstAttribute="top" secondItem="wFs-CE-jRi" secondAttribute="bottom" constant="-1" id="up4-Pp-2JP"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="vBS-3d-ZrD"/>
-                                <exclude reference="OSC-cD-PE8"/>
-                                <exclude reference="gkE-df-CB5"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="btnStart" destination="QLa-iO-ztl" id="rmI-aH-9Iu"/>
@@ -1147,6 +1141,6 @@
         <image name="wrong-mark" width="1920" height="1703"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NF6-W8-UGy"/>
+        <segue reference="pEm-xz-dhi"/>
     </inferredMetricsTieBreakers>
 </document>

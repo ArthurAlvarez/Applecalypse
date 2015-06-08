@@ -9,6 +9,9 @@
 #import "TutorialViewController.h"
 
 @interface TutorialViewController ()
+{
+    BOOL pageControlBeingUsed;
+}
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet UIButton *btnStart;
@@ -28,7 +31,7 @@
     [defaults setBool:YES forKey:@"passedTutorial"];
     
     int i = 0;
-    
+    pageControlBeingUsed = NO;
     self.btnStart.hidden = YES;
     
     self.page1 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial1" owner:self options:nil] lastObject];
@@ -56,9 +59,10 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    float page = floor(self.scrollView.contentOffset.x / self.view.frame.size.width);
-    
-    self.pageControl.currentPage = (int) page;
+    if(!pageControlBeingUsed){
+        float page = floor(self.scrollView.contentOffset.x / self.view.frame.size.width);
+        self.pageControl.currentPage = (int) page;
+    }
     
     if(self.pageControl.currentPage == self.pageControl.numberOfPages - 1){
         self.btnStart.hidden = NO;
@@ -68,10 +72,24 @@
     }
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    pageControlBeingUsed = NO;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    pageControlBeingUsed = NO;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)changePage:(id)sender {
+    UIPageControl *pageControl = (UIPageControl *)sender;
+    NSInteger currentPage = pageControl.currentPage;
+    CGPoint offset = CGPointMake(currentPage * self.scrollView.frame.size.width, 0);
+    [self.scrollView setContentOffset:offset animated:YES];
+    pageControlBeingUsed = YES;
 }
 
 /*

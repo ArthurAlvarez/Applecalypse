@@ -11,7 +11,7 @@
     "7":"Qual é a minha banda favorita?",
     "8":"Qual é a minha musica favorita?",
     "9":"Qual é o meu programa de TV favorito?",
-    "10":"Qual é o meu filme favorito?",
+    "10":"Eu durmo de pijama?",
     "11":"Verão ou Inverno?",
     "12":"O que me faz ficar com raiva?",
     "13":"Acredito em ETs?",

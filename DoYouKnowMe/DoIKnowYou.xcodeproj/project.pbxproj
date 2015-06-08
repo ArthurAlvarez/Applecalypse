@@ -17,6 +17,10 @@
 		14C4433C1AC18C6300103C35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4433B1AC18C6300103C35 /* ViewController.m */; };
 		14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C4433D1AC18C6300103C35 /* Main.storyboard */; };
 		14C443411AC18C6300103C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C443401AC18C6300103C35 /* Images.xcassets */; };
+		14FA15B81B25BFD500D2A263 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA15B71B25BFD500D2A263 /* TutorialViewController.m */; };
+		14FA15BA1B25C0BB00D2A263 /* Tutorial1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */; };
+		14FA15BC1B25C18A00D2A263 /* Tutorial2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */; };
+		14FA15BE1B25C1BD00D2A263 /* Tutorial3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */; };
 		93009F211ACD74250075610E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93009F201ACD74250075610E /* Launch Screen.xib */; };
 		9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEB1B176AF2004A20CE /* sound_error.aiff */; };
 		9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEC1B176AF2004A20CE /* sound_right.aiff */; };
@@ -56,6 +60,11 @@
 		14C4433B1AC18C6300103C35 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		14C4433E1AC18C6300103C35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14C443401AC18C6300103C35 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		14FA15B61B25BFD500D2A263 /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
+		14FA15B71B25BFD500D2A263 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
+		14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial1.xib; sourceTree = "<group>"; };
+		14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial2.xib; sourceTree = "<group>"; };
+		14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial3.xib; sourceTree = "<group>"; };
 		93009F201ACD74250075610E /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		9382EFEB1B176AF2004A20CE /* sound_error.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_error.aiff; sourceTree = "<group>"; };
 		9382EFEC1B176AF2004A20CE /* sound_right.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_right.aiff; sourceTree = "<group>"; };
@@ -152,6 +161,9 @@
 				93BF04191AD2C78100AFB30B /* questions.txt */,
 				9382EFEB1B176AF2004A20CE /* sound_error.aiff */,
 				9382EFEC1B176AF2004A20CE /* sound_right.aiff */,
+				14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */,
+				14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */,
+				14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -190,6 +202,8 @@
 				1432C40E1AC2E28B00E15CDE /* VerifyAnswerViewController.m */,
 				1452A45B1AC97CEB00A46762 /* ResultsViewController.h */,
 				1452A45C1AC97CEB00A46762 /* ResultsViewController.m */,
+				14FA15B61B25BFD500D2A263 /* TutorialViewController.h */,
+				14FA15B71B25BFD500D2A263 /* TutorialViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -239,7 +253,7 @@
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 2T9YCH946H;
+						DevelopmentTeam = PK9ZTBKL3B;
 					};
 				};
 			};
@@ -266,11 +280,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */,
+				14FA15BE1B25C1BD00D2A263 /* Tutorial3.xib in Resources */,
 				93009F211ACD74250075610E /* Launch Screen.xib in Resources */,
 				14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */,
+				14FA15BA1B25C0BB00D2A263 /* Tutorial1.xib in Resources */,
 				14C443411AC18C6300103C35 /* Images.xcassets in Resources */,
 				9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */,
 				9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */,
+				14FA15BC1B25C18A00D2A263 /* Tutorial2.xib in Resources */,
 				93BF041A1AD2C78100AFB30B /* questions.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +318,7 @@
 				938F0D0C1B25BE4A006E5864 /* ReceiveFromGAME.m in Sources */,
 				14C443361AC18C6300103C35 /* main.m in Sources */,
 				938F0D061B20C03E006E5864 /* ReceiveFromVAVC.m in Sources */,
+				14FA15B81B25BFD500D2A263 /* TutorialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

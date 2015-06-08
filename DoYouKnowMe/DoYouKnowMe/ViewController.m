@@ -29,6 +29,8 @@
     
     skipTutorial = [defaults boolForKey:@"passedTutorial"];
     
+    skipTutorial = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {

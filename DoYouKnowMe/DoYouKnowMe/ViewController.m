@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Game.h"
 #import "ConnectionsViewController.h"
+#import "TutorialViewController.h"
 
 @interface ViewController ()
 {
@@ -27,7 +28,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    skipTutorial = [defaults boolForKey:@"passedTutorial"];    
+    skipTutorial = [defaults boolForKey:@"passedTutorial"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,6 +41,10 @@
         UINavigationController *navController = [segue destinationViewController];
         ConnectionsViewController *vc = (ConnectionsViewController *)([navController viewControllers][0]);
         vc.cameFromTutorial = NO;
+    }
+    else if([segue.identifier isEqualToString:@"showTutorial"]){
+        TutorialViewController *vc = [segue destinationViewController];
+        vc.cameFromFirstScreen = YES;
     }
 }
 

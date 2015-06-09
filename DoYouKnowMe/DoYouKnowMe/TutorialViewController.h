@@ -10,4 +10,6 @@
 
 @interface TutorialViewController : UIViewController<UIScrollViewDelegate>
 
+@property BOOL cameFromFirstScreen;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ConnectionsViewController.h"
+#import "TutorialViewController.h"
 #import "AppDelegate.h"
 #import "Player.h"
 
@@ -107,6 +108,12 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
+/**
+ Go to tutorial page
+ */
+- (IBAction)goToTutorial:(id)sender {
+    [self performSegueWithIdentifier:@"seeTutorial" sender:self];
+}
 
 /**
  Method to browse for new devices
@@ -196,6 +203,9 @@
 	if ([vc isKindOfClass:[SettingsViewController class]]) {
 		((SettingsViewController*) vc).game = _game;
 	}
+    else if([vc isKindOfClass:[TutorialViewController class]]){
+        ((TutorialViewController *) vc).cameFromFirstScreen = NO;
+    }
 }
 
 #pragma mark - Delegates

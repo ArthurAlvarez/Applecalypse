@@ -99,6 +99,17 @@
     vc.cameFromTutorial = YES;
 }
 
+- (IBAction)buttonPressed:(id)sender {
+    
+    NSLog(@"CameFrom first: %d", self.cameFromFirstScreen);
+    
+    if(self.cameFromFirstScreen){
+        [self performSegueWithIdentifier:@"startGame" sender:self];
+    }
+    else{
+        [[self navigationController] popToRootViewControllerAnimated:YES];
+    }
+}
 
 /*
 #pragma mark - Navigation

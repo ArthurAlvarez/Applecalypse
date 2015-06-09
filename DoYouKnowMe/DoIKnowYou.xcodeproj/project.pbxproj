@@ -26,6 +26,7 @@
 		9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEC1B176AF2004A20CE /* sound_right.aiff */; };
 		9382EFF01B176CD3004A20CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */; };
 		9385D9461B0936900006D08D /* PauseMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9451B0936900006D08D /* PauseMenuView.m */; };
+		9389E0C11B2721B200E677AF /* ReceiveFromRVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9389E0C01B2721B200E677AF /* ReceiveFromRVC.m */; };
 		938E686E1ACC08DD009B7AE7 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* ConnectionsViewController.m */; };
 		938F0CFA1B20BFFD006E5864 /* ReceiveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0CF91B20BFFD006E5864 /* ReceiveData.m */; };
 		938F0CFD1B20C017006E5864 /* ReceiveFromCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0CFC1B20C017006E5864 /* ReceiveFromCVC.m */; };
@@ -71,6 +72,8 @@
 		9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9385D9441B0936900006D08D /* PauseMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuView.h; sourceTree = "<group>"; };
 		9385D9451B0936900006D08D /* PauseMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuView.m; sourceTree = "<group>"; };
+		9389E0BF1B2721B200E677AF /* ReceiveFromRVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveFromRVC.h; sourceTree = "<group>"; };
+		9389E0C01B2721B200E677AF /* ReceiveFromRVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromRVC.m; sourceTree = "<group>"; };
 		938E686C1ACC08DD009B7AE7 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
 		938E686D1ACC08DD009B7AE7 /* ConnectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionsViewController.m; sourceTree = "<group>"; };
 		938F0CF81B20BFFD006E5864 /* ReceiveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveData.h; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 				938F0D021B20C030006E5864 /* ReceiveFromGVC.m */,
 				938F0D041B20C03E006E5864 /* ReceiveFromVAVC.h */,
 				938F0D051B20C03E006E5864 /* ReceiveFromVAVC.m */,
+				9389E0BF1B2721B200E677AF /* ReceiveFromRVC.h */,
+				9389E0C01B2721B200E677AF /* ReceiveFromRVC.m */,
 			);
 			name = ReceiveData;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 				938E686E1ACC08DD009B7AE7 /* ConnectionsViewController.m in Sources */,
 				938F0CFD1B20C017006E5864 /* ReceiveFromCVC.m in Sources */,
 				938F0D031B20C030006E5864 /* ReceiveFromGVC.m in Sources */,
+				9389E0C11B2721B200E677AF /* ReceiveFromRVC.m in Sources */,
 				1457877D1AC4200F007D76A1 /* Player.m in Sources */,
 				939249E41AC1A549008D5500 /* SettingsViewController.m in Sources */,
 				14C4433C1AC18C6300103C35 /* ViewController.m in Sources */,

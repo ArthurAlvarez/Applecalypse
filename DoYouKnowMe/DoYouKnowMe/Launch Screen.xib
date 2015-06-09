@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="15A178w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -11,15 +11,9 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-kE-gkm">
-                    <rect key="frame" x="282" y="439" width="37" height="37"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="37" id="2kD-Fo-nrI"/>
-                    </constraints>
-                    <color key="color" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
-                </activityIndicatorView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_big" translatesAutoresizingMaskIntoConstraints="NO" id="UZh-9O-O3W">
-                    <rect key="frame" x="234" y="217" width="133" height="165"/>
+                    <rect key="frame" x="207" y="227" width="187" height="233"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="UZh-9O-O3W" secondAttribute="height" multiplier="133:165" id="2Yl-vp-ZNW"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="133" id="Jzn-5R-QTi"/>
@@ -34,14 +28,23 @@
                         </mask>
                     </variation>
                 </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-kE-gkm">
+                    <rect key="frame" x="282" y="523" width="37" height="37"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="2kD-Fo-nrI"/>
+                    </constraints>
+                    <color key="color" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="gUU-kE-gkm" firstAttribute="centerX" secondItem="UZh-9O-O3W" secondAttribute="centerX" id="6Gk-z2-T0r"/>
-                <constraint firstAttribute="bottom" secondItem="gUU-kE-gkm" secondAttribute="bottom" constant="124" id="Xgb-eF-3Ws"/>
-                <constraint firstItem="gUU-kE-gkm" firstAttribute="top" secondItem="UZh-9O-O3W" secondAttribute="bottom" constant="57" id="YDA-rn-YJD"/>
+                <constraint firstAttribute="bottom" secondItem="gUU-kE-gkm" secondAttribute="bottom" constant="40" id="Kaa-cZ-4ti"/>
+                <constraint firstItem="gUU-kE-gkm" firstAttribute="top" secondItem="UZh-9O-O3W" secondAttribute="bottom" constant="63" id="YDA-rn-YJD"/>
                 <constraint firstItem="UZh-9O-O3W" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="c4I-Gc-ion"/>
-                <constraint firstItem="UZh-9O-O3W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="217" id="na6-d3-8df"/>
+                <constraint firstItem="UZh-9O-O3W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="227" id="na6-d3-8df"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

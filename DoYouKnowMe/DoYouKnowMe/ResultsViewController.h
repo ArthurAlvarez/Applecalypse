@@ -17,4 +17,7 @@
 
 @property (strong, nonatomic) GameViewController *gameView;
 
+- (IBAction)playWithSame:(id)sender;
+- (IBAction)playWithOther:(id)sender;
+
 @end

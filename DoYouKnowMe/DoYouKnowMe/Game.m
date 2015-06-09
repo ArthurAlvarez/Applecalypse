@@ -17,6 +17,7 @@
 #import "ReceiveFromSVC.h"
 #import "ReceiveFromGVC.h"
 #import "ReceiveFromVAVC.h"
+#import "ReceiveFromRVC.h"
 
 #pragma mark - Private Interface
 @interface Game ()
@@ -93,6 +94,7 @@
  */
 -(void)finishSession
 {
+	[self pauseBrowsing];
 	_appDelegate.mcManager.peerID = nil;
 	_appDelegate.mcManager.session = nil;
 	_appDelegate.mcManager.browser = nil;
@@ -103,17 +105,16 @@
 
 -(void)sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController
 {
-	NSString *_dataToSend;
-	
-	if (viewController == nil) _dataToSend = [@"GAME" stringByAppendingString:dataToSend];
-	else if ([viewController isKindOfClass:[ConnectionsViewController class]]) _dataToSend = [@"CVC" stringByAppendingString:dataToSend];
-	else if ([viewController isKindOfClass:[SettingsViewController class]]) _dataToSend = [@"SVC" stringByAppendingString:dataToSend];
-	else if ([viewController isKindOfClass:[GameViewController class]]) _dataToSend = [@"GVC" stringByAppendingString:dataToSend];
-	else if ([viewController isKindOfClass:[VerifyAnswerViewController class]]) _dataToSend = [@"VAVC" stringByAppendingString:dataToSend];
+	if (viewController == nil) dataToSend = [@"GAME" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[ConnectionsViewController class]]) dataToSend = [@"CVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[SettingsViewController class]]) dataToSend = [@"SVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[GameViewController class]]) dataToSend = [@"GVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[VerifyAnswerViewController class]]) dataToSend = [@"VAVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[ResultsViewController class]]) dataToSend = [@"RVC" stringByAppendingString:dataToSend];
 	
 	NSError *error;
 	
-	[_appDelegate.mcManager.session sendData:[_dataToSend dataUsingEncoding:NSUTF8StringEncoding]
+	[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:@[_otherPlayer]
 									withMode:MCSessionSendDataReliable
 									   error:&error];
@@ -271,6 +272,17 @@
 				}
 			}
 			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"VAVC" withString:@""]];
+		} else if ([receivedInfo hasPrefix:@"RVC"]) {
+			
+			ReceiveFromRVC *_receiveData = [[ReceiveFromRVC alloc] init];
+			for (UIViewController *vc in [_rootViewController.navigationController viewControllers]) {
+				if ([vc isKindOfClass:[ResultsViewController class]]) {
+					_receiveData.game = self;
+					_receiveData.viewController = (ResultsViewController*) vc;
+					break;
+				}
+			}
+			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"RVC" withString:@""]];
 		}
 	});
 }

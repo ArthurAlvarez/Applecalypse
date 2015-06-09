@@ -122,11 +122,15 @@
 {
 	UIViewController *viewController = self.navigationController.viewControllers[1];
 	
+	if ([sender isKindOfClass:[UIButton class]]) [_game sendData:@"playAgain" fromViewController:self];
+	
 	[self.navigationController popToViewController:viewController animated:NO];
 }
 
 - (IBAction)playWithOther:(id)sender
-{	
+{
+	if ([sender isKindOfClass:[UIButton class]]) [_game sendData:@"endGame" fromViewController:self];
+
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 

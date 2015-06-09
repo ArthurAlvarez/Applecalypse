@@ -137,5 +137,20 @@
 	_right = right;
 }
 
+- (IBAction)saveScreenShot:(id)sender {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    UIGraphicsBeginImageContext(screenRect.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [[UIColor blackColor] set];
+    CGContextFillRect(ctx, screenRect);
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    
+    [window.layer renderInContext:ctx];
+    UIImage *screengrab = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageWriteToSavedPhotosAlbum(screengrab, nil, nil, nil);
+}
 
 @end

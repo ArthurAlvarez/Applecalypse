@@ -310,7 +310,8 @@
                                 <animations/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.94901960784313721" green="0.95294117647058818" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="EWF-ZV-0wl" id="hJ0-OU-hP4"/>
                                     <outlet property="delegate" destination="EWF-ZV-0wl" id="abT-8k-dxN"/>
@@ -437,7 +438,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-8L-TAb">
-                                <rect key="frame" x="25" y="398" width="550" height="100"/>
+                                <rect key="frame" x="25" y="390" width="550" height="100"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -450,7 +451,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Atc-g8-8lO">
-                                <rect key="frame" x="252" y="506" width="96" height="30"/>
+                                <rect key="frame" x="252" y="498" width="96" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="KT3-Er-gnl"/>
@@ -466,7 +467,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EIB-IS-77T">
-                                <rect key="frame" x="191" y="372" width="219" height="21"/>
+                                <rect key="frame" x="191" y="364" width="219" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="219" id="Bpr-zy-fDh"/>
@@ -477,7 +478,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5S4-4C-YED">
-                                <rect key="frame" x="25" y="243" width="550" height="29"/>
+                                <rect key="frame" x="25" y="245" width="550" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="bo5-Vr-EJo"/>
@@ -493,7 +494,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantas perguntas serão?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dr-AG-Dty">
-                                <rect key="frame" x="25" y="203" width="550" height="30"/>
+                                <rect key="frame" x="25" y="205" width="550" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Z3T-nU-pfH"/>
@@ -504,7 +505,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quanto tempo para responder?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OXw-M7-47V">
-                                <rect key="frame" x="25" y="296" width="550" height="30"/>
+                                <rect key="frame" x="25" y="288" width="550" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Sxf-un-zt1"/>
@@ -515,7 +516,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sobre quem serão as perguntas?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-fs-vxG">
-                                <rect key="frame" x="25" y="110" width="550" height="30"/>
+                                <rect key="frame" x="25" y="122" width="550" height="30"/>
                                 <animations/>
                                 <color key="tintColor" red="0.91764705882352937" green="0.32156862745098042" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -527,7 +528,7 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Dtz-p7-56e">
-                                <rect key="frame" x="25" y="150" width="550" height="29"/>
+                                <rect key="frame" x="25" y="162" width="550" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="6OY-KI-n9J"/>
@@ -542,7 +543,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wzr-5N-fgd">
-                                <rect key="frame" x="25" y="336" width="550" height="29"/>
+                                <rect key="frame" x="25" y="328" width="550" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="Tj2-Pn-N2p"/>
@@ -559,7 +560,7 @@
                                 </connections>
                             </segmentedControl>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="X2R-SI-Pto">
-                                <rect key="frame" x="282" y="538" width="37" height="37"/>
+                                <rect key="frame" x="282" y="528" width="37" height="37"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="Mn8-YI-RzP"/>
@@ -599,18 +600,19 @@
                             <constraint firstAttribute="trailing" secondItem="OXw-M7-47V" secondAttribute="trailing" constant="25" id="F71-tF-Sgs"/>
                             <constraint firstItem="iXw-8L-TAb" firstAttribute="centerX" secondItem="EIB-IS-77T" secondAttribute="centerX" constant="-0.5" id="Fkv-hK-LOJ"/>
                             <constraint firstItem="eWN-fs-vxG" firstAttribute="leading" secondItem="F7b-1G-gIx" secondAttribute="leading" constant="25" id="GUh-Ww-aV9"/>
-                            <constraint firstItem="2dr-AG-Dty" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="25" id="HaE-jb-y3X"/>
-                            <constraint firstAttribute="centerY" secondItem="5S4-4C-YED" secondAttribute="centerY" constant="43" id="I30-9x-evJ"/>
+                            <constraint firstItem="2dr-AG-Dty" firstAttribute="top" secondItem="Dtz-p7-56e" secondAttribute="bottom" constant="15" id="HaE-jb-y3X"/>
                             <constraint firstAttribute="centerX" secondItem="IGw-bN-Wbj" secondAttribute="centerX" id="J86-dF-46k"/>
                             <constraint firstItem="2nn-Tj-skq" firstAttribute="leading" secondItem="F7b-1G-gIx" secondAttribute="leading" id="Jnx-zU-CYm"/>
+                            <constraint firstItem="nNb-Au-uZS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="X2R-SI-Pto" secondAttribute="bottom" constant="5" id="Kfd-jI-IgO"/>
                             <constraint firstItem="bYt-jb-hbZ" firstAttribute="top" secondItem="F7b-1G-gIx" secondAttribute="top" id="Oxj-Kz-ChM"/>
                             <constraint firstItem="OXw-M7-47V" firstAttribute="leading" secondItem="F7b-1G-gIx" secondAttribute="leading" constant="25" id="Ppy-qS-puK"/>
+                            <constraint firstItem="eWN-fs-vxG" firstAttribute="top" secondItem="bYt-jb-hbZ" secondAttribute="bottom" priority="900" constant="50" id="Sxr-n8-iNB"/>
                             <constraint firstAttribute="trailing" secondItem="Dtz-p7-56e" secondAttribute="trailing" constant="25" id="Ue1-jn-XzW"/>
                             <constraint firstItem="Wzr-5N-fgd" firstAttribute="leading" secondItem="F7b-1G-gIx" secondAttribute="leading" constant="25" id="V1i-qf-ivF"/>
                             <constraint firstAttribute="trailing" secondItem="2dr-AG-Dty" secondAttribute="trailing" constant="25" id="VLj-ea-JNL"/>
                             <constraint firstItem="2nn-Tj-skq" firstAttribute="top" secondItem="bYt-jb-hbZ" secondAttribute="bottom" constant="-1" id="VrN-jg-YAX"/>
                             <constraint firstAttribute="trailing" secondItem="2nn-Tj-skq" secondAttribute="trailing" id="ZFh-4o-YDk"/>
-                            <constraint firstItem="OXw-M7-47V" firstAttribute="top" secondItem="5S4-4C-YED" secondAttribute="bottom" constant="25" id="Zy3-RF-O1E"/>
+                            <constraint firstItem="OXw-M7-47V" firstAttribute="top" secondItem="5S4-4C-YED" secondAttribute="bottom" constant="15" id="Zy3-RF-O1E"/>
                             <constraint firstItem="2nn-Tj-skq" firstAttribute="top" secondItem="IGw-bN-Wbj" secondAttribute="bottom" constant="-1" id="b1X-aj-3eS"/>
                             <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="2nn-Tj-skq" secondAttribute="bottom" id="bpP-We-77G"/>
                             <constraint firstItem="Wzr-5N-fgd" firstAttribute="top" secondItem="OXw-M7-47V" secondAttribute="bottom" constant="10" id="cDI-Ti-fU6"/>
@@ -624,7 +626,7 @@
                             <constraint firstAttribute="trailing" secondItem="bYt-jb-hbZ" secondAttribute="trailing" id="mdq-3c-oZr"/>
                             <constraint firstItem="bYt-jb-hbZ" firstAttribute="leading" secondItem="F7b-1G-gIx" secondAttribute="leading" id="mut-3a-hba"/>
                             <constraint firstItem="iBg-5q-tyj" firstAttribute="leading" secondItem="F7b-1G-gIx" secondAttribute="leadingMargin" id="qaM-SB-fr6"/>
-                            <constraint firstItem="X2R-SI-Pto" firstAttribute="top" secondItem="Atc-g8-8lO" secondAttribute="bottom" constant="2" id="vNb-UF-mnP"/>
+                            <constraint firstItem="X2R-SI-Pto" firstAttribute="top" secondItem="Atc-g8-8lO" secondAttribute="bottom" id="vNb-UF-mnP"/>
                             <constraint firstAttribute="trailing" secondItem="eWN-fs-vxG" secondAttribute="trailing" constant="25" id="vtz-2x-L3z"/>
                             <constraint firstItem="Atc-g8-8lO" firstAttribute="centerX" secondItem="iXw-8L-TAb" secondAttribute="centerX" id="xC1-PP-MlV"/>
                             <constraint firstItem="nNb-Au-uZS" firstAttribute="top" secondItem="X2R-SI-Pto" secondAttribute="bottom" constant="45" id="yBR-3s-T5v"/>
@@ -1227,7 +1229,7 @@
         <image name="wrong-mark" width="1920" height="1703"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bIW-Rb-Xdg"/>
         <segue reference="NF6-W8-UGy"/>
+        <segue reference="Gsj-Ah-dbt"/>
     </inferredMetricsTieBreakers>
 </document>

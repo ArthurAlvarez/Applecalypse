@@ -121,6 +121,8 @@
 - (IBAction)browseForDevices:(id)sender
 {
 	[_game initiateBrowsing];
+	_connectedDevices.hidden = YES;
+	[_connectedDevices reloadData];
 }
 
 /**
@@ -132,13 +134,14 @@
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		_disconectBtn.hidden = YES;
+		_connectedDevices.hidden = YES;
+		[self.connectedDevices reloadData];
 	});
 	
 	[_waitingGoNext stopAnimating];
 	
 	canGoNext = 0;
 	
-	[self.connectedDevices reloadData];
 }
 
 #pragma mark - Selectors
@@ -154,11 +157,9 @@
 	dispatch_async(dispatch_get_main_queue(),
 	^{
 		if (!peersExist) {
-			[_browseBtn setEnabled:NO];
 			_disconectBtn.hidden = NO;
 			if (canGoNext == 0) _connectedDevices.allowsSelection = YES;
 		} else {
-			[_browseBtn setEnabled:YES];
 			_disconectBtn.hidden = YES;
 			[_waitingGoNext stopAnimating];
 		}
@@ -267,6 +268,7 @@
 		if (size == 0) tableView.hidden = true;
 		else tableView.hidden = false;
 		
+		NSLog(@"%ld", (long)size);
 	});
 	
 	return size;
@@ -281,7 +283,7 @@
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}
 	
-	cell.backgroundColor = tableView.backgroundColor;
+	cell.backgroundColor = self.view.backgroundColor;
 	
 	cell.textLabel.font = self.helloLabel.font;
 	cell.textLabel.textColor = self.helloLabel.textColor;

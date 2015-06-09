@@ -96,6 +96,8 @@
 		else [_game sendData:@"#1" fromViewController:self];
 	} else if (!isCorrect) AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 
+	right = isCorrect;
+	
 	if ([_game addScore:isCorrect]) [self performSegueWithIdentifier:@"finalResults" sender:self];
 	else {
 		if ([Player getPlayerID] == 2) [self.delegate didShowImage:isCorrect];

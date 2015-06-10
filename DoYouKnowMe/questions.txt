@@ -2,7 +2,7 @@
 	"size": "100",
 	"questions":{
 	"0":"Eu gostaria de ser famoso?",
-	"1":"O que seria um dia perfeito para mim?",
+	"1":"Ja morei em outra cidade?",
 	"2":"Qual é a minha comida favorita?",
     "3":"Qual é a minha cor favorita?",
     "4":"Qual o meu filme favorito?",

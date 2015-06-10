@@ -10,7 +10,7 @@
 #import "Game.h"
 #import "ConnectionsViewController.h"
 
-@interface ReceiveFromCVC : ReceiveData
+@interface ReceiveFromCVC : ReceiveData <UIAlertViewDelegate>
 
 @property (weak, nonatomic) ConnectionsViewController *viewController;
 

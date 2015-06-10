@@ -192,6 +192,7 @@
  **/
 - (void) canGoNext
 {
+    NSLog(@"Can go next");
 	if (canGoNext == 0) canGoNext = 1;
 	else [self performSegueWithIdentifier:@"goNext" sender:self];
 }
@@ -206,6 +207,34 @@
     else if([vc isKindOfClass:[TutorialViewController class]]){
         ((TutorialViewController *) vc).cameFromFirstScreen = NO;
     }
+}
+
+-(void) connectToPlayer:(NSString *)playerName{
+    for (MCPeerID *peer in _game.connectedDevices) {
+        if ([peer.displayName isEqualToString:playerName]) {
+            _game.otherPlayer = peer;
+            NSLog(@"connected to %@", playerName);
+        }
+    }
+}
+
+-(void) acceptInvitation{
+    [_game pauseBrowsing];
+    [_game sendData:@"acceptedNext" fromViewController:self];
+    NSLog(@"accepted invitation");
+}
+
+-(void) rejectedInvitation{
+    canGoNext = 0;
+    [_waitingGoNext stopAnimating];
+    _game.otherPlayer = nil;
+    [_game initiateBrowsing];
+    self.connectedDevices.allowsSelection = YES;
+    
+}
+
+-(void) sendReject{
+    [_game sendData:@"rejected" fromViewController:self];
 }
 
 #pragma mark - Delegates
@@ -251,7 +280,7 @@
 	
 	self.connectedDevices.allowsSelection = NO;
 	
-	[_game sendData:@"goNext" fromViewController:self];
+	[_game sendData:[NSString stringWithFormat:@"goNext%@", _game.appDelegate.mcManager.session.myPeerID.displayName] fromViewController:self];
 }
 
 

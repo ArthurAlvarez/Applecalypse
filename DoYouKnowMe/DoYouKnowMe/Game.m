@@ -114,6 +114,8 @@
 	
 	NSError *error;
 	
+    NSLog(@"Sending message '%@' to '%@'", dataToSend, _otherPlayer.displayName);
+    
 	[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
 									 toPeers:@[_otherPlayer]
 									withMode:MCSessionSendDataReliable

@@ -33,12 +33,12 @@
 
 
 -(void)setupMCBrowser{
-	_browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_peerID serviceType:@"doyouknowme"];
+	_browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_peerID serviceType:@"doyouknowme1"];
 }
 
 -(void)advertiseSelf:(BOOL)shouldAdvertise{
 	if (shouldAdvertise) {
-        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_peerID discoveryInfo:nil serviceType:@"doyouknowme"];
+        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_peerID discoveryInfo:nil serviceType:@"doyouknowme1"];
         
         [_advertiser startAdvertisingPeer];
     }

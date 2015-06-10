@@ -53,7 +53,7 @@
 		
 		_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 		_connectedDevices = [[NSMutableArray alloc] init];
-		_repeatedQuestions = [[NSMutableArray alloc]init];
+		_repeatedQuestions = [[NSMutableArray alloc] init];
 		_rootViewController = sender;
 		[self readJsonFile];
 	}
@@ -65,6 +65,8 @@
 
 -(void)initiateBrowsing
 {
+	[self pauseBrowsing];
+	
 	[_appDelegate.mcManager.browser startBrowsingForPeers];
 	[_appDelegate.mcManager.advertiser startAdvertisingPeer];
 }
@@ -87,6 +89,7 @@
 	[_appDelegate.mcManager setupMCBrowser];
 	_appDelegate.mcManager.advertiser.delegate = self;
 	_appDelegate.mcManager.browser.delegate = self;
+	[self initiateBrowsing];
 }
 
 /**
@@ -95,15 +98,19 @@
 -(void)finishSession
 {
 	[self pauseBrowsing];
+	
+	[_appDelegate.mcManager.session disconnect];
+
 	_appDelegate.mcManager.peerID = nil;
 	_appDelegate.mcManager.session = nil;
 	_appDelegate.mcManager.browser = nil;
 	[_appDelegate.mcManager advertiseSelf:NO];
+	
+	if ([_connectedDevices count] > 0) [_connectedDevices removeAllObjects];
 
-	[_appDelegate.mcManager.session disconnect];
 }
 
--(void)sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController
+-(void)sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController to:(SendDataTo)device
 {
 	if (viewController == nil) dataToSend = [@"GAME" stringByAppendingString:dataToSend];
 	else if ([viewController isKindOfClass:[ConnectionsViewController class]]) dataToSend = [@"CVC" stringByAppendingString:dataToSend];
@@ -114,10 +121,17 @@
 	
 	NSError *error;
 	
-	[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:@[_otherPlayer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
+	if (device == AllPeers) {
+		[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
+										 toPeers:_connectedDevices
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+	} else if (device == ConnectedPeer) {
+		[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
+										 toPeers:@[_otherPlayer]
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+	}
 	
 	if (error) NSLog(@"%@", [error localizedDescription]);
 }
@@ -191,7 +205,7 @@
 		[self questionTextFromIndex:selectedQuestion];
 	});
 	
-	[self sendData:[NSString stringWithFormat:@"*&*%@", selectedQuestion] fromViewController:nil];
+	[self sendData:[NSString stringWithFormat:@"*&*%@", selectedQuestion] fromViewController:nil to:ConnectedPeer];
 }
 
 -(void)questionTextFromIndex:(NSNumber *)index
@@ -324,7 +338,7 @@
  Delegate for finding devices
  **/
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
-{
+{	
 	NSLog(@"Found a nearby advertising peer %@", peerID);
 	
 	//Manda convite para conexao

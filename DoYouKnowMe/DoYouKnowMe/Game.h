@@ -14,6 +14,11 @@
 #import "AppDelegate.h"
 #import "Connectivity.h"
 
+typedef enum : NSUInteger {
+	AllPeers,
+	ConnectedPeer,
+} SendDataTo;
+
 @interface Game : NSObject <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate>
 
 @property AppDelegate *appDelegate;
@@ -27,7 +32,7 @@
 - (void) pauseBrowsing;
 - (void) initiateSession:(NSString*)userName;
 - (void) finishSession;
-- (void) sendData:(NSString*)dataToSend fromViewController:(UIViewController*)viewController;
+- (void) sendData:(NSString*)dataToSend fromViewController:(UIViewController*)viewController to:(SendDataTo)device;
 - (BOOL) addScore:(BOOL)isCorrect;
 - (void) getQuestion;
 - (void) questionTextFromIndex:(NSNumber *)index;

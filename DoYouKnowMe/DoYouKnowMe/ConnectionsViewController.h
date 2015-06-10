@@ -16,6 +16,8 @@
 
 @property Game *game;
 @property BOOL cameFromTutorial;
+
 - (void) canGoNext;
+- (void) reloadData;
 
 @end

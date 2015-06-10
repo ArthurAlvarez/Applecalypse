@@ -14,6 +14,8 @@
 {
 	if ([data isEqualToString:@"goNext"]) {
 		[_viewController canGoNext];
+	} else if ([data isEqualToString:@"disconnect"]) {
+		[_viewController reloadData];
 	}
 }
 

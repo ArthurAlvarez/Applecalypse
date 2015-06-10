@@ -25,7 +25,7 @@
 		NSString *formatted = [data stringByReplacingOccurrencesOfString:@"*&*" withString:@""];
 		[self.game questionTextFromIndex:[f numberFromString:formatted]];
 		
-	} else if ([data isEqualToString:@">"]) [_viewController resumeGame];
+	} else if ([data isEqualToString:@">"]) [_viewController resume];
 	
 	else if ([data isEqualToString:@"||"]) [_viewController pauseGame:self];
 	

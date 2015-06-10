@@ -67,6 +67,7 @@
 		14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial2.xib; sourceTree = "<group>"; };
 		14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial3.xib; sourceTree = "<group>"; };
 		93009F201ACD74250075610E /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		9374D1141B287A0900A920EA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		9382EFEB1B176AF2004A20CE /* sound_error.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_error.aiff; sourceTree = "<group>"; };
 		9382EFEC1B176AF2004A20CE /* sound_right.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_right.aiff; sourceTree = "<group>"; };
 		9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -94,7 +95,6 @@
 		939249E31AC1A549008D5500 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		939ADCB41B0E2FD900FDEA66 /* varground.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = varground.ttf; sourceTree = "<group>"; };
 		93BF04191AD2C78100AFB30B /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questions.txt; sourceTree = SOURCE_ROOT; };
-		93D1E32D1B2868F800A0539D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		93F0674D1B1DF752003B7F84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		93F0674F1B1F44C4003B7F84 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		93F067501B1F44C4003B7F84 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = PK9ZTBKL3B;
+						DevelopmentTeam = 2T9YCH946H;
 					};
 				};
 			};
@@ -269,6 +269,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				en,
+				"pt-BR",
 			);
 			mainGroup = 14C443271AC18C6300103C35;
 			productRefGroup = 14C443311AC18C6300103C35 /* Products */;
@@ -337,7 +339,7 @@
 			children = (
 				14C4433E1AC18C6300103C35 /* Base */,
 				93F0674D1B1DF752003B7F84 /* en */,
-				93D1E32D1B2868F800A0539D /* pt-BR */,
+				9374D1141B287A0900A920EA /* pt-BR */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -383,6 +385,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -417,6 +420,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

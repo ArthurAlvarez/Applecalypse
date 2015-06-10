@@ -68,6 +68,8 @@
 	_disconectBtn.hidden = YES;
 	_connectedDevices.hidden = YES;
 	
+	_connectedDevices.backgroundColor = [UIColor clearColor];
+	
 	_presentTutorial.layer.cornerRadius = _presentTutorial.frame.size.height/2;
 	_presentTutorial.layer.borderWidth = 1;
 	_presentTutorial.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -105,12 +107,8 @@
 	
     NSLog(@"%d", self.cameFromTutorial);
 	
-    if(self.cameFromTutorial){
-        [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    }
-    else{
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    if (self.cameFromTutorial) [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    else [self dismissViewControllerAnimated:YES completion:nil];
 }
 /**
  Go to tutorial page
@@ -215,7 +213,7 @@
     }
 }
 
--(void) connectToPlayer:(NSString *)playerName{
+-(void) connectToPlayer:(NSString *)playerName {
     for (MCPeerID *peer in _game.connectedDevices) {
         if ([peer.displayName isEqualToString:playerName]) {
             _game.otherPlayer = peer;
@@ -230,22 +228,21 @@
 	self.connectedDevices.allowsSelection = YES;
 }
 
--(void) acceptInvitation{
+-(void) acceptInvitation {
     [_game pauseBrowsing];
     [_game sendData:@"acceptedNext" fromViewController:self to:ConnectedPeer];
     NSLog(@"accepted invitation");
 }
 
--(void) rejectedInvitation{
+-(void) rejectedInvitation {
     canGoNext = 0;
     [_waitingGoNext stopAnimating];
     _game.otherPlayer = nil;
     [_game initiateBrowsing];
     self.connectedDevices.allowsSelection = YES;
-    
 }
 
--(void) sendReject{
+-(void) sendReject {
     [_game sendData:@"rejected" fromViewController:self to:ConnectedPeer];
 }
 
@@ -316,6 +313,7 @@
 	static NSString *CellIdentifier = @"Cell";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
 	if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}

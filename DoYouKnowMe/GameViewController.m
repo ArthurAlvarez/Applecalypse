@@ -245,16 +245,14 @@
 
 - (void) resume
 {
-	if (shouldContinue == 0){
-		shouldContinue = 1;
-		[_waitingPause startAnimating];
-	} else {
+	if (shouldContinue == 0) shouldContinue = 1;
+	else {
 		_clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
 													   target:self
 													 selector:@selector(updateTimerLabel)
 													 userInfo:nil
 													  repeats:YES];
-		[_waitingAnswer stopAnimating];
+		[_waitingPause stopAnimating];
 	}	
 }
 
@@ -372,7 +370,6 @@
 	
 	[self.pauseMenu show];
     shouldContinue = 0;
-	
 }
 
 - (IBAction)tapGestureRecognizer:(id)sender {
@@ -433,7 +430,6 @@
 -(void)resumeGame
 {	
 	if (shouldContinue == 0){
-		[_game sendData:@">" fromViewController:self to:ConnectedPeer];
 		shouldContinue = 1;
 		[_waitingPause startAnimating];
 	} else {
@@ -442,9 +438,10 @@
 													 selector:@selector(updateTimerLabel)
 													 userInfo:nil
 													  repeats:YES];
-		[_waitingAnswer stopAnimating];
+		[_waitingPause stopAnimating];
 	}
 	
+	[_game sendData:@">" fromViewController:self to:ConnectedPeer];
 	[self.pauseMenu hide];
 }
 

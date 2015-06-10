@@ -55,10 +55,10 @@
  @author Arthur Alvarez
  */
 - (IBAction)btnPressed:(id)sender {
-    if(skipTutorial){
+    if(skipTutorial) {
         [self performSegueWithIdentifier:@"skipTutorial" sender:self];
     }
-    else{
+    else {
         [self performSegueWithIdentifier:@"showTutorial" sender:self];
     }
     

@@ -223,10 +223,16 @@
         }
     }
 }
+- (void) reloadData
+{
+	[_connectedDevices reloadData];
+	
+	self.connectedDevices.allowsSelection = YES;
+}
 
 -(void) acceptInvitation{
     [_game pauseBrowsing];
-    [_game sendData:@"acceptedNext" fromViewController:self];
+    [_game sendData:@"acceptedNext" fromViewController:self to:ConnectedPeer];
     NSLog(@"accepted invitation");
 }
 
@@ -240,7 +246,7 @@
 }
 
 -(void) sendReject{
-    [_game sendData:@"rejected" fromViewController:self];
+    [_game sendData:@"rejected" fromViewController:self to:ConnectedPeer];
 }
 
 #pragma mark - Delegates
@@ -286,7 +292,7 @@
 	
 	self.connectedDevices.allowsSelection = NO;
 	
-	[_game sendData:[NSString stringWithFormat:@"goNext%@", _game.appDelegate.mcManager.session.myPeerID.displayName] fromViewController:self];
+	[_game sendData:[NSString stringWithFormat:@"goNext%@", _game.appDelegate.mcManager.session.myPeerID.displayName] fromViewController:self to:ConnectedPeer];
 }
 
 

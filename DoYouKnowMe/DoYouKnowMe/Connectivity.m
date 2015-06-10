@@ -33,15 +33,12 @@
 
 
 -(void)setupMCBrowser{
-	_browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_peerID serviceType:@"doyouknowme1"];
+	_browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_peerID serviceType:@"doyouknowme"];
 }
 
 -(void)advertiseSelf:(BOOL)shouldAdvertise{
-	if (shouldAdvertise) {
-        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_peerID discoveryInfo:nil serviceType:@"doyouknowme1"];
-        
-        [_advertiser startAdvertisingPeer];
-    }
+	if (shouldAdvertise)
+        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_peerID discoveryInfo:nil serviceType:@"doyouknowme"];
 }
 
 #pragma mark - MCSession Delegate

@@ -45,6 +45,10 @@
         [alert addAction:acceptAction];
         [alert addAction:rejectAction];
         [_viewController presentViewController:alert animated:YES completion:nil];
+    }
+    
+    else if ([data isEqualToString:@"disconnect"]) {
+		[_viewController reloadData];
 	}
     
     else if([data isEqualToString:@"acceptedNext"]){
@@ -53,6 +57,7 @@
     }
     
     else if([data isEqualToString:@"rejected"]){
+        connecting = NO;
         [_viewController rejectedInvitation];
     }
 }
@@ -66,5 +71,6 @@
 - (void) reject{
     [_viewController sendReject];
     [_viewController rejectedInvitation];
+    connecting = NO;
 }
 @end

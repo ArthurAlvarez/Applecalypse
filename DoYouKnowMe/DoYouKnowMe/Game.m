@@ -121,12 +121,17 @@
 	
 	NSError *error;
 	
-    NSLog(@"Sending message '%@' to '%@'", dataToSend, _otherPlayer.displayName);
-    
-	[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
-									 toPeers:@[_otherPlayer]
-									withMode:MCSessionSendDataReliable
-									   error:&error];
+	if (device == AllPeers) {
+		[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
+										 toPeers:_connectedDevices
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+	} else if (device == ConnectedPeer) {
+		[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
+										 toPeers:@[_otherPlayer]
+										withMode:MCSessionSendDataReliable
+										   error:&error];
+	}
 	
 	if (error) NSLog(@"%@", [error localizedDescription]);
 }

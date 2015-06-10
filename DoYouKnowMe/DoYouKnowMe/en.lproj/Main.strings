@@ -1,12 +1,12 @@
 
 /* Class = "UILabel"; text = "Quantas perguntas serão?"; ObjectID = "2dr-AG-Dty"; */
-"2dr-AG-Dty.text" = "Quantas perguntas serão?";
+"2dr-AG-Dty.text" = "How many questions?";
 
 /* Class = "UIButton"; normalTitle = "<"; ObjectID = "3yr-ud-wF1"; */
 "3yr-ud-wF1.normalTitle" = "<";
 
 /* Class = "UILabel"; text = "Resposta"; ObjectID = "4W1-5u-G9S"; */
-"4W1-5u-G9S.text" = "Resposta";
+"4W1-5u-G9S.text" = "Answer";
 
 /* Class = "UISegmentedControl"; 5S4-4C-YED.segmentTitles[0] = "5"; ObjectID = "5S4-4C-YED"; */
 "5S4-4C-YED.segmentTitles[0]" = "5";
@@ -18,28 +18,28 @@
 "5S4-4C-YED.segmentTitles[2]" = "15";
 
 /* Class = "UILabel"; text = "Resultado"; ObjectID = "6Wh-sz-nho"; */
-"6Wh-sz-nho.text" = "Resultado";
+"6Wh-sz-nho.text" = "Results";
 
 /* Class = "UILabel"; text = "Será que você conhece bem seus amigos?"; ObjectID = "6a8-eP-Vqz"; */
-"6a8-eP-Vqz.text" = "Será que você conhece bem seus amigos?";
+"6a8-eP-Vqz.text" = "Do you really know your friends?";
 
 /* Class = "UIButton"; normalTitle = "Jogar"; ObjectID = "8XA-rr-pJD"; */
-"8XA-rr-pJD.normalTitle" = "Jogar";
+"8XA-rr-pJD.normalTitle" = "Play";
 
 /* Class = "UILabel"; text = "x/y"; ObjectID = "9to-qa-g0y"; */
 "9to-qa-g0y.text" = "x/y";
 
 /* Class = "UIButton"; normalTitle = "Desconectar"; ObjectID = "Atc-g8-8lO"; */
-"Atc-g8-8lO.normalTitle" = "Desconectar";
+"Atc-g8-8lO.normalTitle" = "Disconnect";
 
 /* Class = "UILabel"; text = "Tempo"; ObjectID = "Bs4-Gz-WI9"; */
-"Bs4-Gz-WI9.text" = "Tempo";
+"Bs4-Gz-WI9.text" = "Time";
 
 /* Class = "UILabel"; text = "Olá, "; ObjectID = "D8M-fJ-Qom"; */
-"D8M-fJ-Qom.text" = "Olá,";
+"D8M-fJ-Qom.text" = "Hi,";
 
 /* Class = "UISegmentedControl"; Dtz-p7-56e.segmentTitles[0] = "Sobre mim"; ObjectID = "Dtz-p7-56e"; */
-"Dtz-p7-56e.segmentTitles[0]" = "Sobre mim";
+"Dtz-p7-56e.segmentTitles[0]" = "About me";
 
 /* Class = "UISegmentedControl"; Dtz-p7-56e.segmentTitles[1] = "<amigo>"; ObjectID = "Dtz-p7-56e"; */
 "Dtz-p7-56e.segmentTitles[1]" = "<amigo>";
@@ -48,31 +48,31 @@
 "F3N-x9-1e9.text" = "20";
 
 /* Class = "UIButton"; normalTitle = "Procurar amigos"; ObjectID = "I5v-wn-g0G"; */
-"I5v-wn-g0G.normalTitle" = "Procurar amigos";
+"I5v-wn-g0G.normalTitle" = "Browse friends";
 
 /* Class = "UILabel"; text = "Configurações"; ObjectID = "IGw-bN-Wbj"; */
-"IGw-bN-Wbj.text" = "Configurações";
+"IGw-bN-Wbj.text" = "Configurations";
 
 /* Class = "UILabel"; text = "100%"; ObjectID = "MdE-bL-75W"; */
 "MdE-bL-75W.text" = "100%";
 
 /* Class = "UILabel"; text = "Quanto tempo para responder?"; ObjectID = "OXw-M7-47V"; */
-"OXw-M7-47V.text" = "Quanto tempo para responder?";
+"OXw-M7-47V.text" = "How much time to answer?";
 
 /* Class = "UIButton"; normalTitle = "Pausa"; ObjectID = "OyF-Od-voM"; */
-"OyF-Od-voM.normalTitle" = "Pausa";
+"OyF-Od-voM.normalTitle" = "Pause";
 
 /* Class = "UILabel"; text = "Do I Know You?"; ObjectID = "PER-Ml-i3b"; */
 "PER-Ml-i3b.text" = "Do I Know You?";
 
 /* Class = "UILabel"; text = "Como você se chama?"; ObjectID = "TAA-DI-PKM"; */
-"TAA-DI-PKM.text" = "Como você se chama?";
+"TAA-DI-PKM.text" = "What's your name?";
 
 /* Class = "UITextField"; placeholder = "Toque para responder"; ObjectID = "TDV-1E-jzr"; */
-"TDV-1E-jzr.placeholder" = "Toque para responder";
+"TDV-1E-jzr.placeholder" = "Touch to answer";
 
 /* Class = "UILabel"; text = "Resposta"; ObjectID = "TWm-nD-3Bk"; */
-"TWm-nD-3Bk.text" = "Resposta";
+"TWm-nD-3Bk.text" = "Answer";
 
 /* Class = "UISegmentedControl"; Wzr-5N-fgd.segmentTitles[0] = "20"; ObjectID = "Wzr-5N-fgd"; */
 "Wzr-5N-fgd.segmentTitles[0]" = "20";
@@ -90,31 +90,31 @@
 "a1b-5r-PMS.text" = "Pergunta sobre <>";
 
 /* Class = "UIButton"; normalTitle = "Jogar novamente"; ObjectID = "ciN-hh-P0e"; */
-"ciN-hh-P0e.normalTitle" = "Jogar novamente";
+"ciN-hh-P0e.normalTitle" = "Play again";
 
 /* Class = "UILabel"; text = "Rodada"; ObjectID = "dYt-a8-SDf"; */
-"dYt-a8-SDf.text" = "Rodada";
+"dYt-a8-SDf.text" = "Round";
 
 /* Class = "UILabel"; text = "Sobre quem serão as perguntas?"; ObjectID = "eWN-fs-vxG"; */
-"eWN-fs-vxG.text" = "Sobre quem serão as perguntas?";
+"eWN-fs-vxG.text" = "The questions will be about who?";
 
 /* Class = "UILabel"; text = "Acertou ou errou?"; ObjectID = "fgn-0m-1oW"; */
-"fgn-0m-1oW.text" = "Acertou ou errou?";
+"fgn-0m-1oW.text" = "Right or wrong?";
 
 /* Class = "UILabel"; text = "Conexão"; ObjectID = "hb3-Zk-BSb"; */
-"hb3-Zk-BSb.text" = "Conexão";
+"hb3-Zk-BSb.text" = "Connection";
 
 /* Class = "UIButton"; normalTitle = "<"; ObjectID = "iBg-5q-tyj"; */
 "iBg-5q-tyj.normalTitle" = "<";
 
 /* Class = "UIButton"; normalTitle = "Começar"; ObjectID = "iXw-8L-TAb"; */
-"iXw-8L-TAb.normalTitle" = "Começar";
+"iXw-8L-TAb.normalTitle" = "Start";
 
 /* Class = "UIButton"; normalTitle = "Desconectar"; ObjectID = "nU5-wL-ug7"; */
-"nU5-wL-ug7.normalTitle" = "Desconectar";
+"nU5-wL-ug7.normalTitle" = "Disconnect";
 
 /* Class = "UIButton"; normalTitle = "Voltar"; ObjectID = "oQX-6l-paH"; */
-"oQX-6l-paH.normalTitle" = "Voltar";
+"oQX-6l-paH.normalTitle" = "Go back";
 
 /* Class = "UILabel"; text = "Carregando pergunta..."; ObjectID = "wgz-EY-fsS"; */
-"wgz-EY-fsS.text" = "Carregando pergunta...";
+"wgz-EY-fsS.text" = "Loading question...";

@@ -17,6 +17,9 @@
 /* Class = "UISegmentedControl"; 5S4-4C-YED.segmentTitles[2] = "15"; ObjectID = "5S4-4C-YED"; */
 "5S4-4C-YED.segmentTitles[2]" = "15";
 
+/* Class = "UIButton"; normalTitle = "Screenshot"; ObjectID = "6Dr-6v-PZ6"; */
+"6Dr-6v-PZ6.normalTitle" = "Screenshot";
+
 /* Class = "UILabel"; text = "Resultado"; ObjectID = "6Wh-sz-nho"; */
 "6Wh-sz-nho.text" = "Resultado";
 
@@ -65,6 +68,9 @@
 /* Class = "UILabel"; text = "Do I Know You?"; ObjectID = "PER-Ml-i3b"; */
 "PER-Ml-i3b.text" = "Do I Know You?";
 
+/* Class = "UIButton"; normalTitle = "Jogar"; ObjectID = "QLa-iO-ztl"; */
+"QLa-iO-ztl.normalTitle" = "Jogar";
+
 /* Class = "UILabel"; text = "Como você se chama?"; ObjectID = "TAA-DI-PKM"; */
 "TAA-DI-PKM.text" = "Como você se chama?";
 
@@ -88,6 +94,9 @@
 
 /* Class = "UILabel"; text = "Pergunta sobre <>"; ObjectID = "a1b-5r-PMS"; */
 "a1b-5r-PMS.text" = "Pergunta sobre <>";
+
+/* Class = "UIButton"; normalTitle = "?"; ObjectID = "bBr-t0-KCa"; */
+"bBr-t0-KCa.normalTitle" = "?";
 
 /* Class = "UIButton"; normalTitle = "Jogar novamente"; ObjectID = "ciN-hh-P0e"; */
 "ciN-hh-P0e.normalTitle" = "Jogar novamente";
@@ -115,9 +124,6 @@
 
 /* Class = "UIButton"; normalTitle = "Voltar"; ObjectID = "oQX-6l-paH"; */
 "oQX-6l-paH.normalTitle" = "Voltar";
-
-/* Class = "UILabel"; text = "Player"; ObjectID = "upZ-Z9-diV"; */
-"upZ-Z9-diV.text" = "Player";
 
 /* Class = "UILabel"; text = "Carregando pergunta..."; ObjectID = "wgz-EY-fsS"; */
 "wgz-EY-fsS.text" = "Carregando pergunta...";

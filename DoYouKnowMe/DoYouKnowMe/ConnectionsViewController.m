@@ -41,6 +41,8 @@
 /// Table view to display the connected devices
 @property (weak, nonatomic) IBOutlet UITableView *connectedDevices;
 
+@property (weak, nonatomic) IBOutlet UIButton *presentTutorial;
+
 @end
 
 #pragma mark - Implementation
@@ -65,6 +67,10 @@
 	_browseBtn.hidden = YES;
 	_disconectBtn.hidden = YES;
 	_connectedDevices.hidden = YES;
+	
+	_presentTutorial.layer.cornerRadius = _presentTutorial.frame.size.height/2;
+	_presentTutorial.layer.borderWidth = 1;
+	_presentTutorial.layer.borderColor = [UIColor whiteColor].CGColor;
 
 	_browseBtn.layer.cornerRadius = 5;
 }
@@ -78,18 +84,14 @@
 	[super viewWillAppear:animated];
 	
 	canGoNext = 0;
+	
 	[_waitingGoNext stopAnimating];
-	
-	
-	if ([_game.connectedDevices count] == 0) {
-		self.connectedDevices.hidden = true;
-	}
 
 	if ([self.txtName.text length] > 0) [_game initiateBrowsing];
 	
 	self.connectedDevices.allowsSelection = YES;
 
-	[self.connectedDevices reloadData];
+	[self reloadData];
 }
 
 #pragma mark - Action Methods
@@ -100,7 +102,9 @@
 - (IBAction)goBack:(id)sender
 {
 	[_game finishSession];
+	
     NSLog(@"%d", self.cameFromTutorial);
+	
     if(self.cameFromTutorial){
         [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
@@ -120,7 +124,9 @@
  **/
 - (IBAction)browseForDevices:(id)sender
 {
-	[_game initiateBrowsing];
+	[_game initiateSession:_txtName.text];
+		
+	[self reloadData];
 }
 
 /**
@@ -128,17 +134,19 @@
  **/
 - (IBAction)Disconect:(id)sender
 {
+	[_game sendData:@"disconnect" fromViewController:self to:AllPeers];
+
 	[_game finishSession];
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		_disconectBtn.hidden = YES;
+		_connectedDevices.hidden = YES;
+		[self reloadData];
 	});
 	
 	[_waitingGoNext stopAnimating];
 	
 	canGoNext = 0;
-	
-	[self.connectedDevices reloadData];
 }
 
 #pragma mark - Selectors
@@ -154,16 +162,14 @@
 	dispatch_async(dispatch_get_main_queue(),
 	^{
 		if (!peersExist) {
-			[_browseBtn setEnabled:NO];
 			_disconectBtn.hidden = NO;
 			if (canGoNext == 0) _connectedDevices.allowsSelection = YES;
 		} else {
-			[_browseBtn setEnabled:YES];
 			_disconectBtn.hidden = YES;
 			[_waitingGoNext stopAnimating];
 		}
 		
-		[self.connectedDevices reloadData];
+		[self reloadData];
 	});
 }
 
@@ -292,10 +298,8 @@
 	NSInteger size = [_game.connectedDevices count];
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		
 		if (size == 0) tableView.hidden = true;
 		else tableView.hidden = false;
-		
 	});
 	
 	return size;
@@ -310,7 +314,7 @@
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}
 	
-	cell.backgroundColor = tableView.backgroundColor;
+	cell.backgroundColor = self.view.backgroundColor;
 	
 	cell.textLabel.font = self.helloLabel.font;
 	cell.textLabel.textColor = self.helloLabel.textColor;

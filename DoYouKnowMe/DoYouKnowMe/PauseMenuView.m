@@ -128,17 +128,24 @@
 	[self addConstraints:vePosX]; [self addConstraints:vePosY];
 	
 	// View constraints
-	NSArray *vPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(<=50)-[v(<=300)]-(<=50)-|"
+	NSArray *vPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(<=50@900)-[v(<=300@1000)]-(<=50@900)-|"
 															 options: 0
 															 metrics:nil
 															   views:views];
 	NSLayoutConstraint *vPosY = [NSLayoutConstraint constraintWithItem:self.view
-												  attribute:NSLayoutAttributeCenterY
-												  relatedBy:NSLayoutRelationEqual
-													 toItem:self
-												  attribute:NSLayoutAttributeCenterY
-												 multiplier:1
-												   constant:0];
+															 attribute:NSLayoutAttributeCenterY
+															 relatedBy:NSLayoutRelationEqual
+																toItem:self
+															 attribute:NSLayoutAttributeCenterY
+															multiplier:1
+															  constant:0];
+	NSLayoutConstraint *vCenterX = [NSLayoutConstraint constraintWithItem:self.view
+															 attribute:NSLayoutAttributeCenterX
+															 relatedBy:NSLayoutRelationEqual
+																toItem:self
+															 attribute:NSLayoutAttributeCenterX
+															multiplier:1
+															  constant:0];
 	NSLayoutConstraint *vHnW = [NSLayoutConstraint constraintWithItem:self.view
 															attribute:NSLayoutAttributeHeight
 															relatedBy:NSLayoutRelationEqual
@@ -146,7 +153,7 @@
 															attribute:NSLayoutAttributeWidth
 														   multiplier:1
 															 constant:0];
-	[self addConstraints:vPosX]; [self addConstraint:vPosY]; [self addConstraint:vHnW];
+	[self addConstraints:vPosX]; [self addConstraint:vPosY]; [self addConstraint:vCenterX]; [self addConstraint:vHnW];
 	
 	// Pause Label constraints
 	NSArray *plPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pl]|"

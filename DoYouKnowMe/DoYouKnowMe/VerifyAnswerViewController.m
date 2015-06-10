@@ -92,10 +92,12 @@
 - (void) verifyAnswer:(BOOL)isCorrect
 {
 	if ([Player getPlayerID] == 1) {
-		if (!isCorrect) [_game sendData:@"#0" fromViewController:self];
-		else [_game sendData:@"#1" fromViewController:self];
+		if (!isCorrect) [_game sendData:@"#0" fromViewController:self to:ConnectedPeer];
+		else [_game sendData:@"#1" fromViewController:self to:ConnectedPeer];
 	} else if (!isCorrect) AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 
+	right = isCorrect;
+	
 	if ([_game addScore:isCorrect]) [self performSegueWithIdentifier:@"finalResults" sender:self];
 	else {
 		if ([Player getPlayerID] == 2) [self.delegate didShowImage:isCorrect];

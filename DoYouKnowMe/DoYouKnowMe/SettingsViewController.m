@@ -143,12 +143,12 @@
 	
 	if (_questionTo.selectedSegmentIndex == 0)
 	{
-		[_game sendData:@"!1" fromViewController:self];
+		[_game sendData:@"!1" fromViewController:self to:ConnectedPeer];
 		[Player setPlayerID:1];
 	}
 	else
 	{
-		[_game sendData:@"!0" fromViewController:self];
+		[_game sendData:@"!0" fromViewController:self to:ConnectedPeer];
 		[Player setPlayerID:2];
 	}
 	
@@ -176,7 +176,7 @@
 			break;
 	}
 	
-	[_game sendData:[NSString stringWithFormat:@"()%d", index] fromViewController:self];
+	[_game sendData:[NSString stringWithFormat:@"()%d", index] fromViewController:self to:ConnectedPeer];
 	
 }
 
@@ -201,7 +201,7 @@
 			break;
 	}
 	
-	[_game sendData:[NSString stringWithFormat:@".%d", index] fromViewController:self];
+	[_game sendData:[NSString stringWithFormat:@".%d", index] fromViewController:self to:ConnectedPeer];
 }
 
 /** 
@@ -209,6 +209,8 @@
  **/
 - (IBAction)disconnect:(id)sender
 {
+	[_game sendData:@"disconnect" fromViewController:self to:AllPeers];
+	
 	[_game finishSession];
 	[Player setPlayerID:-1];
 	[[self navigationController] popToRootViewControllerAnimated:YES];
@@ -228,13 +230,12 @@
 	
 	[_waitingIndicator startAnimating];
 	
-	
-	[_game sendData:@"!start" fromViewController:self];
+	[_game sendData:@"!start" fromViewController:self to:ConnectedPeer];
 }
 
 - (IBAction)goBack:(id)sender
 {
-	[_game sendData:@"!goBack" fromViewController:self];
+	[_game sendData:@"!goBack" fromViewController:self to:ConnectedPeer];
 	
 	[[self navigationController] popToRootViewControllerAnimated:YES];
 }

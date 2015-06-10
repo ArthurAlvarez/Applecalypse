@@ -243,6 +243,21 @@
 	_questionLabel.text = question;
 }
 
+- (void) resume
+{
+	if (shouldContinue == 0){
+		shouldContinue = 1;
+		[_waitingPause startAnimating];
+	} else {
+		_clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
+													   target:self
+													 selector:@selector(updateTimerLabel)
+													 userInfo:nil
+													  repeats:YES];
+		[_waitingAnswer stopAnimating];
+	}	
+}
+
 #pragma mark - Selectors
 
 /**
@@ -285,7 +300,7 @@
 		NSLog(@"Recebeu a info");
 	}
 	
-	[_game sendData:@"@start" fromViewController:self];
+	[_game sendData:@"@start" fromViewController:self to:ConnectedPeer];
 }
 
 /**
@@ -332,7 +347,7 @@
     
     if(self.answerTextField.text.length > 0){
 		
-        [_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self];
+        [_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self to:ConnectedPeer];
         
         if (currentAnswers == 0) {
             currentAnswers = 1;
@@ -352,7 +367,7 @@
 	[_clockTimer invalidate];
 	
 	if ([sender isKindOfClass:[UIButton class]]) {
-		[_game sendData:@"||" fromViewController:self];
+		[_game sendData:@"||" fromViewController:self to:ConnectedPeer];
 	}
 	
 	[self.pauseMenu show];
@@ -376,12 +391,12 @@
     VerifyAnswerViewController *vc = segue.destinationViewController;
     ResultsViewController *vc2 = segue.destinationViewController;
 	
-	[_game sendData:@"@notwaiting" fromViewController:self];
+	[_game sendData:@"@notwaiting" fromViewController:self to:ConnectedPeer];
 	
 	alreadyPerformedSegue = YES;
 	
 	if (_otherWaiting) {
-		[_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self];
+		[_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self to:ConnectedPeer];
 	}
 	
     //Go to VerifyAnswerView
@@ -417,23 +432,25 @@
 
 -(void)resumeGame
 {	
-		if (shouldContinue == 0){
-			[_game sendData:@">" fromViewController:self];
-			shouldContinue = 1;
-			[_waitingPause startAnimating];
-		} else {
-			_clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
-														   target:self
-														 selector:@selector(updateTimerLabel)
-														 userInfo:nil
-														  repeats:YES];
-			[self.pauseMenu hide];
-		}
+	if (shouldContinue == 0){
+		[_game sendData:@">" fromViewController:self to:ConnectedPeer];
+		shouldContinue = 1;
+		[_waitingPause startAnimating];
+	} else {
+		_clockTimer = [NSTimer scheduledTimerWithTimeInterval:1
+													   target:self
+													 selector:@selector(updateTimerLabel)
+													 userInfo:nil
+													  repeats:YES];
+		[_waitingAnswer stopAnimating];
+	}
+	
+	[self.pauseMenu hide];
 }
 
 -(void)endGame
 {
-	[_game sendData:@"<" fromViewController:self];
+	[_game sendData:@"<" fromViewController:self to:ConnectedPeer];
 	[[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
@@ -455,7 +472,7 @@
 	
 	if(self.answerTextField.text.length > 0){
 		
-		[_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self];
+		[_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self to:ConnectedPeer];
 		_game.myAnswer = self.answerTextField.text;
 		
 		if (currentAnswers == 0) {

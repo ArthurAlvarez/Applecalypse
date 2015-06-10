@@ -94,6 +94,7 @@
 		939249E31AC1A549008D5500 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		939ADCB41B0E2FD900FDEA66 /* varground.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = varground.ttf; sourceTree = "<group>"; };
 		93BF04191AD2C78100AFB30B /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questions.txt; sourceTree = SOURCE_ROOT; };
+		93D1E32D1B2868F800A0539D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		93F0674D1B1DF752003B7F84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		93F0674F1B1F44C4003B7F84 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		93F067501B1F44C4003B7F84 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
@@ -336,6 +337,7 @@
 			children = (
 				14C4433E1AC18C6300103C35 /* Base */,
 				93F0674D1B1DF752003B7F84 /* en */,
+				93D1E32D1B2868F800A0539D /* pt-BR */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

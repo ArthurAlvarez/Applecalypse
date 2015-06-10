@@ -155,6 +155,13 @@
     UIGraphicsEndImageContext();
     
     UIImageWriteToSavedPhotosAlbum(screengrab, nil, nil, nil);
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aviso"
+                                                    message:@"Captura de tela salva com sucesso"
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

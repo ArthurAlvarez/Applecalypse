@@ -49,7 +49,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *showRound;
 
 /// View that appear when the game is paused
-@property (weak, nonatomic) IBOutlet PauseMenuView *pauseMenu;
+@property (weak, nonatomic) IBOutlet AuxiliaryMenuView *pauseMenu;
 
 /// ImageView to show a baloon with the question
 @property (weak, nonatomic) IBOutlet UIImageView *question;
@@ -127,6 +127,8 @@
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL2, &_rightAudio);
     
 	self.showROrW.hidden = true;
+	
+	_pauseMenu.type = 2;
 }
 
 /**
@@ -427,7 +429,7 @@
 
 #pragma mark - PauseMenuView Delegate
 
--(void)resumeGame
+-(void)rightButtonAction
 {	
 	if (shouldContinue == 0){
 		shouldContinue = 1;
@@ -445,7 +447,7 @@
 	[self.pauseMenu hide];
 }
 
--(void)endGame
+-(void)leftButtonAction
 {
 	[_game sendData:@"<" fromViewController:self to:ConnectedPeer];
 	[[self navigationController] popToRootViewControllerAnimated:YES];

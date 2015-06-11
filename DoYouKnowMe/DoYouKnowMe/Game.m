@@ -136,6 +136,30 @@
 	if (error) NSLog(@"%@", [error localizedDescription]);
 }
 
+-(void)sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController toPeer:(NSString*)other
+{
+	if (viewController == nil) dataToSend = [@"GAME" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[ConnectionsViewController class]]) dataToSend = [@"CVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[SettingsViewController class]]) dataToSend = [@"SVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[GameViewController class]]) dataToSend = [@"GVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[VerifyAnswerViewController class]]) dataToSend = [@"VAVC" stringByAppendingString:dataToSend];
+	else if ([viewController isKindOfClass:[ResultsViewController class]]) dataToSend = [@"RVC" stringByAppendingString:dataToSend];
+	
+	NSError *error;
+	
+	for (MCPeerID *peer in _connectedDevices) {
+		if (peer.displayName == other) {
+			[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
+											 toPeers:@[peer]
+											withMode:MCSessionSendDataReliable
+											   error:&error];
+			break;
+		}
+	}
+	
+	if (error) NSLog(@"%@", [error localizedDescription]);
+}
+
 #pragma mark - Game Logic Methods
 
 /**

@@ -28,7 +28,7 @@
 		9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEB1B176AF2004A20CE /* sound_error.aiff */; };
 		9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEC1B176AF2004A20CE /* sound_right.aiff */; };
 		9382EFF01B176CD3004A20CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */; };
-		9385D9461B0936900006D08D /* PauseMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9451B0936900006D08D /* PauseMenuView.m */; };
+		9385D9461B0936900006D08D /* AuxiliaryMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9451B0936900006D08D /* AuxiliaryMenuView.m */; };
 		9389E0C11B2721B200E677AF /* ReceiveFromRVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9389E0C01B2721B200E677AF /* ReceiveFromRVC.m */; };
 		938E686E1ACC08DD009B7AE7 /* ConnectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 938E686D1ACC08DD009B7AE7 /* ConnectionsViewController.m */; };
 		938F0CFA1B20BFFD006E5864 /* ReceiveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0CF91B20BFFD006E5864 /* ReceiveData.m */; };
@@ -77,8 +77,8 @@
 		9382EFEB1B176AF2004A20CE /* sound_error.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_error.aiff; sourceTree = "<group>"; };
 		9382EFEC1B176AF2004A20CE /* sound_right.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_right.aiff; sourceTree = "<group>"; };
 		9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		9385D9441B0936900006D08D /* PauseMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuView.h; sourceTree = "<group>"; };
-		9385D9451B0936900006D08D /* PauseMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuView.m; sourceTree = "<group>"; };
+		9385D9441B0936900006D08D /* AuxiliaryMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuxiliaryMenuView.h; sourceTree = "<group>"; };
+		9385D9451B0936900006D08D /* AuxiliaryMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuxiliaryMenuView.m; sourceTree = "<group>"; };
 		9389E0BF1B2721B200E677AF /* ReceiveFromRVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveFromRVC.h; sourceTree = "<group>"; };
 		9389E0C01B2721B200E677AF /* ReceiveFromRVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveFromRVC.m; sourceTree = "<group>"; };
 		938E686C1ACC08DD009B7AE7 /* ConnectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionsViewController.h; sourceTree = "<group>"; };
@@ -144,8 +144,8 @@
 				14C443381AC18C6300103C35 /* AppDelegate.m */,
 				939249DF1AC19883008D5500 /* Connectivity.h */,
 				939249E01AC19883008D5500 /* Connectivity.m */,
-				9385D9441B0936900006D08D /* PauseMenuView.h */,
-				9385D9451B0936900006D08D /* PauseMenuView.m */,
+				9385D9441B0936900006D08D /* AuxiliaryMenuView.h */,
+				9385D9451B0936900006D08D /* AuxiliaryMenuView.m */,
 				14C4433D1AC18C6300103C35 /* Main.storyboard */,
 				14C443401AC18C6300103C35 /* Images.xcassets */,
 				93009F201ACD74250075610E /* Launch Screen.xib */,
@@ -330,7 +330,7 @@
 				939249E11AC19883008D5500 /* Connectivity.m in Sources */,
 				14C443391AC18C6300103C35 /* AppDelegate.m in Sources */,
 				1452A45D1AC97CEB00A46762 /* ResultsViewController.m in Sources */,
-				9385D9461B0936900006D08D /* PauseMenuView.m in Sources */,
+				9385D9461B0936900006D08D /* AuxiliaryMenuView.m in Sources */,
 				1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */,
 				1452A4601AC988E400A46762 /* GameSettings.m in Sources */,
 				938F0D0C1B25BE4A006E5864 /* ReceiveFromGAME.m in Sources */,

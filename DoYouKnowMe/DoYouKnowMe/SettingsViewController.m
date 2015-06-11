@@ -69,6 +69,8 @@
 	
 	_startBtn.layer.cornerRadius = 5;
 	
+	
+	
 }
 /**
  Set all constants  and infos

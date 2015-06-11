@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
-#import "PauseMenuView.h"
+#import "AuxiliaryMenuView.h"
 #import "VerifyAnswerViewController.h"
 
-@interface GameViewController : UIViewController <UIAlertViewDelegate, UIApplicationDelegate, UITextFieldDelegate, PauseMenuViewDelegate,VerifyAnswerControllerDelegate>
+@interface GameViewController : UIViewController <UIAlertViewDelegate, UIApplicationDelegate, UITextFieldDelegate, AuxiliaryMenuViewDelegate,VerifyAnswerControllerDelegate>
 
 @property BOOL otherWaiting;
 

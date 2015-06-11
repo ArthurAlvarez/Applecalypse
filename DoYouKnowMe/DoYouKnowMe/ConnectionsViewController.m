@@ -41,6 +41,7 @@
 /// Table view to display the connected devices
 @property (weak, nonatomic) IBOutlet UITableView *connectedDevices;
 
+/// Button to present the tutorial
 @property (weak, nonatomic) IBOutlet UIButton *presentTutorial;
 
 @end
@@ -75,6 +76,8 @@
 	_presentTutorial.layer.borderColor = [UIColor whiteColor].CGColor;
 
 	_browseBtn.layer.cornerRadius = 5;
+	
+	_acceptInviteView.type = 1;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,6 +89,10 @@
 	[super viewWillAppear:animated];
 	
 	canGoNext = 0;
+	
+	_connecting = NO;
+	
+	[_acceptInviteView hide];
 	
 	[_waitingGoNext stopAnimating];
 
@@ -122,6 +129,8 @@
  **/
 - (IBAction)browseForDevices:(id)sender
 {
+	canGoNext = 0;
+	
 	[_game initiateSession:_txtName.text];
 		
 	[self reloadData];
@@ -239,11 +248,17 @@
     [_waitingGoNext stopAnimating];
     _game.otherPlayer = nil;
     [_game initiateBrowsing];
+	self.connecting = NO;
     self.connectedDevices.allowsSelection = YES;
 }
 
--(void) sendReject {
-    [_game sendData:@"rejected" fromViewController:self to:ConnectedPeer];
+-(void) sendRejectTo:(NSString*)peerName {
+    [_game sendData:@"rejected" fromViewController:self toPeer:peerName];
+}
+
+-(void) sendReject
+{
+	[_game sendData:@"rejected" fromViewController:self to:ConnectedPeer];
 }
 
 #pragma mark - Delegates
@@ -292,6 +307,21 @@
 	[_game sendData:[NSString stringWithFormat:@"goNext%@", _game.appDelegate.mcManager.session.myPeerID.displayName] fromViewController:self to:ConnectedPeer];
 }
 
+#pragma mark - AuxiliaryMenuView Delegate
+
+-(void)leftButtonAction
+{
+	[self sendReject];
+	[self rejectedInvitation];
+	[_acceptInviteView hide];
+}
+
+-(void)rightButtonAction
+{
+	[self acceptInvitation];
+	[self canGoNext];
+	[_acceptInviteView hide];
+}
 
 #pragma mark - Datasources
 #pragma mark - TableView Datasource

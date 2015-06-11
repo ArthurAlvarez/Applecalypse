@@ -33,6 +33,7 @@ typedef enum : NSUInteger {
 - (void) initiateSession:(NSString*)userName;
 - (void) finishSession;
 - (void) sendData:(NSString*)dataToSend fromViewController:(UIViewController*)viewController to:(SendDataTo)device;
+- (void) sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController toPeer:(NSString*)other;
 - (BOOL) addScore:(BOOL)isCorrect;
 - (void) getQuestion;
 - (void) questionTextFromIndex:(NSNumber *)index;

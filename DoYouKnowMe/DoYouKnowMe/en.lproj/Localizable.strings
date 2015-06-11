@@ -29,4 +29,12 @@
 "result4" = "Well!";
 "result5" = "Very well!!\n\nYou are best friends!!";
 
+// Pause View
+"gamePaused" = "Game paused\n\nWhat do you want to do?";
+"finish" = "End game";
+"resume" = "Resume";
 
+// Accept Invite View
+"message" = "Received invite\n\n%@ wants to play with you";
+"accept" = "Accept";
+"reject" = "Reject";

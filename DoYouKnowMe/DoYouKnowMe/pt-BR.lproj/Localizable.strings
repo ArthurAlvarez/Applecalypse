@@ -28,3 +28,14 @@
 "result3" = "Nem muito, nem pouco...\n\nAinda dá para melhorar isso!";
 "result4" = "Bem!";
 "result5" = "Muito bem!!\n\nVocês são grandes amigos!!";
+
+// Pause View
+"gamePaused" = "Jogo pausado\n\nO que deseja fazer?";
+"finish" = "Terminar";
+"resume" = "Continuar";
+
+// Accept Invite View
+"message" = "Convite recebido\n\n%@ quer jogar com você";
+"accept" = "Aceitar";
+"reject" = "Rejeitar";
+

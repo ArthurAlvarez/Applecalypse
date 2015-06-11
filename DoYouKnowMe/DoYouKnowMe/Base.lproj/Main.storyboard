@@ -198,7 +198,7 @@
             </objects>
             <point key="canvasLocation" x="-503" y="1418"/>
         </scene>
-        <!--Connections View Controller-->
+        <!--Delegate-->
         <scene sceneID="Ja0-Ek-OCT">
             <objects>
                 <viewController id="EWF-ZV-0wl" customClass="ConnectionsViewController" sceneMemberID="viewController">
@@ -340,7 +340,7 @@
                                     </mask>
                                 </variation>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
                                 <rect key="frame" x="541" y="29" width="35" height="35"/>
                                 <animations/>
                                 <constraints>
@@ -355,6 +355,19 @@
                                     <action selector="goToTutorial:" destination="EWF-ZV-0wl" eventType="touchUpInside" id="FXQ-Ur-ble"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-Sj-KRq" customClass="AuxiliaryMenuView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="messageTag" value="message"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="rightButtonTag" value="accept"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="leftButtonTag" value="reject"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="EWF-ZV-0wl" id="B8b-wZ-1FZ"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.95294117647058818" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
@@ -368,7 +381,9 @@
                             <constraint firstItem="I5v-wn-g0G" firstAttribute="top" secondItem="1H0-re-5ME" secondAttribute="bottom" constant="15" id="CoQ-Ew-iVB"/>
                             <constraint firstItem="arw-oj-sCG" firstAttribute="leading" secondItem="q75-cD-fTV" secondAttribute="leading" id="Fxh-a8-mu1"/>
                             <constraint firstItem="hb3-Zk-BSb" firstAttribute="centerX" secondItem="ZKh-gD-p8A" secondAttribute="centerX" id="H4a-uI-Kei"/>
+                            <constraint firstItem="BUD-kF-fvd" firstAttribute="top" secondItem="uJr-Sj-KRq" secondAttribute="bottom" id="Hvx-12-Ppe"/>
                             <constraint firstItem="TAA-DI-PKM" firstAttribute="leading" secondItem="q75-cD-fTV" secondAttribute="leading" constant="20" id="IWb-07-TFK"/>
+                            <constraint firstItem="uJr-Sj-KRq" firstAttribute="top" secondItem="q75-cD-fTV" secondAttribute="top" id="K3u-NA-lpW"/>
                             <constraint firstItem="TAA-DI-PKM" firstAttribute="leading" secondItem="D8M-fJ-Qom" secondAttribute="leading" id="KZB-og-Yzq"/>
                             <constraint firstAttribute="trailing" secondItem="TAA-DI-PKM" secondAttribute="trailing" constant="20" id="MMR-oL-HfN"/>
                             <constraint firstAttribute="trailing" secondItem="1H0-re-5ME" secondAttribute="trailing" constant="20" id="Mzx-i6-QQf"/>
@@ -384,6 +399,7 @@
                             <constraint firstItem="1H0-re-5ME" firstAttribute="leading" secondItem="q75-cD-fTV" secondAttribute="leading" constant="20" id="bn1-cI-0mT"/>
                             <constraint firstAttribute="trailing" secondItem="arw-oj-sCG" secondAttribute="trailing" id="c8t-Zh-CeY"/>
                             <constraint firstItem="3yr-ud-wF1" firstAttribute="centerY" secondItem="bBr-t0-KCa" secondAttribute="centerY" id="cwn-rV-AkK"/>
+                            <constraint firstItem="uJr-Sj-KRq" firstAttribute="leading" secondItem="q75-cD-fTV" secondAttribute="leading" id="dhJ-vR-TYO"/>
                             <constraint firstItem="BUD-kF-fvd" firstAttribute="top" secondItem="arw-oj-sCG" secondAttribute="bottom" id="fQ8-51-uCI"/>
                             <constraint firstItem="BUD-kF-fvd" firstAttribute="top" secondItem="hEl-6T-Qui" secondAttribute="bottom" constant="20" id="hKo-0a-VYM"/>
                             <constraint firstItem="TAA-DI-PKM" firstAttribute="top" secondItem="D8M-fJ-Qom" secondAttribute="bottom" constant="-5" id="jSE-PO-xGx"/>
@@ -391,11 +407,13 @@
                             <constraint firstItem="zVL-Jf-8yN" firstAttribute="centerY" secondItem="hEl-6T-Qui" secondAttribute="centerY" constant="-0.5" id="jkh-xL-Xsl"/>
                             <constraint firstItem="arw-oj-sCG" firstAttribute="top" secondItem="ZKh-gD-p8A" secondAttribute="bottom" constant="-1" id="mGC-WR-BuJ"/>
                             <constraint firstAttribute="trailing" secondItem="hEl-6T-Qui" secondAttribute="trailing" constant="20" id="o72-EB-F3J"/>
+                            <constraint firstAttribute="trailing" secondItem="uJr-Sj-KRq" secondAttribute="trailing" id="q1y-gT-ERC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bBr-t0-KCa" secondAttribute="trailing" constant="4" id="yBi-nt-4aY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZVb-dd-ci2"/>
                     <connections>
+                        <outlet property="acceptInviteView" destination="uJr-Sj-KRq" id="7OQ-uU-hpu"/>
                         <outlet property="askNameLabel" destination="TAA-DI-PKM" id="DhS-C2-zig"/>
                         <outlet property="browseBtn" destination="I5v-wn-g0G" id="F52-FI-FOE"/>
                         <outlet property="connectedDevices" destination="hEl-6T-Qui" id="ZIn-y9-gq2"/>
@@ -815,10 +833,15 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdy-20-3FX" customClass="PauseMenuView">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdy-20-3FX" customClass="AuxiliaryMenuView">
                                 <rect key="frame" x="4" y="0.0" width="596" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="leftButtonTag" value="finish"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="rightButtonTag" value="resume"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="messageTag" value="gamePaused"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="EzG-sG-hhN" id="Hdp-sl-4B2"/>
                                 </connections>

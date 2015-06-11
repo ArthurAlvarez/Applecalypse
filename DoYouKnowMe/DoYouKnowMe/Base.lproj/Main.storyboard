@@ -340,7 +340,7 @@
                                     </mask>
                                 </variation>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
                                 <rect key="frame" x="541" y="29" width="35" height="35"/>
                                 <animations/>
                                 <constraints>
@@ -355,7 +355,7 @@
                                     <action selector="goToTutorial:" destination="EWF-ZV-0wl" eventType="touchUpInside" id="FXQ-Ur-ble"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-Sj-KRq" customClass="AuxiliaryMenuView">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-Sj-KRq" customClass="AuxiliaryMenuView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

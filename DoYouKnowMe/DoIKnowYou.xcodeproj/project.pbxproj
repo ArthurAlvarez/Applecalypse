@@ -24,7 +24,7 @@
 		93009F211ACD74250075610E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93009F201ACD74250075610E /* Launch Screen.xib */; };
 		9329F80A1B29ACD300274BA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9329F80C1B29ACD300274BA4 /* Localizable.strings */; };
 		9329F8101B29B23000274BA4 /* questionsEN.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9329F80E1B29B23000274BA4 /* questionsEN.txt */; };
-		9329F8111B29B23000274BA4 /* questionsPTBR.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9329F80F1B29B23000274BA4 /* questionsPTBR.txt */; };
+		9329F8111B29B23000274BA4 /* questionsPT.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9329F80F1B29B23000274BA4 /* questionsPT.txt */; };
 		9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEB1B176AF2004A20CE /* sound_error.aiff */; };
 		9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEC1B176AF2004A20CE /* sound_right.aiff */; };
 		9382EFF01B176CD3004A20CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */; };
@@ -72,7 +72,7 @@
 		9329F80B1B29ACD300274BA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9329F80D1B29ACE600274BA4 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9329F80E1B29B23000274BA4 /* questionsEN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questionsEN.txt; sourceTree = SOURCE_ROOT; };
-		9329F80F1B29B23000274BA4 /* questionsPTBR.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questionsPTBR.txt; sourceTree = SOURCE_ROOT; };
+		9329F80F1B29B23000274BA4 /* questionsPT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questionsPT.txt; sourceTree = SOURCE_ROOT; };
 		9374D1141B287A0900A920EA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		9382EFEB1B176AF2004A20CE /* sound_error.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_error.aiff; sourceTree = "<group>"; };
 		9382EFEC1B176AF2004A20CE /* sound_right.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_right.aiff; sourceTree = "<group>"; };
@@ -100,6 +100,8 @@
 		939249E21AC1A549008D5500 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		939249E31AC1A549008D5500 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		939ADCB41B0E2FD900FDEA66 /* varground.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = varground.ttf; sourceTree = "<group>"; };
+		93DE8DCF1B29D12600A48DA1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		93DE8DD01B29D12600A48DA1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		93F0674D1B1DF752003B7F84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		93F0674F1B1F44C4003B7F84 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		93F067501B1F44C4003B7F84 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
@@ -170,7 +172,7 @@
 				9382EFEB1B176AF2004A20CE /* sound_error.aiff */,
 				9382EFEC1B176AF2004A20CE /* sound_right.aiff */,
 				9329F80E1B29B23000274BA4 /* questionsEN.txt */,
-				9329F80F1B29B23000274BA4 /* questionsPTBR.txt */,
+				9329F80F1B29B23000274BA4 /* questionsPT.txt */,
 				14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */,
 				14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */,
 				14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */,
@@ -266,7 +268,7 @@
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = PK9ZTBKL3B;
+						DevelopmentTeam = 2T9YCH946H;
 					};
 				};
 			};
@@ -278,6 +280,7 @@
 				Base,
 				en,
 				"pt-BR",
+				pt,
 			);
 			mainGroup = 14C443271AC18C6300103C35;
 			productRefGroup = 14C443311AC18C6300103C35 /* Products */;
@@ -300,7 +303,7 @@
 				9329F8101B29B23000274BA4 /* questionsEN.txt in Resources */,
 				93009F211ACD74250075610E /* Launch Screen.xib in Resources */,
 				14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */,
-				9329F8111B29B23000274BA4 /* questionsPTBR.txt in Resources */,
+				9329F8111B29B23000274BA4 /* questionsPT.txt in Resources */,
 				14FA15BA1B25C0BB00D2A263 /* Tutorial1.xib in Resources */,
 				14C443411AC18C6300103C35 /* Images.xcassets in Resources */,
 				9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */,
@@ -349,6 +352,7 @@
 				14C4433E1AC18C6300103C35 /* Base */,
 				93F0674D1B1DF752003B7F84 /* en */,
 				9374D1141B287A0900A920EA /* pt-BR */,
+				93DE8DD01B29D12600A48DA1 /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -358,6 +362,7 @@
 			children = (
 				9329F80B1B29ACD300274BA4 /* en */,
 				9329F80D1B29ACE600274BA4 /* pt-BR */,
+				93DE8DCF1B29D12600A48DA1 /* pt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

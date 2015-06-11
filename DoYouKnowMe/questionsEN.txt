@@ -66,7 +66,7 @@
 	"62":"Do I have any hobbies? What are them?",
 	"63":"How do I like to spend my free time?",
 	"64":"My favorite musical rhythm?",
-	"65":"What's my favorite chocolate flavor?",
+	"65":"Which is my favorite chocolate?",
 	"66":"Piercing or tatoos?",
 	"67":"Listening to music loud or using earphones?",
 	"68":"What's my religion?",

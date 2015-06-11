@@ -22,6 +22,9 @@
 		14FA15BC1B25C18A00D2A263 /* Tutorial2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */; };
 		14FA15BE1B25C1BD00D2A263 /* Tutorial3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */; };
 		93009F211ACD74250075610E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93009F201ACD74250075610E /* Launch Screen.xib */; };
+		9329F80A1B29ACD300274BA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9329F80C1B29ACD300274BA4 /* Localizable.strings */; };
+		9329F8101B29B23000274BA4 /* questionsEN.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9329F80E1B29B23000274BA4 /* questionsEN.txt */; };
+		9329F8111B29B23000274BA4 /* questionsPTBR.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9329F80F1B29B23000274BA4 /* questionsPTBR.txt */; };
 		9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEB1B176AF2004A20CE /* sound_error.aiff */; };
 		9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 9382EFEC1B176AF2004A20CE /* sound_right.aiff */; };
 		9382EFF01B176CD3004A20CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */; };
@@ -37,7 +40,6 @@
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* SettingsViewController.m */; };
 		939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939ADCB41B0E2FD900FDEA66 /* varground.ttf */; };
-		93BF041A1AD2C78100AFB30B /* questions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93BF04191AD2C78100AFB30B /* questions.txt */; };
 		93F067511B1F44C4003B7F84 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F067501B1F44C4003B7F84 /* Game.m */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,10 @@
 		14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial2.xib; sourceTree = "<group>"; };
 		14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial3.xib; sourceTree = "<group>"; };
 		93009F201ACD74250075610E /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		9329F80B1B29ACD300274BA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9329F80D1B29ACE600274BA4 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		9329F80E1B29B23000274BA4 /* questionsEN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questionsEN.txt; sourceTree = SOURCE_ROOT; };
+		9329F80F1B29B23000274BA4 /* questionsPTBR.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questionsPTBR.txt; sourceTree = SOURCE_ROOT; };
 		9374D1141B287A0900A920EA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		9382EFEB1B176AF2004A20CE /* sound_error.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_error.aiff; sourceTree = "<group>"; };
 		9382EFEC1B176AF2004A20CE /* sound_right.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_right.aiff; sourceTree = "<group>"; };
@@ -94,7 +100,6 @@
 		939249E21AC1A549008D5500 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		939249E31AC1A549008D5500 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		939ADCB41B0E2FD900FDEA66 /* varground.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = varground.ttf; sourceTree = "<group>"; };
-		93BF04191AD2C78100AFB30B /* questions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questions.txt; sourceTree = SOURCE_ROOT; };
 		93F0674D1B1DF752003B7F84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		93F0674F1B1F44C4003B7F84 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		93F067501B1F44C4003B7F84 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
@@ -162,12 +167,14 @@
 			isa = PBXGroup;
 			children = (
 				939ADCB41B0E2FD900FDEA66 /* varground.ttf */,
-				93BF04191AD2C78100AFB30B /* questions.txt */,
 				9382EFEB1B176AF2004A20CE /* sound_error.aiff */,
 				9382EFEC1B176AF2004A20CE /* sound_right.aiff */,
+				9329F80E1B29B23000274BA4 /* questionsEN.txt */,
+				9329F80F1B29B23000274BA4 /* questionsPTBR.txt */,
 				14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */,
 				14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */,
 				14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */,
+				9329F80C1B29ACD300274BA4 /* Localizable.strings */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -254,7 +261,7 @@
 		14C443281AC18C6300103C35 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Arthur Alvarez";
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
@@ -289,14 +296,16 @@
 			files = (
 				939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */,
 				14FA15BE1B25C1BD00D2A263 /* Tutorial3.xib in Resources */,
+				9329F80A1B29ACD300274BA4 /* Localizable.strings in Resources */,
+				9329F8101B29B23000274BA4 /* questionsEN.txt in Resources */,
 				93009F211ACD74250075610E /* Launch Screen.xib in Resources */,
 				14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */,
+				9329F8111B29B23000274BA4 /* questionsPTBR.txt in Resources */,
 				14FA15BA1B25C0BB00D2A263 /* Tutorial1.xib in Resources */,
 				14C443411AC18C6300103C35 /* Images.xcassets in Resources */,
 				9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */,
 				9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */,
 				14FA15BC1B25C18A00D2A263 /* Tutorial2.xib in Resources */,
-				93BF041A1AD2C78100AFB30B /* questions.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +353,15 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		9329F80C1B29ACD300274BA4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9329F80B1B29ACD300274BA4 /* en */,
+				9329F80D1B29ACE600274BA4 /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -367,6 +385,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -435,6 +454,7 @@
 				INFOPLIST_FILE = DoYouKnowMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Felipe.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -452,6 +472,7 @@
 				INFOPLIST_FILE = DoYouKnowMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Felipe.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -111,10 +111,10 @@
 	
 	if ([Player getPlayerID] == 1) {
 		self.question.image = [UIImage imageNamed:@"QuestionSelf"];
-		self.questionsAbout.text = @"Pergunta sobre você";
+		self.questionsAbout.text = NSLocalizedString(@"questionYou", nil);
 	} else {
 		self.question.image = [UIImage imageNamed:@"OtherAnswer"];
-		self.questionsAbout.text = [NSString stringWithFormat:@"Pergunta sobre %@", _game.otherPlayer.displayName];
+		self.questionsAbout.text = [NSString stringWithFormat:NSLocalizedString(@"questionAbout", nil), _game.otherPlayer.displayName];
 	}
     
     NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"sound_error"
@@ -155,7 +155,7 @@
     [_waitingAnswer stopAnimating]; [_waitingPause stopAnimating];
 	
     self.answerTextField.text = @"";
-    self.questionLabel.text = @"Carregando pergunta...";
+    self.questionLabel.text = NSLocalizedString(@"loadingQuestion", nil);
 	
 	self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
 													  target:self
@@ -306,7 +306,7 @@
  @author Arthur Alvarez
  */
 -(void) userDidNotAnswer{
-	if (_answerTextField.text.length == 0) self.answerTextField.text = @"Não sei";
+	if (_answerTextField.text.length == 0) self.answerTextField.text = NSLocalizedString(@"dontKnow", nil);
 	
 	[self answerPressed:self];
 }

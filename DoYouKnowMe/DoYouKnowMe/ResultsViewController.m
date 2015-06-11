@@ -50,20 +50,20 @@
     [super viewDidLoad];
 	
     if([Player getPlayerID] == 1){
-        self.topLabel.text = [NSString stringWithFormat:@"Quanto %@ me conhece...", _game.otherPlayer.displayName];
+        self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"otherKnowMe", nil), _game.otherPlayer.displayName];
     }
     else if([Player getPlayerID] == 2){
-        self.topLabel.text = [NSString stringWithFormat:@"Quanto conheço %@...", _game.otherPlayer.displayName];
+        self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"iKnowOther", nil), _game.otherPlayer.displayName];
     }
     
     NSLog(@"score final: %d", [Player getScore]);
     NSLog(@"knowing percent: %f", [Player knowingPercent]);
 	
-	if ([Player knowingPercent] <= 0.2f) _percentLabel.text = [NSString stringWithFormat:@"Muito pouco...\n\nTente novamente!"];
-	else if ([Player knowingPercent] <= 0.4f) _percentLabel.text = [NSString stringWithFormat:@"Pouco...\n\nDá para melhorar bastante isso, hein?"];
-	else if ([Player knowingPercent] <= 0.6f) _percentLabel.text = [NSString stringWithFormat:@"Nem muito, nem pouco...\n\nAinda dá para melhorar isso!"];
-	else if ([Player knowingPercent] <= 0.8f) _percentLabel.text = [NSString stringWithFormat:@"Bem!"];
-	else _percentLabel.text = [NSString stringWithFormat:@"Muito bem!!\n\nVocês são grandes amigos!!"];
+	if ([Player knowingPercent] <= 0.2f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result1", nil)];
+	else if ([Player knowingPercent] <= 0.4f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result2", nil)];
+	else if ([Player knowingPercent] <= 0.6f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result3", nil)];
+	else if ([Player knowingPercent] <= 0.8f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result4", nil)];
+	else _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result5", nil)];
 	
 	_btnBack1.layer.cornerRadius = 5;
 	_btnBack2.layer.cornerRadius = 5;

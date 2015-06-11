@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  DoIKnowYou
+
+  Created by Felipe Eulalio on 11/06/15.
+  Copyright © 2015 Arthur Alvarez. All rights reserved.
+*/
+
+// Game
+"resource" = "questionsEN";
+
+// Settings VC
+"waitingOther" = "Waiting for your friend...";
+"lostConnection" = "Connection lost";
+"lostConnectionText" = "The connection with your friend was lost";
+
+// Game VC
+"questionYou" = "Question about you";
+"questionAbout" = "Question about %@";
+"loadingQuestion" = "Loading question...";
+"dontKnow" = "I don't know";
+
+// Result VC
+"otherKnowMe" = "How much %@ knows me...";
+"iKnowOther" = "How much I know %@...";
+"result1" = "Just a little bit...\n\nTry again!";
+"result2" = "Not too much...\n\nYou can improve it, right?";
+"result3" = "So close...\n\nYou can still improve it!";
+"result4" = "Well!";
+"result5" = "Very well!!\n\nYou are best friends!!";
+
+

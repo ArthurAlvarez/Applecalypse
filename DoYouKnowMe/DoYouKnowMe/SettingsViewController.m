@@ -226,7 +226,7 @@
 	
 	[self canStart];
 	
-	[_waitingOtherLabel setText:@"Esperando pelo outro jogador..."];
+	[_waitingOtherLabel setText:NSLocalizedString(@"waitingOther", nil)];
 	
 	[_waitingIndicator startAnimating];
 	
@@ -261,8 +261,8 @@
 				![_game.connectedDevices containsObject:_game.otherPlayer]) {
 				alreadyShownAlert = YES;
 				
-				UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:@"Conexao perdida"
-																	  message:@"A conexão com seu amigo foi perdida"
+				UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"lostConnection", nil)
+																	  message:NSLocalizedString(@"lostConnectionText", nil)
 																	 delegate:self
 															cancelButtonTitle:@"Ok"
 															otherButtonTitles: nil];

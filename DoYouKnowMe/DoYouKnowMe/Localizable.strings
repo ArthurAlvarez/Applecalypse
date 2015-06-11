@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  DoIKnowYou
+
+  Created by Felipe Eulalio on 11/06/15.
+  Copyright © 2015 Arthur Alvarez. All rights reserved.
+*/
+
+// Game
+resource = "questions"
+
+// Settings VC
+waitingOther = "Esperando pelo outro jogador...";
+lostConnection = "Conexao perdida";
+lostConnectionText = "A conexão com seu amigo foi perdida";
+
+// Game VC
+questionYou = "Pergunta sobre você";
+questionAbout = "Pergunta sobre %@";
+loadingQuestion = "Carregando pergunta...";
+dontKnow = "Não sei";
+
+// Result VC
+otherKnowMe = "Quanto %@ me conhece...";
+iKnowOther = "Quanto conheço %@...";
+
+

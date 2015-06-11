@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  DoIKnowYou
+
+  Created by Felipe Eulalio on 11/06/15.
+  Copyright © 2015 Arthur Alvarez. All rights reserved.
+*/
+
+// Game
+"resource" = "questionsPTBR";
+
+// Settings VC
+"waitingOther" = "Esperando pelo outro jogador...";
+"lostConnection" = "Conexao perdida";
+"lostConnectionText" = "A conexão com seu amigo foi perdida";
+
+// Game VC
+"questionYou" = "Pergunta sobre você";
+"questionAbout" = "Pergunta sobre %@";
+"loadingQuestion" = "Carregando pergunta...";
+"dontKnow" = "Não sei";
+
+// Result VC
+"otherKnowMe" = "Quanto %@ me conhece...";
+"iKnowOther" = "Quanto conheço %@...";
+"result1" = "Muito pouco...\n\nTente novamente!";
+"result2" = "Pouco...\n\nDá para melhorar bastante isso, hein?";
+"result3" = "Nem muito, nem pouco...\n\nAinda dá para melhorar isso!";
+"result4" = "Bem!";
+"result5" = "Muito bem!!\n\nVocês são grandes amigos!!";

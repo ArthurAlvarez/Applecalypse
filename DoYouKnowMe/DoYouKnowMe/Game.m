@@ -163,7 +163,7 @@
  @author Arthur Alvarez
  */
 -(void)readJsonFile{
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"questions" ofType:@"txt"];
+	NSString *path = [[NSBundle mainBundle] pathForResource:NSLocalizedString(@"resource", nil) ofType:@"txt"];
 	
 	self.questionsJson = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
 	

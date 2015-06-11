@@ -66,7 +66,7 @@
 	"62":"Tenho algum hobby? Qual?",
 	"63":"O que mais gosto de fazer no meu tempo livre?",
 	"64":"Qual é o meu ritmo musical favorito?",
-	"65":"Qual é o meu sabor de chocolate favorito?",
+	"65":"Qual é o meu chocolate favorito?",
 	"66":"Piercing ou tatuagem?",
 	"67":"Preifro ouvir música alta ou no fone de ouvido?",
 	"68":"Qual é a minha religião?",

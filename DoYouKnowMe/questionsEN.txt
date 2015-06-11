@@ -2,7 +2,7 @@
 	"size": "100",
 	"questions":{
 	"0":"Would I like to be famous?",
-	"1":"Have i ever lived in another city?",
+	"1":"Have I ever lived in another city?",
 	"2":"What's my favorite food?",
     "3":"Which is my favorite color?",
     "4":"Which is my favorite movie?",

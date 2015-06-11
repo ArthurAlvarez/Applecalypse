@@ -79,7 +79,7 @@
 	"75":"My favorite board game?",
 	"76":"What's my favorite tv series?",
 	"77":"Beach or Swimming Pool?",
-	"78":"The Ollympics or World Cup?",
+	"78":"The Olympics or World Cup?",
 	"79":"Am I punctual?",
     "80":"What's my blood type?",
     "81":"My favorite pizza topping?",

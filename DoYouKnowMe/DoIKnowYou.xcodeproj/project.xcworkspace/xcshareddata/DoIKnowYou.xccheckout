@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C214D6E0-D7E0-456A-B9A1-F49FA13F417D</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>DoIKnowYou</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>577716752CB4CDA0B91C36EAE08AAA1B66A8394D</key>
 		<string>https://github.com/ArthurAlvarez/Applecalypse.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DoYouKnowMe/DoIKnowYou.xcodeproj/project.xcworkspace</string>
+	<string>DoYouKnowMe/DoIKnowYou.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>577716752CB4CDA0B91C36EAE08AAA1B66A8394D</key>

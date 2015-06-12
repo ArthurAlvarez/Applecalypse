@@ -243,13 +243,21 @@
     NSLog(@"accepted invitation");
 }
 
--(void) rejectedInvitation {
+-(void) rejectedInvitationWith:(RejectCause)cause {
     canGoNext = 0;
     [_waitingGoNext stopAnimating];
     _game.otherPlayer = nil;
     [_game initiateBrowsing];
 	self.connecting = NO;
     self.connectedDevices.allowsSelection = YES;
+    
+    if(cause == REJECT){
+
+    }
+    
+    else if(cause == BUSY){
+        
+    }
 }
 
 -(void) sendRejectTo:(NSString*)peerName {
@@ -260,6 +268,12 @@
 {
 	[_game sendData:@"rejected" fromViewController:self to:ConnectedPeer];
 }
+
+-(void) sendBusyTo:(NSString*)peerName{
+    [_game sendData:@"busy" fromViewController:self toPeer:peerName];
+}
+
+
 
 #pragma mark - Delegates
 #pragma mark - Text Field Delegate
@@ -312,7 +326,7 @@
 -(void)leftButtonAction
 {
 	[self sendReject];
-	[self rejectedInvitation];
+	[self rejectedInvitationWith:MYSELF];
 	[_acceptInviteView hide];
 }
 

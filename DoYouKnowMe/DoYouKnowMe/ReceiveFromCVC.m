@@ -29,7 +29,7 @@
 	else if ([data hasPrefix:@"goNext"] && _viewController.connecting == YES) {
 		NSString *other = [data substringFromIndex:6];
 		
-		[_viewController sendRejectTo:other];
+		[_viewController sendBusyTo:other];
 	}
     else if ([data isEqualToString:@"disconnect"]) {
 		[_viewController reloadData];
@@ -42,7 +42,13 @@
     
     else if([data isEqualToString:@"rejected"]){
         _viewController.connecting = NO;
-        [_viewController rejectedInvitation];
+        [_viewController rejectedInvitationWith:REJECT];
+    }
+    
+    else if([data isEqualToString:@"busy"]){
+        _viewController.connecting = NO;
+        [_viewController rejectedInvitationWith:BUSY];
+   
     }
 }
 

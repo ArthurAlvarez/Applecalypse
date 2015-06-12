@@ -15,16 +15,23 @@
 
 @interface ConnectionsViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, AuxiliaryMenuViewDelegate>
 
+typedef enum rejectCauseTypes{
+    MYSELF, // Used when you cause yourself to reject
+    REJECT, // When you get rejected by the other
+    BUSY    // When the other is busy connecting
+} RejectCause;
+
 @property Game *game;
 @property BOOL cameFromTutorial;
 @property BOOL connecting;
 @property (weak, nonatomic) IBOutlet AuxiliaryMenuView *acceptInviteView;
 
-- (void) canGoNext;
-- (void) connectToPlayer:(NSString *)playerName;
+-(void) canGoNext;
+-(void) connectToPlayer:(NSString *)playerName;
 -(void) acceptInvitation;
--(void) rejectedInvitation;
+-(void) rejectedInvitationWith:(RejectCause)cause;
 -(void) sendRejectTo:(NSString*)peerName;
-- (void) reloadData;
+-(void) sendBusyTo:(NSString*)peerName;
+-(void) reloadData;
 
 @end

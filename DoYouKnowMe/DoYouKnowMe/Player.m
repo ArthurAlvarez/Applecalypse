@@ -8,15 +8,18 @@
 
 #import "Player.h"
 
-@implementation Player
+int const PLAYER1 = 1;
+int const PLAYER2 = 2;
 
+@implementation Player
 /*
     Player1: Responds questions about himself
     Player2: Responds questions about the other player
 */
 
 static int _playerID; // 1 for Player1, 2 for Player2
-static int _score; // Score of player 2
+static int _myScore; // Score of player 1
+static int _otherScore; // Score of player 1
 
 +(void) setPlayerID:(int)ID{
     _playerID = ID;
@@ -26,18 +29,32 @@ static int _score; // Score of player 2
     return _playerID;
 }
 
-+(void) setScore:(int)newScore{
-    _score = newScore;
-}
-
-+(int) getScore{
-    return _score;
-}
-
-+(float)knowingPercent
++(void) alternatePlayerID
 {
-	// oi
-	return (float) _score/[GameSettings getGameLength];
+	if (_playerID == PLAYER1) _playerID = PLAYER2;
+	else _playerID = PLAYER1;
+}
+
++(void) setScore:(int)newScore fromPlayer:(int)player{
+	if (player == PLAYER1) _myScore = newScore;
+	else if (player == PLAYER2) _otherScore = newScore;
+}
+
++(int) getScore:(int)player{
+	if (player == PLAYER1) return _myScore;
+	else if (player == PLAYER2) return _otherScore;
+	
+	return 0;
+}
+
++(float)knowingPercent:(int)player
+{
+	int divisor = [GameSettings getGameLength]/[GameSettings getGameType];
+	
+	if (player == PLAYER1) return (float) _myScore/divisor;
+	else if (player == PLAYER2) return (float) _otherScore/divisor;
+	
+	return 0;
 }
 
 @end

@@ -8,13 +8,27 @@
 
 #import "GameSettings.h"
 
+int const REGULARMODE = 1;
+int const ALTERNATEMODE = 2;
+
 @implementation GameSettings
 
 ///The length of a game round (default value is 5)
 static int _gameLength = 5;
-static int _currentRound = 0;
+static float _currentRound = 0;
 static bool _otherDidLoad = NO;
 static int _timeToAnswer = 20;
+static int _gameType = 1;
+
++(void)setGameType:(int)type
+{
+	_gameType = type;
+}
+
++(int)getGameType
+{
+	return _gameType;
+}
 
 +(void)setTime:(int)time
 {

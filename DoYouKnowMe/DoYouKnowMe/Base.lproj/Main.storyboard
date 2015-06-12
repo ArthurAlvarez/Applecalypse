@@ -340,7 +340,7 @@
                                     </mask>
                                 </variation>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
                                 <rect key="frame" x="541" y="29" width="35" height="35"/>
                                 <animations/>
                                 <constraints>
@@ -567,6 +567,7 @@
                                 <segments>
                                     <segment title="Sobre mim"/>
                                     <segment title="&lt;amigo&gt;"/>
+                                    <segment title="Alternado"/>
                                 </segments>
                                 <color key="tintColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>

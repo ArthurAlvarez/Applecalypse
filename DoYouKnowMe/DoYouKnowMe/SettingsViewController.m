@@ -85,7 +85,8 @@
 	[_waitingIndicator stopAnimating];
 	[_waitingOtherLabel setText:@""];
 	
-	[Player setScore:0];
+	[Player setScore:0 fromPlayer:PLAYER1];
+	[Player setScore:0 fromPlayer:PLAYER2];
 	canStart = 0;
 	
 	[GameSettings setGameLenght:5];
@@ -93,36 +94,8 @@
 	
 	didTouchInDisconnect = NO;
 	
-	int indexNOQ = (int)_numberOfQuestions.selectedSegmentIndex;
-	
-	switch (indexNOQ) {
-		case 0:
-			[GameSettings setGameLenght:5];
-			break;
-		case 1:
-			[GameSettings setGameLenght:10];
-			break;
-		case 2:
-			[GameSettings setGameLenght:15];
-			break;
-		default:
-			break;
-	}
-	int indexTTA = (int)_timeToAnswer.selectedSegmentIndex;
-	
-	switch (indexTTA) {
-		case 0:
-			[GameSettings setTime:20];
-			break;
-		case 1:
-			[GameSettings setTime:30];
-			break;
-		case 2:
-			[GameSettings setTime:40];
-			break;
-		default:
-			break;
-	}
+	[self timeToAnswer:_timeToAnswer];
+	[self numberOfQuestons:_numberOfQuestions];
 	
 	if ([Player getPlayerID] != -1) self.startBtn.hidden = NO;
 
@@ -141,17 +114,20 @@
  **/
 - (IBAction)questionsTo:(id)sender
 {
-
+	long int index = _questionTo.selectedSegmentIndex + 1;
 	
-	if (_questionTo.selectedSegmentIndex == 0)
-	{
+	if (index == 1){
 		[_game sendData:@"!1" fromViewController:self to:ConnectedPeer];
-		[Player setPlayerID:1];
-	}
-	else
-	{
+		[Player setPlayerID:PLAYER1];
+		[GameSettings setGameType:REGULARMODE];
+	} else if (index == 2) {
 		[_game sendData:@"!0" fromViewController:self to:ConnectedPeer];
-		[Player setPlayerID:2];
+		[Player setPlayerID:PLAYER2];
+		[GameSettings setGameType:REGULARMODE];
+	} else {
+		[_game sendData:@"!3" fromViewController:self to:ConnectedPeer];
+		[Player setPlayerID:PLAYER1];
+		[GameSettings setGameType:ALTERNATEMODE];
 	}
 	
 	_startBtn.hidden = NO;
@@ -160,23 +136,11 @@
 /**
  Defines the number of questions that the game will have
  **/
-- (IBAction)numberOfQuestons:(id)sender
+- (IBAction)numberOfQuestons:(UISegmentedControl*)sender
 {
-	int index = (int)_numberOfQuestions.selectedSegmentIndex;
+	int index = (int)sender.selectedSegmentIndex;
 	
-	switch (index) {
-		case 0:
-			[GameSettings setGameLenght:5];
-			break;
-		case 1:
-			[GameSettings setGameLenght:10];
-			break;
-		case 2:
-			[GameSettings setGameLenght:15];
-			break;
-		default:
-			break;
-	}
+	[GameSettings setGameLenght: (5 + 5 * index) * [GameSettings getGameType]];
 	
 	[_game sendData:[NSString stringWithFormat:@"()%d", index] fromViewController:self to:ConnectedPeer];
 	
@@ -185,23 +149,11 @@
 /**
  Set the time that the players have to answer the questions
  */
-- (IBAction)timeToAnswer:(id)sender
+- (IBAction)timeToAnswer:(UISegmentedControl*)sender
 {
-	int index = (int)_timeToAnswer.selectedSegmentIndex;
+	int index = (int)sender.selectedSegmentIndex;
 	
-	switch (index) {
-		case 0:
-			[GameSettings setTime:20];
-			break;
-		case 1:
-			[GameSettings setTime:30];
-			break;
-		case 2:
-			[GameSettings setTime:40];
-			break;
-		default:
-			break;
-	}
+	[GameSettings setTime: 20 + 10 * index];
 	
 	[_game sendData:[NSString stringWithFormat:@".%d", index] fromViewController:self to:ConnectedPeer];
 }
@@ -232,12 +184,12 @@
 	
 	[_waitingIndicator startAnimating];
 	
-	[_game sendData:@"!start" fromViewController:self to:ConnectedPeer];
+	[_game sendData:@"start" fromViewController:self to:ConnectedPeer];
 }
 
 - (IBAction)goBack:(id)sender
 {
-	[_game sendData:@"!goBack" fromViewController:self to:ConnectedPeer];
+	[_game sendData:@"goBack" fromViewController:self to:ConnectedPeer];
 	
 	[[self navigationController] popToRootViewControllerAnimated:YES];
 }

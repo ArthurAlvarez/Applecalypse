@@ -108,14 +108,6 @@
 	
 	UITapGestureRecognizer *touchToAnswer = [[UITapGestureRecognizer alloc] initWithTarget:self.answer action:@selector(startAnswering:)];
 	[self.answer addGestureRecognizer:touchToAnswer];
-	
-	if ([Player getPlayerID] == 1) {
-		self.question.image = [UIImage imageNamed:@"QuestionSelf"];
-		self.questionsAbout.text = NSLocalizedString(@"questionYou", nil);
-	} else {
-		self.question.image = [UIImage imageNamed:@"OtherAnswer"];
-		self.questionsAbout.text = [NSString stringWithFormat:NSLocalizedString(@"questionAbout", nil), _game.otherPlayer.displayName];
-	}
     
     NSURL *soundURL = [[NSBundle mainBundle] URLForResource:@"sound_error"
                                               withExtension:@"aiff"];
@@ -138,13 +130,12 @@
     //Incrementa round corrente
     [GameSettings incrementRound];
 	
+	if ([GameSettings getGameType] == ALTERNATEMODE) [Player alternatePlayerID];
 	
 	if ([Player getPlayerID] == 1) [_game getQuestion];
     
     //Initializing properties
     gameDidStart = NO;
-	
-//    [self readJsonFile];
 	
     self.playerScore = [NSNumber numberWithInt:0];
 	
@@ -170,6 +161,14 @@
 	
 	_otherWaiting = YES;
 	alreadyPerformedSegue = NO;
+	
+	if ([Player getPlayerID] == 1) {
+		self.question.image = [UIImage imageNamed:@"QuestionSelf"];
+		self.questionsAbout.text = NSLocalizedString(@"questionYou", nil);
+	} else {
+		self.question.image = [UIImage imageNamed:@"OtherAnswer"];
+		self.questionsAbout.text = [NSString stringWithFormat:NSLocalizedString(@"questionAbout", nil), _game.otherPlayer.displayName];
+	}
 }
 
 -(void)viewDidAppear:(BOOL)animated

@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "GameSettings.h"
 
+extern int const PLAYER1;
+extern int const PLAYER2;
+
 @interface Player : NSObject
 
 /**
@@ -25,21 +28,23 @@
  */
 +(int)getPlayerID;
 
++(void) alternatePlayerID;
+
 /**
  Sets the score of player 2.
  @author Arthur Alvarez
  */
-+(void)setScore:(int)newScore;
++(void)setScore:(int)newScore fromPlayer:(int)player;
 
 /**
  Gets the score of player  2.
  @author Arthur Alvarez
  */
-+(int)getScore;
++(int)getScore:(int)player;
 
 /**
  Gets the knowing percent
  */
-+(float)knowingPercent;
++(float)knowingPercent:(int)player;
 
 @end

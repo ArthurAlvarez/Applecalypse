@@ -49,20 +49,22 @@
 {
     [super viewDidLoad];
 	
-    if([Player getPlayerID] == 1){
+	float knowingPercent = [Player knowingPercent:PLAYER2];
+	
+    if([Player getPlayerID] == 1 || [GameSettings getGameType] == ALTERNATEMODE) {
         self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"otherKnowMe", nil), _game.otherPlayer.displayName];
     }
     else if([Player getPlayerID] == 2){
         self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"iKnowOther", nil), _game.otherPlayer.displayName];
     }
     
-    NSLog(@"score final: %d", [Player getScore]);
-    NSLog(@"knowing percent: %f", [Player knowingPercent]);
+	NSLog(@"score final: %d", [Player getScore:PLAYER2]);
+	NSLog(@"knowing percent: %f", knowingPercent);
 	
-	if ([Player knowingPercent] <= 0.2f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result1", nil)];
-	else if ([Player knowingPercent] <= 0.4f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result2", nil)];
-	else if ([Player knowingPercent] <= 0.6f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result3", nil)];
-	else if ([Player knowingPercent] <= 0.8f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result4", nil)];
+	if (knowingPercent <= 0.2f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result1", nil)];
+	else if (knowingPercent <= 0.4f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result2", nil)];
+	else if (knowingPercent <= 0.6f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result3", nil)];
+	else if (knowingPercent <= 0.8f) _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result4", nil)];
 	else _percentLabel.text = [NSString stringWithFormat:NSLocalizedString(@"result5", nil)];
 	
 	_btnBack1.layer.cornerRadius = 5;
@@ -97,7 +99,7 @@
 {
 	[super viewDidAppear:animated];
 	
-	[self.rate setProgress:[Player knowingPercent] animated:YES];
+	[self.rate setProgress:[Player knowingPercent:PLAYER2] animated:YES];
 	
 	[super viewDidAppear:animated];
 	

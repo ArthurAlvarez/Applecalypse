@@ -11,7 +11,14 @@
  */
 #import <Foundation/Foundation.h>
 
+extern int const REGULARMODE;
+extern int const ALTERNATEMODE;
+
 @interface GameSettings : NSObject
+
++(void)setGameType:(int)type;
+
++(int)getGameType;
 
 +(void)setTime:(int)time;
 
@@ -30,4 +37,5 @@
 +(bool)getOtherDidLoad;
 
 +(void)setOtherDidLoad:(bool)newState;
+
 @end

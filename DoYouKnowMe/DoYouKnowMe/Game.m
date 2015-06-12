@@ -165,9 +165,10 @@
 /**
  Increase the score if the answer is correct
  */
-- (BOOL) addScore:(BOOL)isCorrect
+- (BOOL) addScore:(BOOL)isCorrect toPlayer:(int)player;
 {
-	if (isCorrect) [Player setScore:[Player getScore] + 1];
+	
+	if (isCorrect) [Player setScore:[Player getScore:player] + 1 fromPlayer:player];
 	
 	return [self checkEndGame];
 }

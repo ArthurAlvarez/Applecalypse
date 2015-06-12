@@ -34,7 +34,7 @@ typedef enum : NSUInteger {
 - (void) finishSession;
 - (void) sendData:(NSString*)dataToSend fromViewController:(UIViewController*)viewController to:(SendDataTo)device;
 - (void) sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController toPeer:(NSString*)other;
-- (BOOL) addScore:(BOOL)isCorrect;
+- (BOOL) addScore:(BOOL)isCorrect toPlayer:(int)player;
 - (void) getQuestion;
 - (void) questionTextFromIndex:(NSNumber *)index;
 

@@ -83,24 +83,26 @@
  */
 - (IBAction)judgeAnswer:(UIButton*)sender
 {
-	// Verifies which is the tag from the sender, 1 for right and 0 for wrong
-	[self verifyAnswer:sender.tag == 1];
+	BOOL isCorrect = sender.tag == 1;
+	
+	if (!isCorrect) [_game sendData:@"#0" fromViewController:self to:ConnectedPeer];
+	else [_game sendData:@"#1" fromViewController:self to:ConnectedPeer];
+	
+	if ([_game addScore:isCorrect toPlayer:PLAYER2]) [self performSegueWithIdentifier:@"finalResults" sender:self];
+	else [[self navigationController] popViewControllerAnimated:YES];
 }
 
 #pragma mark - Others Methods
 
 - (void) verifyAnswer:(BOOL)isCorrect
 {
-	if ([Player getPlayerID] == 1) {
-		if (!isCorrect) [_game sendData:@"#0" fromViewController:self to:ConnectedPeer];
-		else [_game sendData:@"#1" fromViewController:self to:ConnectedPeer];
-	} else if (!isCorrect) AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+	if (!isCorrect) AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 
 	right = isCorrect;
 	
-	if ([_game addScore:isCorrect]) [self performSegueWithIdentifier:@"finalResults" sender:self];
+	if ([_game addScore:isCorrect toPlayer:PLAYER1]) [self performSegueWithIdentifier:@"finalResults" sender:self];
 	else {
-		if ([Player getPlayerID] == 2) [self.delegate didShowImage:isCorrect];
+		[self.delegate didShowImage:isCorrect];
         [[self navigationController] popViewControllerAnimated:YES];
 	}
 }

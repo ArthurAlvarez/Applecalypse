@@ -39,3 +39,7 @@
 "accept" = "Aceitar";
 "reject" = "Rejeitar";
 
+// Reject Alert View
+"rejectCause1" = "O outro jogador não aceitou seu convite para jogar";
+"rejectCause2" = "O outro jogador ja está se conectando a alguém";
+

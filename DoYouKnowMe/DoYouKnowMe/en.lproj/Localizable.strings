@@ -38,3 +38,7 @@
 "message" = "Received invite\n\n%@ wants to play with you";
 "accept" = "Accept";
 "reject" = "Reject";
+
+// Reject Alert View
+"rejectCause1" = "The other player rejected your invitation";
+"rejectCause2" = "The other player is already connecting to someone";

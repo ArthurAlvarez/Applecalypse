@@ -78,6 +78,7 @@
 	_browseBtn.layer.cornerRadius = 5;
 	
 	_acceptInviteView.type = 1;
+    _alertInviteView.type = 3;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -252,11 +253,17 @@
     self.connectedDevices.allowsSelection = YES;
     
     if(cause == REJECT){
-
+        _alertInviteView.messageTag = @"rejectCause1";
+        _alertInviteView.leftButtonTag = @"ok";
+        
+        [_alertInviteView show];
     }
     
     else if(cause == BUSY){
+        _alertInviteView.messageTag = @"rejectCause2";
+        _alertInviteView.leftButtonTag = @"ok";
         
+        [_alertInviteView show];
     }
 }
 
@@ -325,9 +332,15 @@
 
 -(void)leftButtonAction
 {
-	[self sendReject];
-	[self rejectedInvitationWith:MYSELF];
-	[_acceptInviteView hide];
+    if(_acceptInviteView.hidden == NO){
+        [self sendReject];
+        [self rejectedInvitationWith:MYSELF];
+        [_acceptInviteView hide];
+    }
+    
+    else if(_alertInviteView.hidden == NO){
+        [_alertInviteView hide];
+    }
 }
 
 -(void)rightButtonAction

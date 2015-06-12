@@ -99,6 +99,10 @@
 		 forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.rightButton];
 	
+    if(self.type == 3){
+        self.rightButton.hidden = YES;
+    }
+    
 	[self setupConstraints];
 }
 
@@ -226,7 +230,7 @@
 -(void) show
 {
 	if (_type == 1) self.label.text = [NSString stringWithFormat:NSLocalizedString(_messageTag, nil), _peerName];
-	else if (_type == 2) self.label.text = NSLocalizedString(_messageTag, nil);
+	else if (_type == 2 || _type == 3) self.label.text = NSLocalizedString(_messageTag, nil);
 	
 	self.hidden = NO;
 	self.alpha = 0;

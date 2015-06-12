@@ -25,6 +25,7 @@ typedef enum rejectCauseTypes{
 @property BOOL cameFromTutorial;
 @property BOOL connecting;
 @property (weak, nonatomic) IBOutlet AuxiliaryMenuView *acceptInviteView;
+@property (weak, nonatomic) IBOutlet AuxiliaryMenuView *alertInviteView;
 
 -(void) canGoNext;
 -(void) connectToPlayer:(NSString *)playerName;

@@ -35,9 +35,9 @@
     pageControlBeingUsed = NO;
     self.btnStart.hidden = YES;
     
-    self.page1 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial1" owner:self options:nil] lastObject];
-    self.page2 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial2" owner:self options:nil] lastObject];
-    self.page3 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial3" owner:self options:nil] lastObject];
+    self.page1 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial1" owner:self options:nil] firstObject];
+    self.page2 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial2" owner:self options:nil] firstObject];
+    self.page3 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial3" owner:self options:nil] firstObject];
     
     self.pages = [[NSMutableArray alloc] init];
     
@@ -48,7 +48,7 @@
     self.scrollView.delegate = self;
     
     for(i = 0; i < 3; i++){
-        ((UIView *)self.pages[i]).frame = CGRectOffset(((UIView *)self.pages[i]).frame, [self.scrollView contentSize].width, 0);
+        ((UIView *)self.pages[i]).frame = CGRectOffset(((UIView *)self.pages[i]).frame, [self.scrollView contentSize].width, -20);
         
         [self.scrollView addSubview:((UIView *)self.pages[i])];
         

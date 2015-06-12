@@ -229,6 +229,13 @@
 	else if (_type == 2) self.label.text = NSLocalizedString(_messageTag, nil);
 	
 	self.hidden = NO;
+	self.alpha = 0;
+	
+	[UIView animateWithDuration:0.3
+					 animations:^{
+						 self.alpha = 1;
+					 }
+					 completion:nil];
 }
 
 /**
@@ -236,7 +243,13 @@
  */
 -(void) hide
 {
-	self.hidden = YES;
+	[UIView animateWithDuration:0.3
+					 animations:^{
+						 self.alpha = 0;
+					 }
+					 completion:^(BOOL completed){
+						 self.hidden = YES;
+					 }];
 }
 
 @end

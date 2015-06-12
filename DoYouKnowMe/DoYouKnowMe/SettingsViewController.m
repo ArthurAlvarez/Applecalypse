@@ -143,7 +143,6 @@
 	[GameSettings setGameLenght: (5 + 5 * index) * [GameSettings getGameType]];
 	
 	[_game sendData:[NSString stringWithFormat:@"()%d", index] fromViewController:self to:ConnectedPeer];
-	
 }
 
 /**

@@ -257,6 +257,11 @@
 	}	
 }
 
+- (void) clearCurrentAnswers
+{
+	currentAnswers = 0;
+}
+
 #pragma mark - Selectors
 
 /**
@@ -385,9 +390,10 @@
 	
     //Stops timer
     [_clockTimer invalidate];
-    
+	
+	_game.myAnswer = self.answerTextField.text;
+	
     VerifyAnswerViewController *vc = segue.destinationViewController;
-    ResultsViewController *vc2 = segue.destinationViewController;
 	
 	[_game sendData:@"@notwaiting" fromViewController:self to:ConnectedPeer];
 	
@@ -403,12 +409,7 @@
 		
 		vc.delegate = self;
     }
-    
-    //Go to ResultsView
-    else if([segue.identifier isEqualToString:@"finalResult"]){
-		
-        vc2.gameView = self;
-    }
+
 }
 
 #pragma mark - Delegates
@@ -460,6 +461,10 @@
 		
 	currentAnswers = 0;
 	
+	didAnswer = NO;
+	
+	[_game sendData:@"editing" fromViewController:self to:ConnectedPeer];
+	
 	return YES;
 	
 }
@@ -469,9 +474,8 @@
 	[self.view endEditing:YES];
 	
 	if(self.answerTextField.text.length > 0){
-		
+				
 		[_game sendData:[NSString stringWithFormat:@"$%@", self.answerTextField.text] fromViewController:self to:ConnectedPeer];
-		_game.myAnswer = self.answerTextField.text;
 		
 		if (currentAnswers == 0) {
 			currentAnswers = 1;
@@ -479,7 +483,7 @@
 			[_waitingAnswer startAnimating];
 		} else [self performSegueWithIdentifier:@"verifyAnswer" sender:self];
 		
-	} else [self performShakeAnimation:_answerTextField];
+	} else [self performShakeAnimation:_answer];
 	
 	return YES;
 }

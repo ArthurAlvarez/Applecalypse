@@ -88,7 +88,7 @@
 - (IBAction)changePage:(id)sender {
     UIPageControl *pageControl = (UIPageControl *)sender;
     NSInteger currentPage = pageControl.currentPage;
-    CGPoint offset = CGPointMake(currentPage * self.scrollView.frame.size.width, 0);
+    CGPoint offset = CGPointMake(currentPage * self.scrollView.frame.size.width, -20);
     [self.scrollView setContentOffset:offset animated:YES];
     pageControlBeingUsed = YES;
 }

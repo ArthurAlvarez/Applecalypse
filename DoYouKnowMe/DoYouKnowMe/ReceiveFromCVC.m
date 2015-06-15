@@ -12,7 +12,12 @@
 
 -(void)receivedData:(NSString *)data
 {
-    NSString *other = [data substringFromIndex:6];
+    NSLog(@"DATA: %@", data);
+    
+    NSString *other;
+    if([data hasPrefix:@"goNext"]){
+    other = [data substringFromIndex:6];
+    }
     
     if([data hasPrefix:@"goNext"] && _viewController.connected == YES){
         NSLog(@"Received GoNext");

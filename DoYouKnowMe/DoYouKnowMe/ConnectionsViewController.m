@@ -88,6 +88,8 @@
 	canGoNext = 0;
 	
 	_connecting = NO;
+    
+    _connected = NO;
 	
 	[_acceptInviteView hide];
 	
@@ -182,7 +184,10 @@
 {
     NSLog(@"Can go next");
 	if (canGoNext == 0) canGoNext = 1;
-	else [self performSegueWithIdentifier:@"goNext" sender:self];
+    else {
+        [self performSegueWithIdentifier:@"goNext" sender:self];
+        _connected = YES;
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -235,6 +240,13 @@
     
     else if(cause == BUSY){
         _alertInviteView.messageTag = @"rejectCause2";
+        _alertInviteView.leftButtonTag = @"ok";
+        
+        [_alertInviteView show];
+    }
+    
+    else if(cause == INGAME){
+        _alertInviteView.messageTag = @"rejectCause3";
         _alertInviteView.leftButtonTag = @"ok";
         
         [_alertInviteView show];

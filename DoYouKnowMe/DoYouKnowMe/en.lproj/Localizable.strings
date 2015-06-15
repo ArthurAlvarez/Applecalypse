@@ -42,3 +42,4 @@
 // Reject Alert View
 "rejectCause1" = "The other player rejected your invitation";
 "rejectCause2" = "The other player is already connecting to someone";
+"rejectCause3" = "The other player is already in a game session";

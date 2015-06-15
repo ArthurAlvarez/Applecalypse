@@ -159,7 +159,7 @@
 	[self addConstraints:vPosX]; [self addConstraint:vPosY]; [self addConstraint:vCenterX]; [self addConstraint:vHnW];
 	
 	// Pause Label constraints
-	NSArray *plPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pl]|"
+	NSArray *plPosX = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[pl]-10-|"
 															  options: 0
 															  metrics:nil
 																views:views];
@@ -174,13 +174,26 @@
 																options: 0
 																metrics:nil
 																  views:views];
-	NSLayoutConstraint *lbPosX = [NSLayoutConstraint constraintWithItem:self.leftButton
+	NSLayoutConstraint *lbPosX;
+	
+	if (_type == 3) {
+		lbPosX = [NSLayoutConstraint constraintWithItem:self.leftButton
+															   attribute:NSLayoutAttributeCenterX
+															   relatedBy:NSLayoutRelationEqual
+																  toItem:self.view
+															   attribute:NSLayoutAttributeCenterX
+															  multiplier:1
+																   constant:0];
+	} else {
+		lbPosX = [NSLayoutConstraint constraintWithItem:self.leftButton
 															   attribute:NSLayoutAttributeTrailing
 															   relatedBy:NSLayoutRelationEqual
 																  toItem:self.view
 															   attribute:NSLayoutAttributeCenterX
 															  multiplier:1
-																constant:-20];
+																   constant:-20];
+	}
+	
 	NSArray *lbPosY = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[pl]-10-[lb(==50)]-20-|"
 															   options: 0
 															   metrics:nil

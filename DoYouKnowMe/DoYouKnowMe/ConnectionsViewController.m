@@ -270,6 +270,13 @@
         
         [_alertInviteView show];
     }
+    
+    else if(cause == INGAME){
+        _alertInviteView.messageTag = @"rejectCause3";
+        _alertInviteView.leftButtonTag = @"ok";
+        
+        [_alertInviteView show];
+    }
 }
 
 -(void) sendRejectTo:(NSString*)peerName {

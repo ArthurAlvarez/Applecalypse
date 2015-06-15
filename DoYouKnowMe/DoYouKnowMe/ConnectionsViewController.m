@@ -303,6 +303,8 @@
 		}
 	}
 	
+	self.connecting = YES;
+	
 	[self canGoNext];
 	
 	[_waitingGoNext startAnimating];

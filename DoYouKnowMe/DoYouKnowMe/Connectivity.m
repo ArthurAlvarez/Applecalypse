@@ -25,8 +25,8 @@
 }
 
 -(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName{
-	_peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
-	
+	if (_peerID == nil) _peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
+
 	_session = [[MCSession alloc] initWithPeer:_peerID];
 	_session.delegate = self;
 }

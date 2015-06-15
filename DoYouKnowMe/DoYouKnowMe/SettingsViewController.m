@@ -18,8 +18,6 @@
 	/// Flag to show when the game can start
 	int canStart;
 	
-	BOOL didTouchInDisconnect;
-	
 	BOOL alreadyShownAlert;
 }
 
@@ -35,9 +33,6 @@
 
 /// Interface Button to start the game
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
-
-/// Intarface Button to disconnect with the other device
-@property (weak, nonatomic) IBOutlet UIButton *btnDisconnect;
 
 /// Interface Label to show a message to the player know that he is waiting the other player
 @property (weak, nonatomic) IBOutlet UILabel *waitingOtherLabel;
@@ -92,10 +87,8 @@
 	[GameSettings setGameLenght:5];
 	[GameSettings setRound:0];
 	
-	didTouchInDisconnect = NO;
-	
 	[self timeToAnswer:_timeToAnswer];
-	[self numberOfQuestons:_numberOfQuestions];
+	[self numberOfQuestions:_numberOfQuestions];
 	
 	if ([Player getPlayerID] != -1) self.startBtn.hidden = NO;
 
@@ -130,13 +123,15 @@
 		[GameSettings setGameType:ALTERNATEMODE];
 	}
 	
+	[self numberOfQuestions:self.numberOfQuestions];
+	
 	_startBtn.hidden = NO;
 }
 
 /**
  Defines the number of questions that the game will have
  **/
-- (IBAction)numberOfQuestons:(UISegmentedControl*)sender
+- (IBAction)numberOfQuestions:(UISegmentedControl*)sender
 {
 	int index = (int)sender.selectedSegmentIndex;
 	
@@ -157,25 +152,13 @@
 	[_game sendData:[NSString stringWithFormat:@".%d", index] fromViewController:self to:ConnectedPeer];
 }
 
-/** 
- Method to disconnect with the other device
- **/
-- (IBAction)disconnect:(id)sender
-{
-	[_game sendData:@"disconnect" fromViewController:self to:AllPeers];
-	
-	[_game finishSession];
-	[Player setPlayerID:-1];
-	[[self navigationController] popToRootViewControllerAnimated:YES];
-}
-
 /**
  Method to start the game. Verifies if both players had pressed the button. If both had pressed,
  initiates the game, otherwise, show to the player that he is waiting for the other player
  **/
-- (IBAction)startGame:(id)sender {
+- (IBAction)startGame:(UIButton *)sender {
 		
-	[_startBtn setEnabled:NO];
+	[sender setEnabled:NO];
 	
 	[self canStart];
 	
@@ -202,7 +185,6 @@
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		BOOL peersExist = ([_game.connectedDevices count] == 0);
-		[_btnDisconnect setEnabled:!peersExist];
 		[_startBtn setEnabled:!peersExist];
 		
 		if (peersExist){
@@ -210,8 +192,7 @@
 			[_waitingIndicator stopAnimating];
 			canStart = 0;
 			
-			if (!didTouchInDisconnect && !alreadyShownAlert &&
-				![_game.connectedDevices containsObject:_game.otherPlayer]) {
+			if (!alreadyShownAlert && ![_game.connectedDevices containsObject:_game.otherPlayer]) {
 				alreadyShownAlert = YES;
 				
 				UIAlertView *disconected = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"lostConnection", nil)
@@ -236,6 +217,8 @@
 {
 	_questionTo.selectedSegmentIndex = index;
 	_startBtn.hidden = NO;
+	
+	[self numberOfQuestions:self.numberOfQuestions];
 }
 
 - (void) changeGameLenght:(int)index

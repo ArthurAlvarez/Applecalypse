@@ -185,6 +185,9 @@
 							 self.showROrW.alpha = 1;
 						 }];
 	}
+	
+	
+	[self performShakeAnimation:self.questionsAbout];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -32,9 +32,6 @@
 /// Interface Button to look for another device
 @property (weak, nonatomic) IBOutlet UIButton *browseBtn;
 
-/// Interface Button to disconect with the other device
-@property (weak, nonatomic) IBOutlet UIButton *disconectBtn;
-
 /// Interface Activity Indicator to show that the player is waiting the other
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingGoNext;
 
@@ -66,7 +63,6 @@
 	
 	// Hide buttons and labels
 	_browseBtn.hidden = YES;
-	_disconectBtn.hidden = YES;
 	_connectedDevices.hidden = YES;
 	
 	_connectedDevices.backgroundColor = [UIColor clearColor];
@@ -137,26 +133,6 @@
 	[self reloadData];
 }
 
-/**
- Method to disconnect with the other device
- **/
-- (IBAction)Disconect:(id)sender
-{
-	[_game sendData:@"disconnect" fromViewController:self to:AllPeers];
-
-	[_game finishSession];
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		_disconectBtn.hidden = YES;
-		_connectedDevices.hidden = YES;
-		[self reloadData];
-	});
-	
-	[_waitingGoNext stopAnimating];
-	
-	canGoNext = 0;
-}
-
 #pragma mark - Selectors
 
 /**
@@ -170,10 +146,8 @@
 	dispatch_async(dispatch_get_main_queue(),
 	^{
 		if (!peersExist) {
-			_disconectBtn.hidden = NO;
 			if (canGoNext == 0) _connectedDevices.allowsSelection = YES;
 		} else {
-			_disconectBtn.hidden = YES;
 			[_waitingGoNext stopAnimating];
 		}
 		

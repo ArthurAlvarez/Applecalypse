@@ -12,11 +12,18 @@
 
 -(void)receivedData:(NSString *)data
 {
+    NSString *other = [data substringFromIndex:6];
+    
+    if([data hasPrefix:@"goNext"] && _viewController.connected == YES){
+        NSLog(@"Received GoNext");
+        NSLog(@"Sending busy to %@", other);
+        [_viewController sendBusyTo: other];
+    }
+    
 	if ([data hasPrefix:@"goNext"] && _viewController.connecting == NO) {
         _viewController.connecting = YES;
         
         NSLog(@"Received GoNext");
-        NSString *other = [data substringFromIndex:6];
 
         [_viewController canGoNext];
         [_viewController connectToPlayer:other];
@@ -27,8 +34,7 @@
     }
 	
 	else if ([data hasPrefix:@"goNext"] && _viewController.connecting == YES) {
-		NSString *other = [data substringFromIndex:6];
-		
+        NSLog(@"Sending busy to %@", other);
 		[_viewController sendBusyTo:other];
 	}
     else if ([data isEqualToString:@"disconnect"]) {
@@ -37,6 +43,7 @@
     
     else if([data isEqualToString:@"acceptedNext"]){
         NSLog(@"Received acceptedNext");
+        _viewController.connecting = NO;
         [_viewController canGoNext];
     }
     
@@ -46,9 +53,9 @@
     }
     
     else if([data isEqualToString:@"busy"]){
+        NSLog(@"got busy");
         _viewController.connecting = NO;
         [_viewController rejectedInvitationWith:BUSY];
-   
     }
 }
 

@@ -153,9 +153,12 @@
 											 toPeers:@[peer]
 											withMode:MCSessionSendDataReliable
 											   error:&error];
+            
+            NSLog(@"Sent data: %@ to %@", dataToSend, other);
 			break;
 		}
 	}
+    
 	
 	if (error) NSLog(@"%@", [error localizedDescription]);
 }

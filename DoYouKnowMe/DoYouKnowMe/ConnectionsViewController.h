@@ -18,12 +18,14 @@
 typedef enum rejectCauseTypes{
     MYSELF, // Used when you cause yourself to reject
     REJECT, // When you get rejected by the other
-    BUSY    // When the other is busy connecting
+    BUSY,   // When the other is busy connecting
+    INGAME // When the other is in a game session
 } RejectCause;
 
 @property Game *game;
 @property BOOL cameFromTutorial;
 @property BOOL connecting;
+@property BOOL connected;
 @property (weak, nonatomic) IBOutlet AuxiliaryMenuView *acceptInviteView;
 @property (weak, nonatomic) IBOutlet AuxiliaryMenuView *alertInviteView;
 

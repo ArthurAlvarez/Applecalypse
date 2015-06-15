@@ -28,7 +28,7 @@
 			[GameSettings setGameType:ALTERNATEMODE];
 			[_viewController changePlayerID:2];
 		}
-	} else if ([data isEqualToString:@"disconnect"]) [[_viewController navigationController] popToRootViewControllerAnimated:YES];
+	}
 	
 	else if ([data isEqualToString:@"start"]) [_viewController canStart];
 	

@@ -36,23 +36,14 @@
 	else if ([data hasPrefix:@"goNext"] && _viewController.connecting == YES) {
         NSLog(@"Sending busy to %@", other);
 		[_viewController sendBusyTo:other];
-	}
-    else if ([data isEqualToString:@"disconnect"]) {
-		[_viewController reloadData];
-	}
-    
-    else if([data isEqualToString:@"acceptedNext"]){
+	} else if([data isEqualToString:@"acceptedNext"]){
         NSLog(@"Received acceptedNext");
         _viewController.connecting = NO;
         [_viewController canGoNext];
-    }
-    
-    else if([data isEqualToString:@"rejected"]){
+    } else if([data isEqualToString:@"rejected"]){
         _viewController.connecting = NO;
         [_viewController rejectedInvitationWith:REJECT];
-    }
-    
-    else if([data isEqualToString:@"busy"]){
+    } else if([data isEqualToString:@"busy"]){
         NSLog(@"got busy");
         _viewController.connecting = NO;
         [_viewController rejectedInvitationWith:BUSY];

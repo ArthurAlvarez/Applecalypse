@@ -53,7 +53,7 @@
     [super viewDidLoad];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(peerDidChangeStateWithNotification)
+                                             selector:@selector(peerDidChangeStateWithNotification:)
 												 name:@"changeState"
 											   object:nil];
 	
@@ -143,10 +143,12 @@
 /**
  Method to when the device change the state of the connection
  **/
--(void)peerDidChangeStateWithNotification
+-(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
 	BOOL peersExist = ([_game.connectedDevices count] == 0);
-	
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *status = [[notification userInfo] objectForKey:@"status"];
+    
 	dispatch_async(dispatch_get_main_queue(),
 	^{
 		if (!peersExist) {
@@ -155,7 +157,12 @@
 			[_waitingGoNext stopAnimating];
 		}
 		
-		[self reloadData];
+        if([status isEqualToString:@"connected"]){
+            [_game sendData:@"getNick" fromViewController:self toPeer:peerID.displayName];
+        }
+        else{
+            [self reloadData];
+        }
 	});
 }
 
@@ -278,6 +285,32 @@
     
     if(_game.otherPlayer.peerID == Peer)
         _game.otherPlayer.nickName = Nickname;
+    
+    [self reloadData];
+}
+
+-(void) showInviteFrom:(MCPeerID *)peer{
+    for(OnlinePeer *p in _game.connectedDevices){
+        if(p.peerID == peer){
+            
+            self.acceptInviteView.peerName = p.nickName;
+            [self.acceptInviteView show];
+            break;
+        }
+    }
+}
+
+-(void) sendNickToPeer:(MCPeerID *)peer{
+    [_game sendData:[NSString stringWithFormat:@"$#@%@", _txtName.text] fromViewController:self toPeer:peer.displayName];
+}
+
+-(void) gotNick:(NSString*)nick FromPeer:(MCPeerID *)peer{
+    for(OnlinePeer *p in _game.connectedDevices){
+        if(p.peerID == peer){
+            p.nickName = nick;
+            break;
+        }
+    }
     
     [self reloadData];
 }

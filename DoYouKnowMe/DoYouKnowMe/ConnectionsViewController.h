@@ -37,5 +37,8 @@ typedef enum rejectCauseTypes{
 -(void) sendBusyTo:(NSString*)peerName;
 -(void) reloadData;
 -(void) ChangePeer:(MCPeerID *)Peer NicknameTo:(NSString *)Nickname;
+-(void) showInviteFrom:(MCPeerID *)peer;
+-(void) sendNickToPeer:(MCPeerID *)peer;
+-(void) gotNick:(NSString*)nick FromPeer:(MCPeerID *)peer;
 
 @end

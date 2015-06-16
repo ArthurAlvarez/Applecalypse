@@ -32,10 +32,7 @@
 
         [_viewController canGoNext];
         [_viewController connectToPlayer:other];
-		
-		_viewController.acceptInviteView.peerName = other;
-        
-		[_viewController.acceptInviteView show];
+        [_viewController showInviteFrom:peer];
     }
 	
 	else if ([data hasPrefix:@"goNext"] && _viewController.connecting == YES) {
@@ -56,6 +53,13 @@
     else if([data hasPrefix:@"newNick"]){
         NSString *newNick = [data substringFromIndex:7];
         [_viewController ChangePeer:peer NicknameTo:newNick];
+    }
+    else if([data isEqualToString:@"getNick"]){
+        [_viewController sendNickToPeer:peer];
+    }
+    else if([data hasPrefix:@"$#@"]){
+        NSString *nick = [data substringFromIndex:3];
+        [_viewController gotNick:nick FromPeer:peer];
     }
 }
 

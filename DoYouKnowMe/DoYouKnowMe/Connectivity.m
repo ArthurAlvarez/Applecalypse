@@ -25,10 +25,16 @@
 }
 
 -(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName{
-	if (_peerID == nil) _peerID = [[OnlinePeer alloc] initWith:[[MCPeerID alloc] initWithDisplayName:displayName]];
-
-	_session = [[MCSession alloc] initWithPeer:_peerID.peerID];
-	_session.delegate = self;
+    if (_peerID == nil){
+        _peerID = [[OnlinePeer alloc] initWith:[[MCPeerID alloc] initWithDisplayName:displayName]];
+    }
+    else{
+        _peerID.nickName = displayName;
+        NSLog(@"Recycling current peer with new name: %@", displayName);
+    }
+    
+    _session = [[MCSession alloc] initWithPeer:_peerID.peerID];
+    _session.delegate = self;
 }
 
 

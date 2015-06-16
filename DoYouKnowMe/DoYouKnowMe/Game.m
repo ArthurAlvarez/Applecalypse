@@ -101,7 +101,7 @@
 	
 	[_appDelegate.mcManager.session disconnect];
 
-	_appDelegate.mcManager.peerID = nil;
+	//_appDelegate.mcManager.peerID = nil;
 	_appDelegate.mcManager.session = nil;
 	_appDelegate.mcManager.browser = nil;
 	[_appDelegate.mcManager advertiseSelf:NO];
@@ -343,18 +343,24 @@
 {
 	MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
 	MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
-	
+    
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
+        NSDictionary *dict = nil;
+        
 		if (state != MCSessionStateConnecting)
 		{
 			if (state == MCSessionStateConnected)
 			{
                 OnlinePeer *newPeer = [[OnlinePeer alloc] initWith:peerID];
 				[_connectedDevices addObject:newPeer];
+                dict = @{@"peerID": peerID, @"status": @"connected"};
+
+
 			}
 			else if (state == MCSessionStateNotConnected)
 			{
+                dict = @{@"peerID": peerID, @"status": @"disconnected"};
 				if ([_connectedDevices count] > 0)
 				{
 					if ([peerID isEqual:_otherPlayer.peerID]) {
@@ -373,7 +379,7 @@
 		
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"changeState"
 															object:nil
-														  userInfo:nil];
+														  userInfo:dict];
 	});
 }
 

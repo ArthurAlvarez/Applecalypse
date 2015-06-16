@@ -14,10 +14,7 @@
 {
     NSLog(@"DATA: %@", data);
     
-    NSString *other;
-    if([data hasPrefix:@"goNext"]){
-    other = [data substringFromIndex:6];
-    }
+    NSString *other = peer.displayName;
     
     if([data hasPrefix:@"goNext"] && _viewController.connected == YES){
         NSLog(@"Received GoNext");
@@ -25,7 +22,7 @@
         [_viewController sendBusyTo: other];
     }
     
-	if ([data hasPrefix:@"goNext"] && _viewController.connecting == NO) {
+	else if ([data hasPrefix:@"goNext"] && _viewController.connecting == NO) {
         _viewController.connecting = YES;
         
         NSLog(@"Received GoNext");

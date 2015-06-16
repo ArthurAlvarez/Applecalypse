@@ -17,6 +17,7 @@
 		14C4433C1AC18C6300103C35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4433B1AC18C6300103C35 /* ViewController.m */; };
 		14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C4433D1AC18C6300103C35 /* Main.storyboard */; };
 		14C443411AC18C6300103C35 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C443401AC18C6300103C35 /* Images.xcassets */; };
+		14C7400E1B3042F900E946FA /* OnlinePeer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C7400D1B3042F900E946FA /* OnlinePeer.m */; };
 		14FA15B81B25BFD500D2A263 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FA15B71B25BFD500D2A263 /* TutorialViewController.m */; };
 		14FA15BA1B25C0BB00D2A263 /* Tutorial1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */; };
 		14FA15BC1B25C18A00D2A263 /* Tutorial2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */; };
@@ -63,6 +64,8 @@
 		14C4433B1AC18C6300103C35 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		14C4433E1AC18C6300103C35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14C443401AC18C6300103C35 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		14C7400C1B3042F900E946FA /* OnlinePeer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlinePeer.h; sourceTree = "<group>"; };
+		14C7400D1B3042F900E946FA /* OnlinePeer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlinePeer.m; sourceTree = "<group>"; };
 		14FA15B61B25BFD500D2A263 /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		14FA15B71B25BFD500D2A263 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
 		14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial1.xib; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				1457877C1AC4200F007D76A1 /* Player.m */,
 				1452A45E1AC988E400A46762 /* GameSettings.h */,
 				1452A45F1AC988E400A46762 /* GameSettings.m */,
+				14C7400C1B3042F900E946FA /* OnlinePeer.h */,
+				14C7400D1B3042F900E946FA /* OnlinePeer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				938F0D0C1B25BE4A006E5864 /* ReceiveFromGAME.m in Sources */,
 				14C443361AC18C6300103C35 /* main.m in Sources */,
 				938F0D061B20C03E006E5864 /* ReceiveFromVAVC.m in Sources */,
+				14C7400E1B3042F900E946FA /* OnlinePeer.m in Sources */,
 				14FA15B81B25BFD500D2A263 /* TutorialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

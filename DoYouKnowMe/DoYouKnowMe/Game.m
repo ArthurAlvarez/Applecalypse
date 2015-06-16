@@ -122,18 +122,26 @@
 	NSError *error;
 	
 	if (device == AllPeers) {
+        
+        NSMutableArray *peerIDS = [[NSMutableArray alloc] init];
+        
+        for(int i = 0; i < [_connectedDevices count]; i++)
+            [peerIDS addObject:((OnlinePeer*)(_connectedDevices[i])).peerID];
+        
 		[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
-										 toPeers:_connectedDevices
+										 toPeers:peerIDS
 										withMode:MCSessionSendDataReliable
 										   error:&error];
 	} else if (device == ConnectedPeer) {
 		[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
-										 toPeers:@[_otherPlayer]
+										 toPeers:@[_otherPlayer.peerID]
 										withMode:MCSessionSendDataReliable
 										   error:&error];
 	}
 	
 	if (error) NSLog(@"%@", [error localizedDescription]);
+    
+    NSLog(@"Sent message %@ to %@", dataToSend, _otherPlayer.peerID);
 }
 
 -(void)sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController toPeer:(NSString*)other
@@ -147,10 +155,10 @@
 	
 	NSError *error;
 	
-	for (MCPeerID *peer in _connectedDevices) {
-		if (peer.displayName == other) {
+	for (OnlinePeer *peer in _connectedDevices) {
+		if (peer.peerID.displayName == other) {
 			[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
-											 toPeers:@[peer]
+											 toPeers:@[peer.peerID]
 											withMode:MCSessionSendDataReliable
 											   error:&error];
             
@@ -257,7 +265,9 @@
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
 {
 	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    MCPeerID *sender = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
@@ -277,7 +287,7 @@
 					break;
 				}
 			}
-			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"CVC" withString:@""]];
+			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"CVC" withString:@""] from:sender];
 			
 		} else if ([receivedInfo hasPrefix:@"SVC"]) {
 			
@@ -340,16 +350,23 @@
 		{
 			if (state == MCSessionStateConnected)
 			{
-				[_connectedDevices addObject:peerID];
+                OnlinePeer *newPeer = [[OnlinePeer alloc] initWith:peerID];
+				[_connectedDevices addObject:newPeer];
 			}
 			else if (state == MCSessionStateNotConnected)
 			{
 				if ([_connectedDevices count] > 0)
 				{
-					if ([peerID isEqual:_otherPlayer]) {
+					if ([peerID isEqual:_otherPlayer.peerID]) {
 						[Player setPlayerID:-1];
 					}
-					[_connectedDevices removeObject:peerID];
+                    
+                    for(int i = 0; i < [_connectedDevices count]; i++){
+                        if(((OnlinePeer *)(_connectedDevices[i])).peerID == peerID){
+                            [_connectedDevices removeObjectAtIndex:i];
+                        }
+                    }
+                    
 				}
 			}
 		}

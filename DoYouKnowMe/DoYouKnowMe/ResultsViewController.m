@@ -52,10 +52,10 @@
 	float knowingPercent = [Player knowingPercent:PLAYER2];
 	
     if([Player getPlayerID] == 1 || [GameSettings getGameType] == ALTERNATEMODE) {
-        self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"otherKnowMe", nil), _game.otherPlayer.displayName];
+        self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"otherKnowMe", nil), _game.otherPlayer.nickName];
     }
     else if([Player getPlayerID] == 2){
-        self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"iKnowOther", nil), _game.otherPlayer.displayName];
+        self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"iKnowOther", nil), _game.otherPlayer.nickName];
     }
     
 	NSLog(@"score final: %d", [Player getScore:PLAYER2]);

@@ -15,4 +15,9 @@
 	NSLog(@"MustOverride");
 }
 
+-(void)receivedData:(NSString *)data from:(MCPeerID *)peer
+{
+    NSLog(@"MustOverride");
+}
+
 @end

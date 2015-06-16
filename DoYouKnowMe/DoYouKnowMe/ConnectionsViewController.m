@@ -17,6 +17,7 @@
 {
 	/// Flag to know when the game can go to the next View
 	int canGoNext;
+    NSString *lastNick;
 }
 
 #pragma mark - Interface Properties
@@ -75,6 +76,8 @@
 	
 	_acceptInviteView.type = 1;
     _alertInviteView.type = 3;
+    
+    lastNick = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -143,7 +146,6 @@
 -(void)peerDidChangeStateWithNotification
 {
 	BOOL peersExist = ([_game.connectedDevices count] == 0);
-	[_txtName setEnabled:peersExist];
 	
 	dispatch_async(dispatch_get_main_queue(),
 	^{
@@ -203,8 +205,8 @@
 }
 
 -(void) connectToPlayer:(NSString *)playerName {
-    for (MCPeerID *peer in _game.connectedDevices) {
-        if ([peer.displayName isEqualToString:playerName]) {
+    for (OnlinePeer *peer in _game.connectedDevices) {
+        if ([peer.peerID.displayName isEqualToString:playerName]) {
             _game.otherPlayer = peer;
             NSLog(@"connected to %@", playerName);
         }
@@ -266,7 +268,19 @@
     [_game sendData:@"busy" fromViewController:self toPeer:peerName];
 }
 
-
+-(void) ChangePeer:(MCPeerID *)Peer NicknameTo:(NSString *)Nickname{
+    for (OnlinePeer *p in _game.connectedDevices) {
+        if(p.peerID == Peer){
+            p.nickName = Nickname;
+            break;
+        }
+    }
+    
+    if(_game.otherPlayer.peerID == Peer)
+        _game.otherPlayer.nickName = Nickname;
+    
+    [self reloadData];
+}
 
 #pragma mark - Delegates
 #pragma mark - Text Field Delegate
@@ -281,13 +295,28 @@
 	if ([textField.text length] > 0) {
 		
 		[_txtName resignFirstResponder];
-		
-		[self.game initiateSession:textField.text];
-		
+        
+        if(lastNick == nil){
+            [self.game initiateSession:textField.text];
+            lastNick = textField.text;
+        }
+                //Mudança de nick
+        else
+            if(![textField.text isEqualToString:lastNick]){
+                NSLog(@"Change nick");
+                [_game sendData:[NSString stringWithFormat:@"newNick%@", textField.text] fromViewController:self to:AllPeers];
+            }
 		_browseBtn.hidden = NO;
 		
-	} else [self performShakeAnimation:_txtName];
-	
+    } else{
+        [self performShakeAnimation:_txtName];
+        
+        if(lastNick != nil){
+            textField.text = lastNick;
+            [_txtName resignFirstResponder];
+        }
+    }
+    
 	return YES;
 }
 
@@ -297,8 +326,8 @@
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	for (MCPeerID *peer in _game.connectedDevices) {
-		if ([peer.displayName isEqualToString:[tableView cellForRowAtIndexPath:indexPath].textLabel.text]) {
+	for (OnlinePeer *peer in _game.connectedDevices) {
+		if ([peer.nickName isEqualToString:[tableView cellForRowAtIndexPath:indexPath].textLabel.text]) {
 			_game.otherPlayer = peer;
 		}
 	}
@@ -367,7 +396,7 @@
 	
 	cell.textLabel.font = self.helloLabel.font;
 	cell.textLabel.textColor = self.helloLabel.textColor;
-	cell.textLabel.text = ((MCPeerID*)[_game.connectedDevices objectAtIndex:indexPath.row]).displayName;
+	cell.textLabel.text = ((OnlinePeer*)[_game.connectedDevices objectAtIndex:indexPath.row]).nickName;
 	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	

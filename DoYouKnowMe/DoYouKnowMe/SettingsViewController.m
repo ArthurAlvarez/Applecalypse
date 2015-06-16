@@ -50,7 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 		
-	[_questionTo setTitle:[NSString stringWithFormat:@"%@", _game.otherPlayer.displayName]
+	[_questionTo setTitle:[NSString stringWithFormat:@"%@", _game.otherPlayer.nickName]
 		forSegmentAtIndex:1];
 	
 	[_waitingIndicator stopAnimating];

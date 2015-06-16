@@ -13,6 +13,7 @@
 #import "GameSettings.h"
 #import "AppDelegate.h"
 #import "Connectivity.h"
+#import "OnlinePeer.h"
 
 typedef enum : NSUInteger {
 	AllPeers,
@@ -22,7 +23,7 @@ typedef enum : NSUInteger {
 @interface Game : NSObject <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate>
 
 @property AppDelegate *appDelegate;
-@property MCPeerID *otherPlayer;
+@property OnlinePeer *otherPlayer;
 @property NSMutableArray *connectedDevices;
 @property NSString *otherAnswer;
 @property NSString *myAnswer;

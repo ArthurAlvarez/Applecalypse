@@ -14,11 +14,12 @@
 {
 	if([data isEqualToString:@"@start"]) [GameSettings setOtherDidLoad:YES];
 	
-	else if ([data isEqualToString:@"editing"]) [_viewController clearCurrentAnswers];
+	//else if ([data isEqualToString:@"editing"]) [_viewController clearCurrentAnswers];
 	
 	else if ([data isEqualToString:@"@notwaiting"]) _viewController.otherWaiting = NO;
 	
 	else if([data hasPrefix:@"$"]) {
+        NSLog(@"Received Answer from other");
 		self.game.otherAnswer = [data stringByReplacingOccurrencesOfString:@"$" withString:@""];
 		
 		[_viewController receivedAnswer];

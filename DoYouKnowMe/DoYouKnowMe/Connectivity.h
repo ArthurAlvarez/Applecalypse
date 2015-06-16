@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "OnlinePeer.h"
 
 @interface Connectivity : NSObject <MCSessionDelegate>
 
 /// Represents the device
-@property (nonatomic, strong) MCPeerID *peerID;
+@property (nonatomic, strong) OnlinePeer *peerID;
 
 /// Represents the current session that the device will create
 @property (nonatomic, strong) MCSession *session;

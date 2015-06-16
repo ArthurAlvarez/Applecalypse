@@ -167,7 +167,7 @@
 		self.questionsAbout.text = NSLocalizedString(@"questionYou", nil);
 	} else {
 		self.question.image = [UIImage imageNamed:@"OtherAnswer"];
-		self.questionsAbout.text = [NSString stringWithFormat:NSLocalizedString(@"questionAbout", nil), _game.otherPlayer.displayName];
+		self.questionsAbout.text = [NSString stringWithFormat:NSLocalizedString(@"questionAbout", nil), _game.otherPlayer.nickName];
 	}
 }
 

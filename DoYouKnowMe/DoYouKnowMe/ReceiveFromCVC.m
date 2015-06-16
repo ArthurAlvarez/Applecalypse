@@ -10,7 +10,7 @@
 
 @implementation ReceiveFromCVC
 
--(void)receivedData:(NSString *)data
+-(void)receivedData:(NSString *)data from: (MCPeerID *)peer
 {
     NSLog(@"DATA: %@", data);
     
@@ -52,6 +52,10 @@
         NSLog(@"got busy");
         _viewController.connecting = NO;
         [_viewController rejectedInvitationWith:BUSY];
+    }
+    else if([data hasPrefix:@"newNick"]){
+        NSString *newNick = [data substringFromIndex:7];
+        [_viewController ChangePeer:peer NicknameTo:newNick];
     }
 }
 

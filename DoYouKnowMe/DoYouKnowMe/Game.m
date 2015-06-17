@@ -103,7 +103,7 @@
 	
 	[_appDelegate.mcManager.session disconnect];
 
-	_appDelegate.mcManager.peerID = nil;
+	//_appDelegate.mcManager.peerID = nil;
 	_appDelegate.mcManager.session = nil;
 	_appDelegate.mcManager.browser = nil;
 	[_appDelegate.mcManager advertiseSelf:NO];
@@ -124,18 +124,26 @@
 	NSError *error;
 	
 	if (device == AllPeers) {
+        
+        NSMutableArray *peerIDS = [[NSMutableArray alloc] init];
+        
+        for(int i = 0; i < [_connectedDevices count]; i++)
+            [peerIDS addObject:((OnlinePeer*)(_connectedDevices[i])).peerID];
+        
 		[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
-										 toPeers:_connectedDevices
+										 toPeers:peerIDS
 										withMode:MCSessionSendDataReliable
 										   error:&error];
 	} else if (device == ConnectedPeer) {
 		[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
-										 toPeers:@[_otherPlayer]
+										 toPeers:@[_otherPlayer.peerID]
 										withMode:MCSessionSendDataReliable
 										   error:&error];
 	}
 	
 	if (error) NSLog(@"%@", [error localizedDescription]);
+    
+    NSLog(@"Sent message %@ to %@", dataToSend, _otherPlayer.peerID);
 }
 
 -(void)sendData:(NSString *)dataToSend fromViewController:(UIViewController*)viewController toPeer:(NSString*)other
@@ -149,10 +157,10 @@
 	
 	NSError *error;
 	
-	for (MCPeerID *peer in _connectedDevices) {
-		if (peer.displayName == other) {
+	for (OnlinePeer *peer in _connectedDevices) {
+		if (peer.peerID.displayName == other) {
 			[_appDelegate.mcManager.session sendData:[dataToSend dataUsingEncoding:NSUTF8StringEncoding]
-											 toPeers:@[peer]
+											 toPeers:@[peer.peerID]
 											withMode:MCSessionSendDataReliable
 											   error:&error];
             
@@ -259,7 +267,9 @@
 -(void)didReceiveDataWithNotification:(NSNotification *)notification
 {
 	NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
-	NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    MCPeerID *sender = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *receivedInfo = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
@@ -279,7 +289,7 @@
 					break;
 				}
 			}
-			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"CVC" withString:@""]];
+			[_receiveData receivedData:[receivedInfo stringByReplacingOccurrencesOfString:@"CVC" withString:@""] from:sender];
 			
 		} else if ([receivedInfo hasPrefix:@"SVC"]) {
 			
@@ -335,30 +345,43 @@
 {
 	MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
 	MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
-	
+    
 	dispatch_async(dispatch_get_main_queue(), ^{
 		
+        NSDictionary *dict = nil;
+        
 		if (state != MCSessionStateConnecting)
 		{
 			if (state == MCSessionStateConnected)
 			{
-				[_connectedDevices addObject:peerID];
+                NSLog(@"Connected to %@", peerID.displayName);
+                OnlinePeer *newPeer = [[OnlinePeer alloc] initWith:peerID];
+				[_connectedDevices addObject:newPeer];
+                dict = @{@"peerID": peerID, @"status": @"connected"};
 			}
 			else if (state == MCSessionStateNotConnected)
 			{
+                NSLog(@"Lost device %@", peerID);
+                dict = @{@"peerID": peerID, @"status": @"disconnected"};
 				if ([_connectedDevices count] > 0)
 				{
-					if ([peerID isEqual:_otherPlayer]) {
+					if ([peerID isEqual:_otherPlayer.peerID]) {
 						[Player setPlayerID:-1];
 					}
-					[_connectedDevices removeObject:peerID];
+                    
+                    for(int i = 0; i < [_connectedDevices count]; i++){
+                        if(((OnlinePeer *)(_connectedDevices[i])).peerID == peerID){
+                            [_connectedDevices removeObjectAtIndex:i];
+                        }
+                    }
+                    
 				}
 			}
 		}
 		
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"changeState"
 															object:nil
-														  userInfo:nil];
+														  userInfo:dict];
 	});
 }
 
@@ -369,10 +392,19 @@
  **/
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
 {	
-	NSLog(@"Found a nearby advertising peer %@", peerID);
-	
-	//Manda convite para conexao
-	[[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+    if(peerID != _appDelegate.mcManager.session.myPeerID){
+        //Manda convite para conexao
+        BOOL found = NO;
+        for(OnlinePeer *p in _connectedDevices){
+            if(p.peerID == peerID){
+                found = YES;
+            }
+        }
+        if(!found){
+            NSLog(@"Found a nearby advertising peer %@", peerID);
+            [[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+        }
+    }
 }
 
 /**
@@ -380,7 +412,7 @@
  **/
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID
 {
-	NSLog(@"Lost device %@", peerID);
+	//NSLog(@"Lost device %@", peerID);
 }
 
 /**
@@ -389,7 +421,7 @@
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL accept,
 							 MCSession *session))invitationHandler
 {
-	NSLog(@"Got invite from %@", peerID);
+	NSLog(@"Accepted invite from %@", peerID);
 	
 	invitationHandler(YES, _appDelegate.mcManager.session);
 }

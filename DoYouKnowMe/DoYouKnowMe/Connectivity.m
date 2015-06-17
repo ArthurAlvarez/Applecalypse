@@ -25,20 +25,25 @@
 }
 
 -(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName{
-	if (_peerID == nil) _peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
-
-	_session = [[MCSession alloc] initWithPeer:_peerID];
-	_session.delegate = self;
+    if (_peerID == nil){
+        _peerID = [[OnlinePeer alloc] initWith:[[MCPeerID alloc] initWithDisplayName:displayName]];
+        
+    }
+    else{
+        _peerID.nickName = displayName;
+        NSLog(@"Recycling current peer with new name: %@", displayName);
+    }
+        _session = [[MCSession alloc] initWithPeer:_peerID.peerID];
+        _session.delegate = self;
 }
 
-
 -(void)setupMCBrowser{
-	_browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_peerID serviceType:@"doyouknowme"];
+	_browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_peerID.peerID serviceType:@"doyouknowme"];
 }
 
 -(void)advertiseSelf:(BOOL)shouldAdvertise{
 	if (shouldAdvertise)
-        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_peerID discoveryInfo:nil serviceType:@"doyouknowme"];
+        _advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_peerID.peerID discoveryInfo:nil serviceType:@"doyouknowme"];
 }
 
 #pragma mark - MCSession Delegate

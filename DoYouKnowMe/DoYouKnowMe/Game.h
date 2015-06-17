@@ -30,7 +30,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property AppDelegate *appDelegate;
-@property MCPeerID *otherPlayer;
+@property OnlinePeer *otherPlayer;
 @property NSMutableArray *connectedDevices;
 @property NSString *otherAnswer;
 @property NSString *myAnswer;

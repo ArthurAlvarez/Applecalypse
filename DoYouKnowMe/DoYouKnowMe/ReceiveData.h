@@ -14,5 +14,5 @@
 @property (weak) Game *game;
 
 - (void)receivedData:(NSString*)data;
-
+- (void)receivedData:(NSString *)data from:(MCPeerID *)peer;
 @end

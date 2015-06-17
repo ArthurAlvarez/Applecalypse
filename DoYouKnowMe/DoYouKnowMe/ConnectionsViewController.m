@@ -18,6 +18,7 @@
 {
 	/// Flag to know when the game can go to the next View
 	int canGoNext;
+    NSString *lastNick;
 }
 
 #pragma mark - Interface Properties
@@ -53,7 +54,7 @@
     [super viewDidLoad];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(peerDidChangeStateWithNotification)
+                                             selector:@selector(peerDidChangeStateWithNotification:)
 												 name:@"changeState"
 											   object:nil];
 	
@@ -76,6 +77,8 @@
 	
 	_acceptInviteView.type = 1;
     _alertInviteView.type = 3;
+    
+    lastNick = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -141,11 +144,12 @@
 /**
  Method to when the device change the state of the connection
  **/
--(void)peerDidChangeStateWithNotification
+-(void)peerDidChangeStateWithNotification:(NSNotification *)notification
 {
 	BOOL peersExist = ([_game.connectedDevices count] == 0);
-	[_txtName setEnabled:peersExist];
-	
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *status = [[notification userInfo] objectForKey:@"status"];
+    
 	dispatch_async(dispatch_get_main_queue(),
 	^{
 		if (!peersExist) {
@@ -154,7 +158,12 @@
 			[_waitingGoNext stopAnimating];
 		}
 		
-		[self reloadData];
+        if([status isEqualToString:@"connected"]){
+            [_game sendData:@"getNick" fromViewController:self toPeer:peerID.displayName];
+        }
+        else{
+            [self reloadData];
+        }
 	});
 }
 
@@ -205,14 +214,23 @@
 	}
 }
 
+#pragma mark - Conectivity Methods
+/*
+    Connects to other peer to play togheter
+ */
 -(void) connectToPlayer:(NSString *)playerName {
-    for (MCPeerID *peer in _game.connectedDevices) {
-        if ([peer.displayName isEqualToString:playerName]) {
+    for (OnlinePeer *peer in _game.connectedDevices) {
+        if ([peer.peerID.displayName isEqualToString:playerName]) {
             _game.otherPlayer = peer;
             NSLog(@"connected to %@", playerName);
         }
     }
 }
+
+/*
+    Reloads list of connected peers and displays in a list view
+ */
+
 - (void) reloadData
 {
 	[_connectedDevices reloadData];
@@ -220,12 +238,33 @@
 	self.connectedDevices.allowsSelection = YES;
 }
 
+/*
+ Shows game invitations
+ */
+-(void) showInviteFrom:(MCPeerID *)peer{
+    for(OnlinePeer *p in _game.connectedDevices){
+        if(p.peerID == peer){
+            
+            self.acceptInviteView.peerName = p.nickName;
+            [self.acceptInviteView show];
+            break;
+        }
+    }
+}
+
+/*
+    Accepts invitation to play togheter
+ */
+
 -(void) acceptInvitation {
     [_game pauseBrowsing];
     [_game sendData:@"acceptedNext" fromViewController:self to:ConnectedPeer];
     NSLog(@"accepted invitation");
 }
 
+/*
+    When other user rejects invitation
+ */
 -(void) rejectedInvitationWith:(RejectCause)cause {
     canGoNext = 0;
     [_waitingGoNext stopAnimating];
@@ -256,20 +295,72 @@
     }
 }
 
+/*
+    Rejects invitation from others
+ */
+
 -(void) sendRejectTo:(NSString*)peerName {
     [_game sendData:@"rejected" fromViewController:self toPeer:peerName];
 }
 
--(void) sendReject
-{
+/*
+    Rejects invitation from connected peer
+ */
+-(void) sendReject{
 	[_game sendData:@"rejected" fromViewController:self to:ConnectedPeer];
 }
 
+/*
+    Tells other users that the device is currently connecting to someone
+ */
 -(void) sendBusyTo:(NSString*)peerName{
     [_game sendData:@"busy" fromViewController:self toPeer:peerName];
 }
 
+/*
+    Tells other users that the device is already in a game session
+ */
+-(void) sendInGameTo:(NSString*)peerName{
+    [_game sendData:@"busy2" fromViewController:self toPeer:peerName];
+}
 
+/*
+    Handles changes of nicknames
+ */
+-(void) ChangePeer:(MCPeerID *)Peer NicknameTo:(NSString *)Nickname{
+    for (OnlinePeer *p in _game.connectedDevices) {
+        if(p.peerID == Peer){
+            p.nickName = Nickname;
+            break;
+        }
+    }
+    
+    if(_game.otherPlayer.peerID == Peer)
+        _game.otherPlayer.nickName = Nickname;
+    
+    [self reloadData];
+}
+
+/*
+    Sends current nickname to other peer
+ */
+-(void) sendNickToPeer:(MCPeerID *)peer{
+    [_game sendData:[NSString stringWithFormat:@"$#@%@", _txtName.text] fromViewController:self toPeer:peer.displayName];
+}
+
+/*
+    Updates nickname from other peer
+ */
+-(void) gotNick:(NSString*)nick FromPeer:(MCPeerID *)peer{
+    for(OnlinePeer *p in _game.connectedDevices){
+        if(p.peerID == peer){
+            p.nickName = nick;
+            break;
+        }
+    }
+    
+    [self reloadData];
+}
 
 #pragma mark - Delegates
 #pragma mark - Text Field Delegate
@@ -284,13 +375,28 @@
 	if ([textField.text length] > 0) {
 		
 		[_txtName resignFirstResponder];
-		
-		[self.game initiateSession:textField.text];
-		
+        
+        if(lastNick == nil){
+            [self.game initiateSession:textField.text];
+            lastNick = textField.text;
+        }
+                //Mudança de nick
+        else
+            if(![textField.text isEqualToString:lastNick]){
+                NSLog(@"Change nick");
+                [_game sendData:[NSString stringWithFormat:@"newNick%@", textField.text] fromViewController:self to:AllPeers];
+            }
 		_browseBtn.hidden = NO;
 		
-	} else [self performShakeAnimation:_txtName];
-	
+    } else{
+        [self performShakeAnimation:_txtName];
+        
+        if(lastNick != nil){
+            textField.text = lastNick;
+            [_txtName resignFirstResponder];
+        }
+    }
+    
 	return YES;
 }
 
@@ -300,8 +406,8 @@
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
-	for (MCPeerID *peer in _game.connectedDevices) {
-		if ([peer.displayName isEqualToString:[tableView cellForRowAtIndexPath:indexPath].textLabel.text]) {
+	for (OnlinePeer *peer in _game.connectedDevices) {
+		if ([peer.nickName isEqualToString:[tableView cellForRowAtIndexPath:indexPath].textLabel.text]) {
 			_game.otherPlayer = peer;
 		}
 	}
@@ -370,7 +476,7 @@
 	
 	cell.textLabel.font = self.helloLabel.font;
 	cell.textLabel.textColor = self.helloLabel.textColor;
-	cell.textLabel.text = ((MCPeerID*)[_game.connectedDevices objectAtIndex:indexPath.row]).displayName;
+	cell.textLabel.text = ((OnlinePeer*)[_game.connectedDevices objectAtIndex:indexPath.row]).nickName;
 	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	

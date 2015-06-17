@@ -40,6 +40,11 @@
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* SettingsViewController.m */; };
 		939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939ADCB41B0E2FD900FDEA66 /* varground.ttf */; };
+		93A6FC1C1B3045FF0094D40E /* DoIKnowYou.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93A6FC1A1B3045FF0094D40E /* DoIKnowYou.xcdatamodeld */; };
+		93A6FC1F1B304EEF0094D40E /* MyScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A6FC1E1B304EEF0094D40E /* MyScoresViewController.m */; };
+		93A6FC221B304F030094D40E /* OtherScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A6FC211B304F030094D40E /* OtherScoresViewController.m */; };
+		93B2F7031B30539200381199 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B2F7021B30539200381199 /* TabBarViewController.m */; };
+		93B2F7051B30585B00381199 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B2F7041B30585B00381199 /* CoreData.framework */; };
 		93F067511B1F44C4003B7F84 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 93F067501B1F44C4003B7F84 /* Game.m */; };
 /* End PBXBuildFile section */
 
@@ -100,7 +105,16 @@
 		939249E01AC19883008D5500 /* Connectivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connectivity.m; sourceTree = "<group>"; };
 		939249E21AC1A549008D5500 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		939249E31AC1A549008D5500 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		93930E191B30734100937360 /* DoIKnowYou2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoIKnowYou2.xcdatamodel; sourceTree = "<group>"; };
 		939ADCB41B0E2FD900FDEA66 /* varground.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = varground.ttf; sourceTree = "<group>"; };
+		93A6FC1B1B3045FF0094D40E /* DoIKnowYou.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoIKnowYou.xcdatamodel; sourceTree = "<group>"; };
+		93A6FC1D1B304EEF0094D40E /* MyScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScoresViewController.h; sourceTree = "<group>"; };
+		93A6FC1E1B304EEF0094D40E /* MyScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScoresViewController.m; sourceTree = "<group>"; };
+		93A6FC201B304F030094D40E /* OtherScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherScoresViewController.h; sourceTree = "<group>"; };
+		93A6FC211B304F030094D40E /* OtherScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherScoresViewController.m; sourceTree = "<group>"; };
+		93B2F7011B30539200381199 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		93B2F7021B30539200381199 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		93B2F7041B30585B00381199 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		93DE8DCF1B29D12600A48DA1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		93DE8DD01B29D12600A48DA1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		93F0674F1B1F44C4003B7F84 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -112,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93B2F7051B30585B00381199 /* CoreData.framework in Frameworks */,
 				9382EFF01B176CD3004A20CE /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +137,7 @@
 		14C443271AC18C6300103C35 = {
 			isa = PBXGroup;
 			children = (
+				93B2F7041B30585B00381199 /* CoreData.framework */,
 				9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */,
 				14C443321AC18C6300103C35 /* DoYouKnowMe */,
 				14C443311AC18C6300103C35 /* Products */,
@@ -144,6 +160,7 @@
 				939ADCB31B0B511600FDEA66 /* Controller */,
 				14C443371AC18C6300103C35 /* AppDelegate.h */,
 				14C443381AC18C6300103C35 /* AppDelegate.m */,
+				93A6FC1A1B3045FF0094D40E /* DoIKnowYou.xcdatamodeld */,
 				939249DF1AC19883008D5500 /* Connectivity.h */,
 				939249E01AC19883008D5500 /* Connectivity.m */,
 				9385D9441B0936900006D08D /* AuxiliaryMenuView.h */,
@@ -219,6 +236,12 @@
 				1452A45C1AC97CEB00A46762 /* ResultsViewController.m */,
 				14FA15B61B25BFD500D2A263 /* TutorialViewController.h */,
 				14FA15B71B25BFD500D2A263 /* TutorialViewController.m */,
+				93A6FC1D1B304EEF0094D40E /* MyScoresViewController.h */,
+				93A6FC1E1B304EEF0094D40E /* MyScoresViewController.m */,
+				93A6FC201B304F030094D40E /* OtherScoresViewController.h */,
+				93A6FC211B304F030094D40E /* OtherScoresViewController.m */,
+				93B2F7011B30539200381199 /* TabBarViewController.h */,
+				93B2F7021B30539200381199 /* TabBarViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -268,7 +291,7 @@
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = PK9ZTBKL3B;
+						DevelopmentTeam = 2T9YCH946H;
 					};
 				};
 			};
@@ -325,17 +348,21 @@
 				938E686E1ACC08DD009B7AE7 /* ConnectionsViewController.m in Sources */,
 				938F0CFD1B20C017006E5864 /* ReceiveFromCVC.m in Sources */,
 				938F0D031B20C030006E5864 /* ReceiveFromGVC.m in Sources */,
+				93A6FC221B304F030094D40E /* OtherScoresViewController.m in Sources */,
 				9389E0C11B2721B200E677AF /* ReceiveFromRVC.m in Sources */,
 				1457877D1AC4200F007D76A1 /* Player.m in Sources */,
 				939249E41AC1A549008D5500 /* SettingsViewController.m in Sources */,
 				14C4433C1AC18C6300103C35 /* ViewController.m in Sources */,
 				1432C40F1AC2E28B00E15CDE /* VerifyAnswerViewController.m in Sources */,
+				93A6FC1F1B304EEF0094D40E /* MyScoresViewController.m in Sources */,
 				939249E11AC19883008D5500 /* Connectivity.m in Sources */,
 				14C443391AC18C6300103C35 /* AppDelegate.m in Sources */,
 				1452A45D1AC97CEB00A46762 /* ResultsViewController.m in Sources */,
+				93A6FC1C1B3045FF0094D40E /* DoIKnowYou.xcdatamodeld in Sources */,
 				9385D9461B0936900006D08D /* AuxiliaryMenuView.m in Sources */,
 				1432C40C1AC2D40400E15CDE /* GameViewController.m in Sources */,
 				1452A4601AC988E400A46762 /* GameSettings.m in Sources */,
+				93B2F7031B30539200381199 /* TabBarViewController.m in Sources */,
 				938F0D0C1B25BE4A006E5864 /* ReceiveFromGAME.m in Sources */,
 				14C443361AC18C6300103C35 /* main.m in Sources */,
 				938F0D061B20C03E006E5864 /* ReceiveFromVAVC.m in Sources */,
@@ -506,6 +533,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		93A6FC1A1B3045FF0094D40E /* DoIKnowYou.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				93930E191B30734100937360 /* DoIKnowYou2.xcdatamodel */,
+				93A6FC1B1B3045FF0094D40E /* DoIKnowYou.xcdatamodel */,
+			);
+			currentVersion = 93A6FC1B1B3045FF0094D40E /* DoIKnowYou.xcdatamodel */;
+			path = DoIKnowYou.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 14C443281AC18C6300103C35 /* Project object */;
 }

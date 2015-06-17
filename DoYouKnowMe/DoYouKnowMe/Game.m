@@ -35,6 +35,8 @@
 #pragma mark - Implementation
 @implementation Game
 
+@synthesize fetchedResultsController, managedObjectContext;
+
 #pragma mark - Initializer Methods
 -(id)initWithSender:(UIViewController*)sender
 {
@@ -390,6 +392,52 @@
 	NSLog(@"Got invite from %@", peerID);
 	
 	invitationHandler(YES, _appDelegate.mcManager.session);
+}
+
+
+- (void)save:(ScoreType)scoreType
+{
+	NSString *entityName;
+	
+	managedObjectContext = [_appDelegate managedObjectContext];
+	
+	if (scoreType == MyScore) entityName = @"MyScore";
+	else entityName = @"OtherScore";
+	
+	// Create a new managed object
+	NSManagedObject *newScore = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:managedObjectContext];
+	[newScore setValue:_otherPlayer.displayName forKey:@"name"];
+	[newScore setValue:[NSNumber numberWithFloat:[Player knowingPercent:PLAYER2]] forKey:@"knowingPercent"];
+	
+	NSError *error = nil;
+	// Save the object to persistent store
+	if (![managedObjectContext save:&error]) {
+		NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+	}
+}
+
+- (void)load:(ScoreType)scoreType
+{
+	NSString *entityName;
+
+	managedObjectContext = [_appDelegate managedObjectContext];
+	
+	if (_scores == nil) _scores = [[NSArray alloc] init];
+	
+	if (scoreType == MyScore) entityName = @"MyScore";
+	else entityName = @"OtherScore";
+	
+	NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
+	
+	// Fetch the devices from persistent data store
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:entityDesc];
+	
+	NSError *error = nil;
+	
+	self.scores = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	
+	if (error != nil) NSLog(@"Can't Load! %@ %@", error, [error localizedDescription]);
 }
 
 @end

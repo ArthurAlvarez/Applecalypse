@@ -8,6 +8,7 @@
 
 #import "ConnectionsViewController.h"
 #import "TutorialViewController.h"
+#import "TabBarViewController.h"
 #import "AppDelegate.h"
 #import "Player.h"
 
@@ -199,7 +200,9 @@
 	}
     else if([vc isKindOfClass:[TutorialViewController class]]){
         ((TutorialViewController *) vc).cameFromFirstScreen = NO;
-    }
+	} else if ([vc isKindOfClass:[TabBarViewController class]]){
+		((TabBarViewController*) vc).game = _game;
+	}
 }
 
 -(void) connectToPlayer:(NSString *)playerName {

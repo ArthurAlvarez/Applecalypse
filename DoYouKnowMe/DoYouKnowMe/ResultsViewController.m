@@ -126,12 +126,16 @@
 	
 	if ([sender isKindOfClass:[UIButton class]]) [_game sendData:@"playAgain" fromViewController:self to:ConnectedPeer];
 	
+	[_game save:OtherScore];
+	
 	[self.navigationController popToViewController:viewController animated:NO];
 }
 
 - (IBAction)playWithOther:(id)sender
 {
 	if ([sender isKindOfClass:[UIButton class]]) [_game sendData:@"endGame" fromViewController:self to:ConnectedPeer];
+	
+	[_game save:OtherScore];
 
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }

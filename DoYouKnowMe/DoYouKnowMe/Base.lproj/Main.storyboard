@@ -342,6 +342,18 @@
                                     <action selector="goToTutorial:" destination="EWF-ZV-0wl" eventType="touchUpInside" id="FXQ-Ur-ble"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HE3-WQ-SOV">
+                                <rect key="frame" x="530" y="80" width="50" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="PuX-07-rn8"/>
+                                    <constraint firstAttribute="width" constant="50" id="fVd-nD-VDL"/>
+                                </constraints>
+                                <state key="normal" title="Scores"/>
+                                <connections>
+                                    <segue destination="NfI-Wo-iKZ" kind="show" identifier="scores" id="Rhz-eX-uPL"/>
+                                </connections>
+                            </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-Sj-KRq" customClass="AuxiliaryMenuView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
@@ -403,6 +415,7 @@
                             <constraint firstItem="3yr-ud-wF1" firstAttribute="centerY" secondItem="bBr-t0-KCa" secondAttribute="centerY" id="cwn-rV-AkK"/>
                             <constraint firstItem="uJr-Sj-KRq" firstAttribute="leading" secondItem="q75-cD-fTV" secondAttribute="leading" id="dhJ-vR-TYO"/>
                             <constraint firstItem="BUD-kF-fvd" firstAttribute="top" secondItem="arw-oj-sCG" secondAttribute="bottom" id="fQ8-51-uCI"/>
+                            <constraint firstItem="HE3-WQ-SOV" firstAttribute="trailing" secondItem="q75-cD-fTV" secondAttribute="trailingMargin" id="gc2-uO-Nby"/>
                             <constraint firstItem="BUD-kF-fvd" firstAttribute="top" secondItem="hEl-6T-Qui" secondAttribute="bottom" constant="20" id="hKo-0a-VYM"/>
                             <constraint firstItem="TAA-DI-PKM" firstAttribute="top" secondItem="D8M-fJ-Qom" secondAttribute="bottom" constant="-5" id="jSE-PO-xGx"/>
                             <constraint firstItem="D8M-fJ-Qom" firstAttribute="top" secondItem="3yr-ud-wF1" secondAttribute="bottom" constant="10" id="jSt-w2-tDH"/>
@@ -410,6 +423,7 @@
                             <constraint firstAttribute="trailing" secondItem="ggd-hM-fJt" secondAttribute="trailing" id="m1e-d5-ZKm"/>
                             <constraint firstItem="arw-oj-sCG" firstAttribute="top" secondItem="ZKh-gD-p8A" secondAttribute="bottom" constant="-1" id="mGC-WR-BuJ"/>
                             <constraint firstAttribute="trailing" secondItem="hEl-6T-Qui" secondAttribute="trailing" constant="20" id="o72-EB-F3J"/>
+                            <constraint firstItem="HE3-WQ-SOV" firstAttribute="top" secondItem="ZKh-gD-p8A" secondAttribute="bottom" constant="8" id="oOW-0r-WEF"/>
                             <constraint firstAttribute="trailing" secondItem="uJr-Sj-KRq" secondAttribute="trailing" id="q1y-gT-ERC"/>
                             <constraint firstItem="BUD-kF-fvd" firstAttribute="top" secondItem="ggd-hM-fJt" secondAttribute="bottom" id="vp0-uT-urv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bBr-t0-KCa" secondAttribute="trailing" constant="4" id="yBi-nt-4aY"/>
@@ -667,6 +681,132 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xF5-ds-KHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1945" y="604"/>
+        </scene>
+        <!--My Friends-->
+        <scene sceneID="KRm-eS-ELe">
+            <objects>
+                <viewController title="My Friends" id="vFi-D1-5iQ" customClass="OtherScoresViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SsH-Pp-ora"/>
+                        <viewControllerLayoutGuide type="bottom" id="8NB-V2-73g"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kqx-KU-b9p">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-8u-Glm">
+                                <rect key="frame" x="20" y="70" width="560" height="471"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vFi-D1-5iQ" id="8Es-hl-3kK"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much my friends know me?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGE-mr-hB4">
+                                <rect key="frame" x="175" y="30" width="250" height="20"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="EF2-AL-onx"/>
+                                    <constraint firstAttribute="width" constant="250" id="emD-Uq-duc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OEd-8u-Glm" firstAttribute="top" secondItem="ZGE-mr-hB4" secondAttribute="bottom" constant="20" id="12U-xf-kDL"/>
+                            <constraint firstItem="OEd-8u-Glm" firstAttribute="trailing" secondItem="kqx-KU-b9p" secondAttribute="trailingMargin" id="Ccj-a1-Vhy"/>
+                            <constraint firstItem="OEd-8u-Glm" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leadingMargin" id="K2U-0d-x7p"/>
+                            <constraint firstItem="ZGE-mr-hB4" firstAttribute="top" secondItem="SsH-Pp-ora" secondAttribute="bottom" constant="10" id="KbM-xu-Tba"/>
+                            <constraint firstItem="8NB-V2-73g" firstAttribute="top" secondItem="OEd-8u-Glm" secondAttribute="bottom" constant="10" id="L6v-rv-GI5"/>
+                            <constraint firstItem="ZGE-mr-hB4" firstAttribute="centerX" secondItem="kqx-KU-b9p" secondAttribute="centerX" id="fd6-bX-jYu"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="FxV-P4-faR"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="OEd-8u-Glm" id="SjE-RB-CNN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tx3-c8-1J8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1945" y="1994"/>
+        </scene>
+        <!--Me-->
+        <scene sceneID="dv4-sP-lyH">
+            <objects>
+                <viewController title="Me" id="tEO-Fn-qlK" customClass="MyScoresViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k8O-NK-ZYX"/>
+                        <viewControllerLayoutGuide type="bottom" id="gHr-up-hYU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yZj-fu-0h4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much I know my friends?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaS-Rn-YUh">
+                                <rect key="frame" x="176" y="30" width="249" height="20"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="249" id="mlN-0W-fRR"/>
+                                    <constraint firstAttribute="height" constant="20" id="p21-kP-UUM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-AU-hMH">
+                                <rect key="frame" x="20" y="70" width="560" height="471"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tEO-Fn-qlK" id="9CR-5D-YA5"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3n1-AU-hMH" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leadingMargin" id="8bH-fM-V32"/>
+                            <constraint firstItem="3n1-AU-hMH" firstAttribute="top" secondItem="qaS-Rn-YUh" secondAttribute="bottom" constant="20" id="Pao-wz-PaO"/>
+                            <constraint firstItem="3n1-AU-hMH" firstAttribute="trailing" secondItem="yZj-fu-0h4" secondAttribute="trailingMargin" id="ZWx-Xr-TOF"/>
+                            <constraint firstItem="gHr-up-hYU" firstAttribute="top" secondItem="3n1-AU-hMH" secondAttribute="bottom" constant="10" id="bHB-Tw-aqS"/>
+                            <constraint firstItem="qaS-Rn-YUh" firstAttribute="centerX" secondItem="yZj-fu-0h4" secondAttribute="centerX" id="hkg-bL-HaK"/>
+                            <constraint firstItem="qaS-Rn-YUh" firstAttribute="top" secondItem="k8O-NK-ZYX" secondAttribute="bottom" constant="10" id="t4y-HQ-CvT"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="SO4-TK-anz"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="3n1-AU-hMH" id="gLm-cD-YPa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h0h-gt-RvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1945" y="1333"/>
+        </scene>
+        <!--Tab Bar View Controller-->
+        <scene sceneID="cjp-5Z-gh9">
+            <objects>
+                <tabBarController id="NfI-Wo-iKZ" customClass="TabBarViewController" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="oUO-2I-2h9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="tEO-Fn-qlK" kind="relationship" relationship="viewControllers" id="9FO-PD-7Z6"/>
+                        <segue destination="vFi-D1-5iQ" kind="relationship" relationship="viewControllers" id="BNl-5p-3Wv"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gvd-kP-TdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1099" y="1663"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="GwC-KS-feF">
@@ -1239,7 +1379,7 @@
         <image name="wrong-mark" width="1920" height="1703"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ARF-uX-BDs"/>
+        <segue reference="NF6-W8-UGy"/>
         <segue reference="Gsj-Ah-dbt"/>
     </inferredMetricsTieBreakers>
 </document>

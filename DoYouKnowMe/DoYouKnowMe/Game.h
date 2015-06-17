@@ -13,19 +13,28 @@
 #import "GameSettings.h"
 #import "AppDelegate.h"
 #import "Connectivity.h"
+#import <CoreData/CoreData.h>
 
 typedef enum : NSUInteger {
 	AllPeers,
 	ConnectedPeer,
 } SendDataTo;
 
+typedef enum : NSUInteger {
+	MyScore,
+	OtherScore,
+} ScoreType;
+
 @interface Game : NSObject <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate>
 
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property AppDelegate *appDelegate;
 @property MCPeerID *otherPlayer;
 @property NSMutableArray *connectedDevices;
 @property NSString *otherAnswer;
 @property NSString *myAnswer;
+@property (strong) NSArray *scores;
 
 - (id) initWithSender:(UIViewController*)sender;
 - (void) initiateBrowsing;
@@ -37,6 +46,8 @@ typedef enum : NSUInteger {
 - (BOOL) addScore:(BOOL)isCorrect toPlayer:(int)player;
 - (void) getQuestion;
 - (void) questionTextFromIndex:(NSNumber *)index;
+- (void) save:(ScoreType)scoreType;
+- (void) load:(ScoreType)scoreType;
 
 
 @end

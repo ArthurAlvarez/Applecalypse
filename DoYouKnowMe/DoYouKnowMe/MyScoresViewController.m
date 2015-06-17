@@ -7,6 +7,7 @@
 //
 
 #import "MyScoresViewController.h"
+#import "ScoresCell.h"
 
 @interface MyScoresViewController ()
 
@@ -22,6 +23,11 @@
 	TabBarViewController *tabVC = (TabBarViewController*) [self tabBarController];
 	
 	_game = tabVC.game;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
 	
 	[_game load:MyScore];
 	[_tableView reloadData];
@@ -30,6 +36,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)goBack:(id)sender {
+	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -47,12 +57,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *CellIdentifier = @"Cell";
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	
+	ScoresCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
+	if (cell == nil) {
+		cell = [[ScoresCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+	}
 	
 	// Configure the cell...
 	NSManagedObject *device = [_game.scores objectAtIndex:indexPath.row];
-	[cell.textLabel setText:[NSString stringWithFormat:@"%@", [device valueForKey:@"name"]]];
-	[cell.detailTextLabel setText:[device valueForKey:@"knowingPercent"]];
+	[cell.name setText:[NSString stringWithFormat:@"%@", [device valueForKey:@"name"]]];
+	[cell.score setText:[device valueForKey:@"knowingPercent"]];
 	
 	return cell;
 }

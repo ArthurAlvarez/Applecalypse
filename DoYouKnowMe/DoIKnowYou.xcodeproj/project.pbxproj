@@ -40,6 +40,7 @@
 		938F0D0C1B25BE4A006E5864 /* ReceiveFromGAME.m in Sources */ = {isa = PBXBuildFile; fileRef = 938F0D0B1B25BE4A006E5864 /* ReceiveFromGAME.m */; };
 		939249E11AC19883008D5500 /* Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E01AC19883008D5500 /* Connectivity.m */; };
 		939249E41AC1A549008D5500 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939249E31AC1A549008D5500 /* SettingsViewController.m */; };
+		93930E1D1B31BA4700937360 /* ScoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93930E1C1B31BA4700937360 /* ScoresCell.m */; };
 		939ADCB51B0E337F00FDEA66 /* varground.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 939ADCB41B0E2FD900FDEA66 /* varground.ttf */; };
 		93A6FC1C1B3045FF0094D40E /* DoIKnowYou.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93A6FC1A1B3045FF0094D40E /* DoIKnowYou.xcdatamodeld */; };
 		93A6FC1F1B304EEF0094D40E /* MyScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A6FC1E1B304EEF0094D40E /* MyScoresViewController.m */; };
@@ -109,6 +110,8 @@
 		939249E21AC1A549008D5500 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		939249E31AC1A549008D5500 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		93930E191B30734100937360 /* DoIKnowYou2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoIKnowYou2.xcdatamodel; sourceTree = "<group>"; };
+		93930E1B1B31BA4700937360 /* ScoresCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresCell.h; sourceTree = "<group>"; };
+		93930E1C1B31BA4700937360 /* ScoresCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresCell.m; sourceTree = "<group>"; };
 		939ADCB41B0E2FD900FDEA66 /* varground.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = varground.ttf; sourceTree = "<group>"; };
 		93A6FC1B1B3045FF0094D40E /* DoIKnowYou.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoIKnowYou.xcdatamodel; sourceTree = "<group>"; };
 		93A6FC1D1B304EEF0094D40E /* MyScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScoresViewController.h; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				1452A45F1AC988E400A46762 /* GameSettings.m */,
 				14C7400C1B3042F900E946FA /* OnlinePeer.h */,
 				14C7400D1B3042F900E946FA /* OnlinePeer.m */,
+				93930E1B1B31BA4700937360 /* ScoresCell.h */,
+				93930E1C1B31BA4700937360 /* ScoresCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				14C4433C1AC18C6300103C35 /* ViewController.m in Sources */,
 				1432C40F1AC2E28B00E15CDE /* VerifyAnswerViewController.m in Sources */,
 				93A6FC1F1B304EEF0094D40E /* MyScoresViewController.m in Sources */,
+				93930E1D1B31BA4700937360 /* ScoresCell.m in Sources */,
 				939249E11AC19883008D5500 /* Connectivity.m in Sources */,
 				14C443391AC18C6300103C35 /* AppDelegate.m in Sources */,
 				1452A45D1AC97CEB00A46762 /* ResultsViewController.m in Sources */,

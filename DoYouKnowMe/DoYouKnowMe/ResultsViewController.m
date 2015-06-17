@@ -49,13 +49,15 @@
 {
     [super viewDidLoad];
 	
-	float knowingPercent = [Player knowingPercent:PLAYER2];
+	float knowingPercent;
 	
     if([Player getPlayerID] == 1 || [GameSettings getGameType] == ALTERNATEMODE) {
         self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"otherKnowMe", nil), _game.otherPlayer.nickName];
+		knowingPercent = [Player knowingPercent:PLAYER2];
     }
     else if([Player getPlayerID] == 2){
         self.topLabel.text = [NSString stringWithFormat:NSLocalizedString(@"iKnowOther", nil), _game.otherPlayer.nickName];
+		knowingPercent = [Player knowingPercent:PLAYER1];
     }
     
 	NSLog(@"score final: %d", [Player getScore:PLAYER2]);
@@ -99,7 +101,15 @@
 {
 	[super viewDidAppear:animated];
 	
-	[self.rate setProgress:[Player knowingPercent:PLAYER2] animated:YES];
+	if([Player getPlayerID] == 1 || [GameSettings getGameType] == ALTERNATEMODE) {
+		if ([GameSettings getGameType] == ALTERNATEMODE) [_game save:MyScore];
+		[_game save:OtherScore];
+		[self.rate setProgress:[Player knowingPercent:PLAYER2] animated:YES];
+	}
+	else if([Player getPlayerID] == 2){
+		[self.rate setProgress:[Player knowingPercent:PLAYER1] animated:YES];
+		[_game save:MyScore];
+	}
 	
 	[super viewDidAppear:animated];
 	
@@ -126,16 +136,12 @@
 	
 	if ([sender isKindOfClass:[UIButton class]]) [_game sendData:@"playAgain" fromViewController:self to:ConnectedPeer];
 	
-	[_game save:OtherScore];
-	
 	[self.navigationController popToViewController:viewController animated:NO];
 }
 
 - (IBAction)playWithOther:(id)sender
 {
 	if ([sender isKindOfClass:[UIButton class]]) [_game sendData:@"endGame" fromViewController:self to:ConnectedPeer];
-	
-	[_game save:OtherScore];
 
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }

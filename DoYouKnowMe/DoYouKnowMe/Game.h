@@ -13,6 +13,7 @@
 #import "GameSettings.h"
 #import "AppDelegate.h"
 #import "Connectivity.h"
+#import "OnlinePeer.h"
 #import <CoreData/CoreData.h>
 
 typedef enum : NSUInteger {

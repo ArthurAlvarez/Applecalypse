@@ -211,6 +211,10 @@
     }
 }
 
+#pragma mark - Conectivity Methods
+/*
+    Connects to other peer to play togheter
+ */
 -(void) connectToPlayer:(NSString *)playerName {
     for (OnlinePeer *peer in _game.connectedDevices) {
         if ([peer.peerID.displayName isEqualToString:playerName]) {
@@ -219,6 +223,11 @@
         }
     }
 }
+
+/*
+    Reloads list of connected peers and displays in a list view
+ */
+
 - (void) reloadData
 {
 	[_connectedDevices reloadData];
@@ -226,12 +235,33 @@
 	self.connectedDevices.allowsSelection = YES;
 }
 
+/*
+ Shows game invitations
+ */
+-(void) showInviteFrom:(MCPeerID *)peer{
+    for(OnlinePeer *p in _game.connectedDevices){
+        if(p.peerID == peer){
+            
+            self.acceptInviteView.peerName = p.nickName;
+            [self.acceptInviteView show];
+            break;
+        }
+    }
+}
+
+/*
+    Accepts invitation to play togheter
+ */
+
 -(void) acceptInvitation {
     [_game pauseBrowsing];
     [_game sendData:@"acceptedNext" fromViewController:self to:ConnectedPeer];
     NSLog(@"accepted invitation");
 }
 
+/*
+    When other user rejects invitation
+ */
 -(void) rejectedInvitationWith:(RejectCause)cause {
     canGoNext = 0;
     [_waitingGoNext stopAnimating];
@@ -262,19 +292,38 @@
     }
 }
 
+/*
+    Rejects invitation from others
+ */
+
 -(void) sendRejectTo:(NSString*)peerName {
     [_game sendData:@"rejected" fromViewController:self toPeer:peerName];
 }
 
--(void) sendReject
-{
+/*
+    Rejects invitation from connected peer
+ */
+-(void) sendReject{
 	[_game sendData:@"rejected" fromViewController:self to:ConnectedPeer];
 }
 
+/*
+    Tells other users that the device is currently connecting to someone
+ */
 -(void) sendBusyTo:(NSString*)peerName{
     [_game sendData:@"busy" fromViewController:self toPeer:peerName];
 }
 
+/*
+    Tells other users that the device is already in a game session
+ */
+-(void) sendInGameTo:(NSString*)peerName{
+    [_game sendData:@"busy2" fromViewController:self toPeer:peerName];
+}
+
+/*
+    Handles changes of nicknames
+ */
 -(void) ChangePeer:(MCPeerID *)Peer NicknameTo:(NSString *)Nickname{
     for (OnlinePeer *p in _game.connectedDevices) {
         if(p.peerID == Peer){
@@ -289,21 +338,16 @@
     [self reloadData];
 }
 
--(void) showInviteFrom:(MCPeerID *)peer{
-    for(OnlinePeer *p in _game.connectedDevices){
-        if(p.peerID == peer){
-            
-            self.acceptInviteView.peerName = p.nickName;
-            [self.acceptInviteView show];
-            break;
-        }
-    }
-}
-
+/*
+    Sends current nickname to other peer
+ */
 -(void) sendNickToPeer:(MCPeerID *)peer{
     [_game sendData:[NSString stringWithFormat:@"$#@%@", _txtName.text] fromViewController:self toPeer:peer.displayName];
 }
 
+/*
+    Updates nickname from other peer
+ */
 -(void) gotNick:(NSString*)nick FromPeer:(MCPeerID *)peer{
     for(OnlinePeer *p in _game.connectedDevices){
         if(p.peerID == peer){

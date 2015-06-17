@@ -27,16 +27,15 @@
 -(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName{
     if (_peerID == nil){
         _peerID = [[OnlinePeer alloc] initWith:[[MCPeerID alloc] initWithDisplayName:displayName]];
+        
     }
     else{
         _peerID.nickName = displayName;
         NSLog(@"Recycling current peer with new name: %@", displayName);
     }
-    
-    _session = [[MCSession alloc] initWithPeer:_peerID.peerID];
-    _session.delegate = self;
+        _session = [[MCSession alloc] initWithPeer:_peerID.peerID];
+        _session.delegate = self;
 }
-
 
 -(void)setupMCBrowser{
 	_browser = [[MCNearbyServiceBrowser alloc] initWithPeer:_peerID.peerID serviceType:@"doyouknowme"];

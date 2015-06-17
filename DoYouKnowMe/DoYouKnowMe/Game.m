@@ -352,14 +352,14 @@
 		{
 			if (state == MCSessionStateConnected)
 			{
+                NSLog(@"Connected to %@", peerID.displayName);
                 OnlinePeer *newPeer = [[OnlinePeer alloc] initWith:peerID];
 				[_connectedDevices addObject:newPeer];
                 dict = @{@"peerID": peerID, @"status": @"connected"};
-
-
 			}
 			else if (state == MCSessionStateNotConnected)
 			{
+                NSLog(@"Lost device %@", peerID);
                 dict = @{@"peerID": peerID, @"status": @"disconnected"};
 				if ([_connectedDevices count] > 0)
 				{
@@ -390,10 +390,19 @@
  **/
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
 {	
-	NSLog(@"Found a nearby advertising peer %@", peerID);
-	
-	//Manda convite para conexao
-	[[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+    if(peerID != _appDelegate.mcManager.session.myPeerID){
+        //Manda convite para conexao
+        BOOL found = NO;
+        for(OnlinePeer *p in _connectedDevices){
+            if(p.peerID == peerID){
+                found = YES;
+            }
+        }
+        if(!found){
+            NSLog(@"Found a nearby advertising peer %@", peerID);
+            [[[_appDelegate mcManager] browser] invitePeer:peerID toSession:_appDelegate.mcManager.session withContext:nil timeout:60];
+        }
+    }
 }
 
 /**
@@ -401,7 +410,7 @@
  **/
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID
 {
-	NSLog(@"Lost device %@", peerID);
+	//NSLog(@"Lost device %@", peerID);
 }
 
 /**
@@ -410,7 +419,7 @@
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL accept,
 							 MCSession *session))invitationHandler
 {
-	NSLog(@"Got invite from %@", peerID);
+	NSLog(@"Accepted invite from %@", peerID);
 	
 	invitationHandler(YES, _appDelegate.mcManager.session);
 }

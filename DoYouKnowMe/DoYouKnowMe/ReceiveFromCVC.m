@@ -19,45 +19,58 @@
     if([data hasPrefix:@"goNext"] && _viewController.connected == YES){
         NSLog(@"Received GoNext");
         NSLog(@"Sending busy to %@", other);
-        [_viewController sendBusyTo: other];
+        [_viewController sendInGameTo: other];
     }
     
 	else if ([data hasPrefix:@"goNext"] && _viewController.connecting == NO) {
         _viewController.connecting = YES;
-        
         NSLog(@"Received GoNext");
-
         [_viewController canGoNext];
         [_viewController connectToPlayer:other];
         [_viewController showInviteFrom:peer];
-    }
+        }
 	
 	else if ([data hasPrefix:@"goNext"] && _viewController.connecting == YES) {
         NSLog(@"Sending busy to %@", other);
 		[_viewController sendBusyTo:other];
-	} else if([data isEqualToString:@"acceptedNext"]){
+        }
+    
+    else if([data isEqualToString:@"acceptedNext"]){
         NSLog(@"Received acceptedNext");
         _viewController.connecting = NO;
         [_viewController canGoNext];
-    } else if([data isEqualToString:@"rejected"]){
+        }
+    
+    else if([data isEqualToString:@"rejected"]){
         _viewController.connecting = NO;
         [_viewController rejectedInvitationWith:REJECT];
-    } else if([data isEqualToString:@"busy"]){
-        NSLog(@"got busy");
+        }
+    
+    else if([data isEqualToString:@"busy"]){
+        NSLog(@"got busy rejection");
         _viewController.connecting = NO;
         [_viewController rejectedInvitationWith:BUSY];
+        }
+    
+    else if([data isEqualToString:@"busy2"]){
+        NSLog(@"got InGame rejection");
+        _viewController.connecting = NO;
+        [_viewController rejectedInvitationWith:INGAME];
     }
+    
     else if([data hasPrefix:@"newNick"]){
         NSString *newNick = [data substringFromIndex:7];
         [_viewController ChangePeer:peer NicknameTo:newNick];
-    }
+        }
+    
     else if([data isEqualToString:@"getNick"]){
         [_viewController sendNickToPeer:peer];
-    }
+        }
+    
     else if([data hasPrefix:@"$#@"]){
         NSString *nick = [data substringFromIndex:3];
         [_viewController gotNick:nick FromPeer:peer];
-    }
+        }
 }
 
 @end

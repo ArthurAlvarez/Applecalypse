@@ -133,6 +133,8 @@
 - (IBAction)browseForDevices:(id)sender
 {
 	canGoNext = 0;
+    self.connecting = NO;
+    self.connected = NO;
 	
 	[_game initiateSession:_txtName.text];
 		
@@ -203,7 +205,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	UIViewController *vc = segue.destinationViewController;
-	
+    self.connected = YES;
+    
 	if ([vc isKindOfClass:[SettingsViewController class]]) {
 		((SettingsViewController*) vc).game = _game;
 	}

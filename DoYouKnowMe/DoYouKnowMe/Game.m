@@ -438,7 +438,7 @@
 	
 	// Create a new managed object
 	NSManagedObject *newScore = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:managedObjectContext];
-	[newScore setValue:_otherPlayer.displayName forKey:@"name"];
+	[newScore setValue:_otherPlayer.nickName forKey:@"name"];
 	[newScore setValue:[NSNumber numberWithFloat:[Player knowingPercent:PLAYER2]] forKey:@"knowingPercent"];
 	
 	NSError *error = nil;

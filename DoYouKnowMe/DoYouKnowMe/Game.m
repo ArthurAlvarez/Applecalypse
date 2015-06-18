@@ -466,10 +466,12 @@
 	else entityName = @"OtherScore";
 	
 	NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
+	NSSortDescriptor *sortByKnowingPercent = [[NSSortDescriptor alloc] initWithKey:@"knowingPercent" ascending:NO];
 	
 	// Fetch the devices from persistent data store
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	[fetchRequest setEntity:entityDesc];
+	[fetchRequest setSortDescriptors:[[NSArray alloc] initWithObjects:sortByKnowingPercent, nil]];
 	
 	NSError *error = nil;
 	

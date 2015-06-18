@@ -82,8 +82,9 @@
 		9329F80D1B29ACE600274BA4 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9329F80E1B29B23000274BA4 /* questionsEN.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questionsEN.txt; sourceTree = SOURCE_ROOT; };
 		9329F80F1B29B23000274BA4 /* questionsPT.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = questionsPT.txt; sourceTree = SOURCE_ROOT; };
-		932BB2A71B2B0F310037A750 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		9374D1141B287A0900A920EA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
+		933500871B32F3CC00CF81EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		933500891B32F3EA00CF81EA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
+		9335008B1B32F40C00CF81EA /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		9382EFEB1B176AF2004A20CE /* sound_error.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_error.aiff; sourceTree = "<group>"; };
 		9382EFEC1B176AF2004A20CE /* sound_right.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sound_right.aiff; sourceTree = "<group>"; };
 		9382EFEF1B176CD3004A20CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -122,7 +123,6 @@
 		93B2F7021B30539200381199 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		93B2F7041B30585B00381199 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		93DE8DCF1B29D12600A48DA1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		93DE8DD01B29D12600A48DA1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		93F0674F1B1F44C4003B7F84 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		93F067501B1F44C4003B7F84 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -389,9 +389,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				14C4433E1AC18C6300103C35 /* Base */,
-				9374D1141B287A0900A920EA /* pt-BR */,
-				93DE8DD01B29D12600A48DA1 /* pt */,
-				932BB2A71B2B0F310037A750 /* en */,
+				933500871B32F3CC00CF81EA /* en */,
+				933500891B32F3EA00CF81EA /* pt-BR */,
+				9335008B1B32F40C00CF81EA /* pt */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

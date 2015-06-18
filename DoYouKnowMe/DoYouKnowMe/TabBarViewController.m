@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	
+	[[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }
+											 forState:UIControlStateNormal];
+	[[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithHue:7/360 saturation:0.66 brightness:0.98 alpha:1.0] }
+											 forState:UIControlStateSelected];
+	
 }
 
 - (void)didReceiveMemoryWarning {

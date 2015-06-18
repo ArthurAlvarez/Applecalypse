@@ -32,32 +32,38 @@
 /* Class = "UILabel"; text = "x/y"; ObjectID = "9to-qa-g0y"; */
 "9to-qa-g0y.text" = "x/y";
 
-/* Class = "UIButton"; normalTitle = "Disconnect"; ObjectID = "Atc-g8-8lO"; */
-"Atc-g8-8lO.normalTitle" = "Disconnect";
-
 /* Class = "UILabel"; text = "Time"; ObjectID = "Bs4-Gz-WI9"; */
 "Bs4-Gz-WI9.text" = "Time";
 
-/* Class = "UILabel"; text = "Hi,"; ObjectID = "D8M-fJ-Qom"; */
-"D8M-fJ-Qom.text" = "Hi,";
+/* Class = "UILabel"; text = "Hi, "; ObjectID = "D8M-fJ-Qom"; */
+"D8M-fJ-Qom.text" = "Hi, ";
 
-/* Class = "UISegmentedControl"; Dtz-p7-56e.segmentTitles[0] = "About me"; ObjectID = "Dtz-p7-56e"; */
-"Dtz-p7-56e.segmentTitles[0]" = "About me";
+/* Class = "UISegmentedControl"; Dtz-p7-56e.segmentTitles[0] = "About Me"; ObjectID = "Dtz-p7-56e"; */
+"Dtz-p7-56e.segmentTitles[0]" = "About Me";
 
 /* Class = "UISegmentedControl"; Dtz-p7-56e.segmentTitles[1] = "<amigo>"; ObjectID = "Dtz-p7-56e"; */
 "Dtz-p7-56e.segmentTitles[1]" = "<amigo>";
 
-/* Class = "UISegmentedControl"; Dtz-p7-56e.segmentTitles[2] = "Alternado"; ObjectID = "Dtz-p7-56e"; */
+/* Class = "UISegmentedControl"; Dtz-p7-56e.segmentTitles[2] = "Alternate"; ObjectID = "Dtz-p7-56e"; */
 "Dtz-p7-56e.segmentTitles[2]" = "Alternate";
 
 /* Class = "UILabel"; text = "20"; ObjectID = "F3N-x9-1e9"; */
 "F3N-x9-1e9.text" = "20";
 
+/* Class = "UITabBarItem"; title = "Know Me"; ObjectID = "FxV-P4-faR"; */
+"FxV-P4-faR.title" = "Know Me";
+
+/* Class = "UIButton"; normalTitle = "Scores"; ObjectID = "HE3-WQ-SOV"; */
+"HE3-WQ-SOV.normalTitle" = "Scores";
+
 /* Class = "UIButton"; normalTitle = "Browse friends"; ObjectID = "I5v-wn-g0G"; */
 "I5v-wn-g0G.normalTitle" = "Browse friends";
 
-/* Class = "UILabel"; text = "Configurations"; ObjectID = "IGw-bN-Wbj"; */
+/* Class = "UILabel"; text = "Settings"; ObjectID = "IGw-bN-Wbj"; */
 "IGw-bN-Wbj.text" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "LgU-JG-3PF"; */
+"LgU-JG-3PF.normalTitle" = "<";
 
 /* Class = "UILabel"; text = "100%"; ObjectID = "MdE-bL-75W"; */
 "MdE-bL-75W.text" = "100%";
@@ -71,8 +77,14 @@
 /* Class = "UILabel"; text = "Do I Know You?"; ObjectID = "PER-Ml-i3b"; */
 "PER-Ml-i3b.text" = "Do I Know You?";
 
-/* Class = "UIButton"; normalTitle = "Play"; ObjectID = "QLa-iO-ztl"; */
+/* Class = "UIButton"; normalTitle = "Jogar"; ObjectID = "QLa-iO-ztl"; */
 "QLa-iO-ztl.normalTitle" = "Play";
+
+/* Class = "UITabBarItem"; title = "Know Them"; ObjectID = "SO4-TK-anz"; */
+"SO4-TK-anz.title" = "Know Them";
+
+/* Class = "UILabel"; text = "score"; ObjectID = "T8l-es-AhL"; */
+"T8l-es-AhL.text" = "score";
 
 /* Class = "UILabel"; text = "What's your name?"; ObjectID = "TAA-DI-PKM"; */
 "TAA-DI-PKM.text" = "What's your name?";
@@ -80,8 +92,11 @@
 /* Class = "UITextField"; placeholder = "Touch to answer"; ObjectID = "TDV-1E-jzr"; */
 "TDV-1E-jzr.placeholder" = "Touch to answer";
 
-/* Class = "UILabel"; text = "Answer"; ObjectID = "TWm-nD-3Bk"; */
-"TWm-nD-3Bk.text" = "Answer";
+/* Class = "UILabel"; text = "Resposta"; ObjectID = "TWm-nD-3Bk"; */
+"TWm-nD-3Bk.text" = "Resposta";
+
+/* Class = "UIButton"; normalTitle = "<"; ObjectID = "Uuo-Ux-qRh"; */
+"Uuo-Ux-qRh.normalTitle" = "<";
 
 /* Class = "UISegmentedControl"; Wzr-5N-fgd.segmentTitles[0] = "20"; ObjectID = "Wzr-5N-fgd"; */
 "Wzr-5N-fgd.segmentTitles[0]" = "20";
@@ -92,11 +107,20 @@
 /* Class = "UISegmentedControl"; Wzr-5N-fgd.segmentTitles[2] = "40"; ObjectID = "Wzr-5N-fgd"; */
 "Wzr-5N-fgd.segmentTitles[2]" = "40";
 
+/* Class = "UILabel"; text = "name"; ObjectID = "X5t-G5-p9h"; */
+"X5t-G5-p9h.text" = "name";
+
+/* Class = "UILabel"; text = "How much my friends know me?"; ObjectID = "ZGE-mr-hB4"; */
+"ZGE-mr-hB4.text" = "How much my friends know me?";
+
 /* Class = "UILabel"; text = "Quanto <user_name> me conhece..."; ObjectID = "Zrw-aK-VCc"; */
 "Zrw-aK-VCc.text" = "Quanto <user_name> me conhece...";
 
-/* Class = "UILabel"; text = "Pergunta sobre <>"; ObjectID = "a1b-5r-PMS"; */
-"a1b-5r-PMS.text" = "Pergunta sobre <>";
+/* Class = "UILabel"; text = "Question about <>"; ObjectID = "a1b-5r-PMS"; */
+"a1b-5r-PMS.text" = "Question about <>";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "b5B-ob-XVU"; */
+"b5B-ob-XVU.text" = "name";
 
 /* Class = "UIButton"; normalTitle = "?"; ObjectID = "bBr-t0-KCa"; */
 "bBr-t0-KCa.normalTitle" = "?";
@@ -107,8 +131,11 @@
 /* Class = "UILabel"; text = "Round"; ObjectID = "dYt-a8-SDf"; */
 "dYt-a8-SDf.text" = "Round";
 
-/* Class = "UILabel"; text = "The questions will be about who?"; ObjectID = "eWN-fs-vxG"; */
-"eWN-fs-vxG.text" = "The questions will be about who?";
+/* Class = "UILabel"; text = "Whom the questions are about?"; ObjectID = "eWN-fs-vxG"; */
+"eWN-fs-vxG.text" = "Whom the questions are about?";
+
+/* Class = "UILabel"; text = "score"; ObjectID = "fJ0-dd-dxf"; */
+"fJ0-dd-dxf.text" = "score";
 
 /* Class = "UILabel"; text = "Right or wrong?"; ObjectID = "fgn-0m-1oW"; */
 "fgn-0m-1oW.text" = "Right or wrong?";
@@ -122,11 +149,17 @@
 /* Class = "UIButton"; normalTitle = "Start"; ObjectID = "iXw-8L-TAb"; */
 "iXw-8L-TAb.normalTitle" = "Start";
 
-/* Class = "UIButton"; normalTitle = "Disconnect"; ObjectID = "nU5-wL-ug7"; */
-"nU5-wL-ug7.normalTitle" = "Disconnect";
-
 /* Class = "UIButton"; normalTitle = "Go back"; ObjectID = "oQX-6l-paH"; */
 "oQX-6l-paH.normalTitle" = "Go back";
+
+/* Class = "UILabel"; text = "How much I know my friends?"; ObjectID = "qaS-Rn-YUh"; */
+"qaS-Rn-YUh.text" = "How much I know my friends?";
+
+/* Class = "UIViewController"; title = "Me"; ObjectID = "tEO-Fn-qlK"; */
+"tEO-Fn-qlK.title" = "Me";
+
+/* Class = "UIViewController"; title = "My Friends"; ObjectID = "vFi-D1-5iQ"; */
+"vFi-D1-5iQ.title" = "My Friends";
 
 /* Class = "UILabel"; text = "Loading question..."; ObjectID = "wgz-EY-fsS"; */
 "wgz-EY-fsS.text" = "Loading question...";

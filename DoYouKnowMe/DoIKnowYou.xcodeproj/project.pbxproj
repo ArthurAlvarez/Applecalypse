@@ -12,6 +12,13 @@
 		1452A45D1AC97CEB00A46762 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1452A45C1AC97CEB00A46762 /* ResultsViewController.m */; };
 		1452A4601AC988E400A46762 /* GameSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1452A45F1AC988E400A46762 /* GameSettings.m */; };
 		1457877D1AC4200F007D76A1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 1457877C1AC4200F007D76A1 /* Player.m */; };
+		14B0C5051B32E9AD0080DFB3 /* Tutorial4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0C5031B32E9AD0080DFB3 /* Tutorial4.xib */; };
+		14B0C5061B32E9AD0080DFB3 /* Tutorial5.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0C5041B32E9AD0080DFB3 /* Tutorial5.xib */; };
+		14B0C5081B32F3AE0080DFB3 /* Tutorial1_EN.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0C5071B32F3AE0080DFB3 /* Tutorial1_EN.xib */; };
+		14B0C50D1B32F3C50080DFB3 /* Tutorial2_EN.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0C5091B32F3C50080DFB3 /* Tutorial2_EN.xib */; };
+		14B0C50E1B32F3C50080DFB3 /* Tutorial3_EN.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0C50A1B32F3C50080DFB3 /* Tutorial3_EN.xib */; };
+		14B0C50F1B32F3C50080DFB3 /* Tutorial4_EN.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0C50B1B32F3C50080DFB3 /* Tutorial4_EN.xib */; };
+		14B0C5101B32F3C50080DFB3 /* Tutorial5_EN.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B0C50C1B32F3C50080DFB3 /* Tutorial5_EN.xib */; };
 		14C443361AC18C6300103C35 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443351AC18C6300103C35 /* main.m */; };
 		14C443391AC18C6300103C35 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C443381AC18C6300103C35 /* AppDelegate.m */; };
 		14C4433C1AC18C6300103C35 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C4433B1AC18C6300103C35 /* ViewController.m */; };
@@ -61,6 +68,13 @@
 		1452A45F1AC988E400A46762 /* GameSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettings.m; sourceTree = "<group>"; };
 		1457877B1AC4200F007D76A1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		1457877C1AC4200F007D76A1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		14B0C5031B32E9AD0080DFB3 /* Tutorial4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial4.xib; sourceTree = "<group>"; };
+		14B0C5041B32E9AD0080DFB3 /* Tutorial5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial5.xib; sourceTree = "<group>"; };
+		14B0C5071B32F3AE0080DFB3 /* Tutorial1_EN.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial1_EN.xib; sourceTree = "<group>"; };
+		14B0C5091B32F3C50080DFB3 /* Tutorial2_EN.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial2_EN.xib; sourceTree = "<group>"; };
+		14B0C50A1B32F3C50080DFB3 /* Tutorial3_EN.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial3_EN.xib; sourceTree = "<group>"; };
+		14B0C50B1B32F3C50080DFB3 /* Tutorial4_EN.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial4_EN.xib; sourceTree = "<group>"; };
+		14B0C50C1B32F3C50080DFB3 /* Tutorial5_EN.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Tutorial5_EN.xib; sourceTree = "<group>"; };
 		14C443301AC18C6300103C35 /* DoIKnowYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoIKnowYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C443341AC18C6300103C35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C443351AC18C6300103C35 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -140,6 +154,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14B0C5111B32F3D00080DFB3 /* Tutorial_xibs */ = {
+			isa = PBXGroup;
+			children = (
+				14B0C5131B32F3F60080DFB3 /* Tutorial_PT */,
+				14B0C5121B32F3EC0080DFB3 /* Tutorial_EN */,
+			);
+			name = Tutorial_xibs;
+			sourceTree = "<group>";
+		};
+		14B0C5121B32F3EC0080DFB3 /* Tutorial_EN */ = {
+			isa = PBXGroup;
+			children = (
+				14B0C5071B32F3AE0080DFB3 /* Tutorial1_EN.xib */,
+				14B0C5091B32F3C50080DFB3 /* Tutorial2_EN.xib */,
+				14B0C50A1B32F3C50080DFB3 /* Tutorial3_EN.xib */,
+				14B0C50B1B32F3C50080DFB3 /* Tutorial4_EN.xib */,
+				14B0C50C1B32F3C50080DFB3 /* Tutorial5_EN.xib */,
+			);
+			name = Tutorial_EN;
+			sourceTree = "<group>";
+		};
+		14B0C5131B32F3F60080DFB3 /* Tutorial_PT */ = {
+			isa = PBXGroup;
+			children = (
+				14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */,
+				14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */,
+				14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */,
+				14B0C5031B32E9AD0080DFB3 /* Tutorial4.xib */,
+				14B0C5041B32E9AD0080DFB3 /* Tutorial5.xib */,
+			);
+			name = Tutorial_PT;
+			sourceTree = "<group>";
+		};
 		14C443271AC18C6300103C35 = {
 			isa = PBXGroup;
 			children = (
@@ -191,14 +238,12 @@
 		938E68731ACC297F009B7AE7 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				14B0C5111B32F3D00080DFB3 /* Tutorial_xibs */,
 				939ADCB41B0E2FD900FDEA66 /* varground.ttf */,
 				9382EFEB1B176AF2004A20CE /* sound_error.aiff */,
 				9382EFEC1B176AF2004A20CE /* sound_right.aiff */,
 				9329F80E1B29B23000274BA4 /* questionsEN.txt */,
 				9329F80F1B29B23000274BA4 /* questionsPT.txt */,
-				14FA15B91B25C0BB00D2A263 /* Tutorial1.xib */,
-				14FA15BB1B25C18A00D2A263 /* Tutorial2.xib */,
-				14FA15BD1B25C1BD00D2A263 /* Tutorial3.xib */,
 				9329F80C1B29ACD300274BA4 /* Localizable.strings */,
 			);
 			name = resources;
@@ -301,7 +346,7 @@
 				TargetAttributes = {
 					14C4432F1AC18C6300103C35 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 2T9YCH946H;
+						DevelopmentTeam = PK9ZTBKL3B;
 					};
 				};
 			};
@@ -334,14 +379,21 @@
 				14FA15BE1B25C1BD00D2A263 /* Tutorial3.xib in Resources */,
 				9329F80A1B29ACD300274BA4 /* Localizable.strings in Resources */,
 				9329F8101B29B23000274BA4 /* questionsEN.txt in Resources */,
+				14B0C50E1B32F3C50080DFB3 /* Tutorial3_EN.xib in Resources */,
+				14B0C50F1B32F3C50080DFB3 /* Tutorial4_EN.xib in Resources */,
+				14B0C5051B32E9AD0080DFB3 /* Tutorial4.xib in Resources */,
 				93009F211ACD74250075610E /* Launch Screen.xib in Resources */,
 				14C4433F1AC18C6300103C35 /* Main.storyboard in Resources */,
 				9329F8111B29B23000274BA4 /* questionsPT.txt in Resources */,
 				14FA15BA1B25C0BB00D2A263 /* Tutorial1.xib in Resources */,
+				14B0C50D1B32F3C50080DFB3 /* Tutorial2_EN.xib in Resources */,
 				14C443411AC18C6300103C35 /* Images.xcassets in Resources */,
 				9382EFEE1B176AF2004A20CE /* sound_right.aiff in Resources */,
+				14B0C5101B32F3C50080DFB3 /* Tutorial5_EN.xib in Resources */,
+				14B0C5081B32F3AE0080DFB3 /* Tutorial1_EN.xib in Resources */,
 				9382EFED1B176AF2004A20CE /* sound_error.aiff in Resources */,
 				14FA15BC1B25C18A00D2A263 /* Tutorial2.xib in Resources */,
+				14B0C5061B32E9AD0080DFB3 /* Tutorial5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

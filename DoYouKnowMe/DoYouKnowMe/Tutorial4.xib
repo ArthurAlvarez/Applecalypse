@@ -10,20 +10,23 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tut_002" translatesAutoresizingMaskIntoConstraints="NO" id="f0P-cp-Jmr">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tut_004" translatesAutoresizingMaskIntoConstraints="NO" id="3tS-5E-ktC">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="f0P-cp-Jmr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5IK-RR-ODd"/>
-                <constraint firstAttribute="trailing" secondItem="f0P-cp-Jmr" secondAttribute="trailing" id="6xy-Ma-Ol4"/>
-                <constraint firstItem="f0P-cp-Jmr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QPU-sO-IyQ"/>
-                <constraint firstAttribute="bottom" secondItem="f0P-cp-Jmr" secondAttribute="bottom" id="XVj-uG-zLz"/>
+                <constraint firstItem="3tS-5E-ktC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6Ax-6F-CqF"/>
+                <constraint firstItem="3tS-5E-ktC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GgS-GQ-EMD"/>
+                <constraint firstAttribute="bottom" secondItem="3tS-5E-ktC" secondAttribute="bottom" id="Imz-o1-Oan"/>
+                <constraint firstAttribute="trailing" secondItem="3tS-5E-ktC" secondAttribute="trailing" id="dIM-b8-Met"/>
             </constraints>
         </view>
     </objects>
     <resources>
-        <image name="tut_002" width="640" height="1138"/>
+        <image name="tut_004" width="640" height="1138"/>
     </resources>
 </document>

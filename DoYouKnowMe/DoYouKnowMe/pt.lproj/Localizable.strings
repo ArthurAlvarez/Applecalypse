@@ -44,3 +44,9 @@
 "rejectCause2" = "O outro jogador ja está se conectando a alguém";
 "rejectCause3" = "O outro jogador ja está em uma sessão de jogo";
 
+//Tutorial Paths
+"Tutorial1" = "Tutorial1";
+"Tutorial2" = "Tutorial2";
+"Tutorial3" = "Tutorial3";
+"Tutorial4" = "Tutorial4";
+"Tutorial5" = "Tutorial5";

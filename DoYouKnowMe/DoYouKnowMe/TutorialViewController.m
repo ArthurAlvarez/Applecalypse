@@ -19,6 +19,8 @@
 @property (strong, nonatomic) UIView *page1;
 @property (strong, nonatomic) UIView *page2;
 @property (strong, nonatomic) UIView *page3;
+@property (strong, nonatomic) UIView *page4;
+@property (strong, nonatomic) UIView *page5;
 @property (strong, nonatomic) NSMutableArray *pages;
 @end
 
@@ -32,27 +34,35 @@
     [defaults setBool:YES forKey:@"passedTutorial"];
     
     int i = 0;
+    int offset = -20;
     pageControlBeingUsed = NO;
     self.btnStart.hidden = YES;
     
-    self.page1 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial1" owner:self options:nil] firstObject];
-    self.page2 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial2" owner:self options:nil] firstObject];
-    self.page3 = [[[NSBundle mainBundle] loadNibNamed:@"Tutorial3" owner:self options:nil] firstObject];
+    self.page1 = [[[NSBundle mainBundle] loadNibNamed:NSLocalizedString(@"Tutorial1", nil) owner:self options:nil] firstObject];
+    self.page2 = [[[NSBundle mainBundle] loadNibNamed:NSLocalizedString(@"Tutorial2", nil) owner:self options:nil] firstObject];
+    self.page3 = [[[NSBundle mainBundle] loadNibNamed:NSLocalizedString(@"Tutorial3", nil) owner:self options:nil] firstObject];
+    self.page4 = [[[NSBundle mainBundle] loadNibNamed:NSLocalizedString(@"Tutorial4", nil) owner:self options:nil] firstObject];
+    self.page5 = [[[NSBundle mainBundle] loadNibNamed:NSLocalizedString(@"Tutorial5", nil) owner:self options:nil] firstObject];
     
     self.pages = [[NSMutableArray alloc] init];
     
     [self.pages addObject:self.page1];
     [self.pages addObject:self.page2];
     [self.pages addObject:self.page3];
+    [self.pages addObject:self.page4];
+    [self.pages addObject:self.page5];
+    
     
     self.scrollView.delegate = self;
     
-    for(i = 0; i < 3; i++){
-        ((UIView *)self.pages[i]).frame = CGRectOffset(((UIView *)self.pages[i]).frame, [self.scrollView contentSize].width, -20);
+    NSLog(@"Tamanho da tela: %f x %f", self.view.frame.size.height, self.view.frame.size.width);
+    
+    for(i = 0; i < 5; i++){
+        ((UIView *)self.pages[i]).frame = CGRectOffset(((UIView *)self.pages[i]).frame, [self.scrollView contentSize].width, offset);
         
         [self.scrollView addSubview:((UIView *)self.pages[i])];
         
-        self.scrollView.contentSize = CGSizeMake([self.scrollView contentSize].width + self.view.frame.size.width, ((UIView *)self.pages[i]).frame.size.height);
+        self.scrollView.contentSize = CGSizeMake([self.scrollView contentSize].width + self.view.frame.size.width, self.view.frame.size.height + offset);
     }
     
     self.pageControl.currentPage = 0;

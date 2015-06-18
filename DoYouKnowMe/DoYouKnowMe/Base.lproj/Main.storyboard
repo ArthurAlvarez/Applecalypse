@@ -62,7 +62,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="39"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="Jogar">
+                                <state key="normal" title="Play">
                                     <color key="titleColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -70,7 +70,7 @@
                                     <action selector="btnPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ahI-FE-EaB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Será que você conhece bem seus amigos?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="6a8-eP-Vqz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you really know your friends?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="6a8-eP-Vqz">
                                 <rect key="frame" x="173" y="142" width="254" height="47"/>
                                 <animations/>
                                 <constraints>
@@ -166,7 +166,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="39"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="Jogar">
+                                <state key="normal" title="Play">
                                     <color key="titleColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -231,7 +231,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conexão" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hb3-Zk-BSb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hb3-Zk-BSb">
                                 <rect key="frame" x="162" y="19" width="276" height="52"/>
                                 <animations/>
                                 <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -245,7 +245,7 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Como você se chama?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.94999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="TAA-DI-PKM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your name?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.94999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="TAA-DI-PKM">
                                 <rect key="frame" x="20" y="107" width="560" height="42"/>
                                 <animations/>
                                 <constraints>
@@ -264,7 +264,7 @@
                                     <constraint firstAttribute="width" secondItem="I5v-wn-g0G" secondAttribute="height" multiplier="11:2" id="FY8-Xf-0hQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="23"/>
-                                <state key="normal" title="Procurar amigos">
+                                <state key="normal" title="Browse friends">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -283,7 +283,7 @@
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olá, " lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8M-fJ-Qom">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, " lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8M-fJ-Qom">
                                 <rect key="frame" x="20" y="82" width="43" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -337,7 +337,7 @@
                                 </variation>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
-                                <rect key="frame" x="545" y="29" width="35" height="35"/>
+                                <rect key="frame" x="541" y="29" width="35" height="35"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bBr-t0-KCa" secondAttribute="height" multiplier="1:1" id="k0B-hU-Asy"/>
@@ -523,7 +523,7 @@
                                     <constraint firstAttribute="width" secondItem="iXw-8L-TAb" secondAttribute="height" multiplier="11:2" id="Szi-hz-CQn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="23"/>
-                                <state key="normal" title="Começar"/>
+                                <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="startGame:" destination="gXl-Md-Q7V" eventType="touchUpInside" id="C3W-da-11d"/>
                                 </connections>
@@ -555,7 +555,7 @@
                                     <action selector="numberOfQuestions:" destination="gXl-Md-Q7V" eventType="valueChanged" id="S2S-eY-OL5"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantas perguntas serão?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dr-AG-Dty">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many questions?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dr-AG-Dty">
                                 <rect key="frame" x="25" y="205" width="550" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -566,7 +566,7 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quanto tempo para responder?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OXw-M7-47V">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much time to answer?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OXw-M7-47V">
                                 <rect key="frame" x="25" y="288" width="550" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -577,7 +577,7 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sobre quem serão as perguntas?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-fs-vxG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whom the questions are about?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eWN-fs-vxG">
                                 <rect key="frame" x="25" y="122" width="550" height="30"/>
                                 <animations/>
                                 <color key="tintColor" red="0.91764705882352937" green="0.32156862745098042" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
@@ -596,9 +596,9 @@
                                     <constraint firstAttribute="height" constant="28" id="6OY-KI-n9J"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Sobre mim"/>
+                                    <segment title="About Me"/>
                                     <segment title="&lt;amigo&gt;"/>
-                                    <segment title="Alternado"/>
+                                    <segment title="Alternate"/>
                                 </segments>
                                 <color key="tintColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -621,7 +621,7 @@
                                     <action selector="timeToAnswer:" destination="gXl-Md-Q7V" eventType="valueChanged" id="Szb-uo-1cf"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configurações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGw-bN-Wbj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGw-bN-Wbj">
                                 <rect key="frame" x="162" y="20" width="276" height="52"/>
                                 <animations/>
                                 <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -703,8 +703,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMO-km-IVI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-8u-Glm">
-                                <rect key="frame" x="-4" y="70" width="608" height="481"/>
+                                <rect key="frame" x="0.0" y="117" width="600" height="434"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -786,20 +791,24 @@
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="OEd-8u-Glm" firstAttribute="top" secondItem="ZGE-mr-hB4" secondAttribute="bottom" constant="13" id="12U-xf-kDL"/>
+                            <constraint firstItem="OEd-8u-Glm" firstAttribute="top" secondItem="ZGE-mr-hB4" secondAttribute="bottom" constant="60" id="12U-xf-kDL"/>
+                            <constraint firstItem="aMO-km-IVI" firstAttribute="top" secondItem="kqx-KU-b9p" secondAttribute="top" id="1xl-xq-qkG"/>
+                            <constraint firstAttribute="trailing" secondItem="aMO-km-IVI" secondAttribute="trailing" id="7rf-qq-qCN"/>
                             <constraint firstItem="LgU-JG-3PF" firstAttribute="top" secondItem="SsH-Pp-ora" secondAttribute="bottom" id="85Z-P4-2Kk"/>
                             <constraint firstItem="OEd-8u-Glm" firstAttribute="trailing" secondItem="kqx-KU-b9p" secondAttribute="trailingMargin" constant="20" id="Ccj-a1-Vhy"/>
+                            <constraint firstItem="aMO-km-IVI" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leading" id="D6U-1w-Kbq"/>
                             <constraint firstItem="OEd-8u-Glm" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leadingMargin" constant="-20" id="K2U-0d-x7p"/>
                             <constraint firstItem="ZGE-mr-hB4" firstAttribute="top" secondItem="SsH-Pp-ora" secondAttribute="bottom" constant="10" id="KbM-xu-Tba"/>
                             <constraint firstItem="8NB-V2-73g" firstAttribute="top" secondItem="OEd-8u-Glm" secondAttribute="bottom" id="L6v-rv-GI5"/>
+                            <constraint firstItem="OEd-8u-Glm" firstAttribute="top" secondItem="aMO-km-IVI" secondAttribute="bottom" constant="45" id="SEk-Uy-WHx"/>
                             <constraint firstItem="LgU-JG-3PF" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leadingMargin" id="ceX-cq-k8L"/>
                             <constraint firstItem="ZGE-mr-hB4" firstAttribute="centerX" secondItem="kqx-KU-b9p" secondAttribute="centerX" id="fd6-bX-jYu"/>
                             <constraint firstItem="ZGE-mr-hB4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LgU-JG-3PF" secondAttribute="trailing" id="g86-QS-g3J"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Know Me" id="FxV-P4-faR"/>
+                    <tabBarItem key="tabBarItem" title="Know Me" image="logo_small" id="FxV-P4-faR"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="tableView" destination="OEd-8u-Glm" id="SjE-RB-CNN"/>
@@ -821,8 +830,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-AU-hMH">
-                                <rect key="frame" x="0.0" y="70" width="600" height="481"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIv-Fp-Lhv">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-AU-hMH">
+                                <rect key="frame" x="0.0" y="117" width="600" height="434"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -844,7 +858,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5B-ob-XVU">
-                                                    <rect key="frame" x="8" y="11" width="524" height="21"/>
+                                                    <rect key="frame" x="32" y="11" width="500" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
                                                     <color key="textColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -853,7 +867,7 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="b5B-ob-XVU" firstAttribute="leading" secondItem="fUE-Mp-99e" secondAttribute="leadingMargin" id="5vp-hc-qD8"/>
+                                                <constraint firstItem="b5B-ob-XVU" firstAttribute="leading" secondItem="fUE-Mp-99e" secondAttribute="leadingMargin" constant="24" id="5vp-hc-qD8"/>
                                                 <constraint firstItem="T8l-es-AhL" firstAttribute="trailing" secondItem="fUE-Mp-99e" secondAttribute="trailingMargin" id="Ifa-xy-Lnx"/>
                                                 <constraint firstItem="T8l-es-AhL" firstAttribute="leading" secondItem="b5B-ob-XVU" secondAttribute="trailing" id="POq-9S-uuT"/>
                                                 <constraint firstItem="b5B-ob-XVU" firstAttribute="top" secondItem="fUE-Mp-99e" secondAttribute="topMargin" constant="3" id="VZZ-ea-fu2"/>
@@ -904,20 +918,24 @@
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="3n1-AU-hMH" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leadingMargin" constant="-20" id="8bH-fM-V32"/>
-                            <constraint firstItem="3n1-AU-hMH" firstAttribute="top" secondItem="qaS-Rn-YUh" secondAttribute="bottom" constant="13" id="Pao-wz-PaO"/>
+                            <constraint firstAttribute="trailing" secondItem="LIv-Fp-Lhv" secondAttribute="trailing" id="GB5-DG-gHu"/>
+                            <constraint firstItem="3n1-AU-hMH" firstAttribute="top" secondItem="qaS-Rn-YUh" secondAttribute="bottom" constant="60" id="Pao-wz-PaO"/>
                             <constraint firstItem="Uuo-Ux-qRh" firstAttribute="top" secondItem="k8O-NK-ZYX" secondAttribute="bottom" id="Z88-wJ-pJj"/>
                             <constraint firstItem="3n1-AU-hMH" firstAttribute="trailing" secondItem="yZj-fu-0h4" secondAttribute="trailingMargin" constant="20" id="ZWx-Xr-TOF"/>
                             <constraint firstItem="gHr-up-hYU" firstAttribute="top" secondItem="3n1-AU-hMH" secondAttribute="bottom" id="bHB-Tw-aqS"/>
+                            <constraint firstItem="3n1-AU-hMH" firstAttribute="top" secondItem="LIv-Fp-Lhv" secondAttribute="bottom" constant="45" id="e0M-pt-mNU"/>
                             <constraint firstItem="Uuo-Ux-qRh" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leadingMargin" id="h4A-56-02F"/>
                             <constraint firstItem="qaS-Rn-YUh" firstAttribute="centerX" secondItem="yZj-fu-0h4" secondAttribute="centerX" id="hkg-bL-HaK"/>
                             <constraint firstItem="qaS-Rn-YUh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Uuo-Ux-qRh" secondAttribute="trailing" id="ix2-Xa-I4V"/>
+                            <constraint firstItem="LIv-Fp-Lhv" firstAttribute="top" secondItem="yZj-fu-0h4" secondAttribute="top" id="kLY-FU-rFM"/>
+                            <constraint firstItem="LIv-Fp-Lhv" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leading" id="pBv-9R-qyf"/>
                             <constraint firstItem="qaS-Rn-YUh" firstAttribute="top" secondItem="k8O-NK-ZYX" secondAttribute="bottom" constant="10" id="t4y-HQ-CvT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Know Them" id="SO4-TK-anz"/>
+                    <tabBarItem key="tabBarItem" title="Know Them" image="logo_small" id="SO4-TK-anz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="3n1-AU-hMH" id="gLm-cD-YPa"/>
@@ -932,13 +950,13 @@
             <objects>
                 <tabBarController id="NfI-Wo-iKZ" customClass="TabBarViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="oUO-2I-2h9">
+                    <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="oUO-2I-2h9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="tEO-Fn-qlK" kind="relationship" relationship="viewControllers" id="9FO-PD-7Z6"/>
@@ -961,7 +979,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tempo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bs4-Gz-WI9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bs4-Gz-WI9">
                                 <rect key="frame" x="257" y="20" width="87" height="41"/>
                                 <animations/>
                                 <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1003,7 +1021,7 @@
                                     <constraint firstAttribute="width" constant="64" id="rMo-ib-Bcq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="14"/>
-                                <state key="normal" title="Pausa">
+                                <state key="normal" title="Pause">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1035,7 +1053,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Carregando pergunta..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wgz-EY-fsS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading question..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wgz-EY-fsS">
                                 <rect key="frame" x="48" y="155" width="509" height="84"/>
                                 <animations/>
                                 <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1043,7 +1061,7 @@
                                 <color key="highlightedColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rodada" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-a8-SDf">
                                 <rect key="frame" x="504" y="19" width="59" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="13"/>
@@ -1073,7 +1091,7 @@
                                 </constraints>
                                 <color key="color" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Toque para responder" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TDV-1E-jzr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Touch to answer" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="TDV-1E-jzr">
                                 <rect key="frame" x="33" y="304" width="522" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -1086,7 +1104,7 @@
                                     <outlet property="delegate" destination="EzG-sG-hhN" id="EMf-n4-z0v"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pergunta sobre &lt;&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="a1b-5r-PMS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Question about &lt;&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="a1b-5r-PMS">
                                 <rect key="frame" x="48" y="117" width="141" height="21"/>
                                 <animations/>
                                 <constraints>
@@ -1268,7 +1286,7 @@
                                 </constraints>
                                 <color key="color" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acertou ou errou?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgn-0m-1oW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Right or wrong?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgn-0m-1oW">
                                 <rect key="frame" x="212" y="319" width="177" height="28"/>
                                 <animations/>
                                 <constraints>
@@ -1400,7 +1418,7 @@
                                     <constraint firstAttribute="width" secondItem="ciN-hh-P0e" secondAttribute="height" multiplier="35:6" id="wha-bf-jEN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="24"/>
-                                <state key="normal" title="Jogar novamente">
+                                <state key="normal" title="Play again">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1408,7 +1426,7 @@
                                     <action selector="playWithSame:" destination="onG-ap-POS" eventType="touchUpInside" id="xZv-Vz-spz"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resultado" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wh-sz-nho">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wh-sz-nho">
                                 <rect key="frame" x="20" y="20" width="560" height="52"/>
                                 <animations/>
                                 <constraints>
@@ -1436,7 +1454,7 @@
                                     <constraint firstAttribute="width" secondItem="oQX-6l-paH" secondAttribute="height" multiplier="11:2" constant="21" id="BHD-b1-KoI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="24"/>
-                                <state key="normal" title="Voltar">
+                                <state key="normal" title="Go back">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1515,12 +1533,13 @@
         <image name="MyAnswer" width="522" height="142"/>
         <image name="OtherAnswer" width="522" height="142"/>
         <image name="logo_big" width="261" height="344"/>
+        <image name="logo_small" width="25" height="33"/>
         <image name="right" width="299" height="244"/>
         <image name="wrong" width="299" height="244"/>
         <image name="wrong-mark" width="1920" height="1703"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ARF-uX-BDs"/>
-        <segue reference="Gsj-Ah-dbt"/>
+        <segue reference="bIW-Rb-Xdg"/>
     </inferredMetricsTieBreakers>
 </document>

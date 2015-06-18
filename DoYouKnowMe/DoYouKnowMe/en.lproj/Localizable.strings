@@ -52,3 +52,7 @@
 "Tutorial3" = "Tutorial3_EN";
 "Tutorial4" = "Tutorial4_EN";
 "Tutorial5" = "Tutorial5_EN";
+
+//ScreenShot alert
+"TitleScreenShotAlert" = "Done!";
+"MessageScreenShotAlert" = "Screen capture saved with success in your Camera Roll";

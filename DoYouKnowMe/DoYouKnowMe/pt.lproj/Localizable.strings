@@ -52,3 +52,7 @@
 "Tutorial3" = "Tutorial3";
 "Tutorial4" = "Tutorial4";
 "Tutorial5" = "Tutorial5";
+
+//ScreenShot alert
+"TitleScreenShotAlert" = "Aviso";
+"MessageScreenShotAlert" = "Captura de tela salva com sucesso em Rolo da Câmera";

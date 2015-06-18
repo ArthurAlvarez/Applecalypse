@@ -168,8 +168,8 @@
     
     UIImageWriteToSavedPhotosAlbum(screengrab, nil, nil, nil);
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aviso"
-                                                    message:@"Captura de tela salva com sucesso"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"TitleScreenShotAlert", nil)
+                                                    message:NSLocalizedString(@"MessageScreenShotAlert", nil)
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];

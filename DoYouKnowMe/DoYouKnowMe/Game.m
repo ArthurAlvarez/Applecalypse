@@ -430,16 +430,22 @@
 - (void)save:(ScoreType)scoreType
 {
 	NSString *entityName;
+	int player;
 	
 	managedObjectContext = [_appDelegate managedObjectContext];
 	
-	if (scoreType == MyScore) entityName = @"MyScore";
-	else entityName = @"OtherScore";
+	if (scoreType == MyScore) {
+		entityName = @"MyScore";
+		player = PLAYER1;
+	} else {
+		entityName = @"OtherScore";
+		player = PLAYER2;
+	}
 	
 	// Create a new managed object
 	NSManagedObject *newScore = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:managedObjectContext];
 	[newScore setValue:_otherPlayer.nickName forKey:@"name"];
-	[newScore setValue:[NSNumber numberWithFloat:[Player knowingPercent:PLAYER2]] forKey:@"knowingPercent"];
+	[newScore setValue:[NSNumber numberWithFloat:[Player knowingPercent:player]] forKey:@"knowingPercent"];
 	
 	NSError *error = nil;
 	// Save the object to persistent store

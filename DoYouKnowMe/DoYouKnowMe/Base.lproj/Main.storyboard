@@ -25,6 +25,8 @@
             <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
+            <string>VAGRoundedBT-Regular</string>
+            <string>VAGRoundedBT-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -327,7 +329,7 @@
                                     </mask>
                                 </variation>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bBr-t0-KCa">
                                 <rect key="frame" x="541" y="29" width="35" height="35"/>
                                 <animations/>
                                 <constraints>
@@ -695,32 +697,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OEd-8u-Glm">
-                                <rect key="frame" x="20" y="70" width="560" height="471"/>
+                                <rect key="frame" x="0.0" y="70" width="600" height="481"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Other" id="CFV-7d-xRa" customClass="ScoresCell">
-                                        <rect key="frame" x="0.0" y="22" width="560" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CFV-7d-xRa" id="tqX-2g-OI8">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5t-G5-p9h">
+                                                    <rect key="frame" x="32" y="11" width="500" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                                    <color key="textColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ0-dd-dxf">
-                                                    <rect key="frame" x="492" y="11" width="60" height="21"/>
+                                                    <rect key="frame" x="532" y="11" width="60" height="21"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="dSL-Fe-01D"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5t-G5-p9h">
-                                                    <rect key="frame" x="8" y="11" width="484" height="21"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                                    <color key="textColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -730,12 +732,13 @@
                                                 <constraint firstItem="fJ0-dd-dxf" firstAttribute="top" secondItem="tqX-2g-OI8" secondAttribute="topMargin" constant="3" id="FDv-Mi-OXG"/>
                                                 <constraint firstItem="fJ0-dd-dxf" firstAttribute="trailing" secondItem="tqX-2g-OI8" secondAttribute="trailingMargin" id="LC2-ji-jhh"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="X5t-G5-p9h" secondAttribute="bottom" constant="3" id="fVX-Jf-sW5"/>
-                                                <constraint firstItem="X5t-G5-p9h" firstAttribute="leading" secondItem="tqX-2g-OI8" secondAttribute="leadingMargin" id="mhh-ac-M7u"/>
+                                                <constraint firstItem="X5t-G5-p9h" firstAttribute="leading" secondItem="tqX-2g-OI8" secondAttribute="leadingMargin" constant="24" id="mhh-ac-M7u"/>
                                                 <constraint firstItem="fJ0-dd-dxf" firstAttribute="leading" secondItem="X5t-G5-p9h" secondAttribute="trailing" id="oRU-vQ-20L"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fJ0-dd-dxf" secondAttribute="bottom" constant="3" id="wRj-me-7uA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="name" destination="X5t-G5-p9h" id="eOX-Ft-uud"/>
                                             <outlet property="score" destination="fJ0-dd-dxf" id="xau-9N-zaq"/>
@@ -746,17 +749,6 @@
                                     <outlet property="dataSource" destination="vFi-D1-5iQ" id="8Es-hl-3kK"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much my friends know me?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGE-mr-hB4">
-                                <rect key="frame" x="175" y="30" width="250" height="20"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="EF2-AL-onx"/>
-                                    <constraint firstAttribute="width" constant="250" id="emD-Uq-duc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-JG-3PF">
                                 <rect key="frame" x="20" y="20" width="44" height="44"/>
                                 <animations/>
@@ -764,26 +756,43 @@
                                     <constraint firstAttribute="width" secondItem="LgU-JG-3PF" secondAttribute="height" multiplier="1:1" id="Pj2-dp-gvY"/>
                                     <constraint firstAttribute="width" constant="44" id="duE-YZ-d7v"/>
                                 </constraints>
-                                <state key="normal" title="&lt;"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="15"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="goBack:" destination="vFi-D1-5iQ" eventType="touchUpInside" id="Xxo-XN-ioQ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much my friends know me?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZGE-mr-hB4">
+                                <rect key="frame" x="141" y="30" width="320" height="27"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="EF2-AL-onx"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="338" id="emD-Uq-duc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="21"/>
+                                <color key="textColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="OEd-8u-Glm" firstAttribute="top" secondItem="ZGE-mr-hB4" secondAttribute="bottom" constant="20" id="12U-xf-kDL"/>
+                            <constraint firstItem="OEd-8u-Glm" firstAttribute="top" secondItem="ZGE-mr-hB4" secondAttribute="bottom" constant="13" id="12U-xf-kDL"/>
                             <constraint firstItem="LgU-JG-3PF" firstAttribute="top" secondItem="SsH-Pp-ora" secondAttribute="bottom" id="85Z-P4-2Kk"/>
-                            <constraint firstItem="OEd-8u-Glm" firstAttribute="trailing" secondItem="kqx-KU-b9p" secondAttribute="trailingMargin" id="Ccj-a1-Vhy"/>
-                            <constraint firstItem="OEd-8u-Glm" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leadingMargin" id="K2U-0d-x7p"/>
+                            <constraint firstItem="OEd-8u-Glm" firstAttribute="trailing" secondItem="kqx-KU-b9p" secondAttribute="trailingMargin" constant="20" id="Ccj-a1-Vhy"/>
+                            <constraint firstItem="OEd-8u-Glm" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leadingMargin" constant="-20" id="K2U-0d-x7p"/>
                             <constraint firstItem="ZGE-mr-hB4" firstAttribute="top" secondItem="SsH-Pp-ora" secondAttribute="bottom" constant="10" id="KbM-xu-Tba"/>
-                            <constraint firstItem="8NB-V2-73g" firstAttribute="top" secondItem="OEd-8u-Glm" secondAttribute="bottom" constant="10" id="L6v-rv-GI5"/>
+                            <constraint firstItem="8NB-V2-73g" firstAttribute="top" secondItem="OEd-8u-Glm" secondAttribute="bottom" id="L6v-rv-GI5"/>
                             <constraint firstItem="LgU-JG-3PF" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leadingMargin" id="ceX-cq-k8L"/>
                             <constraint firstItem="ZGE-mr-hB4" firstAttribute="centerX" secondItem="kqx-KU-b9p" secondAttribute="centerX" id="fd6-bX-jYu"/>
+                            <constraint firstItem="ZGE-mr-hB4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LgU-JG-3PF" secondAttribute="trailing" id="g86-QS-g3J"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="FxV-P4-faR"/>
+                    <tabBarItem key="tabBarItem" title="Know Me" id="FxV-P4-faR"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="tableView" destination="OEd-8u-Glm" id="SjE-RB-CNN"/>
@@ -805,44 +814,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much I know my friends?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaS-Rn-YUh">
-                                <rect key="frame" x="176" y="30" width="249" height="20"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="249" id="mlN-0W-fRR"/>
-                                    <constraint firstAttribute="height" constant="20" id="p21-kP-UUM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-AU-hMH">
-                                <rect key="frame" x="20" y="70" width="560" height="471"/>
+                                <rect key="frame" x="0.0" y="70" width="600" height="481"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="My" id="GmG-AS-Sks" customClass="ScoresCell">
-                                        <rect key="frame" x="0.0" y="22" width="560" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GmG-AS-Sks" id="fUE-Mp-99e">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8l-es-AhL">
-                                                    <rect key="frame" x="492" y="11" width="60" height="21"/>
+                                                    <rect key="frame" x="532" y="11" width="60" height="21"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="Yfr-es-kzd"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                                    <color key="textColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5B-ob-XVU">
-                                                    <rect key="frame" x="8" y="11" width="484" height="21"/>
+                                                    <rect key="frame" x="8" y="11" width="524" height="21"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                                    <color key="textColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -858,6 +856,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <color key="backgroundColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="name" destination="b5B-ob-XVU" id="uag-dg-0nF"/>
                                             <outlet property="score" destination="T8l-es-AhL" id="HI8-Hb-AGy"/>
@@ -875,26 +874,43 @@
                                     <constraint firstAttribute="width" secondItem="Uuo-Ux-qRh" secondAttribute="height" multiplier="1:1" id="9fi-NJ-Jf6"/>
                                     <constraint firstAttribute="width" constant="44" id="i5p-q9-K1p"/>
                                 </constraints>
-                                <state key="normal" title="&lt;"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="15"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="goBack:" destination="tEO-Fn-qlK" eventType="touchUpInside" id="m6v-dy-svf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much I know my friends?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qaS-Rn-YUh">
+                                <rect key="frame" x="160" y="30" width="282" height="27"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="338" id="mlN-0W-fRR"/>
+                                    <constraint firstAttribute="height" constant="27" id="p21-kP-UUM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="20"/>
+                                <color key="textColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3n1-AU-hMH" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leadingMargin" id="8bH-fM-V32"/>
-                            <constraint firstItem="3n1-AU-hMH" firstAttribute="top" secondItem="qaS-Rn-YUh" secondAttribute="bottom" constant="20" id="Pao-wz-PaO"/>
+                            <constraint firstItem="3n1-AU-hMH" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leadingMargin" constant="-20" id="8bH-fM-V32"/>
+                            <constraint firstItem="3n1-AU-hMH" firstAttribute="top" secondItem="qaS-Rn-YUh" secondAttribute="bottom" constant="13" id="Pao-wz-PaO"/>
                             <constraint firstItem="Uuo-Ux-qRh" firstAttribute="top" secondItem="k8O-NK-ZYX" secondAttribute="bottom" id="Z88-wJ-pJj"/>
-                            <constraint firstItem="3n1-AU-hMH" firstAttribute="trailing" secondItem="yZj-fu-0h4" secondAttribute="trailingMargin" id="ZWx-Xr-TOF"/>
-                            <constraint firstItem="gHr-up-hYU" firstAttribute="top" secondItem="3n1-AU-hMH" secondAttribute="bottom" constant="10" id="bHB-Tw-aqS"/>
+                            <constraint firstItem="3n1-AU-hMH" firstAttribute="trailing" secondItem="yZj-fu-0h4" secondAttribute="trailingMargin" constant="20" id="ZWx-Xr-TOF"/>
+                            <constraint firstItem="gHr-up-hYU" firstAttribute="top" secondItem="3n1-AU-hMH" secondAttribute="bottom" id="bHB-Tw-aqS"/>
                             <constraint firstItem="Uuo-Ux-qRh" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leadingMargin" id="h4A-56-02F"/>
                             <constraint firstItem="qaS-Rn-YUh" firstAttribute="centerX" secondItem="yZj-fu-0h4" secondAttribute="centerX" id="hkg-bL-HaK"/>
+                            <constraint firstItem="qaS-Rn-YUh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Uuo-Ux-qRh" secondAttribute="trailing" id="ix2-Xa-I4V"/>
                             <constraint firstItem="qaS-Rn-YUh" firstAttribute="top" secondItem="k8O-NK-ZYX" secondAttribute="bottom" constant="10" id="t4y-HQ-CvT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="SO4-TK-anz"/>
+                    <tabBarItem key="tabBarItem" title="Know Them" id="SO4-TK-anz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="3n1-AU-hMH" id="gLm-cD-YPa"/>
@@ -913,7 +929,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="tEO-Fn-qlK" kind="relationship" relationship="viewControllers" id="9FO-PD-7Z6"/>

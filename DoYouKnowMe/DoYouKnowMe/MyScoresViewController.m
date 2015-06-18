@@ -56,9 +56,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *CellIdentifier = @"Cell";
+	static NSString *CellIdentifier = @"My";
 	
-	ScoresCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	ScoresCell *cell = (ScoresCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	if (cell == nil) {
 		cell = [[ScoresCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -66,8 +66,9 @@
 	
 	// Configure the cell...
 	NSManagedObject *device = [_game.scores objectAtIndex:indexPath.row];
-	[cell.name setText:[NSString stringWithFormat:@"%@", [device valueForKey:@"name"]]];
-	[cell.score setText:[device valueForKey:@"knowingPercent"]];
+	cell.name.text = [device valueForKey:@"name"];
+	float score = [[device valueForKey:@"knowingPercent"] floatValue];
+	cell.score.text = [NSString stringWithFormat:@"%.0f%%", score * 100];
 	
 	return cell;
 }

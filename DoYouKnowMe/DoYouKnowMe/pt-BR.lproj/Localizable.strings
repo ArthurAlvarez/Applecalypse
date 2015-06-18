@@ -13,6 +13,8 @@
 "waitingOther" = "Esperando pelo outro jogador...";
 "lostConnection" = "Conexao perdida";
 "lostConnectionText" = "A conexão com seu amigo foi perdida";
+"numberOfQuestionsAlternate" = "Quantas perguntas serão para cada um?";
+"numberOfQuestionsRegular" = "Quantas perguntas serão?";
 
 // Game VC
 "questionYou" = "Pergunta sobre você";

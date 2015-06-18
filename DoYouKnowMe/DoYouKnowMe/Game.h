@@ -26,6 +26,12 @@ typedef enum : NSUInteger {
 	OtherScore,
 } ScoreType;
 
+typedef enum : NSUInteger {
+	Date,
+	KnowingPercent,
+	Name,
+} SortType;
+
 @interface Game : NSObject <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate>
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -48,7 +54,7 @@ typedef enum : NSUInteger {
 - (void) getQuestion;
 - (void) questionTextFromIndex:(NSNumber *)index;
 - (void) save:(ScoreType)scoreType;
-- (void) load:(ScoreType)scoreType;
+- (void) load:(ScoreType)scoreType sortedBy:(SortType)sortType;
 
 
 @end

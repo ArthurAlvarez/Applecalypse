@@ -23,13 +23,15 @@
 	TabBarViewController *tabVC = (TabBarViewController*) [self tabBarController];
 	
 	_game = tabVC.game;
+	
+	_tableView.backgroundColor = self.view.backgroundColor;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
-	[_game load:MyScore];
+	[_game load:MyScore sortedBy:KnowingPercent];
 	[_tableView reloadData];
 }
 
@@ -40,6 +42,15 @@
 
 - (IBAction)goBack:(id)sender {
 	[self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)changeSort:(UISegmentedControl*)sender {
+	
+	if (sender.selectedSegmentIndex == 0) [_game load:MyScore sortedBy:KnowingPercent];
+	else if (sender.selectedSegmentIndex == 1) [_game load:MyScore sortedBy:Date];
+	else [_game load:MyScore sortedBy:Name];
+	
+	[_tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -69,6 +80,9 @@
 	cell.name.text = [device valueForKey:@"name"];
 	float score = [[device valueForKey:@"knowingPercent"] floatValue];
 	cell.score.text = [NSString stringWithFormat:@"%.0f%%", score * 100];
+	
+	cell.backgroundColor = self.view.backgroundColor;
+	cell.contentView.backgroundColor = self.view.backgroundColor;
 	
 	return cell;
 }

@@ -22,14 +22,16 @@
 	// Do any additional setup after loading the view.
 	TabBarViewController *tabVC = (TabBarViewController*) [self tabBarController];
 	
-	_game = tabVC.game;	
+	_game = tabVC.game;
+	
+	_tableView.backgroundColor = self.view.backgroundColor;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
-	[_game load:OtherScore];
+	[_game load:OtherScore sortedBy:KnowingPercent];
 	[_tableView reloadData];
 }
 
@@ -46,6 +48,15 @@
 {
 	// Return the number of sections.
 	return 1;
+}
+
+- (IBAction)changeSort:(UISegmentedControl*)sender {
+	
+	if (sender.selectedSegmentIndex == 0) [_game load:OtherScore sortedBy:KnowingPercent];
+	else if (sender.selectedSegmentIndex == 1) [_game load:OtherScore sortedBy:Date];
+	else [_game load:OtherScore sortedBy:Name];
+	
+	[_tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -69,6 +80,8 @@
 	cell.name.text = [device valueForKey:@"name"];
 	float score = [[device valueForKey:@"knowingPercent"] floatValue];
 	cell.score.text = [NSString stringWithFormat:@"%.0f%%", score * 100];
+	cell.backgroundColor = self.view.backgroundColor;
+	cell.contentView.backgroundColor = self.view.backgroundColor;	
 	
 	return cell;
 }

@@ -446,6 +446,7 @@
 	NSManagedObject *newScore = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:managedObjectContext];
 	[newScore setValue:_otherPlayer.nickName forKey:@"name"];
 	[newScore setValue:[NSNumber numberWithFloat:[Player knowingPercent:player]] forKey:@"knowingPercent"];
+	[newScore setValue:[NSDate date] forKey:@"date"];
 	
 	NSError *error = nil;
 	// Save the object to persistent store
@@ -454,9 +455,11 @@
 	}
 }
 
-- (void)load:(ScoreType)scoreType
+- (void)load:(ScoreType)scoreType sortedBy:(SortType)sortType
 {
 	NSString *entityName;
+	NSString *sort;
+	BOOL ascending = NO;
 
 	managedObjectContext = [_appDelegate managedObjectContext];
 	
@@ -465,8 +468,12 @@
 	if (scoreType == MyScore) entityName = @"MyScore";
 	else entityName = @"OtherScore";
 	
+	if (sortType == Date) sort = @"date";
+	else if (sortType == Name) { sort = @"name"; ascending = YES; }
+	else sort = @"knowingPercent";
+	
 	NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
-	NSSortDescriptor *sortByKnowingPercent = [[NSSortDescriptor alloc] initWithKey:@"knowingPercent" ascending:NO];
+	NSSortDescriptor *sortByKnowingPercent = [[NSSortDescriptor alloc] initWithKey:sort ascending:ascending];
 	
 	// Fetch the devices from persistent data store
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

@@ -40,6 +40,8 @@
 /// Interface Indicator to show to the player that he is waiting to the other player
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitingIndicator;
 
+@property (weak, nonatomic) IBOutlet UILabel *numberOfQuestionsLabel;
+
 @end
 
 #pragma mark - Implementation
@@ -113,14 +115,17 @@
 		[_game sendData:@"!1" fromViewController:self to:ConnectedPeer];
 		[Player setPlayerID:PLAYER1];
 		[GameSettings setGameType:REGULARMODE];
+		_numberOfQuestionsLabel.text = NSLocalizedString(@"numberOfQuestionsRegular", nil);
 	} else if (index == 2) {
 		[_game sendData:@"!0" fromViewController:self to:ConnectedPeer];
 		[Player setPlayerID:PLAYER2];
 		[GameSettings setGameType:REGULARMODE];
+		_numberOfQuestionsLabel.text = NSLocalizedString(@"numberOfQuestionsRegular", nil);
 	} else {
 		[_game sendData:@"!3" fromViewController:self to:ConnectedPeer];
 		[Player setPlayerID:PLAYER1];
 		[GameSettings setGameType:ALTERNATEMODE];
+		_numberOfQuestionsLabel.text = NSLocalizedString(@"numberOfQuestionsAlternate", nil);
 	}
 	
 	[self numberOfQuestions:self.numberOfQuestions];
@@ -157,7 +162,7 @@
  initiates the game, otherwise, show to the player that he is waiting for the other player
  **/
 - (IBAction)startGame:(UIButton *)sender {
-		
+	
 	[sender setEnabled:NO];
 	
 	[self canStart];

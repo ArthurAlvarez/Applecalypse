@@ -141,13 +141,13 @@
 "bDX-2P-nQD.text" = "No scores yet";
 
 /* Class = "UILabel"; text = "Play to get it!"; ObjectID = "cMO-bd-B1R"; */
-"cMO-bd-B1R.text" = "Play to get it!";
+"cMO-bd-B1R.text" = "Play with your friends!";
 
 /* Class = "UIButton"; normalTitle = "Play again"; ObjectID = "ciN-hh-P0e"; */
 "ciN-hh-P0e.normalTitle" = "Play again";
 
 /* Class = "UILabel"; text = "Play to get it!"; ObjectID = "dEj-MC-0Vf"; */
-"dEj-MC-0Vf.text" = "Play to get it!";
+"dEj-MC-0Vf.text" = "Play with your friends!";
 
 /* Class = "UILabel"; text = "Round"; ObjectID = "dYt-a8-SDf"; */
 "dYt-a8-SDf.text" = "Round";

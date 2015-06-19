@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoYouKnowMe/ConnectionsViewController.m"
-            timestampString = "456152454.812589"
+            timestampString = "456423701.030231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
             landmarkName = "-rejectedInvitationWith:"
             landmarkType = "5">
          </BreakpointContent>

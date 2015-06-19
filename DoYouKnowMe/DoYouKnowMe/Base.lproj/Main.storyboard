@@ -250,9 +250,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="ieT-Lu-5O6"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arw-oj-sCG">
                                 <rect key="frame" x="0.0" y="71" width="600" height="529"/>
@@ -421,9 +418,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="Dac-ye-tx9"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="messageTag" value="message"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="leftButtonTag" value="ok"/>
@@ -506,6 +500,7 @@
                         <outlet property="connectedDevices" destination="hEl-6T-Qui" id="ZIn-y9-gq2"/>
                         <outlet property="helloLabel" destination="D8M-fJ-Qom" id="zaW-v2-KJO"/>
                         <outlet property="presentTutorial" destination="bBr-t0-KCa" id="fOx-7G-whL"/>
+                        <outlet property="scoreButton" destination="HE3-WQ-SOV" id="UB3-ed-1Fw"/>
                         <outlet property="txtName" destination="1H0-re-5ME" id="oFH-3U-gxa"/>
                         <outlet property="waitingGoNext" destination="zVL-Jf-8yN" id="Txq-4O-Cjj"/>
                         <segue destination="gXl-Md-Q7V" kind="show" identifier="goNext" id="QUt-k0-rId"/>
@@ -532,9 +527,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="XCg-D1-XnA"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nn-Tj-skq">
                                 <rect key="frame" x="0.0" y="71" width="600" height="529"/>
@@ -943,7 +935,7 @@
                             <constraint firstItem="YVW-Hw-AG5" firstAttribute="centerX" secondItem="Ssp-d7-anQ" secondAttribute="centerX" id="u7D-PV-hCG"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Know Me" image="friends_unselected" selectedImage="friends_unselected" id="FxV-P4-faR"/>
+                    <tabBarItem key="tabBarItem" title="Know Me" image="friends_unselected" id="FxV-P4-faR"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="logo" destination="Ssp-d7-anQ" id="ATx-uW-0gi"/>
@@ -1145,11 +1137,7 @@
                             <constraint firstItem="qaS-Rn-YUh" firstAttribute="top" secondItem="k8O-NK-ZYX" secondAttribute="bottom" constant="10" id="t4y-HQ-CvT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Know Them" image="self_unselected" selectedImage="self_unselected" id="SO4-TK-anz">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="keyPath" value="self_selected"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Know Them" image="self_unselected" id="SO4-TK-anz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="logo" destination="Td3-8d-ytF" id="BdX-Zv-Q8f"/>
@@ -1183,7 +1171,7 @@
             </objects>
             <point key="canvasLocation" x="1099" y="1663"/>
         </scene>
-        <!--Game View Controller-->
+        <!--Delegate-->
         <scene sceneID="GwC-KS-feF">
             <objects>
                 <viewController id="EzG-sG-hhN" customClass="GameViewController" sceneMemberID="viewController">
@@ -1612,9 +1600,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="lWp-DM-i4I"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gf3-wI-x7K">
                                 <rect key="frame" x="0.0" y="72" width="600" height="528"/>
@@ -1779,7 +1764,6 @@
         <image name="logo_big" width="261" height="344"/>
         <image name="logo_shadow" width="261" height="344"/>
         <image name="right" width="299" height="244"/>
-        <image name="self_selected" width="32" height="32"/>
         <image name="self_unselected" width="32" height="32"/>
         <image name="wrong" width="299" height="244"/>
         <image name="wrong-mark" width="1920" height="1703"/>

@@ -43,6 +43,8 @@
 /// Button to present the tutorial
 @property (weak, nonatomic) IBOutlet UIButton *presentTutorial;
 
+@property (weak, nonatomic) IBOutlet UIButton *scoreButton;
+
 @end
 
 #pragma mark - Implementation
@@ -94,6 +96,9 @@
 	_connecting = NO;
     
     _connected = NO;
+	
+	_scoreButton.enabled = YES;
+	_browseBtn.enabled = YES;
 	
 	[_acceptInviteView hide];
 	
@@ -296,6 +301,9 @@
         
         [_alertInviteView show];
     }
+
+	_scoreButton.enabled = YES;
+	_browseBtn.enabled = YES;
 }
 
 /*
@@ -414,6 +422,9 @@
 			_game.otherPlayer = peer;
 		}
 	}
+	
+	_scoreButton.enabled = NO;
+	_browseBtn.enabled = NO;
 	
 	self.connecting = YES;
 	

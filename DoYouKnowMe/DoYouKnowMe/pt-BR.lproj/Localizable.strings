@@ -44,7 +44,7 @@
 // Reject Alert View
 "rejectCause1" = "O outro jogador não aceitou seu convite para jogar";
 "rejectCause2" = "O outro jogador ja está se conectando a alguém";
-"rejectCause3" = "O outro jogador ja está em uma sessão de jogo";
+"rejectCause3" = "O outro jogador não está disponível";
 
 //Tutorial Paths
 "Tutorial1" = "Tutorial1";

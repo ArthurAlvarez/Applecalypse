@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *selectSort;
 
 @end
 
@@ -67,6 +68,7 @@
 	
 	tableView.hidden = hide;
 	_logo.hidden = !hide;
+	_selectSort.hidden = hide;
 	
 	return size;
 }

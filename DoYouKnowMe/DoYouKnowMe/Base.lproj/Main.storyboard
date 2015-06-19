@@ -1694,22 +1694,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-6v-PZ6">
-                                <rect key="frame" x="256" y="562" width="79" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Screenshot">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveScreenShot:" destination="onG-ap-POS" eventType="touchUpInside" id="gKL-uZ-pmy"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <constraints>
                             <constraint firstItem="MdE-bL-75W" firstAttribute="leading" secondItem="g6x-OY-eQM" secondAttribute="leading" constant="20" id="1Oq-SG-LYk"/>
                             <constraint firstAttribute="trailing" secondItem="MdE-bL-75W" secondAttribute="trailing" constant="20" id="1eV-Xl-P0e"/>
-                            <constraint firstItem="6Dr-6v-PZ6" firstAttribute="top" secondItem="oQX-6l-paH" secondAttribute="bottom" constant="12" id="2aO-2o-D6Z"/>
                             <constraint firstItem="ciN-hh-P0e" firstAttribute="leading" secondItem="g6x-OY-eQM" secondAttribute="leading" constant="20" id="6Jq-kV-njF"/>
                             <constraint firstItem="Zrw-aK-VCc" firstAttribute="top" secondItem="6Wh-sz-nho" secondAttribute="bottom" constant="16" id="9Bw-QW-K5Z"/>
                             <constraint firstItem="Gf3-wI-x7K" firstAttribute="leading" secondItem="g6x-OY-eQM" secondAttribute="leading" id="BZ5-Lj-8SL"/>
@@ -1720,7 +1709,6 @@
                             <constraint firstItem="Zrw-aK-VCc" firstAttribute="leading" secondItem="g6x-OY-eQM" secondAttribute="leading" constant="20" id="MaT-9S-iSH"/>
                             <constraint firstAttribute="trailing" secondItem="ciN-hh-P0e" secondAttribute="trailing" constant="20" id="PX0-oA-4C6"/>
                             <constraint firstItem="oQX-6l-paH" firstAttribute="top" secondItem="ciN-hh-P0e" secondAttribute="bottom" constant="10" id="Qrh-jp-lPk"/>
-                            <constraint firstAttribute="centerX" secondItem="6Dr-6v-PZ6" secondAttribute="centerX" constant="4.5" id="R1p-NV-5eY"/>
                             <constraint firstAttribute="trailing" secondItem="oQX-6l-paH" secondAttribute="trailing" constant="20" id="Wck-Xf-tQ2"/>
                             <constraint firstItem="6Wh-sz-nho" firstAttribute="leading" secondItem="g6x-OY-eQM" secondAttribute="leading" constant="20" id="ZNv-cg-CaY"/>
                             <constraint firstItem="aK3-7r-d2a" firstAttribute="top" secondItem="Gf3-wI-x7K" secondAttribute="bottom" id="Zhb-UT-lHh"/>
@@ -1734,7 +1722,6 @@
                             <constraint firstAttribute="trailing" secondItem="INd-Bl-Mxb" secondAttribute="trailing" id="j9u-m1-NJ0"/>
                             <constraint firstItem="INd-Bl-Mxb" firstAttribute="leading" secondItem="g6x-OY-eQM" secondAttribute="leading" id="laT-3k-qkx"/>
                             <constraint firstAttribute="centerY" secondItem="INd-Bl-Mxb" secondAttribute="centerY" id="mC8-J5-pWn"/>
-                            <constraint firstItem="aK3-7r-d2a" firstAttribute="top" secondItem="6Dr-6v-PZ6" secondAttribute="bottom" constant="8" id="mJk-iV-umk"/>
                             <constraint firstAttribute="trailing" secondItem="Zrw-aK-VCc" secondAttribute="trailing" constant="20" id="p2q-PG-srn"/>
                             <constraint firstItem="oQX-6l-paH" firstAttribute="leading" secondItem="g6x-OY-eQM" secondAttribute="leading" constant="20" id="uLd-Af-Yvy"/>
                             <constraint firstAttribute="trailing" secondItem="Gf3-wI-x7K" secondAttribute="trailing" id="y9U-A8-QXb"/>

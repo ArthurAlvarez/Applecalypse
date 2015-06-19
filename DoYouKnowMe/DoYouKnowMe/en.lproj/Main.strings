@@ -26,6 +26,15 @@
 /* Class = "UILabel"; text = "Do you really know your friends?"; ObjectID = "6a8-eP-Vqz"; */
 "6a8-eP-Vqz.text" = "Do you really know your friends?";
 
+/* Class = "UISegmentedControl"; 7GI-BQ-M1G.segmentTitles[0] = "Score"; ObjectID = "7GI-BQ-M1G"; */
+"7GI-BQ-M1G.segmentTitles[0]" = "Score";
+
+/* Class = "UISegmentedControl"; 7GI-BQ-M1G.segmentTitles[1] = "Most recent"; ObjectID = "7GI-BQ-M1G"; */
+"7GI-BQ-M1G.segmentTitles[1]" = "Most recent";
+
+/* Class = "UISegmentedControl"; 7GI-BQ-M1G.segmentTitles[2] = "Name"; ObjectID = "7GI-BQ-M1G"; */
+"7GI-BQ-M1G.segmentTitles[2]" = "Name";
+
 /* Class = "UIButton"; normalTitle = "Play"; ObjectID = "8XA-rr-pJD"; */
 "8XA-rr-pJD.normalTitle" = "Play";
 
@@ -77,7 +86,7 @@
 /* Class = "UILabel"; text = "Do I Know You?"; ObjectID = "PER-Ml-i3b"; */
 "PER-Ml-i3b.text" = "Do I Know You?";
 
-/* Class = "UIButton"; normalTitle = "Jogar"; ObjectID = "QLa-iO-ztl"; */
+/* Class = "UIButton"; normalTitle = "Play"; ObjectID = "QLa-iO-ztl"; */
 "QLa-iO-ztl.normalTitle" = "Play";
 
 /* Class = "UITabBarItem"; title = "Know Them"; ObjectID = "SO4-TK-anz"; */
@@ -110,6 +119,9 @@
 /* Class = "UILabel"; text = "name"; ObjectID = "X5t-G5-p9h"; */
 "X5t-G5-p9h.text" = "name";
 
+/* Class = "UILabel"; text = "No scores yet"; ObjectID = "YVW-Hw-AG5"; */
+"YVW-Hw-AG5.text" = "No scores yet";
+
 /* Class = "UILabel"; text = "How much my friends know me?"; ObjectID = "ZGE-mr-hB4"; */
 "ZGE-mr-hB4.text" = "How much my friends know me?";
 
@@ -125,8 +137,17 @@
 /* Class = "UIButton"; normalTitle = "?"; ObjectID = "bBr-t0-KCa"; */
 "bBr-t0-KCa.normalTitle" = "?";
 
+/* Class = "UILabel"; text = "No scores yet"; ObjectID = "bDX-2P-nQD"; */
+"bDX-2P-nQD.text" = "No scores yet";
+
+/* Class = "UILabel"; text = "Play to get it!"; ObjectID = "cMO-bd-B1R"; */
+"cMO-bd-B1R.text" = "Play to get it!";
+
 /* Class = "UIButton"; normalTitle = "Play again"; ObjectID = "ciN-hh-P0e"; */
 "ciN-hh-P0e.normalTitle" = "Play again";
+
+/* Class = "UILabel"; text = "Play to get it!"; ObjectID = "dEj-MC-0Vf"; */
+"dEj-MC-0Vf.text" = "Play to get it!";
 
 /* Class = "UILabel"; text = "Round"; ObjectID = "dYt-a8-SDf"; */
 "dYt-a8-SDf.text" = "Round";
@@ -154,6 +175,15 @@
 
 /* Class = "UILabel"; text = "How much I know my friends?"; ObjectID = "qaS-Rn-YUh"; */
 "qaS-Rn-YUh.text" = "How much I know my friends?";
+
+/* Class = "UISegmentedControl"; rKU-Gi-w7p.segmentTitles[0] = "Score"; ObjectID = "rKU-Gi-w7p"; */
+"rKU-Gi-w7p.segmentTitles[0]" = "Score";
+
+/* Class = "UISegmentedControl"; rKU-Gi-w7p.segmentTitles[1] = "Most recent"; ObjectID = "rKU-Gi-w7p"; */
+"rKU-Gi-w7p.segmentTitles[1]" = "Most recent";
+
+/* Class = "UISegmentedControl"; rKU-Gi-w7p.segmentTitles[2] = "Name"; ObjectID = "rKU-Gi-w7p"; */
+"rKU-Gi-w7p.segmentTitles[2]" = "Name";
 
 /* Class = "UIViewController"; title = "Me"; ObjectID = "tEO-Fn-qlK"; */
 "tEO-Fn-qlK.title" = "Me";

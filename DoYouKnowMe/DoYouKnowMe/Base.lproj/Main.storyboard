@@ -28,6 +28,10 @@
             <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
             <string>VAGRoundedBT-Regular</string>
+            <string>VAGRoundedBT-Regular</string>
+            <string>VAGRoundedBT-Regular</string>
+            <string>VAGRoundedBT-Regular</string>
+            <string>VAGRoundedBT-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -722,6 +726,32 @@
                                     <constraint firstAttribute="height" constant="72" id="8m2-2I-Nf0"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="Ssp-d7-anQ">
+                                <rect key="frame" x="50" y="150" width="500" height="351"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No scores yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YVW-Hw-AG5">
+                                <rect key="frame" x="200" y="293" width="200" height="35"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Kt2-bC-XPc"/>
+                                    <constraint firstAttribute="height" constant="35" id="QXF-Bg-Kev"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="26"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play with your friends!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dEj-MC-0Vf">
+                                <rect key="frame" x="200" y="336" width="200" height="23"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="6AW-zg-xmt"/>
+                                    <constraint firstAttribute="width" constant="200" id="S99-VK-Jqq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgU-JG-3PF">
                                 <rect key="frame" x="20" y="20" width="44" height="44"/>
                                 <animations/>
@@ -737,8 +767,8 @@
                                     <action selector="goBack:" destination="vFi-D1-5iQ" eventType="touchUpInside" id="Xxo-XN-ioQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much my friends know me?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZGE-mr-hB4">
-                                <rect key="frame" x="141" y="30" width="320" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How much my friends know me?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZGE-mr-hB4">
+                                <rect key="frame" x="146" y="30" width="310" height="27"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="EF2-AL-onx"/>
@@ -846,23 +876,32 @@
                             <constraint firstItem="aMO-km-IVI" firstAttribute="top" secondItem="kqx-KU-b9p" secondAttribute="top" id="1xl-xq-qkG"/>
                             <constraint firstAttribute="trailing" secondItem="aMO-km-IVI" secondAttribute="trailing" id="7rf-qq-qCN"/>
                             <constraint firstItem="LgU-JG-3PF" firstAttribute="top" secondItem="SsH-Pp-ora" secondAttribute="bottom" id="85Z-P4-2Kk"/>
+                            <constraint firstAttribute="trailing" secondItem="Ssp-d7-anQ" secondAttribute="trailing" constant="50" id="BZW-N2-PLz"/>
                             <constraint firstItem="OEd-8u-Glm" firstAttribute="trailing" secondItem="kqx-KU-b9p" secondAttribute="trailing" id="Ccj-a1-Vhy"/>
                             <constraint firstItem="aMO-km-IVI" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leading" id="D6U-1w-Kbq"/>
+                            <constraint firstItem="8NB-V2-73g" firstAttribute="top" secondItem="Ssp-d7-anQ" secondAttribute="bottom" constant="50" id="FeN-yH-Ts5"/>
                             <constraint firstItem="rKU-Gi-w7p" firstAttribute="centerX" secondItem="kqx-KU-b9p" secondAttribute="centerX" id="G9w-is-qsQ"/>
+                            <constraint firstItem="Ssp-d7-anQ" firstAttribute="top" secondItem="kqx-KU-b9p" secondAttribute="top" constant="150" id="JAg-0l-qJe"/>
                             <constraint firstItem="OEd-8u-Glm" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leading" id="K2U-0d-x7p"/>
                             <constraint firstItem="ZGE-mr-hB4" firstAttribute="top" secondItem="SsH-Pp-ora" secondAttribute="bottom" constant="10" id="KbM-xu-Tba"/>
                             <constraint firstItem="8NB-V2-73g" firstAttribute="top" secondItem="OEd-8u-Glm" secondAttribute="bottom" id="L6v-rv-GI5"/>
                             <constraint firstItem="OEd-8u-Glm" firstAttribute="top" secondItem="aMO-km-IVI" secondAttribute="bottom" constant="45" id="SEk-Uy-WHx"/>
+                            <constraint firstItem="dEj-MC-0Vf" firstAttribute="centerX" secondItem="YVW-Hw-AG5" secondAttribute="centerX" id="SwT-hM-Ynh"/>
                             <constraint firstItem="rKU-Gi-w7p" firstAttribute="top" secondItem="aMO-km-IVI" secondAttribute="bottom" constant="8" id="bH8-mz-0x6"/>
                             <constraint firstItem="LgU-JG-3PF" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leadingMargin" id="ceX-cq-k8L"/>
-                            <constraint firstItem="ZGE-mr-hB4" firstAttribute="centerX" secondItem="kqx-KU-b9p" secondAttribute="centerX" id="fd6-bX-jYu"/>
+                            <constraint firstItem="ZGE-mr-hB4" firstAttribute="centerX" secondItem="kqx-KU-b9p" secondAttribute="centerX" constant="1" id="fd6-bX-jYu"/>
+                            <constraint firstItem="Ssp-d7-anQ" firstAttribute="leading" secondItem="kqx-KU-b9p" secondAttribute="leading" constant="50" id="ffP-6f-KXS"/>
                             <constraint firstItem="ZGE-mr-hB4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LgU-JG-3PF" secondAttribute="trailing" id="g86-QS-g3J"/>
+                            <constraint firstItem="YVW-Hw-AG5" firstAttribute="centerY" secondItem="Ssp-d7-anQ" secondAttribute="centerY" constant="-15" id="jym-CC-6YU"/>
+                            <constraint firstItem="dEj-MC-0Vf" firstAttribute="top" secondItem="YVW-Hw-AG5" secondAttribute="bottom" constant="8" id="mCG-ru-lua"/>
                             <constraint firstItem="OEd-8u-Glm" firstAttribute="top" secondItem="rKU-Gi-w7p" secondAttribute="bottom" constant="7" id="qt0-DY-j8a"/>
+                            <constraint firstItem="YVW-Hw-AG5" firstAttribute="centerX" secondItem="Ssp-d7-anQ" secondAttribute="centerX" id="u7D-PV-hCG"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Know Me" image="logo_small" id="FxV-P4-faR"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="logo" destination="Ssp-d7-anQ" id="ATx-uW-0gi"/>
                         <outlet property="tableView" destination="OEd-8u-Glm" id="SjE-RB-CNN"/>
                     </connections>
                 </viewController>
@@ -890,6 +929,32 @@
                                     <constraint firstAttribute="height" constant="72" id="pin-Nd-TyZ"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="Td3-8d-ytF">
+                                <rect key="frame" x="50" y="150" width="500" height="351"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No scores yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bDX-2P-nQD">
+                                <rect key="frame" x="200" y="293" width="200" height="35"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="NZz-VA-s5S"/>
+                                    <constraint firstAttribute="height" constant="35" id="PV6-o8-NzK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="26"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play with your friends!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cMO-bd-B1R">
+                                <rect key="frame" x="200" y="336" width="200" height="23"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="526-mL-F5x"/>
+                                    <constraint firstAttribute="height" constant="23" id="mXN-Y9-7pE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="VAGRoundedBT-Regular" family="VAGRounded BT" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3n1-AU-hMH">
                                 <rect key="frame" x="0.0" y="117" width="600" height="434"/>
                                 <animations/>
@@ -1009,12 +1074,19 @@
                         <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="3n1-AU-hMH" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leading" id="8bH-fM-V32"/>
+                            <constraint firstItem="gHr-up-hYU" firstAttribute="top" secondItem="Td3-8d-ytF" secondAttribute="bottom" constant="50" id="9Gx-7H-okb"/>
+                            <constraint firstItem="bDX-2P-nQD" firstAttribute="centerY" secondItem="Td3-8d-ytF" secondAttribute="centerY" constant="-15" id="BTf-mi-OTH"/>
+                            <constraint firstItem="bDX-2P-nQD" firstAttribute="centerX" secondItem="Td3-8d-ytF" secondAttribute="centerX" id="FUs-2r-pfU"/>
                             <constraint firstAttribute="trailing" secondItem="LIv-Fp-Lhv" secondAttribute="trailing" id="GB5-DG-gHu"/>
                             <constraint firstItem="7GI-BQ-M1G" firstAttribute="centerX" secondItem="yZj-fu-0h4" secondAttribute="centerX" id="NXO-X4-91o"/>
+                            <constraint firstItem="cMO-bd-B1R" firstAttribute="top" secondItem="bDX-2P-nQD" secondAttribute="bottom" constant="8" id="NbM-Hy-lHL"/>
+                            <constraint firstItem="cMO-bd-B1R" firstAttribute="centerX" secondItem="bDX-2P-nQD" secondAttribute="centerX" id="PI0-hv-YtI"/>
+                            <constraint firstItem="Td3-8d-ytF" firstAttribute="top" secondItem="LIv-Fp-Lhv" secondAttribute="top" constant="150" id="UdN-f1-9XU"/>
                             <constraint firstItem="Uuo-Ux-qRh" firstAttribute="top" secondItem="k8O-NK-ZYX" secondAttribute="bottom" id="Z88-wJ-pJj"/>
                             <constraint firstItem="3n1-AU-hMH" firstAttribute="trailing" secondItem="yZj-fu-0h4" secondAttribute="trailing" id="ZWx-Xr-TOF"/>
                             <constraint firstItem="7GI-BQ-M1G" firstAttribute="top" secondItem="LIv-Fp-Lhv" secondAttribute="bottom" constant="8" id="b9y-9j-xPZ"/>
                             <constraint firstItem="gHr-up-hYU" firstAttribute="top" secondItem="3n1-AU-hMH" secondAttribute="bottom" id="bHB-Tw-aqS"/>
+                            <constraint firstAttribute="trailing" secondItem="Td3-8d-ytF" secondAttribute="trailing" constant="50" id="bZJ-7A-9bI"/>
                             <constraint firstItem="3n1-AU-hMH" firstAttribute="top" secondItem="LIv-Fp-Lhv" secondAttribute="bottom" constant="45" id="e0M-pt-mNU"/>
                             <constraint firstItem="3n1-AU-hMH" firstAttribute="top" secondItem="7GI-BQ-M1G" secondAttribute="bottom" constant="7" id="gEx-om-rtI"/>
                             <constraint firstItem="Uuo-Ux-qRh" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leadingMargin" id="h4A-56-02F"/>
@@ -1022,12 +1094,14 @@
                             <constraint firstItem="qaS-Rn-YUh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Uuo-Ux-qRh" secondAttribute="trailing" id="ix2-Xa-I4V"/>
                             <constraint firstItem="LIv-Fp-Lhv" firstAttribute="top" secondItem="yZj-fu-0h4" secondAttribute="top" id="kLY-FU-rFM"/>
                             <constraint firstItem="LIv-Fp-Lhv" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leading" id="pBv-9R-qyf"/>
+                            <constraint firstItem="Td3-8d-ytF" firstAttribute="leading" secondItem="yZj-fu-0h4" secondAttribute="leading" constant="50" id="r1f-Ud-0pN"/>
                             <constraint firstItem="qaS-Rn-YUh" firstAttribute="top" secondItem="k8O-NK-ZYX" secondAttribute="bottom" constant="10" id="t4y-HQ-CvT"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Know Them" image="logo_small" id="SO4-TK-anz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="logo" destination="Td3-8d-ytF" id="BdX-Zv-Q8f"/>
                         <outlet property="tableView" destination="3n1-AU-hMH" id="gLm-cD-YPa"/>
                     </connections>
                 </viewController>
@@ -1650,6 +1724,7 @@
         <image name="MyAnswer" width="522" height="142"/>
         <image name="OtherAnswer" width="522" height="142"/>
         <image name="logo_big" width="261" height="344"/>
+        <image name="logo_shadow" width="261" height="344"/>
         <image name="logo_small" width="25" height="33"/>
         <image name="right" width="299" height="244"/>
         <image name="wrong" width="299" height="244"/>

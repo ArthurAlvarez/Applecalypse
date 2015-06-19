@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "How many questions?"; ObjectID = "2dr-AG-Dty"; */
-"2dr-AG-Dty.text" = "QQuantas perguntas serão?";
+"2dr-AG-Dty.text" = "Quantas perguntas serão?";
 
 /* Class = "UIButton"; normalTitle = "<"; ObjectID = "3yr-ud-wF1"; */
 "3yr-ud-wF1.normalTitle" = "<";
@@ -25,6 +25,15 @@
 
 /* Class = "UILabel"; text = "Será que você conhece bem seus amigos?"; ObjectID = "6a8-eP-Vqz"; */
 "6a8-eP-Vqz.text" = "Será que você conhece bem seus amigos?";
+
+/* Class = "UISegmentedControl"; 7GI-BQ-M1G.segmentTitles[0] = "Score"; ObjectID = "7GI-BQ-M1G"; */
+"7GI-BQ-M1G.segmentTitles[0]" = "Pontuação";
+
+/* Class = "UISegmentedControl"; 7GI-BQ-M1G.segmentTitles[1] = "Most recent"; ObjectID = "7GI-BQ-M1G"; */
+"7GI-BQ-M1G.segmentTitles[1]" = "Mais recente";
+
+/* Class = "UISegmentedControl"; 7GI-BQ-M1G.segmentTitles[2] = "Name"; ObjectID = "7GI-BQ-M1G"; */
+"7GI-BQ-M1G.segmentTitles[2]" = "Nome";
 
 /* Class = "UIButton"; normalTitle = "Play"; ObjectID = "8XA-rr-pJD"; */
 "8XA-rr-pJD.normalTitle" = "Jogar";
@@ -125,6 +134,18 @@
 /* Class = "UIButton"; normalTitle = "?"; ObjectID = "bBr-t0-KCa"; */
 "bBr-t0-KCa.normalTitle" = "?";
 
+/* Class = "UILabel"; text = "Sem pontuações"; ObjectID = "bDX-2P-nQD"; */
+"bDX-2P-nQD.text" = "Sem pontuações";
+
+/* Class = "UILabel"; text = "Jogue com seus amigos!"; ObjectID = "cMO-bd-B1R"; */
+"cMO-bd-B1R.text" = "Jogue com seus amigos!";
+
+/* Class = "UILabel"; text = "Sem pontuações"; ObjectID = "YVW-Hw-AG5"; */
+"YVW-Hw-AG5.text" = "Sem pontuações";
+
+/* Class = "UILabel"; text = "Jogue com seus amigos!"; ObjectID = "dEj-MC-0Vf"; */
+"dEj-MC-0Vf.text" = "Jogue com seus amigos!";
+
 /* Class = "UIButton"; normalTitle = "Play again"; ObjectID = "ciN-hh-P0e"; */
 "ciN-hh-P0e.normalTitle" = "Jogar novamente";
 
@@ -154,6 +175,15 @@
 
 /* Class = "UILabel"; text = "How much I know my friends?"; ObjectID = "qaS-Rn-YUh"; */
 "qaS-Rn-YUh.text" = "Quanto conheço meus amigos?";
+
+/* Class = "UISegmentedControl"; rKU-Gi-w7p.segmentTitles[0] = "Placar"; ObjectID = "rKU-Gi-w7p"; */
+"rKU-Gi-w7p.segmentTitles[0]" = "Pontuação";
+
+/* Class = "UISegmentedControl"; rKU-Gi-w7p.segmentTitles[1] = "Mais recente"; ObjectID = "rKU-Gi-w7p"; */
+"rKU-Gi-w7p.segmentTitles[1]" = "Mais recente";
+
+/* Class = "UISegmentedControl"; rKU-Gi-w7p.segmentTitles[2] = "Nome"; ObjectID = "rKU-Gi-w7p"; */
+"rKU-Gi-w7p.segmentTitles[2]" = "Nome";
 
 /* Class = "UIViewController"; title = "Me"; ObjectID = "tEO-Fn-qlK"; */
 "tEO-Fn-qlK.title" = "Eu";

@@ -12,6 +12,7 @@
 @interface MyScoresViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
 
 @end
 
@@ -61,8 +62,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	// Return the number of rows in the section.
-	return _game.scores.count;
+	NSInteger size = _game.scores.count;
+	BOOL hide = size == 0;
+	
+	tableView.hidden = hide;
+	_logo.hidden = !hide;
+	
+	return size;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

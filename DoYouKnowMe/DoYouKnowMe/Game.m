@@ -458,8 +458,12 @@
 - (void)load:(ScoreType)scoreType sortedBy:(SortType)sortType
 {
 	NSString *entityName;
-	NSString *sort;
-	BOOL ascending = NO;
+	NSString *firstSortKey;
+	NSString *secondSortKey;
+	NSString *thirdSortKey;
+	BOOL firstAscending = NO;
+	BOOL secondAscending = NO;
+	BOOL thirdAscending = NO;
 
 	managedObjectContext = [_appDelegate managedObjectContext];
 	
@@ -468,17 +472,29 @@
 	if (scoreType == MyScore) entityName = @"MyScore";
 	else entityName = @"OtherScore";
 	
-	if (sortType == Date) sort = @"date";
-	else if (sortType == Name) { sort = @"name"; ascending = YES; }
-	else sort = @"knowingPercent";
+	if (sortType == Date) {
+		firstSortKey = @"date";
+		secondSortKey = @"knowingPercent";
+		thirdSortKey = @"name"; thirdAscending = YES;
+	} else if (sortType == Name) {
+		firstSortKey = @"name";	firstAscending = YES;
+		secondSortKey = @"knowingPercent";
+		thirdSortKey = @"date";
+	} else {
+		firstSortKey = @"knowingPercent";
+		secondSortKey = @"date";
+		thirdSortKey = @"name"; thirdAscending = YES;
+	}
 	
 	NSEntityDescription *entityDesc = [NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext];
-	NSSortDescriptor *sortByKnowingPercent = [[NSSortDescriptor alloc] initWithKey:sort ascending:ascending];
-	
+	NSSortDescriptor *firstSort = [[NSSortDescriptor alloc] initWithKey:firstSortKey ascending:firstAscending];
+	NSSortDescriptor *secondSort = [[NSSortDescriptor alloc] initWithKey:secondSortKey ascending:secondAscending];
+	NSSortDescriptor *thirdSort = [[NSSortDescriptor alloc] initWithKey:thirdSortKey ascending:thirdAscending];
+
 	// Fetch the devices from persistent data store
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	[fetchRequest setEntity:entityDesc];
-	[fetchRequest setSortDescriptors:[[NSArray alloc] initWithObjects:sortByKnowingPercent, nil]];
+	[fetchRequest setSortDescriptors:[[NSArray alloc] initWithObjects:firstSort, secondSort, thirdSort, nil]];
 	
 	NSError *error = nil;
 	

@@ -379,19 +379,6 @@
                                     <action selector="goToTutorial:" destination="EWF-ZV-0wl" eventType="touchUpInside" id="FXQ-Ur-ble"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-Sj-KRq" customClass="AuxiliaryMenuView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="messageTag" value="message"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="rightButtonTag" value="accept"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="leftButtonTag" value="reject"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="delegate" destination="EWF-ZV-0wl" id="B8b-wZ-1FZ"/>
-                                </connections>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QN5-hL-GdY" userLabel="Down bar">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                                 <animations/>
@@ -417,6 +404,19 @@
                                     <segue destination="NfI-Wo-iKZ" kind="show" identifier="scores" id="Rhz-eX-uPL"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJr-Sj-KRq" customClass="AuxiliaryMenuView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="messageTag" value="message"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="rightButtonTag" value="accept"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="leftButtonTag" value="reject"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="EWF-ZV-0wl" id="B8b-wZ-1FZ"/>
+                                </connections>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggd-hM-fJt" userLabel="Alert Auxiliary Menu View" customClass="AuxiliaryMenuView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>

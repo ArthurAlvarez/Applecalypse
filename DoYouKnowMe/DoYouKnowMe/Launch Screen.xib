@@ -13,21 +13,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_big" translatesAutoresizingMaskIntoConstraints="NO" id="UZh-9O-O3W">
-                    <rect key="frame" x="207" y="227" width="187" height="233"/>
+                    <rect key="frame" x="207" y="229" width="186" height="231"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="UZh-9O-O3W" secondAttribute="height" multiplier="133:165" id="2Yl-vp-ZNW"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="133" id="Jzn-5R-QTi"/>
-                        <constraint firstAttribute="width" constant="133" id="bJ2-kR-Ebd"/>
-                        <constraint firstAttribute="height" constant="165" id="wSf-WK-rbA"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="Dke-yl-IOd"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="Jzn-5R-QTi"/>
-                            <exclude reference="bJ2-kR-Ebd"/>
-                            <exclude reference="wSf-WK-rbA"/>
-                        </mask>
-                    </variation>
                 </imageView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gUU-kE-gkm">
                     <rect key="frame" x="282" y="523" width="37" height="37"/>
@@ -37,15 +28,33 @@
                     </constraints>
                     <color key="color" red="0.99215686270000003" green="0.50588235290000005" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQB-uv-hgf">
+                    <rect key="frame" x="0.0" y="189" width="600" height="40"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="AOk-mb-tp9"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOF-DI-DRY">
+                    <rect key="frame" x="0.0" y="460" width="600" height="40"/>
+                    <animations/>
+                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" red="0.08235294118" green="0.4941176471" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="gUU-kE-gkm" firstAttribute="centerX" secondItem="UZh-9O-O3W" secondAttribute="centerX" id="6Gk-z2-T0r"/>
+                <constraint firstItem="gUU-kE-gkm" firstAttribute="top" secondItem="kOF-DI-DRY" secondAttribute="bottom" constant="23" id="KMW-bP-cRF"/>
                 <constraint firstAttribute="bottom" secondItem="gUU-kE-gkm" secondAttribute="bottom" constant="40" id="Kaa-cZ-4ti"/>
-                <constraint firstItem="gUU-kE-gkm" firstAttribute="top" secondItem="UZh-9O-O3W" secondAttribute="bottom" constant="63" id="YDA-rn-YJD"/>
+                <constraint firstItem="kOF-DI-DRY" firstAttribute="height" secondItem="XQB-uv-hgf" secondAttribute="height" id="ORg-Ld-gwH"/>
+                <constraint firstItem="kOF-DI-DRY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PSZ-ju-E9u"/>
+                <constraint firstAttribute="trailing" secondItem="XQB-uv-hgf" secondAttribute="trailing" id="T86-YZ-3sq"/>
+                <constraint firstItem="XQB-uv-hgf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ToN-O9-dse"/>
+                <constraint firstAttribute="trailing" secondItem="kOF-DI-DRY" secondAttribute="trailing" id="Y5V-aX-DoP"/>
                 <constraint firstItem="UZh-9O-O3W" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="c4I-Gc-ion"/>
-                <constraint firstItem="UZh-9O-O3W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="227" id="na6-d3-8df"/>
+                <constraint firstItem="XQB-uv-hgf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="189" id="ecM-1e-1zO"/>
+                <constraint firstItem="kOF-DI-DRY" firstAttribute="top" secondItem="UZh-9O-O3W" secondAttribute="bottom" id="o0M-CS-H5I"/>
+                <constraint firstItem="UZh-9O-O3W" firstAttribute="top" secondItem="XQB-uv-hgf" secondAttribute="bottom" id="oTd-b1-PKi"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

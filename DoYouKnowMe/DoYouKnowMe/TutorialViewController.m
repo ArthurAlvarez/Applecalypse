@@ -34,7 +34,12 @@
     [defaults setBool:YES forKey:@"passedTutorial"];
     
     int i = 0;
-    int offset = -20;
+    int offset = 0;
+    
+    if(!self.cameFromFirstScreen){
+        offset = -20;
+    }
+    
     pageControlBeingUsed = NO;
     self.btnStart.hidden = YES;
     

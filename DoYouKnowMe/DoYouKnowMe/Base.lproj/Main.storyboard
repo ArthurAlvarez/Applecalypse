@@ -1183,7 +1183,7 @@
             </objects>
             <point key="canvasLocation" x="1099" y="1663"/>
         </scene>
-        <!--Delegate-->
+        <!--Game View Controller-->
         <scene sceneID="GwC-KS-feF">
             <objects>
                 <viewController id="EzG-sG-hhN" customClass="GameViewController" sceneMemberID="viewController">

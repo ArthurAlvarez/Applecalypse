@@ -12,6 +12,7 @@
 @interface TutorialViewController ()
 {
     BOOL pageControlBeingUsed;
+    int translateY;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
@@ -34,10 +35,10 @@
     [defaults setBool:YES forKey:@"passedTutorial"];
     
     int i = 0;
-    int offset = 0;
+    translateY = 0;
     
     if(!self.cameFromFirstScreen){
-        offset = -20;
+        translateY = -20;
     }
     
     pageControlBeingUsed = NO;
@@ -63,11 +64,11 @@
     NSLog(@"Tamanho da tela: %f x %f", self.view.frame.size.height, self.view.frame.size.width);
     
     for(i = 0; i < 5; i++){
-        ((UIView *)self.pages[i]).frame = CGRectOffset(((UIView *)self.pages[i]).frame, [self.scrollView contentSize].width, offset);
+        ((UIView *)self.pages[i]).frame = CGRectOffset(((UIView *)self.pages[i]).frame, [self.scrollView contentSize].width, translateY);
         
         [self.scrollView addSubview:((UIView *)self.pages[i])];
         
-        self.scrollView.contentSize = CGSizeMake([self.scrollView contentSize].width + self.view.frame.size.width, self.view.frame.size.height + offset);
+        self.scrollView.contentSize = CGSizeMake([self.scrollView contentSize].width + self.view.frame.size.width, self.view.frame.size.height + translateY);
     }
     
     self.pageControl.currentPage = 0;
@@ -103,7 +104,7 @@
 - (IBAction)changePage:(id)sender {
     UIPageControl *pageControl = (UIPageControl *)sender;
     NSInteger currentPage = pageControl.currentPage;
-    CGPoint offset = CGPointMake(currentPage * self.scrollView.frame.size.width, -20);
+    CGPoint offset = CGPointMake(currentPage * self.scrollView.frame.size.width, translateY);
     [self.scrollView setContentOffset:offset animated:YES];
     pageControlBeingUsed = YES;
 }
